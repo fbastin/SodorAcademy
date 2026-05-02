@@ -1,0 +1,6 @@
+{
+  "name": "Sodor Academy",
+  "description": "An interactive educational platform for children set in the Thomas & Friends universe, featuring stories, games, and rewards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["AI Storytelling", "Interactive Educational Games", "Reward System"]
+}

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-sodor-blue: #1e40af;
+  --color-sodor-red: #991b1b;
+  --color-sodor-green: #166534;
+  --color-sodor-gold: #fbbf24;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+  }
+}
+
+.train-track {
+  background-image: repeating-linear-gradient(90deg, #444 0, #444 10px, transparent 10px, transparent 40px);
+}
+
+.engine-glass {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
