@@ -1,20 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Sodor Academy
 
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/2ecb536a-ee19-447e-8a64-fa973971d6ec
+An interactive educational platform for children set in the Thomas & Friends universe.
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app in development mode:
    `npm run dev`
+3. Or run the production build locally:
+   `npm run build && npm start`
+
+## Deployment
+
+### On your own server (slashbin.net)
+
+To see the app at `https://slashbin.net/SodorAcademy/`, you must serve the contents of the `dist` folder.
+
+1. Run the build:
+   `npm run build`
+2. Configure your web server (Nginx/Apache) to point the `/SodorAcademy/` path to the `/var/www/slashbin.net/SodorAcademy/dist` directory.
+
+### GitHub Pages
+This repository is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
