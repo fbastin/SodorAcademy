@@ -2,11 +2,17 @@
   {
     "id": "1777968938422",
     "name": "Alan",
-    "pin": "Thoms&Friends2015;",
+    "pin": "$2b$10$EYwiFIGYt/rE38rD/aCYWerMSmb2mX.iTGe3UMfQEinb7ucDFkaju",
     "stats": {
-      "score": 0,
-      "completedLessons": 0,
-      "enginesCollected": [],
+      "score": 200,
+      "completedLessons": 2,
+      "enginesCollected": [
+        "james",
+        "percy"
+      ],
+      "videosUnlocked": [
+        "welcome"
+      ],
       "currentGrade": "Primary"
     }
   }

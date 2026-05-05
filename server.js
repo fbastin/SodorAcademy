@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
+import bcrypt from 'bcryptjs';
 
 dotenv.config();
 
@@ -44,14 +45,16 @@ apiRouter.post('/register', async (req, res) => {
     return res.status(400).json({ error: 'User already exists' });
   }
 
+  const hashedPin = await bcrypt.hash(pin, 10);
   const newUser = {
     id: Date.now().toString(),
     name,
-    pin,
+    pin: hashedPin,
     stats: {
       score: 0,
       completedLessons: 0,
       enginesCollected: [],
+      videosUnlocked: ['welcome'],
       currentGrade: 'Primary'
     }
   };
@@ -64,9 +67,9 @@ apiRouter.post('/register', async (req, res) => {
 apiRouter.post('/login', async (req, res) => {
   const { name, pin } = req.body;
   const users = await readUsers();
-  const user = users.find(u => u.name === name && u.pin === pin);
+  const user = users.find(u => u.name === name);
 
-  if (!user) {
+  if (!user || !(await bcrypt.compare(pin, user.pin))) {
     return res.status(401).json({ error: 'Invalid name or PIN' });
   }
 
@@ -84,6 +87,58 @@ apiRouter.post('/progress/:userId', async (req, res) => {
   users[index].stats = stats;
   await writeUsers(users);
   res.json({ success: true });
+});
+
+apiRouter.post('/change-pin', async (req, res) => {
+  const { userId, newPin } = req.body;
+  if (!userId || !newPin) return res.status(400).json({ error: 'User ID and new PIN required' });
+
+  const users = await readUsers();
+  const index = users.findIndex(u => u.id === userId);
+  if (index === -1) return res.status(404).json({ error: 'User not found' });
+
+  const hashedPin = await bcrypt.hash(newPin, 10);
+  users[index].pin = hashedPin;
+  await writeUsers(users);
+  res.json({ success: true });
+});
+
+apiRouter.delete('/account/:userId', async (req, res) => {
+  const { userId } = req.params;
+  let users = await readUsers();
+  const initialLength = users.length;
+  users = users.filter(u => u.id !== userId);
+
+  if (users.length === initialLength) return res.status(404).json({ error: 'User not found' });
+
+  await writeUsers(users);
+  res.json({ success: true });
+});
+
+apiRouter.post('/import', async (req, res) => {
+  const { userData } = req.body;
+  if (!userData || !userData.name || !userData.pin || !userData.stats) {
+    return res.status(400).json({ error: 'Invalid user data format' });
+  }
+
+  const users = await readUsers();
+  const existingIndex = users.findIndex(u => u.name === userData.name);
+
+  // If the pin is not already hashed, hash it
+  const isHashed = userData.pin.startsWith('$2a$') || userData.pin.startsWith('$2b$') || userData.pin.startsWith('$2y$');
+  const finalUserData = { ...userData };
+  if (!isHashed) {
+    finalUserData.pin = await bcrypt.hash(userData.pin, 10);
+  }
+
+  if (existingIndex !== -1) {
+    users[existingIndex] = finalUserData;
+  } else {
+    users.push(finalUserData);
+  }
+
+  await writeUsers(users);
+  res.status(200).json({ user: { id: finalUserData.id, name: finalUserData.name, stats: finalUserData.stats } });
 });
 
 // Mount the API router on the base path

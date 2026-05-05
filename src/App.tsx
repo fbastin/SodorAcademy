@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock } from 'lucide-react';
-import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES } from './types';
+import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2 } from 'lucide-react';
+import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video } from './types';
 import { generateQuestion } from './services/questionService';
 import { apiService, User } from './services/apiService';
 
 // --- Components ---
 
-const Navbar = ({ stats, userName, onLogout }: { stats: UserStats; userName: string; onLogout: () => void }) => (
+const Navbar = ({ stats, userName, onLogout, onOpenSettings }: { 
+  stats: UserStats; 
+  userName: string; 
+  onLogout: () => void;
+  onOpenSettings: () => void;
+}) => (
   <nav className="h-16 border-b bg-white flex items-center justify-between px-6 sticky top-0 z-50">
     <div className="flex items-center gap-2">
       <div className="w-10 h-10 bg-sodor-blue rounded-lg flex items-center justify-center text-white shadow-lg relative overflow-hidden group">
@@ -39,6 +44,16 @@ const Navbar = ({ stats, userName, onLogout }: { stats: UserStats; userName: str
         <Trophy size={18} className="text-sodor-blue" />
         <span className="font-bold text-sodor-blue">{stats.enginesCollected.length}</span>
       </div>
+      
+      <div className="h-8 w-[1px] bg-slate-200 mx-1" />
+      
+      <button 
+        onClick={onOpenSettings}
+        className="p-2 text-slate-400 hover:text-sodor-blue transition-colors"
+        title="Settings"
+      >
+        <Settings size={20} />
+      </button>
       <button 
         onClick={onLogout}
         className="p-2 text-slate-400 hover:text-red-500 transition-colors"
@@ -50,7 +65,7 @@ const Navbar = ({ stats, userName, onLogout }: { stats: UserStats; userName: str
   </nav>
 );
 
-const LoginView = ({ onLogin }: { onLogin: (user: User) => void }) => {
+const LoginView = ({ onLogin }: { onLogin: (user: User, pin: string, isNewUser: boolean) => void }) => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [name, setName] = useState('');
   const [pin, setPin] = useState('');
@@ -64,16 +79,33 @@ const LoginView = ({ onLogin }: { onLogin: (user: User) => void }) => {
     try {
       if (isRegistering) {
         const user = await apiService.register(name, pin);
-        onLogin(user);
+        onLogin(user, pin, true);
       } else {
         const user = await apiService.login(name, pin);
-        onLogin(user);
+        onLogin(user, pin, false);
       }
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      try {
+        const data = JSON.parse(event.target?.result as string);
+        const user = await apiService.importData(data);
+        onLogin(user, data.pin, false);
+      } catch (err) {
+        setError('Failed to import data. Invalid file format.');
+      }
+    };
+    reader.readAsText(file);
   };
 
   return (
@@ -128,16 +160,223 @@ const LoginView = ({ onLogin }: { onLogin: (user: User) => void }) => {
           </button>
         </form>
 
-        <button
-          onClick={() => { setIsRegistering(!isRegistering); setError(''); }}
-          className="mt-6 text-slate-400 font-bold hover:text-sodor-blue transition-colors text-sm"
-        >
-          {isRegistering ? 'Already have an account? Log In' : "New student? Create an account"}
-        </button>
+        <div className="mt-8 flex flex-col gap-4">
+          <button
+            onClick={() => { setIsRegistering(!isRegistering); setError(''); }}
+            className="text-slate-400 font-bold hover:text-sodor-blue transition-colors text-sm"
+          >
+            {isRegistering ? 'Already have an account? Log In' : "New student? Create an account"}
+          </button>
+          
+          <div className="flex items-center gap-4 my-2">
+            <div className="h-[1px] flex-1 bg-slate-100" />
+            <span className="text-xs font-bold text-slate-300 uppercase tracking-widest">Or</span>
+            <div className="h-[1px] flex-1 bg-slate-100" />
+          </div>
+
+          <label className="cursor-pointer flex items-center justify-center gap-2 text-slate-500 hover:text-sodor-blue transition-colors text-sm font-bold">
+            <Upload size={16} />
+            Restore from Backup
+            <input type="file" accept=".json" onChange={handleImport} className="hidden" />
+          </label>
+        </div>
       </motion.div>
     </div>
   );
 };
+
+const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: { 
+  user: User; 
+  pin: string;
+  onClose: () => void;
+  onUpdateUser: (updatedUser: User, newPin?: string) => void;
+  onLogout: () => void;
+}) => {
+  const [newPin, setNewPin] = useState('');
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState({ text: '', type: '' });
+
+  const handleChangePin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPin) return;
+    setLoading(true);
+    try {
+      await apiService.changePin(user.id, newPin);
+      onUpdateUser(user, newPin);
+      setMessage({ text: 'PIN updated successfully!', type: 'success' });
+      setNewPin('');
+    } catch (err: any) {
+      setMessage({ text: err.message, type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleExport = () => {
+    const dataToExport = {
+      ...user,
+      pin: pin
+    };
+    const blob = new Blob([JSON.stringify(dataToExport, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `sodor_academy_${user.name.toLowerCase()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDelete = async () => {
+    if (!confirmDelete) {
+      setConfirmDelete(true);
+      return;
+    }
+    setLoading(true);
+    try {
+      await apiService.deleteAccount(user.id);
+      onLogout();
+    } catch (err: any) {
+      setMessage({ text: 'Failed to delete account.', type: 'error' });
+      setConfirmDelete(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        className="bg-white rounded-[40px] p-8 md:p-10 max-w-lg w-full shadow-2xl relative overflow-hidden"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+        >
+          <X size={24} />
+        </button>
+
+        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3">
+          <Settings className="text-sodor-blue" />
+          Account Settings
+        </h2>
+
+        <div className="space-y-8">
+          {/* Change PIN Section */}
+          <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+            <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <Lock size={18} className="text-sodor-blue" />
+              Change Security PIN
+            </h3>
+            <form onSubmit={handleChangePin} className="flex gap-2">
+              <input
+                type="password"
+                placeholder="New PIN or Password"
+                value={newPin}
+                onChange={(e) => setNewPin(e.target.value)}
+                className="flex-1 px-4 py-3 bg-white rounded-xl border-2 border-transparent focus:border-sodor-blue outline-none font-bold text-sm"
+                required
+              />
+              <button
+                type="submit"
+                disabled={loading}
+                className="px-6 py-3 bg-sodor-blue text-white rounded-xl font-bold text-sm shadow-md hover:bg-blue-700 transition-all disabled:opacity-50"
+              >
+                Update
+              </button>
+            </form>
+          </section>
+
+          {/* Backup & Restore Section */}
+          <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+            <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <Download size={18} className="text-sodor-blue" />
+              Data Portability
+            </h3>
+            <p className="text-xs text-slate-500 mb-4 font-medium">
+              Export your progress, collected engines, and unlocked videos to a file. You can use this file to restore your account on another device or after deletion.
+            </p>
+            <button
+              onClick={handleExport}
+              className="w-full flex items-center justify-center gap-2 py-3 bg-white text-sodor-blue border-2 border-sodor-blue/20 rounded-xl font-bold text-sm hover:bg-sodor-blue/5 transition-all"
+            >
+              <Download size={18} />
+              Export My Academy Data
+            </button>
+          </section>
+
+          {/* Danger Zone */}
+          <section className="pt-4 border-t border-slate-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-bold text-red-600 flex items-center gap-2">
+                  <Trash2 size={18} />
+                  Delete Account
+                </h3>
+                <p className="text-[11px] text-slate-400 font-medium">
+                  This will permanently remove all your progress.
+                </p>
+              </div>
+              <button
+                onClick={handleDelete}
+                disabled={loading}
+                className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${
+                  confirmDelete 
+                    ? 'bg-red-600 text-white shadow-lg shadow-red-200' 
+                    : 'bg-red-50 text-red-600 hover:bg-red-100'
+                }`}
+              >
+                {confirmDelete ? 'Confirm Deletion' : 'Delete'}
+              </button>
+            </div>
+            {confirmDelete && (
+              <p className="mt-2 text-[10px] text-red-500 font-bold text-center animate-pulse">
+                Make sure you have exported your data first if you want to restore it later!
+              </p>
+            )}
+          </section>
+
+          {message.text && (
+            <p className={`text-center font-bold text-sm ${message.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+              {message.text}
+            </p>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const VideoModal = ({ video, onClose }: { video: Video; onClose: () => void }) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="fixed inset-0 z-[150] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8"
+  >
+    <div className="relative max-w-5xl w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl">
+      <button 
+        onClick={onClose}
+        className="absolute top-4 right-4 z-[160] p-2 bg-white/20 hover:bg-white/40 rounded-full text-white transition-colors"
+      >
+        <X size={24} />
+      </button>
+      <video 
+        src={`/SodorAcademy/media/${video.filename}`}
+        controls
+        autoPlay
+        className="w-full h-full"
+      />
+    </div>
+  </motion.div>
+);
 
 const SubjectCard = ({ subject, onClick }: { subject: Subject; onClick: () => void; key?: string }) => {
   const Icon = subject.icon;
@@ -321,37 +560,69 @@ const ExerciseView = ({ subject, grade, onComplete, onCancel }: {
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
+  const [currentPin, setCurrentPin] = useState<string>('');
   const [activeSubject, setActiveSubject] = useState<Subject | null>(null);
   const [showReward, setShowReward] = useState<string | null>(null);
+  const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
+  const [showSettings, setShowSettings] = useState(false);
 
   // Load user from localStorage on start
   useEffect(() => {
     const savedUser = localStorage.getItem('sodor_academy_user');
-    if (savedUser) {
+    const savedPin = localStorage.getItem('sodor_academy_pin');
+    if (savedUser && savedPin) {
       setUser(JSON.parse(savedUser));
+      setCurrentPin(savedPin);
     }
   }, []);
 
-  const handleLogin = (newUser: User) => {
+  const handleLogin = (newUser: User, pin: string, isNewUser: boolean) => {
     setUser(newUser);
+    setCurrentPin(pin);
     localStorage.setItem('sodor_academy_user', JSON.stringify(newUser));
+    localStorage.setItem('sodor_academy_pin', pin);
+    if (isNewUser) {
+      setPlayingVideo(VIDEOS.find(v => v.id === 'welcome') || null);
+    }
   };
 
   const handleLogout = () => {
     setUser(null);
+    setCurrentPin('');
     localStorage.removeItem('sodor_academy_user');
+    localStorage.removeItem('sodor_academy_pin');
+  };
+
+  const handleUpdateUser = (updatedUser: User, newPin?: string) => {
+    setUser(updatedUser);
+    localStorage.setItem('sodor_academy_user', JSON.stringify(updatedUser));
+    if (newPin) {
+      setCurrentPin(newPin);
+      localStorage.setItem('sodor_academy_pin', newPin);
+    }
   };
 
   const handleLessonComplete = async (rewardType: string) => {
     if (!user) return;
 
-    const randomEngine = ENGINES[Math.floor(Math.random() * ENGINES.length)];
-    const newStats = {
-      ...user.stats,
-      score: user.stats.score + 100,
-      completedLessons: user.stats.completedLessons + 1,
-      enginesCollected: Array.from(new Set([...user.stats.enginesCollected, randomEngine.id]))
-    };
+    let rewardId = '';
+    let newStats = { ...user.stats };
+
+    if (rewardType === 'video') {
+      const lockedVideos = VIDEOS.filter(v => !(user.stats.videosUnlocked || []).includes(v.id));
+      if (lockedVideos.length > 0) {
+        const randomVideo = lockedVideos[Math.floor(Math.random() * lockedVideos.length)];
+        rewardId = randomVideo.id;
+        newStats.videosUnlocked = Array.from(new Set([...(user.stats.videosUnlocked || []), randomVideo.id]));
+      }
+    } else {
+      const randomEngine = ENGINES[Math.floor(Math.random() * ENGINES.length)];
+      rewardId = randomEngine.id;
+      newStats.enginesCollected = Array.from(new Set([...user.stats.enginesCollected, randomEngine.id]));
+    }
+
+    newStats.score += 100;
+    newStats.completedLessons += 1;
 
     const updatedUser = { ...user, stats: newStats };
     setUser(updatedUser);
@@ -363,7 +634,7 @@ export default function App() {
       console.error('Failed to sync progress:', err);
     }
 
-    setShowReward(randomEngine.id);
+    setShowReward(rewardId);
     setActiveSubject(null);
   };
 
@@ -391,7 +662,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-transparent font-sans">
-      <Navbar stats={user.stats} userName={user.name} onLogout={handleLogout} />
+      <Navbar 
+        stats={user.stats} 
+        userName={user.name} 
+        onLogout={handleLogout} 
+        onOpenSettings={() => setShowSettings(true)}
+      />
 
       <main className="max-w-6xl mx-auto px-6 py-12">
         <AnimatePresence mode="wait">
@@ -440,10 +716,52 @@ export default function App() {
                 ))}
               </div>
 
+              {/* Video Gallery */}
+              <div className="mt-24">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
+                    <PlayCircle className="text-sodor-blue" />
+                    Sodor Cinema
+                  </h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {VIDEOS.map(video => {
+                    const isUnlocked = (user.stats.videosUnlocked || []).includes(video.id);
+                    return (
+                      <motion.button
+                        key={video.id}
+                        whileHover={isUnlocked ? { y: -5 } : {}}
+                        onClick={() => isUnlocked && setPlayingVideo(video)}
+                        className={`text-left rounded-3xl overflow-hidden border-2 transition-all group
+                          ${isUnlocked 
+                            ? 'bg-white shadow-lg border-slate-100' 
+                            : 'bg-slate-100 border-transparent opacity-40'}
+                        `}
+                      >
+                        <div className={`aspect-video flex items-center justify-center text-4xl bg-slate-200 relative`}>
+                          {video.thumbnail}
+                          {isUnlocked && (
+                            <div className="absolute inset-0 bg-sodor-blue/0 group-hover:bg-sodor-blue/10 transition-colors flex items-center justify-center">
+                              <PlayCircle size={48} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                          )}
+                        </div>
+                        <div className="p-6">
+                          <h4 className="font-extrabold text-lg mb-1">{video.title}</h4>
+                          <p className="text-sm text-slate-500 line-clamp-2">
+                            {isUnlocked ? video.description : 'Unlock this video by learning!'}
+                          </p>
+                        </div>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </div>
+
               {/* Reward Gallery */}
               <div className="mt-24">
                 <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-3xl font-black flex items-center gap-3">
+                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
                     <Layout className="text-sodor-blue" />
                     The Roundhouse
                   </h2>
@@ -497,6 +815,29 @@ export default function App() {
         </AnimatePresence>
       </main>
 
+      {/* Settings Modal */}
+      <AnimatePresence>
+        {showSettings && (
+          <SettingsModal 
+            user={user}
+            pin={currentPin}
+            onClose={() => setShowSettings(false)}
+            onUpdateUser={handleUpdateUser}
+            onLogout={handleLogout}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Video Player Modal */}
+      <AnimatePresence>
+        {playingVideo && (
+          <VideoModal 
+            video={playingVideo} 
+            onClose={() => setPlayingVideo(null)} 
+          />
+        )}
+      </AnimatePresence>
+
       {/* Reward Modal */}
       <AnimatePresence>
         {showReward && (
@@ -515,29 +856,50 @@ export default function App() {
               <div className="text-7xl mb-8 animate-bounce">🏆</div>
               <h2 className="text-3xl font-black mb-2">Well Done!</h2>
               <p className="text-slate-500 mb-8 font-medium">
-                You've reached the station. You've earned a new engine for your collection!
+                You've reached the station. You've earned a reward!
               </p>
               
               <div className="bg-slate-50 p-6 rounded-3xl mb-8 border border-slate-100">
-                <div 
-                  className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-lg border-2 border-white"
-                  style={{ backgroundColor: ENGINES.find(e => e.id === showReward)?.color }}
-                >
-                  🚂
-                </div>
-                <h3 className="text-xl font-bold text-sodor-blue">
-                  {ENGINES.find(e => e.id === showReward)?.name}
-                </h3>
-                <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">
-                  Newly Collected
-                </p>
+                {VIDEOS.some(v => v.id === showReward) ? (
+                  <>
+                    <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-lg border-2 border-white bg-sodor-blue text-white">
+                      <PlayCircle size={40} />
+                    </div>
+                    <h3 className="text-xl font-bold text-sodor-blue">
+                      {VIDEOS.find(v => v.id === showReward)?.title}
+                    </h3>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">
+                      New Video Unlocked
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <div 
+                      className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-lg border-2 border-white"
+                      style={{ backgroundColor: ENGINES.find(e => e.id === showReward)?.color }}
+                    >
+                      🚂
+                    </div>
+                    <h3 className="text-xl font-bold text-sodor-blue">
+                      {ENGINES.find(e => e.id === showReward)?.name}
+                    </h3>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">
+                      Newly Collected Engine
+                    </p>
+                  </>
+                )}
               </div>
 
               <button
-                onClick={() => setShowReward(null)}
+                onClick={() => {
+                  const videoId = showReward;
+                  setShowReward(null);
+                  const video = VIDEOS.find(v => v.id === videoId);
+                  if (video) setPlayingVideo(video);
+                }}
                 className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95"
               >
-                Add to Roundhouse
+                {VIDEOS.some(v => v.id === showReward) ? 'Watch Now' : 'Add to Collection'}
               </button>
             </motion.div>
           </motion.div>
