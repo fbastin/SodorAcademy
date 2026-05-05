@@ -1,4 +1,4 @@
-import { LucideIcon, Train, BookOpen, Calculator, History, MapPin, Trophy, PlayCircle } from 'lucide-react';
+import { LucideIcon, Train, BookOpen, Calculator, History, MapPin, Trophy, PlayCircle, Music } from 'lucide-react';
 
 export type Grade = 'Primary' | 'Secondary';
 
@@ -8,6 +8,9 @@ export interface Subject {
   icon: LucideIcon;
   color: string;
   description: string;
+  station?: string;
+  x?: number; // percentage on map
+  y?: number; // percentage on map
 }
 
 export interface Question {
@@ -62,31 +65,63 @@ export const VIDEOS: Video[] = [
 export const SUBJECTS: Subject[] = [
   {
     id: 'math',
-    name: 'Number Lines',
+    name: 'Mathematics',
     icon: Calculator,
-    color: 'bg-blue-500',
-    description: 'Calculate coal loads and track distances.'
+    color: 'bg-blue-600',
+    description: 'Calculate coal loads and track distances.',
+    station: 'Knapford Station',
+    x: 24,
+    y: 65
   },
   {
     id: 'english',
-    name: 'Station Names',
+    name: 'English',
     icon: BookOpen,
-    color: 'bg-red-500',
-    description: 'Master spelling and station announcements.'
+    color: 'bg-red-600',
+    description: 'Master spelling and station announcements.',
+    station: 'Tidmouth Sheds',
+    x: 14,
+    y: 45
   },
   {
     id: 'science',
-    name: 'Steam Power',
+    name: 'Science',
     icon: Train,
-    color: 'bg-green-500',
-    description: 'Learn how engines and geography work together.'
+    color: 'bg-green-600',
+    description: 'Learn how steam and engines work.',
+    station: 'Vicarstown',
+    x: 91,
+    y: 40
+  },
+  {
+    id: 'history',
+    name: 'History',
+    icon: History,
+    color: 'bg-purple-600',
+    description: 'Discover the heritage of Sodor.',
+    station: 'Wellsworth',
+    x: 44,
+    y: 72
   },
   {
     id: 'geography',
-    name: 'Isle Map',
+    name: 'Geography',
     icon: MapPin,
-    color: 'bg-orange-500',
-    description: 'Navigate the tracks of Sodor.'
+    color: 'bg-orange-600',
+    description: 'Navigate the tracks and hills.',
+    station: 'Peel Godred',
+    x: 52,
+    y: 28
+  },
+  {
+    id: 'music',
+    name: 'Music',
+    icon: Music,
+    color: 'bg-pink-600',
+    description: 'Listen to the whistles and bells.',
+    station: "Crovan's Gate",
+    x: 72,
+    y: 48
   }
 ];
 

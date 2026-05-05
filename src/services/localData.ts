@@ -1,7 +1,7 @@
-import { Question, Grade } from './types';
+import { Question, Grade } from '../types';
 
 export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
-  'Number Lines': {
+  'Mathematics': {
     'Primary': [
       {
         id: 'math-p-1',
@@ -31,7 +31,7 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       }
     ]
   },
-  'Station Names': {
+  'English': {
     'Primary': [
       {
         id: 'eng-p-1',
@@ -53,7 +53,7 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       }
     ]
   },
-  'Steam Power': {
+  'Science': {
     'Primary': [
       {
         id: 'sci-p-1',
@@ -75,7 +75,7 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       }
     ]
   },
-  'Isle Map': {
+  'Geography': {
     'Primary': [
       {
         id: 'geo-p-1',
@@ -94,6 +94,50 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         correctAnswer: 'The Blue Mountain Quarry',
         explanation: 'The Blue Mountain Quarry is a key location on the Isle of Sodor.',
         rewardType: 'coin'
+      }
+    ]
+  },
+  'History': {
+    'Primary': [
+      {
+        id: 'his-p-1',
+        text: 'Who is the famous gentleman that runs the North Western Railway?',
+        options: ['Sir Topham Hatt', 'Captain Hook', 'Santa Claus', 'The Mayor'],
+        correctAnswer: 'Sir Topham Hatt',
+        explanation: 'Sir Topham Hatt (The Fat Controller) has run the railway for many years.',
+        rewardType: 'video'
+      }
+    ],
+    'Secondary': [
+      {
+        id: 'his-s-1',
+        text: 'Which engine is known as the "Emerald Engine" and is very old?',
+        options: ['Thomas', 'Emily', 'Edward', 'Henry'],
+        correctAnswer: 'Emily',
+        explanation: 'Emily is based on a Stirling Single locomotive, a very elegant and historic design.',
+        rewardType: 'engine'
+      }
+    ]
+  },
+  'Music': {
+    'Primary': [
+      {
+        id: 'mus-p-1',
+        text: 'What sound does Thomas make to say hello?',
+        options: ['Moo!', 'Peep Peep!', 'Roar!', 'Quack!'],
+        correctAnswer: 'Peep Peep!',
+        explanation: 'Thomas uses his whistle to go "Peep Peep!"',
+        rewardType: 'coin'
+      }
+    ],
+    'Secondary': [
+      {
+        id: 'mus-s-1',
+        text: 'If the engines whistle in a rhythm: Peep, Peep-Peep, Peep... how many whistles were there?',
+        options: ['2', '3', '4', '5'],
+        correctAnswer: '4',
+        explanation: '1 (Peep) + 2 (Peep-Peep) + 1 (Peep) = 4 whistles.',
+        rewardType: 'badge'
       }
     ]
   }

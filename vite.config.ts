@@ -14,7 +14,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/SodorAcademy/api': 'http://localhost:3000'
+      '/SodorAcademy/api': 'http://localhost:3001'
     }
   }
 });

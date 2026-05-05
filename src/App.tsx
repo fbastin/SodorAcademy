@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2 } from 'lucide-react';
+import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle } from 'lucide-react';
 import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video } from './types';
 import { generateQuestion } from './services/questionService';
 import { apiService, User } from './services/apiService';
+import SodorMap from './components/SodorMap';
 
 // --- Components ---
 
-const Navbar = ({ stats, userName, onLogout, onOpenSettings }: { 
+const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmin }: { 
   stats: UserStats; 
   userName: string; 
+  isAdmin?: boolean;
   onLogout: () => void;
   onOpenSettings: () => void;
+  onOpenAdmin: () => void;
 }) => (
   <nav className="h-16 border-b bg-white flex items-center justify-between px-6 sticky top-0 z-50">
     <div className="flex items-center gap-2">
@@ -47,6 +50,16 @@ const Navbar = ({ stats, userName, onLogout, onOpenSettings }: {
       
       <div className="h-8 w-[1px] bg-slate-200 mx-1" />
       
+      {isAdmin && (
+        <button 
+          onClick={onOpenAdmin}
+          className="p-2 text-sodor-blue hover:scale-110 transition-all"
+          title="Admin Panel"
+        >
+          <Shield size={20} />
+        </button>
+      )}
+
       <button 
         onClick={onOpenSettings}
         className="p-2 text-slate-400 hover:text-sodor-blue transition-colors"
@@ -65,9 +78,218 @@ const Navbar = ({ stats, userName, onLogout, onOpenSettings }: {
   </nav>
 );
 
-const LoginView = ({ onLogin }: { onLogin: (user: User, pin: string, isNewUser: boolean) => void }) => {
+const ValidationView = ({ email, onValidated, onCancel }: { 
+  email: string; 
+  onValidated: () => void;
+  onCancel: () => void;
+}) => {
+  const [code, setCode] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      await apiService.validateEmail(email, code);
+      onValidated();
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-6">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-[40px] p-8 md:p-12 max-w-md w-full shadow-2xl border border-slate-100 text-center"
+      >
+        <div className="w-20 h-20 bg-sodor-blue rounded-3xl flex items-center justify-center text-white mx-auto mb-8 shadow-lg">
+          <Mail size={48} />
+        </div>
+        <h2 className="text-3xl font-black mb-2 text-slate-900">Check Your Email</h2>
+        <p className="text-slate-500 mb-8 font-medium">
+          We've sent a 6-digit validation code to <span className="text-sodor-blue font-bold">{email}</span>.
+        </p>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            placeholder="6-Digit Code"
+            value={code}
+            onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+            className="w-full text-center tracking-[1em] text-2xl py-4 bg-slate-50 rounded-2xl border-2 border-transparent focus:border-sodor-blue focus:bg-white transition-all outline-none font-black"
+            required
+          />
+          {error && <p className="text-red-500 font-bold text-sm">{error}</p>}
+          <button
+            type="submit"
+            disabled={loading || code.length !== 6}
+            className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95 disabled:opacity-50"
+          >
+            {loading ? 'Validating...' : 'Validate Account'}
+          </button>
+        </form>
+
+        <button
+          onClick={onCancel}
+          className="mt-6 text-slate-400 font-bold hover:text-slate-600 transition-colors text-sm"
+        >
+          Back to Login
+        </button>
+      </motion.div>
+    </div>
+  );
+};
+
+const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [newPin, setNewPin] = useState('');
+  const [step, setStep] = useState<'request' | 'reset'>('request');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleRequest = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      await apiService.requestRecovery(email);
+      setStep('reset');
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      await apiService.resetPin(email, code, newPin);
+      setSuccess(true);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (success) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-6">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-white rounded-[40px] p-8 md:p-12 max-w-md w-full shadow-2xl border border-slate-100 text-center"
+        >
+          <div className="w-20 h-20 bg-green-500 rounded-3xl flex items-center justify-center text-white mx-auto mb-8 shadow-lg">
+            <CheckCircle size={48} />
+          </div>
+          <h2 className="text-3xl font-black mb-2 text-slate-900">PIN Reset!</h2>
+          <p className="text-slate-500 mb-8 font-medium">Your PIN has been successfully updated. You can now log in with your new PIN.</p>
+          <button
+            onClick={onCancel}
+            className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95"
+          >
+            Back to Login
+          </button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-6">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-[40px] p-8 md:p-12 max-w-md w-full shadow-2xl border border-slate-100 text-center"
+      >
+        <div className="w-20 h-20 bg-sodor-blue rounded-3xl flex items-center justify-center text-white mx-auto mb-8 shadow-lg">
+          <Shield size={48} />
+        </div>
+        <h2 className="text-3xl font-black mb-2 text-slate-900">Recover Account</h2>
+        <p className="text-slate-500 mb-8 font-medium">
+          {step === 'request' ? 'Enter your email to receive a recovery code.' : 'Enter the code and your new PIN.'}
+        </p>
+
+        <form onSubmit={step === 'request' ? handleRequest : handleReset} className="space-y-4">
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+            <input
+              type="email"
+              placeholder="Your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={step === 'reset'}
+              className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl border-2 border-transparent focus:border-sodor-blue focus:bg-white transition-all outline-none font-bold disabled:opacity-50"
+              required
+            />
+          </div>
+
+          {step === 'reset' && (
+            <>
+              <input
+                type="text"
+                placeholder="6-Digit Code"
+                value={code}
+                onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                className="w-full text-center tracking-[0.5em] text-xl py-4 bg-slate-50 rounded-2xl border-2 border-transparent focus:border-sodor-blue focus:bg-white transition-all outline-none font-black"
+                required
+              />
+              <div className="relative text-left">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+                <input
+                  type="password"
+                  placeholder="New PIN"
+                  value={newPin}
+                  onChange={(e) => setNewPin(e.target.value)}
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl border-2 border-transparent focus:border-sodor-blue focus:bg-white transition-all outline-none font-bold"
+                  required
+                />
+              </div>
+            </>
+          )}
+
+          {error && <p className="text-red-500 font-bold text-sm">{error}</p>}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95 disabled:opacity-50"
+          >
+            {loading ? 'Processing...' : (step === 'request' ? 'Send Code' : 'Reset PIN')}
+          </button>
+        </form>
+
+        <button
+          onClick={onCancel}
+          className="mt-6 text-slate-400 font-bold hover:text-slate-600 transition-colors text-sm"
+        >
+          Cancel
+        </button>
+      </motion.div>
+    </div>
+  );
+};
+
+const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: { 
+  onLogin: (user: User, pin: string, isNewUser: boolean) => void;
+  onShowValidation: (email: string) => void;
+  onShowRecovery: () => void;
+  onGuestLogin: () => void;
+}) => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -78,14 +300,18 @@ const LoginView = ({ onLogin }: { onLogin: (user: User, pin: string, isNewUser: 
     setLoading(true);
     try {
       if (isRegistering) {
-        const user = await apiService.register(name, pin);
-        onLogin(user, pin, true);
+        const user = await apiService.register(name, pin, email);
+        onShowValidation(email);
       } else {
         const user = await apiService.login(name, pin);
         onLogin(user, pin, false);
       }
     } catch (err: any) {
-      setError(err.message);
+      if (err.type === 'VALIDATION_REQUIRED') {
+        onShowValidation(err.email);
+      } else {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -137,6 +363,19 @@ const LoginView = ({ onLogin }: { onLogin: (user: User, pin: string, isNewUser: 
               required
             />
           </div>
+          {isRegistering && (
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+              <input
+                type="email"
+                placeholder="Parent's Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl border-2 border-transparent focus:border-sodor-blue focus:bg-white transition-all outline-none font-bold"
+                required={isRegistering}
+              />
+            </div>
+          )}
           <div className="relative">
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
             <input
@@ -148,6 +387,18 @@ const LoginView = ({ onLogin }: { onLogin: (user: User, pin: string, isNewUser: 
               required
             />
           </div>
+
+          {!isRegistering && (
+            <div className="text-right">
+              <button 
+                type="button"
+                onClick={onShowRecovery}
+                className="text-xs font-bold text-slate-400 hover:text-sodor-blue transition-colors"
+              >
+                Forgot PIN?
+              </button>
+            </div>
+          )}
 
           {error && <p className="text-red-500 font-bold text-sm">{error}</p>}
 
@@ -161,6 +412,13 @@ const LoginView = ({ onLogin }: { onLogin: (user: User, pin: string, isNewUser: 
         </form>
 
         <div className="mt-8 flex flex-col gap-4">
+          <button
+            onClick={onGuestLogin}
+            className="w-full py-4 bg-white text-sodor-blue border-2 border-sodor-blue/20 rounded-2xl font-bold hover:bg-sodor-blue/5 transition-all active:scale-95"
+          >
+            Continue as Guest
+          </button>
+
           <button
             onClick={() => { setIsRegistering(!isRegistering); setError(''); }}
             className="text-slate-400 font-bold hover:text-sodor-blue transition-colors text-sm"
@@ -269,79 +527,97 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
         </h2>
 
         <div className="space-y-8">
-          {/* Change PIN Section */}
-          <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-            <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-              <Lock size={18} className="text-sodor-blue" />
-              Change Security PIN
-            </h3>
-            <form onSubmit={handleChangePin} className="flex gap-2">
-              <input
-                type="password"
-                placeholder="New PIN or Password"
-                value={newPin}
-                onChange={(e) => setNewPin(e.target.value)}
-                className="flex-1 px-4 py-3 bg-white rounded-xl border-2 border-transparent focus:border-sodor-blue outline-none font-bold text-sm"
-                required
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                className="px-6 py-3 bg-sodor-blue text-white rounded-xl font-bold text-sm shadow-md hover:bg-blue-700 transition-all disabled:opacity-50"
-              >
-                Update
-              </button>
-            </form>
-          </section>
-
-          {/* Backup & Restore Section */}
-          <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-            <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
-              <Download size={18} className="text-sodor-blue" />
-              Data Portability
-            </h3>
-            <p className="text-xs text-slate-500 mb-4 font-medium">
-              Export your progress, collected engines, and unlocked videos to a file. You can use this file to restore your account on another device or after deletion.
-            </p>
-            <button
-              onClick={handleExport}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-white text-sodor-blue border-2 border-sodor-blue/20 rounded-xl font-bold text-sm hover:bg-sodor-blue/5 transition-all"
-            >
-              <Download size={18} />
-              Export My Academy Data
-            </button>
-          </section>
-
-          {/* Danger Zone */}
-          <section className="pt-4 border-t border-slate-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="font-bold text-red-600 flex items-center gap-2">
-                  <Trash2 size={18} />
-                  Delete Account
-                </h3>
-                <p className="text-[11px] text-slate-400 font-medium">
-                  This will permanently remove all your progress.
-                </p>
-              </div>
-              <button
-                onClick={handleDelete}
-                disabled={loading}
-                className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${
-                  confirmDelete 
-                    ? 'bg-red-600 text-white shadow-lg shadow-red-200' 
-                    : 'bg-red-50 text-red-600 hover:bg-red-100'
-                }`}
-              >
-                {confirmDelete ? 'Confirm Deletion' : 'Delete'}
-              </button>
-            </div>
-            {confirmDelete && (
-              <p className="mt-2 text-[10px] text-red-500 font-bold text-center animate-pulse">
-                Make sure you have exported your data first if you want to restore it later!
+          {user.id === 'guest' ? (
+            <section className="bg-sodor-blue/5 p-8 rounded-3xl border-2 border-dashed border-sodor-blue/20 text-center">
+              <UserIcon size={48} className="mx-auto text-sodor-blue mb-4 opacity-50" />
+              <h3 className="font-bold text-slate-900 mb-2 text-xl">Guest Explorer</h3>
+              <p className="text-sm text-slate-500 mb-6 font-medium">
+                You are currently exploring as a guest. To save your progress, collect engines forever, and sync with other devices, please create a free account!
               </p>
-            )}
-          </section>
+              <button
+                onClick={onLogout}
+                className="px-8 py-3 bg-sodor-blue text-white rounded-xl font-bold shadow-lg shadow-sodor-blue/20 hover:bg-blue-700 transition-all"
+              >
+                Sign Up / Log In
+              </button>
+            </section>
+          ) : (
+            <>
+              {/* Change PIN Section */}
+              <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <Lock size={18} className="text-sodor-blue" />
+                  Change Security PIN
+                </h3>
+                <form onSubmit={handleChangePin} className="flex gap-2">
+                  <input
+                    type="password"
+                    placeholder="New PIN or Password"
+                    value={newPin}
+                    onChange={(e) => setNewPin(e.target.value)}
+                    className="flex-1 px-4 py-3 bg-white rounded-xl border-2 border-transparent focus:border-sodor-blue outline-none font-bold text-sm"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="px-6 py-3 bg-sodor-blue text-white rounded-xl font-bold text-sm shadow-md hover:bg-blue-700 transition-all disabled:opacity-50"
+                  >
+                    Update
+                  </button>
+                </form>
+              </section>
+
+              {/* Backup & Restore Section */}
+              <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <h3 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                  <Download size={18} className="text-sodor-blue" />
+                  Data Portability
+                </h3>
+                <p className="text-xs text-slate-500 mb-4 font-medium">
+                  Export your progress, collected engines, and unlocked videos to a file. You can use this file to restore your account on another device or after deletion.
+                </p>
+                <button
+                  onClick={handleExport}
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-white text-sodor-blue border-2 border-sodor-blue/20 rounded-xl font-bold text-sm hover:bg-sodor-blue/5 transition-all"
+                >
+                  <Download size={18} />
+                  Export My Academy Data
+                </button>
+              </section>
+
+              {/* Danger Zone */}
+              <section className="pt-4 border-t border-slate-100">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-bold text-red-600 flex items-center gap-2">
+                      <Trash2 size={18} />
+                      Delete Account
+                    </h3>
+                    <p className="text-[11px] text-slate-400 font-medium">
+                      This will permanently remove all your progress.
+                    </p>
+                  </div>
+                  <button
+                    onClick={handleDelete}
+                    disabled={loading}
+                    className={`px-6 py-3 rounded-xl font-bold text-sm transition-all ${
+                      confirmDelete 
+                        ? 'bg-red-600 text-white shadow-lg shadow-red-200' 
+                        : 'bg-red-50 text-red-600 hover:bg-red-100'
+                    }`}
+                  >
+                    {confirmDelete ? 'Confirm Deletion' : 'Delete'}
+                  </button>
+                </div>
+                {confirmDelete && (
+                  <p className="mt-2 text-[10px] text-red-500 font-bold text-center animate-pulse">
+                    Make sure you have exported your data first if you want to restore it later!
+                  </p>
+                )}
+              </section>
+            </>
+          )}
 
           {message.text && (
             <p className={`text-center font-bold text-sm ${message.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
@@ -349,6 +625,129 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
             </p>
           )}
         </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const AdminModal = ({ adminId, onClose }: { adminId: string; onClose: () => void }) => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      const data = await apiService.getAdminUsers(adminId);
+      setUsers(data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDeleteUser = async (targetId: string, name: string) => {
+    if (!confirm(`Are you sure you want to delete user "${name}"? This cannot be undone.`)) return;
+    
+    try {
+      await apiService.deleteUserAsAdmin(adminId, targetId);
+      setUsers(prev => prev.filter(u => u.id !== targetId));
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        className="bg-white rounded-[40px] p-8 md:p-10 max-w-4xl w-full shadow-2xl relative overflow-hidden flex flex-col max-h-[90vh]"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+        >
+          <X size={24} />
+        </button>
+
+        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3">
+          <Shield className="text-sodor-blue" />
+          Admin Control Panel
+        </h2>
+
+        {loading ? (
+          <div className="flex-1 flex items-center justify-center py-20">
+            <Train size={48} className="text-sodor-blue animate-bounce" />
+          </div>
+        ) : error ? (
+          <div className="bg-red-50 text-red-600 p-6 rounded-2xl font-bold text-center my-10 border border-red-100">
+            {error}
+          </div>
+        ) : (
+          <div className="overflow-auto flex-1 custom-scrollbar">
+            <table className="w-full text-left">
+              <thead className="sticky top-0 bg-white z-10">
+                <tr className="border-b border-slate-100 text-slate-400 text-xs font-black uppercase tracking-widest">
+                  <th className="pb-4 pl-2">Student</th>
+                  <th className="pb-4">Email</th>
+                  <th className="pb-4 text-center">Score</th>
+                  <th className="pb-4 text-center">Status</th>
+                  <th className="pb-4 text-right pr-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-50">
+                {users.map(u => (
+                  <tr key={u.id} className="hover:bg-slate-50 transition-colors group">
+                    <td className="py-4 pl-2">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-sodor-blue/10 flex items-center justify-center text-sodor-blue font-bold text-xs">
+                          {u.name.charAt(0)}
+                        </div>
+                        <span className="font-bold text-slate-900">{u.name}</span>
+                        {u.isAdmin && <span className="px-2 py-0.5 bg-sodor-blue text-white text-[10px] font-black rounded uppercase">Admin</span>}
+                      </div>
+                    </td>
+                    <td className="py-4 font-medium text-slate-500 text-sm">
+                      {u.email || <span className="italic text-slate-300">No email</span>}
+                    </td>
+                    <td className="py-4 text-center">
+                      <span className="font-black text-sodor-blue">{u.stats.score}</span>
+                    </td>
+                    <td className="py-4 text-center">
+                      {u.isActive ? (
+                        <span className="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-black rounded uppercase">Active</span>
+                      ) : (
+                        <span className="px-2 py-1 bg-slate-100 text-slate-400 text-[10px] font-black rounded uppercase">Pending</span>
+                      )}
+                    </td>
+                    <td className="py-4 text-right pr-2">
+                      {!u.isAdmin && (
+                        <button
+                          onClick={() => handleDeleteUser(u.id, u.name)}
+                          className="p-2 text-slate-300 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                          title="Delete User"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -378,23 +777,6 @@ const VideoModal = ({ video, onClose }: { video: Video; onClose: () => void }) =
   </motion.div>
 );
 
-const SubjectCard = ({ subject, onClick }: { subject: Subject; onClick: () => void; key?: string }) => {
-  const Icon = subject.icon;
-  return (
-    <motion.button
-      whileHover={{ y: -5, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      className="flex flex-col items-center p-6 bg-white rounded-3xl border-2 border-slate-100 shadow-sm hover:shadow-xl hover:border-sodor-blue transition-all group text-center"
-    >
-      <div className={`w-16 h-16 ${subject.color} rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg group-hover:rotate-6 transition-transform`}>
-        <Icon size={32} />
-      </div>
-      <h3 className="font-bold text-lg mb-1">{subject.name}</h3>
-      <p className="text-sm text-slate-500">{subject.description}</p>
-    </motion.button>
-  );
-};
 
 const ExerciseView = ({ subject, grade, onComplete, onCancel }: { 
   subject: Subject; 
@@ -565,6 +947,22 @@ export default function App() {
   const [showReward, setShowReward] = useState<string | null>(null);
   const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
   const [showSettings, setShowSettings] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
+  
+  const [authView, setAuthView] = useState<'login' | 'validation' | 'recovery'>('login');
+  const [validationEmail, setValidationEmail] = useState('');
+
+  const GUEST_USER: User = {
+    id: 'guest',
+    name: 'Guest Explorer',
+    stats: {
+      score: 0,
+      completedLessons: 0,
+      enginesCollected: [],
+      videosUnlocked: ['welcome'],
+      currentGrade: 'Primary'
+    }
+  };
 
   // Load user from localStorage on start
   useEffect(() => {
@@ -586,11 +984,17 @@ export default function App() {
     }
   };
 
+  const handleGuestLogin = () => {
+    setUser(GUEST_USER);
+    setCurrentPin('');
+  };
+
   const handleLogout = () => {
     setUser(null);
     setCurrentPin('');
     localStorage.removeItem('sodor_academy_user');
     localStorage.removeItem('sodor_academy_pin');
+    setAuthView('login');
   };
 
   const handleUpdateUser = (updatedUser: User, newPin?: string) => {
@@ -626,12 +1030,15 @@ export default function App() {
 
     const updatedUser = { ...user, stats: newStats };
     setUser(updatedUser);
-    localStorage.setItem('sodor_academy_user', JSON.stringify(updatedUser));
+    
+    if (user.id !== 'guest') {
+      localStorage.setItem('sodor_academy_user', JSON.stringify(updatedUser));
 
-    try {
-      await apiService.updateProgress(user.id, newStats);
-    } catch (err) {
-      console.error('Failed to sync progress:', err);
+      try {
+        await apiService.updateProgress(user.id, newStats);
+      } catch (err) {
+        console.error('Failed to sync progress:', err);
+      }
     }
 
     setShowReward(rewardId);
@@ -643,19 +1050,39 @@ export default function App() {
     const newStats = { ...user.stats, currentGrade: grade };
     const updatedUser = { ...user, stats: newStats };
     setUser(updatedUser);
-    localStorage.setItem('sodor_academy_user', JSON.stringify(updatedUser));
     
-    try {
-      await apiService.updateProgress(user.id, newStats);
-    } catch (err) {
-      console.error('Failed to sync grade:', err);
+    if (user.id !== 'guest') {
+      localStorage.setItem('sodor_academy_user', JSON.stringify(updatedUser));
+      
+      try {
+        await apiService.updateProgress(user.id, newStats);
+      } catch (err) {
+        console.error('Failed to sync grade:', err);
+      }
     }
   };
 
   if (!user) {
     return (
       <div className="min-h-screen bg-slate-50 font-sans">
-        <LoginView onLogin={handleLogin} />
+        {authView === 'login' && (
+          <LoginView 
+            onLogin={handleLogin} 
+            onShowValidation={(email) => { setValidationEmail(email); setAuthView('validation'); }}
+            onShowRecovery={() => setAuthView('recovery')}
+            onGuestLogin={handleGuestLogin}
+          />
+        )}
+        {authView === 'validation' && (
+          <ValidationView 
+            email={validationEmail} 
+            onValidated={() => setAuthView('login')} 
+            onCancel={() => setAuthView('login')} 
+          />
+        )}
+        {authView === 'recovery' && (
+          <RecoveryView onCancel={() => setAuthView('login')} />
+        )}
       </div>
     );
   }
@@ -665,8 +1092,10 @@ export default function App() {
       <Navbar 
         stats={user.stats} 
         userName={user.name} 
+        isAdmin={user.isAdmin}
         onLogout={handleLogout} 
         onOpenSettings={() => setShowSettings(true)}
+        onOpenAdmin={() => setShowAdmin(true)}
       />
 
       <main className="max-w-6xl mx-auto px-6 py-12">
@@ -678,7 +1107,7 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div className="text-center mb-16">
+              <div className="text-center mb-12">
                 <motion.div
                   initial={{ scale: 0.9 }}
                   animate={{ scale: 1 }}
@@ -701,19 +1130,11 @@ export default function App() {
                 <h1 className="text-5xl font-black text-slate-900 mb-4 tracking-tight">
                   Welcome back, <span className="text-sodor-blue">{user.name}</span>!
                 </h1>
-                <p className="text-xl text-slate-500 max-w-2xl mx-auto font-medium">
-                  The most useful engines are those who never stop learning. Which track will you take today?
+                <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium mb-12">
+                  Select a station on the map to start your next adventure!
                 </p>
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {SUBJECTS.map(subject => (
-                  <SubjectCard 
-                    key={subject.id} 
-                    subject={subject} 
-                    onClick={() => setActiveSubject(subject)} 
-                  />
-                ))}
+                <SodorMap onSelectSubject={(subject) => setActiveSubject(subject)} />
               </div>
 
               {/* Video Gallery */}
@@ -824,6 +1245,16 @@ export default function App() {
             onClose={() => setShowSettings(false)}
             onUpdateUser={handleUpdateUser}
             onLogout={handleLogout}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Admin Modal */}
+      <AnimatePresence>
+        {showAdmin && user && (
+          <AdminModal 
+            adminId={user.id}
+            onClose={() => setShowAdmin(false)} 
           />
         )}
       </AnimatePresence>
