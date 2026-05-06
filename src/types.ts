@@ -2,6 +2,14 @@ import { LucideIcon, Train, BookOpen, Calculator, History, MapPin, Trophy, PlayC
 
 export type Grade = 'Primary' | 'Secondary';
 
+export interface Exercise {
+  id: string;
+  name: string;
+  description: string;
+  type: 'quiz' | 'custom';
+  component?: string;
+}
+
 export interface Subject {
   id: string;
   name: string;
@@ -11,6 +19,7 @@ export interface Subject {
   station?: string;
   x?: number; // percentage on map
   y?: number; // percentage on map
+  exercises?: Exercise[];
 }
 
 export interface Question {
@@ -71,7 +80,12 @@ export const SUBJECTS: Subject[] = [
     description: 'Calculate coal loads and track distances.',
     station: 'Knapford Station',
     x: 24,
-    y: 65
+    y: 65,
+    exercises: [
+      { id: 'math-quiz', name: 'Knapford Quiz', description: 'Test your general math skills!', type: 'quiz' },
+      { id: 'math-fractions-mult', name: 'Fraction Multiplication', description: 'Help Thomas multiply fractions!', type: 'custom', component: 'FractionMultiplication' },
+      { id: 'math-fractions-add', name: 'Fraction Addition', description: 'Help Percy add fraction loads!', type: 'custom', component: 'FractionAddition' }
+    ]
   },
   {
     id: 'english',

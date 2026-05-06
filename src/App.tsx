@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle } from 'lucide-react';
-import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video } from './types';
+import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle, ArrowRight } from 'lucide-react';
+import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video, Exercise } from './types';
 import { generateQuestion } from './services/questionService';
 import { apiService, User } from './services/apiService';
 import SodorMap from './components/SodorMap';
+import FractionMultiplication from './components/FractionMultiplication';
+import FractionAddition from './components/FractionAddition';
 
 // --- Components ---
 
@@ -451,6 +453,7 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
   onLogout: () => void;
 }) => {
   const [newPin, setNewPin] = useState('');
+  const [newName, setNewName] = useState(user.name);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: '', type: '' });
@@ -464,6 +467,22 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
       onUpdateUser(user, newPin);
       setMessage({ text: 'PIN updated successfully!', type: 'success' });
       setNewPin('');
+    } catch (err: any) {
+      setMessage({ text: err.message, type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChangeName = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newName || newName === user.name) return;
+    setLoading(true);
+    try {
+      await apiService.changeName(user.id, newName);
+      const updatedUser = { ...user, name: newName };
+      onUpdateUser(updatedUser);
+      setMessage({ text: 'Name updated successfully!', type: 'success' });
     } catch (err: any) {
       setMessage({ text: err.message, type: 'error' });
     } finally {
@@ -543,6 +562,31 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
             </section>
           ) : (
             <>
+              {/* Change Name Section */}
+              <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                  <UserIcon size={18} className="text-sodor-blue" />
+                  Update Profile Name
+                </h3>
+                <form onSubmit={handleChangeName} className="flex gap-2">
+                  <input
+                    type="text"
+                    placeholder="New Student Name"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
+                    className="flex-1 px-4 py-3 bg-white rounded-xl border-2 border-transparent focus:border-sodor-blue outline-none font-bold text-sm"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading || newName === user.name}
+                    className="px-6 py-3 bg-sodor-blue text-white rounded-xl font-bold text-sm shadow-md hover:bg-blue-700 transition-all disabled:opacity-50"
+                  >
+                    Update
+                  </button>
+                </form>
+              </section>
+
               {/* Change PIN Section */}
               <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                 <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
@@ -940,10 +984,54 @@ const ExerciseView = ({ subject, grade, onComplete, onCancel }: {
   );
 };
 
+const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: { 
+  subject: Subject; 
+  onSelectExercise: (exercise: Exercise) => void;
+  onCancel: () => void;
+}) => (
+  <div className="max-w-4xl mx-auto py-12 px-6">
+    <div className="text-center mb-12">
+      <div className={`w-20 h-20 ${subject.color} rounded-3xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg`}>
+        <subject.icon size={40} />
+      </div>
+      <h2 className="text-4xl font-black text-slate-900 mb-4">{subject.name} Lessons</h2>
+      <p className="text-lg text-slate-500 font-medium">Choose your next adventure at {subject.station}!</p>
+    </div>
+
+    <div className="grid md:grid-cols-2 gap-6">
+      {subject.exercises?.map(exercise => (
+        <motion.button
+          key={exercise.id}
+          whileHover={{ y: -5, scale: 1.02 }}
+          onClick={() => onSelectExercise(exercise)}
+          className="bg-white p-8 rounded-[32px] border-2 border-slate-100 shadow-xl text-left group transition-all hover:border-sodor-blue/20"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="w-12 h-12 bg-sodor-blue/10 rounded-2xl flex items-center justify-center text-sodor-blue group-hover:bg-sodor-blue group-hover:text-white transition-colors">
+              <PlayCircle size={24} />
+            </div>
+            <ArrowRight className="text-slate-300 group-hover:text-sodor-blue transition-colors" size={24} />
+          </div>
+          <h3 className="text-2xl font-black text-slate-900 mb-2">{exercise.name}</h3>
+          <p className="text-slate-500 font-medium text-sm leading-relaxed">{exercise.description}</p>
+        </motion.button>
+      ))}
+    </div>
+
+    <button 
+      onClick={onCancel}
+      className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
+    >
+      Return to Sodor Map
+    </button>
+  </div>
+);
+
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [currentPin, setCurrentPin] = useState<string>('');
   const [activeSubject, setActiveSubject] = useState<Subject | null>(null);
+  const [activeExercise, setActiveExercise] = useState<Exercise | null>(null);
   const [showReward, setShowReward] = useState<string | null>(null);
   const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
   const [showSettings, setShowSettings] = useState(false);
@@ -1043,6 +1131,7 @@ export default function App() {
 
     setShowReward(rewardId);
     setActiveSubject(null);
+    setActiveExercise(null);
   };
 
   const updateGrade = async (grade: Grade) => {
@@ -1225,12 +1314,32 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <ExerciseView 
-                subject={activeSubject} 
-                grade={user.stats.currentGrade} 
-                onComplete={handleLessonComplete}
-                onCancel={() => setActiveSubject(null)}
-              />
+              {activeSubject.exercises && !activeExercise ? (
+                <SubjectSelectionView 
+                  subject={activeSubject} 
+                  onSelectExercise={(ex) => setActiveExercise(ex)} 
+                  onCancel={() => setActiveSubject(null)}
+                />
+              ) : activeExercise?.component === 'FractionMultiplication' ? (
+                <FractionMultiplication 
+                  grade={user.stats.currentGrade}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'FractionAddition' ? (
+                <FractionAddition 
+                  grade={user.stats.currentGrade}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : (
+                <ExerciseView 
+                  subject={activeSubject} 
+                  grade={user.stats.currentGrade} 
+                  onComplete={handleLessonComplete}
+                  onCancel={() => activeSubject.exercises ? setActiveExercise(null) : setActiveSubject(null)}
+                />
+              )}
             </motion.div>
           )}
         </AnimatePresence>

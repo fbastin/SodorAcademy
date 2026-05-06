@@ -24,9 +24,12 @@
     "isActive": true,
     "isAdmin": true,
     "stats": {
-      "score": 0,
-      "completedLessons": 0,
-      "enginesCollected": [],
+      "score": 200,
+      "completedLessons": 2,
+      "enginesCollected": [
+        "james",
+        "percy"
+      ],
       "videosUnlocked": [
         "welcome"
       ],

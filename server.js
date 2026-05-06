@@ -296,6 +296,23 @@ apiRouter.post('/change-pin', async (req, res) => {
   res.json({ success: true });
 });
 
+apiRouter.post('/change-name', async (req, res) => {
+  const { userId, newName } = req.body;
+  if (!userId || !newName) return res.status(400).json({ error: 'User ID and new name required' });
+
+  const users = await readUsers();
+  if (users.find(u => u.name === newName && u.id !== userId)) {
+    return res.status(400).json({ error: 'Username already exists' });
+  }
+
+  const index = users.findIndex(u => u.id === userId);
+  if (index === -1) return res.status(404).json({ error: 'User not found' });
+
+  users[index].name = newName;
+  await writeUsers(users);
+  res.json({ success: true });
+});
+
 apiRouter.delete('/account/:userId', async (req, res) => {
   const { userId } = req.params;
   let users = await readUsers();

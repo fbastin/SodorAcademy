@@ -141,6 +141,18 @@ export const apiService = {
     }
   },
 
+  async changeName(userId: string, newName: string): Promise<void> {
+    const response = await fetch(`${BASE_URL}/change-name`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, newName })
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to change name');
+    }
+  },
+
   async deleteAccount(userId: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/account/${userId}`, {
       method: 'DELETE'
