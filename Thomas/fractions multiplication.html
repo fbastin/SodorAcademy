@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraction Multiplication Practice</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 20px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; }
+        .exercise-list { margin-top: 20px; }
+        .problem { display: flex; align-items: center; margin-bottom: 25px; font-size: 1.2rem; }
+        .fraction { display: inline-flex; flex-direction: column; align-items: center; text-align: center; margin: 0 10px; }
+        .numerator { border-bottom: 2px solid #333; padding: 0 5px; }
+        .denominator { padding: 0 5px; }
+        .operator { font-weight: bold; font-size: 1.4rem; margin: 0 5px; }
+        .answer { color: #27ae60; font-weight: bold; margin-left: 15px; display: none; }
+        .controls { display: flex; gap: 10px; justify-content: center; margin-top: 30px; }
+        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 5px; transition: 0.3s; font-weight: bold; }
+        .btn-new { background-color: #3498db; color: white; }
+        .btn-new:hover { background-color: #2980b9; }
+        .btn-toggle { background-color: #95a5a6; color: white; }
+        .btn-toggle:hover { background-color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Multiply Fractions</h1>
+    <div id="exercise-list" class="exercise-list"></div>
+
+    <div class="controls">
+        <button class="btn-new" onclick="generateExercises()">New Problems</button>
+        <button class="btn-toggle" onclick="toggleAnswers()">Show/Hide Answers</button>
+    </div>
+</div>
+
+<script>
+    // Simple helper for Greatest Common Divisor to simplify fractions
+    function getGCD(a, b) {
+        return b === 0 ? a : getGCD(b, a % b);
+    }
+
+    function generateExercises() {
+        const list = document.getElementById('exercise-list');
+        list.innerHTML = ''; // Clear current
+        
+        for (let i = 0; i < 5; i++) {
+            // Generate random numbers between 1 and 9
+            const n1 = Math.floor(Math.random() * 9) + 1;
+            const d1 = Math.floor(Math.random() * 9) + 2;
+            const n2 = Math.floor(Math.random() * 9) + 1;
+            const d2 = Math.floor(Math.random() * 9) + 2;
+
+            // Calculate Answer
+            let finalN = n1 * n2;
+            let finalD = d1 * d2;
+            
+            // Simplify Answer
+            const common = getGCD(finalN, finalD);
+            const simplifiedN = finalN / common;
+            const simplifiedD = finalD / common;
+
+            const problemDiv = document.createElement('div');
+            problemDiv.className = 'problem';
+            problemDiv.innerHTML = `
+                <span>${i + 1}.</span>
+                <div class="fraction"><span class="numerator">${n1}</span><span class="denominator">${d1}</span></div>
+                <span class="operator">×</span>
+                <div class="fraction"><span class="numerator">${n2}</span><span class="denominator">${d2}</span></div>
+                <span class="operator">=</span>
+                <div class="answer">
+                    <div class="fraction"><span class="numerator">${simplifiedN}</span><span class="denominator">${simplifiedD}</span></div>
+                </div>
+            `;
+            list.appendChild(problemDiv);
+        }
+    }
+
+    function toggleAnswers() {
+        const answers = document.querySelectorAll('.answer');
+        answers.forEach(ans => {
+            ans.style.display = (ans.style.display === 'block') ? 'none' : 'block';
+        });
+    }
+
+    // Initialize on load
+    generateExercises();
+</script>
+
+</body>
+</html>

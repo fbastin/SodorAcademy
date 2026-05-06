@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thomas and the Foggy Day</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --fog: #dce8f0;
+    --sky: #b8d4e8;
+    --deep: #1a3a5c;
+    --gold: #c8922a;
+    --cream: #fdf8f0;
+    --warm: #f5ede0;
+    --grass: #4a7c59;
+    --thomas-blue: #2660a4;
+  }
+
+  body {
+    background: var(--deep);
+    font-family: 'Lora', Georgia, serif;
+    color: #2c1e0f;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(170deg, #0d2236 0%, #1a3a5c 40%, #2660a4 75%, #4a8fc4 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 40% at 50% 110%, rgba(220,232,240,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 30% at 20% 80%, rgba(200,220,235,0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Fog layers */
+  .fog-layer {
+    position: absolute;
+    width: 200%;
+    height: 180px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(220,232,240,0.15) 20%,
+      rgba(220,232,240,0.3) 50%,
+      rgba(220,232,240,0.15) 80%,
+      transparent 100%);
+    border-radius: 50%;
+    animation: driftFog 18s ease-in-out infinite alternate;
+  }
+  .fog-layer:nth-child(1) { bottom: 15%; animation-duration: 18s; opacity: 0.7; }
+  .fog-layer:nth-child(2) { bottom: 8%; animation-duration: 24s; animation-delay: -6s; opacity: 0.5; transform: scaleY(0.6); }
+
+  @keyframes driftFog {
+    from { transform: translateX(-10%) scaleY(1); }
+    to   { transform: translateX(10%) scaleY(1.1); }
+  }
+
+  /* Stars */
+  .stars {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 40%;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 8%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 60% 5%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 18%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  }
+
+  .cover-subtitle {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: rgba(184,212,232,0.85);
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 9vw, 6rem);
+    color: #fff;
+    text-align: center;
+    line-height: 1.05;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5), 0 0 80px rgba(38,96,164,0.6);
+    margin-bottom: 8px;
+  }
+
+  .cover-title .amp {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cover-divider {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 24px auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Thomas SVG illustration */
+  .thomas-scene {
+    position: relative;
+    z-index: 2;
+    width: min(560px, 90vw);
+    margin: 10px auto 0;
+  }
+
+  /* Track */
+  .track-container {
+    position: relative;
+    z-index: 2;
+    width: min(700px, 95vw);
+    height: 30px;
+    margin: 0 auto;
+  }
+
+  /* ── BOOK PAGES ── */
+  .book {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  .page {
+    background: var(--cream);
+    margin: 0 0 6px;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .page:nth-child(2) { animation-delay: 0.1s; }
+  .page:nth-child(3) { animation-delay: 0.2s; }
+  .page:nth-child(4) { animation-delay: 0.3s; }
+  .page:nth-child(5) { animation-delay: 0.4s; }
+  .page:nth-child(6) { animation-delay: 0.5s; }
+
+  /* ── SPREAD: image + text side by side ── */
+  .spread {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 380px;
+  }
+
+  @media (max-width: 640px) {
+    .spread { grid-template-columns: 1fr; }
+    .spread .illustration { min-height: 240px; }
+  }
+
+  .spread.reverse { direction: rtl; }
+  .spread.reverse > * { direction: ltr; }
+
+  .illustration {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+  }
+
+  .illustration img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 8s ease;
+  }
+
+  .illustration:hover img { transform: scale(1.04); }
+
+  .illustration-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 14px 8px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.55));
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.03em;
+  }
+
+  .text-panel {
+    padding: 44px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--cream);
+    position: relative;
+  }
+
+  .text-panel::before {
+    content: '';
+    position: absolute;
+    top: 40px; bottom: 40px;
+    left: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .spread.reverse .text-panel::before {
+    left: auto; right: 0;
+  }
+
+  @media (max-width: 640px) {
+    .text-panel { padding: 28px 24px 32px; }
+    .text-panel::before { display: none; }
+  }
+
+  .chapter-label {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+    color: var(--deep);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .story-text {
+    font-size: clamp(0.88rem, 1.8vw, 1rem);
+    line-height: 1.85;
+    color: #3a2c1a;
+  }
+
+  .story-text p { margin-bottom: 1em; }
+  .story-text p:last-child { margin-bottom: 0; }
+
+  .story-text em { color: var(--thomas-blue); font-style: italic; }
+
+  .drop-cap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8em;
+    font-weight: 900;
+    float: left;
+    line-height: 0.75;
+    margin: 6px 8px 0 0;
+    color: var(--thomas-blue);
+  }
+
+  /* ── FULL WIDTH SCENE ── */
+  .full-scene {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #b8d4e8 0%, #dce8f0 50%, #e8ede8 100%);
+  }
+
+  .full-scene img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    opacity: 0.9;
+  }
+
+  .scene-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(220,232,240,0.3) 0%,
+      transparent 40%,
+      transparent 70%,
+      rgba(253,248,240,0.8) 100%
+    );
+  }
+
+  .scene-quote {
+    position: absolute;
+    bottom: 24px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--deep);
+    text-shadow: 0 1px 8px rgba(255,255,255,0.9);
+    padding: 0 40px;
+  }
+
+  /* ── CLOSING PAGE ── */
+  .closing {
+    background: linear-gradient(135deg, var(--deep) 0%, #0f2540 100%);
+    padding: 70px 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(38,96,164,0.4) 0%, transparent 70%);
+  }
+
+  .closing-rule {
+    width: 80px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 30px;
+    position: relative; z-index: 1;
+  }
+
+  .closing-text {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+    line-height: 1.9;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+    color: rgba(220,232,240,0.9);
+  }
+
+  .closing-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+
+  /* ── PAGE NUMBERS ── */
+  .page-num {
+    text-align: center;
+    padding: 12px;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: #b09a7a;
+    background: var(--warm);
+    font-family: 'Lora', serif;
+  }
+
+  /* Thomas SVG */
+  .thomas-svg {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 12px 40px rgba(0,0,0,0.6));
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════ COVER ══════════ -->
+<div class="cover">
+  <div class="stars"></div>
+  <div class="fog-layer"></div>
+  <div class="fog-layer"></div>
+
+  <p class="cover-subtitle">A Story from the Island of Sodor</p>
+
+  <h1 class="cover-title">Thomas<br><span class="amp">&amp;</span><br>the Foggy Day</h1>
+
+  <div class="cover-divider"></div>
+
+  <!-- Hand-drawn style Thomas SVG -->
+  <svg class="thomas-svg" viewBox="0 0 500 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fog wisps -->
+    <ellipse cx="80" cy="160" rx="90" ry="22" fill="rgba(220,232,240,0.18)"/>
+    <ellipse cx="380" cy="155" rx="110" ry="20" fill="rgba(220,232,240,0.15)"/>
+    <ellipse cx="250" cy="170" rx="200" ry="28" fill="rgba(220,232,240,0.12)"/>
+
+    <!-- Rails -->
+    <rect x="0" y="185" width="500" height="5" rx="2.5" fill="#3a4a5a"/>
+    <rect x="0" y="198" width="500" height="5" rx="2.5" fill="#3a4a5a"/>
+    <!-- Sleepers -->
+    <rect x="20" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="60" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="100" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="140" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="180" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="220" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="260" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="300" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="340" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="380" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="420" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+    <rect x="460" y="182" width="14" height="24" rx="2" fill="#4a3a28"/>
+
+    <!-- Thomas body -->
+    <!-- Main boiler -->
+    <rect x="120" y="95" width="180" height="90" rx="8" fill="#2660a4"/>
+    <!-- Boiler highlight -->
+    <rect x="125" y="99" width="170" height="30" rx="6" fill="#3070b8" opacity="0.6"/>
+
+    <!-- Cab -->
+    <rect x="255" y="75" width="85" height="110" rx="6" fill="#1e4e8a"/>
+    <!-- Cab window -->
+    <rect x="268" y="88" width="28" height="28" rx="4" fill="#c8d8e8"/>
+    <rect x="304" y="88" width="28" height="28" rx="4" fill="#c8d8e8"/>
+    <!-- Cab roof -->
+    <rect x="250" y="68" width="96" height="14" rx="4" fill="#163d70"/>
+
+    <!-- Face plate (front of boiler) -->
+    <ellipse cx="120" cy="140" rx="38" ry="42" fill="#2060a0"/>
+    <!-- Face -->
+    <!-- Eyes -->
+    <ellipse cx="108" cy="128" rx="9" ry="10" fill="white"/>
+    <ellipse cx="132" cy="128" rx="9" ry="10" fill="white"/>
+    <ellipse cx="110" cy="129" rx="5" ry="6" fill="#1a3a5c"/>
+    <ellipse cx="134" cy="129" rx="5" ry="6" fill="#1a3a5c"/>
+    <circle cx="111" cy="128" r="2" fill="white"/>
+    <circle cx="135" cy="128" r="2" fill="white"/>
+    <!-- Smile -->
+    <path d="M 104 144 Q 120 154 136 144" stroke="#1a3a5c" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Eyebrows (happy) -->
+    <path d="M 101 119 Q 110 114 119 118" stroke="#1a3a5c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M 125 118 Q 134 114 143 119" stroke="#1a3a5c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Headlamp -->
+    <ellipse cx="84" cy="140" rx="10" ry="10" fill="#c8a020"/>
+    <ellipse cx="84" cy="140" rx="7" ry="7" fill="#f0d060"/>
+    <!-- Light beam -->
+    <path d="M 74 135 L 10 120 M 74 140 L 8 140 M 74 145 L 10 158" stroke="rgba(240,208,96,0.25)" stroke-width="2"/>
+
+    <!-- Funnel/chimney -->
+    <rect x="148" y="72" width="18" height="28" rx="3" fill="#163d70"/>
+    <rect x="143" y="68" width="28" height="10" rx="4" fill="#1a3a5c"/>
+    <!-- Steam puffs -->
+    <circle cx="157" cy="55" r="12" fill="rgba(220,232,240,0.35)"/>
+    <circle cx="168" cy="42" r="9" fill="rgba(220,232,240,0.25)"/>
+    <circle cx="155" cy="33" r="7" fill="rgba(220,232,240,0.2)"/>
+
+    <!-- Safety valve -->
+    <rect x="185" y="85" width="10" height="15" rx="3" fill="#163d70"/>
+
+    <!-- Number 1 -->
+    <circle cx="195" cy="140" r="18" fill="#c8922a" opacity="0.9"/>
+    <text x="195" y="146" text-anchor="middle" font-family="serif" font-size="20" font-weight="bold" fill="white">1</text>
+
+    <!-- Connecting rods -->
+    <rect x="110" y="172" width="55" height="6" rx="3" fill="#163d70" transform="rotate(-5 110 172)"/>
+
+    <!-- Large driving wheel -->
+    <circle cx="195" cy="182" r="28" fill="#163d70"/>
+    <circle cx="195" cy="182" r="22" fill="#1e4e8a"/>
+    <circle cx="195" cy="182" r="8" fill="#c8922a"/>
+    <line x1="195" y1="160" x2="195" y2="204" stroke="#163d70" stroke-width="3"/>
+    <line x1="173" y1="182" x2="217" y2="182" stroke="#163d70" stroke-width="3"/>
+
+    <!-- Front small wheel -->
+    <circle cx="135" cy="182" r="18" fill="#163d70"/>
+    <circle cx="135" cy="182" r="13" fill="#1e4e8a"/>
+    <circle cx="135" cy="182" r="5" fill="#c8922a"/>
+
+    <!-- Rear wheel -->
+    <circle cx="270" cy="182" r="22" fill="#163d70"/>
+    <circle cx="270" cy="182" r="16" fill="#1e4e8a"/>
+    <circle cx="270" cy="182" r="6" fill="#c8922a"/>
+
+    <!-- Tender -->
+    <rect x="305" y="130" width="90" height="55" rx="5" fill="#1a3a5c"/>
+    <rect x="308" y="133" width="84" height="25" rx="3" fill="#163d70" opacity="0.6"/>
+    <circle cx="325" cy="185" r="18" fill="#163d70"/>
+    <circle cx="325" cy="185" r="12" fill="#1e4e8a"/>
+    <circle cx="325" cy="185" r="4" fill="#c8922a"/>
+    <circle cx="370" cy="185" r="18" fill="#163d70"/>
+    <circle cx="370" cy="185" r="12" fill="#1e4e8a"/>
+    <circle cx="370" cy="185" r="4" fill="#c8922a"/>
+  </svg>
+</div>
+
+<!-- ══════════ BOOK ══════════ -->
+<div class="book">
+
+  <!-- PAGE 1: Chapter 1 -->
+  <div class="page" style="animation-delay:0.05s">
+    <div class="spread">
+      <div class="illustration">
+        <img src="https://images.unsplash.com/photo-1509803874385-db7a23652753?w=700&q=80" alt="Foggy morning railway">
+        <div class="illustration-caption">Dawn on the Island of Sodor — the fog rolling in thick from the sea</div>
+      </div>
+      <div class="text-panel">
+        <p class="chapter-label">Chapter One</p>
+        <h2 class="chapter-title">A White Morning</h2>
+        <div class="story-text">
+          <p class="drop-cap">The Island of Sodor woke one morning wrapped in a thick, grey blanket of fog. Sir Topham Hatt stood on the platform at Tidmouth Sheds, his top hat disappearing into the mist above his shoulders.</p>
+          <p>"Be careful today, engines," he warned, hands clasped behind his back. "The fog is thick, and the passengers are counting on you to be <em>Really Useful.</em>"</p>
+          <p>Thomas puffed out his chest — or rather, his boiler. "Don't worry, sir! I know every bend of my branch line. I could run it with my eyes closed!"</p>
+          <p>Gordon, who was idling nearby with the kind of dignity only a large express engine can manage, gave a long, slow toot. "That," he said, "is precisely what worries us."</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-num">· i ·</div>
+  </div>
+
+  <!-- FULL WIDTH QUOTE SCENE -->
+  <div class="page" style="animation-delay:0.1s">
+    <div class="full-scene">
+      <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=1200&q=80" alt="Misty railway tracks vanishing into fog">
+      <div class="scene-overlay"></div>
+      <p class="scene-quote">"Every station materialized from nothing — and dissolved back into the grey."</p>
+    </div>
+  </div>
+
+  <!-- PAGE 2: Into the Fog -->
+  <div class="page" style="animation-delay:0.15s">
+    <div class="spread reverse">
+      <div class="illustration">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=80" alt="Misty green countryside">
+        <div class="illustration-caption">The familiar fields swallowed whole by the morning mist</div>
+      </div>
+      <div class="text-panel">
+        <p class="chapter-label">Chapter Two</p>
+        <h2 class="chapter-title">Into the White</h2>
+        <div class="story-text">
+          <p class="drop-cap">Thomas set off into the white morning, his blue paint swallowed almost immediately by the fog. His headlamp threw a small golden cone of light ahead, but beyond it, the world had simply vanished.</p>
+          <p>At first, Thomas enjoyed the mystery of it. The familiar fields were gone. The old stone bridge appeared suddenly, like a magic trick, and disappeared just as quickly.</p>
+          <p>Every station materialized from nothing and then dissolved back into the grey.</p>
+          <p>But then, near Maithwaite, Thomas heard something unusual.</p>
+          <p>A sound — small and thin — drifting through the fog.</p>
+          <p><em>Baaaa.</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="page-num">· ii ·</div>
+  </div>
+
+  <!-- PAGE 3: The Lamb -->
+  <div class="page" style="animation-delay:0.2s">
+    <div class="spread">
+      <div class="illustration">
+        <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=700&q=80" alt="Lamb in a misty field">
+        <div class="illustration-caption">The lamb blinked with enormous amber eyes — entirely unbothered</div>
+      </div>
+      <div class="text-panel">
+        <p class="chapter-label">Chapter Three</p>
+        <h2 class="chapter-title">A Most Inconvenient Lamb</h2>
+        <div class="story-text">
+          <p class="drop-cap">Thomas applied his brakes with a <em>hiss</em> and a <em>screech,</em> rolling to a gentle stop. There, sitting calmly in the middle of the track, was a lamb. It blinked at Thomas with enormous amber eyes, entirely unbothered.</p>
+          <p>"Oh dear," said Thomas.</p>
+          <p>The lamb said nothing useful.</p>
+          <p>Thomas couldn't reverse — Annie and Clarabel were behind him, full of passengers. He couldn't go forward. He blew his whistle, long and sharp, hoping the farmer might hear. The fog swallowed the sound whole.</p>
+          <p>It was his fireman, Burt, who climbed down and gently scooped the lamb off the tracks, carrying it to the grassy bank where, presumably, it belonged.</p>
+          <p>The lamb watched them go with those same calm, amber eyes, as though it had merely been resting between important appointments.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-num">· iii ·</div>
+  </div>
+
+  <!-- PAGE 4: The Girl -->
+  <div class="page" style="animation-delay:0.25s">
+    <div class="spread reverse">
+      <div class="illustration">
+        <img src="https://images.unsplash.com/photo-1520209268518-aec60b8bb5ca?w=700&q=80" alt="Train arriving at sunny station platform">
+        <div class="illustration-caption">Thomas arrived twelve minutes late — but he arrived</div>
+      </div>
+      <div class="text-panel">
+        <p class="chapter-label">Chapter Four</p>
+        <h2 class="chapter-title">The Girl in the Yellow Raincoat</h2>
+        <div class="story-text">
+          <p class="drop-cap">Thomas arrived at the harbour twelve minutes late. He felt terrible about it — truly, deeply terrible, in the way that only Thomas can.</p>
+          <p>But waiting on the platform was a small girl in a yellow raincoat, her face pressed against the foggy air.</p>
+          <p>"You came!" she said, when Thomas pulled in.</p>
+          <p>"Of course," said Thomas. "I'm always here."</p>
+          <p>"Daddy said the trains might not run in the fog."</p>
+          <p>"Fog," said Thomas, with great seriousness, "has never stopped me yet."</p>
+          <p>The girl smiled, and ran to find her mother, and Thomas felt something warm settle in his boiler — warmer than steam, warmer than coal.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-num">· iv ·</div>
+  </div>
+
+  <!-- FULL WIDTH: Sunshine scene -->
+  <div class="page" style="animation-delay:0.3s">
+    <div class="full-scene" style="height:260px;">
+      <img src="https://images.unsplash.com/photo-1490077476659-095159692ab5?w=1200&q=80" alt="Golden sunny countryside">
+      <div class="scene-overlay" style="background: linear-gradient(to bottom, rgba(240,220,160,0.2) 0%, transparent 40%, transparent 70%, rgba(253,248,240,0.85) 100%);"></div>
+      <p class="scene-quote" style="color:#2c1e0f;">"By afternoon, the fog had burned away. Sodor gleamed green and gold in the autumn sun."</p>
+    </div>
+  </div>
+
+  <!-- CLOSING PAGE -->
+  <div class="page closing">
+    <div class="closing-rule"></div>
+    <h2 class="closing-title">The End</h2>
+    <div class="closing-text">
+      <p>That evening, Gordon asked if the journey had gone smoothly.</p>
+      <br>
+      <p><em>"Perfectly,"</em> said Thomas.</p>
+      <br>
+      <p>He did not mention the lamb. Some things, he decided, are best kept between an engine and his branch line.</p>
+    </div>
+    <div class="closing-rule" style="margin-top:36px;"></div>
+  </div>
+
+</div><!-- /book -->
+
+</body>
+</html>

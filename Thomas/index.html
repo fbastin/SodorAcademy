@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas's Fraction Express</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background-color: #e0f7fa; color: #333; padding: 20px; }
+        .game-container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        
+        .instructions { background: #fff9c4; padding: 15px; border-radius: 8px; border-left: 5px solid #fbc02d; margin-bottom: 25px; text-align: left; font-size: 1.1rem; }
+        
+        /* Track Styles */
+        .track-container { 
+            display: flex; align-items: center; justify-content: space-between; 
+            margin: 60px 0; padding: 20px; background: #c5e1a5; 
+            border-radius: 10px; position: relative; height: 120px; 
+            border-bottom: 8px solid #5d4037;
+        }
+        .station { font-size: 2rem; z-index: 2; font-weight: bold; background: white; padding: 10px; border-radius: 5px; border: 3px solid #795548; }
+        .track-line { position: absolute; top: 70%; left: 5%; right: 5%; height: 12px; background: #4e342e; z-index: 1; }
+
+        /* Thomas Sprite */
+        #thomas-container { 
+            position: absolute; bottom: 30px; width: 120px; 
+            transition: left 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95); z-index: 3; 
+        }
+        #thomas-img { width: 100%; height: auto; }
+
+        /* Math Styles */
+        .problem-area { display: flex; justify-content: center; align-items: center; font-size: 2.2rem; margin: 30px 0; }
+        .fraction { display: inline-flex; flex-direction: column; align-items: center; margin: 0 15px; }
+        .numerator { border-bottom: 3px solid #333; padding: 0 10px; }
+        .denominator { padding: 0 10px; }
+        .input-fraction input { width: 70px; height: 50px; font-size: 1.8rem; text-align: center; border: 3px solid #0277bd; border-radius: 8px; }
+        
+        button { padding: 15px 30px; font-size: 1.2rem; cursor: pointer; border: none; border-radius: 8px; background-color: #0277bd; color: white; font-weight: bold; }
+        #message { font-size: 1.4rem; font-weight: bold; margin-top: 20px; min-height: 40px; }
+        .correct { color: #2e7d32; }
+        .wrong { color: #c62828; }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>Thomas's Fraction Express 🚂</h1>
+    
+    <div class="instructions">
+        <strong>Engineer's Orders:</strong> Multiply the fractions to help Thomas move!<br>
+        ⭐ <strong>CRITICAL:</strong> You must <u>simplify</u> your final answer. (e.g., 2/6 must be 1/3).<br>
+        ✅ Right answer = 1 step forward | ❌ Wrong answer = 1 step backward.
+    </div>
+
+    <div class="track-container">
+        <div class="track-line"></div>
+        <div class="station">A</div>
+        
+        <div id="thomas-container" style="left: 10%;">
+            <!-- Use the generated image here -->
+            <img id="thomas-img" src="thomas.png" alt="Thomas the Tank Engine">
+        </div>
+        
+        <div class="station">B</div>
+    </div>
+
+    <div id="play-area">
+        <div class="problem-area">
+            <div class="fraction"><span class="numerator" id="n1">1</span><span class="denominator" id="d1">2</span></div>
+            <span>×</span>
+            <div class="fraction"><span class="numerator" id="n2">1</span><span class="denominator" id="d2">3</span></div>
+            <span>=</span>
+            <div class="fraction input-fraction">
+                <input type="number" id="ans-num" placeholder="?">
+                <input type="number" id="ans-den" placeholder="?">
+            </div>
+        </div>
+        <button onclick="checkAnswer()">Full Steam Ahead!</button>
+        <div id="message"></div>
+    </div>
+
+    <div id="win-screen" style="display:none;">
+        <h2 class="correct">Peep Peep! You arrived at Station B!</h2>
+        <button onclick="resetGame()">Start New Journey</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    const maxSteps = 6;
+    let solN, solD;
+
+    function getGCD(a, b) { return b === 0 ? a : getGCD(b, a % b); }
+
+    function generateProblem() {
+        // Random numbers 1-6 for simpler mental math
+        const n1 = Math.floor(Math.random() * 5) + 1;
+        const d1 = Math.floor(Math.random() * 5) + 2;
+        const n2 = Math.floor(Math.random() * 5) + 1;
+        const d2 = Math.floor(Math.random() * 5) + 2;
+
+        document.getElementById('n1').innerText = n1;
+        document.getElementById('d1').innerText = d1;
+        document.getElementById('n2').innerText = n2;
+        document.getElementById('d2').innerText = d2;
+
+        const rawN = n1 * n2;
+        const rawD = d1 * d2;
+        const common = getGCD(rawN, rawD);
+        solN = rawN / common;
+        solD = rawD / common;
+
+        document.getElementById('ans-num').value = '';
+        document.getElementById('ans-den').value = '';
+        document.getElementById('ans-num').focus();
+    }
+
+    function checkAnswer() {
+        const uN = parseInt(document.getElementById('ans-num').value);
+        const uD = parseInt(document.getElementById('ans-den').value);
+        const msg = document.getElementById('message');
+
+        if (uN === solN && uD === solD) {
+            msg.className = "correct";
+            msg.innerText = "Correct! Great job, Engineer!";
+            currentStep++;
+            if (currentStep < maxSteps) setTimeout(generateProblem, 1000);
+        } else {
+            msg.className = "wrong";
+            // Check if they were right but forgot to simplify
+            if (uN/uD === solN/solD) {
+                msg.innerText = "Math is correct, but you didn't SIMPLIFY!";
+            } else {
+                msg.innerText = "Cinders and ashes! That's not right.";
+                if (currentStep > 0) currentStep--;
+            }
+        }
+        updateTrain();
+    }
+
+    function updateTrain() {
+        const train = document.getElementById('thomas-container');
+        const pos = 10 + (currentStep / maxSteps) * 75;
+        train.style.left = pos + "%";
+
+        if (currentStep >= maxSteps) {
+            document.getElementById('play-area').style.display = 'none';
+            document.getElementById('win-screen').style.display = 'block';
+        }
+    }
+
+    function resetGame() {
+        currentStep = 0;
+        document.getElementById('play-area').style.display = 'block';
+        document.getElementById('win-screen').style.display = 'none';
+        document.getElementById('message').innerText = '';
+        updateTrain();
+        generateProblem();
+    }
+
+    generateProblem();
+</script>
+
+</body>
+</html>
