@@ -148,8 +148,15 @@ export const apiService = {
       body: JSON.stringify({ userId, newName })
     });
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to change name');
+      let errorMsg = 'Failed to change name';
+      try {
+        const error = await response.json();
+        errorMsg = error.error || errorMsg;
+      } catch (e) {
+        const text = await response.text();
+        errorMsg = `Server error (${response.status}): ${text.slice(0, 100)}`;
+      }
+      throw new Error(errorMsg);
     }
   },
 
@@ -191,6 +198,20 @@ export const apiService = {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.error || 'Failed to delete user');
+    }
+  },
+
+  async validateUserAsAdmin(adminId: string, targetUserId: string): Promise<void> {
+    const response = await fetch(`${BASE_URL}/admin/users/${targetUserId}/validate`, {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-Admin-ID': adminId
+      }
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to validate user');
     }
   },
 

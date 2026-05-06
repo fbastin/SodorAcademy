@@ -218,6 +218,29 @@ apiRouter.delete('/admin/users/:userId', async (req, res) => {
   res.json({ success: true });
 });
 
+apiRouter.post('/admin/users/:userId/validate', async (req, res) => {
+  const adminId = req.headers['x-admin-id'];
+  const targetUserId = req.params.userId;
+  
+  const users = await readUsers();
+  const admin = users.find(u => u.id === adminId);
+
+  if (!admin || !admin.isAdmin) {
+    return res.status(403).json({ error: 'Unauthorized. Admin access required.' });
+  }
+
+  const index = users.findIndex(u => u.id === targetUserId);
+  if (index === -1) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  users[index].isActive = true;
+  delete users[index].validationCode;
+  await writeUsers(users);
+
+  res.json({ success: true });
+});
+
 apiRouter.post('/request-recovery', async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ error: 'Email required' });

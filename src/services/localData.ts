@@ -32,26 +32,8 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
     ]
   },
   'English': {
-    'Primary': [
-      {
-        id: 'eng-p-1',
-        text: 'Which station comes first alphabetically?',
-        options: ['Wellsworth', 'Knapford', 'Tidmouth', 'Ffarquhar'],
-        correctAnswer: 'Ffarquhar',
-        explanation: 'F comes before K, T, and W in the alphabet!',
-        rewardType: 'coin'
-      }
-    ],
-    'Secondary': [
-      {
-        id: 'eng-s-1',
-        text: 'Choose the correctly spelled station name:',
-        options: ['Tidmuth', 'Tidmouth', 'Tidmowth', 'Tidmoth'],
-        correctAnswer: 'Tidmouth',
-        explanation: 'T-I-D-M-O-U-T-H is the correct spelling for Tidmouth Sheds.',
-        rewardType: 'badge'
-      }
-    ]
+    'Primary': [],
+    'Secondary': []
   },
   'Science': {
     'Primary': [

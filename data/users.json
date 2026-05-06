@@ -1,39 +1,27 @@
 [
   {
-    "id": "1777968938422",
-    "name": "Alan",
-    "pin": "$2b$10$EYwiFIGYt/rE38rD/aCYWerMSmb2mX.iTGe3UMfQEinb7ucDFkaju",
-    "stats": {
-      "score": 300,
-      "completedLessons": 3,
-      "enginesCollected": [
-        "james",
-        "percy"
-      ],
-      "videosUnlocked": [
-        "welcome"
-      ],
-      "currentGrade": "Primary"
-    }
-  },
-  {
     "id": "1777985793917",
-    "name": "test",
+    "name": "Fabian",
     "email": "fabian.bastin@gmail.com",
     "pin": "$2b$10$eC4lGyOWu.KcJ0rdG0XuQu.gKqR5ECd.QRJ1Eu8q6SOUVqYmW.I06",
     "isActive": true,
     "isAdmin": true,
     "stats": {
-      "score": 200,
-      "completedLessons": 2,
+      "score": 400,
+      "completedLessons": 4,
       "enginesCollected": [
         "james",
         "percy"
       ],
       "videosUnlocked": [
-        "welcome"
+        "welcome",
+        "thomas-sharing"
       ],
-      "currentGrade": "Primary"
+      "currentGrade": "Primary",
+      "fractionExercisesCompleted": [
+        "math-fractions-mult",
+        "math-fractions-add"
+      ]
     }
   }
 ]

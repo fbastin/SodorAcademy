@@ -7,6 +7,8 @@ import { apiService, User } from './services/apiService';
 import SodorMap from './components/SodorMap';
 import FractionMultiplication from './components/FractionMultiplication';
 import FractionAddition from './components/FractionAddition';
+import StoryExercise from './components/StoryExercise';
+import { STORIES } from './services/storyData';
 
 // --- Components ---
 
@@ -706,6 +708,17 @@ const AdminModal = ({ adminId, onClose }: { adminId: string; onClose: () => void
     }
   };
 
+  const handleValidateUser = async (targetId: string, name: string) => {
+    if (!confirm(`Are you sure you want to manually validate user "${name}"?`)) return;
+    
+    try {
+      await apiService.validateUserAsAdmin(adminId, targetId);
+      setUsers(prev => prev.map(u => u.id === targetId ? { ...u, isActive: true } : u));
+    } catch (err: any) {
+      alert(err.message);
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -777,13 +790,24 @@ const AdminModal = ({ adminId, onClose }: { adminId: string; onClose: () => void
                     </td>
                     <td className="py-4 text-right pr-2">
                       {!u.isAdmin && (
-                        <button
-                          onClick={() => handleDeleteUser(u.id, u.name)}
-                          className="p-2 text-slate-300 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
-                          title="Delete User"
-                        >
-                          <Trash2 size={18} />
-                        </button>
+                        <div className="flex items-center justify-end gap-1">
+                          {!u.isActive && (
+                            <button
+                              onClick={() => handleValidateUser(u.id, u.name)}
+                              className="p-2 text-slate-300 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all"
+                              title="Validate User"
+                            >
+                              <CheckCircle size={18} />
+                            </button>
+                          )}
+                          <button
+                            onClick={() => handleDeleteUser(u.id, u.name)}
+                            className="p-2 text-slate-300 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                            title="Delete User"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
                       )}
                     </td>
                   </tr>
@@ -1027,6 +1051,95 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
   </div>
 );
 
+const LibraryModal = ({ stories, onClose }: { stories: Story[]; onClose: () => void }) => {
+  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/80 backdrop-blur-md p-6"
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        className="bg-white rounded-[40px] p-8 md:p-12 max-w-5xl w-full h-[85vh] shadow-2xl relative overflow-hidden flex flex-col"
+      >
+        <button 
+          onClick={() => selectedStory ? setSelectedStory(null) : onClose()}
+          className="absolute top-8 right-8 p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition-colors z-10"
+        >
+          {selectedStory ? <RotateCcw size={24} /> : <X size={24} />}
+        </button>
+
+        <AnimatePresence mode="wait">
+          {!selectedStory ? (
+            <motion.div
+              key="list"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex-1 overflow-y-auto pr-4 custom-scrollbar"
+            >
+              <div className="mb-12">
+                <h2 className="text-4xl font-black text-slate-900 flex items-center gap-4">
+                  <BookOpen size={40} className="text-red-600" />
+                  Sodor Story Library
+                </h2>
+                <p className="text-slate-500 font-medium mt-2">Relive your favorite adventures from the Island of Sodor.</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {stories.map(story => (
+                  <button
+                    key={story.id}
+                    onClick={() => setSelectedStory(story)}
+                    className="bg-slate-50 p-6 rounded-[32px] border-2 border-transparent hover:border-red-600/20 hover:bg-white hover:shadow-xl transition-all text-left group"
+                  >
+                    <div className="text-5xl mb-6">{story.thumbnail}</div>
+                    <h3 className="text-xl font-black text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
+                      {story.title}
+                    </h3>
+                    <p className="text-slate-500 text-sm font-medium line-clamp-3">
+                      {story.content}
+                    </p>
+                  </button>
+                ))}
+                {stories.length === 0 && (
+                  <div className="col-span-full py-20 text-center bg-slate-50 rounded-[40px] border-2 border-dashed border-slate-200">
+                    <BookOpen size={48} className="mx-auto text-slate-300 mb-4" />
+                    <p className="text-slate-400 font-bold uppercase tracking-widest">No stories unlocked yet!</p>
+                    <p className="text-slate-400 text-sm mt-1">Visit Tidmouth Sheds to start an adventure.</p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="reader"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="flex-1 overflow-y-auto pr-4 custom-scrollbar"
+            >
+              <div className="max-w-3xl mx-auto py-8">
+                <div className="text-7xl mb-8 text-center">{selectedStory.thumbnail}</div>
+                <h2 className="text-5xl font-black text-center text-slate-900 mb-12">{selectedStory.title}</h2>
+                <div className="prose prose-slate max-w-none">
+                  <p className="text-2xl leading-relaxed text-slate-700 font-medium whitespace-pre-wrap first-letter:text-7xl first-letter:font-black first-letter:text-red-600 first-letter:mr-3 first-letter:float-left">
+                    {selectedStory.content}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [currentPin, setCurrentPin] = useState<string>('');
@@ -1036,6 +1149,7 @@ export default function App() {
   const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
   const [showSettings, setShowSettings] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [showLibrary, setShowLibrary] = useState(false);
   
   const [authView, setAuthView] = useState<'login' | 'validation' | 'recovery'>('login');
   const [validationEmail, setValidationEmail] = useState('');
@@ -1048,7 +1162,8 @@ export default function App() {
       completedLessons: 0,
       enginesCollected: [],
       videosUnlocked: ['welcome'],
-      currentGrade: 'Primary'
+      currentGrade: 'Primary',
+      completedStories: []
     }
   };
 
@@ -1093,24 +1208,48 @@ export default function App() {
       localStorage.setItem('sodor_academy_pin', newPin);
     }
   };
-
   const handleLessonComplete = async (rewardType: string) => {
     if (!user) return;
 
     let rewardId = '';
     let newStats = { ...user.stats };
 
-    if (rewardType === 'video') {
-      const lockedVideos = VIDEOS.filter(v => !(user.stats.videosUnlocked || []).includes(v.id));
-      if (lockedVideos.length > 0) {
-        const randomVideo = lockedVideos[Math.floor(Math.random() * lockedVideos.length)];
-        rewardId = randomVideo.id;
-        newStats.videosUnlocked = Array.from(new Set([...(user.stats.videosUnlocked || []), randomVideo.id]));
+    // Track fraction exercises specifically
+    if (activeExercise?.id === 'math-fractions-mult' || activeExercise?.id === 'math-fractions-add') {
+      const completed = new Set(newStats.fractionExercisesCompleted || []);
+      completed.add(activeExercise.id);
+      newStats.fractionExercisesCompleted = Array.from(completed);
+
+      // Special unlock for completing both fraction exercises
+      if (newStats.fractionExercisesCompleted.length >= 2 && !newStats.videosUnlocked.includes('thomas-sharing')) {
+        rewardId = 'thomas-sharing';
+        newStats.videosUnlocked = [...newStats.videosUnlocked, 'thomas-sharing'];
+        rewardType = 'video'; // Force video reward for this special milestone
       }
-    } else {
-      const randomEngine = ENGINES[Math.floor(Math.random() * ENGINES.length)];
-      rewardId = randomEngine.id;
-      newStats.enginesCollected = Array.from(new Set([...user.stats.enginesCollected, randomEngine.id]));
+    }
+
+    // Story completion handling
+    if (activeExercise?.id === 'eng-stories' && typeof rewardType === 'string' && rewardType.startsWith('story-')) {
+      const storyId = rewardType;
+      const completed = new Set(newStats.completedStories || []);
+      completed.add(storyId);
+      newStats.completedStories = Array.from(completed);
+      rewardId = 'story-unlocked'; // Generic flag for story reward UI
+    }
+
+    if (!rewardId) {
+      if (rewardType === 'video') {
+        const lockedVideos = VIDEOS.filter(v => !(user.stats.videosUnlocked || []).includes(v.id));
+        if (lockedVideos.length > 0) {
+          const randomVideo = lockedVideos[Math.floor(Math.random() * lockedVideos.length)];
+          rewardId = randomVideo.id;
+          newStats.videosUnlocked = Array.from(new Set([...(user.stats.videosUnlocked || []), randomVideo.id]));
+        }
+      } else {
+        const randomEngine = ENGINES[Math.floor(Math.random() * ENGINES.length)];
+        rewardId = randomEngine.id;
+        newStats.enginesCollected = Array.from(new Set([...user.stats.enginesCollected, randomEngine.id]));
+      }
     }
 
     newStats.score += 100;
@@ -1268,6 +1407,41 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Story Library Preview */}
+              <div className="mt-24">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
+                    <BookOpen className="text-red-600" />
+                    The Library
+                  </h2>
+                  <button 
+                    onClick={() => setShowLibrary(true)}
+                    className="text-sm font-bold text-red-600 hover:underline uppercase tracking-widest"
+                  >
+                    Open Library
+                  </button>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {STORIES.slice(0, 4).map(story => {
+                    const isUnlocked = (user.stats.completedStories || []).includes(story.id);
+                    return (
+                      <button
+                        key={story.id}
+                        onClick={() => isUnlocked && setShowLibrary(true)}
+                        className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center text-center group
+                          ${isUnlocked 
+                            ? 'bg-white shadow-lg border-red-100 hover:border-red-600/20' 
+                            : 'bg-slate-100 border-transparent opacity-40 grayscale'}
+                        `}
+                      >
+                        <div className="text-4xl mb-4">{isUnlocked ? story.thumbnail : '🔒'}</div>
+                        <h4 className="font-extrabold text-sm mb-1 leading-tight">{isUnlocked ? story.title : 'Locked Story'}</h4>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
               {/* Reward Gallery */}
               <div className="mt-24">
                 <div className="flex items-center justify-between mb-8">
@@ -1320,6 +1494,12 @@ export default function App() {
                   onSelectExercise={(ex) => setActiveExercise(ex)} 
                   onCancel={() => setActiveSubject(null)}
                 />
+              ) : activeExercise?.id === 'eng-stories' ? (
+                <StoryExercise 
+                  completedStories={user.stats.completedStories || []}
+                  onComplete={(storyId) => handleLessonComplete(storyId)}
+                  onCancel={() => setActiveExercise(null)}
+                />
               ) : activeExercise?.component === 'FractionMultiplication' ? (
                 <FractionMultiplication 
                   grade={user.stats.currentGrade}
@@ -1368,6 +1548,16 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Library Modal */}
+      <AnimatePresence>
+        {showLibrary && user && (
+          <LibraryModal 
+            stories={STORIES.filter(s => (user.stats.completedStories || []).includes(s.id))}
+            onClose={() => setShowLibrary(false)} 
+          />
+        )}
+      </AnimatePresence>
+
       {/* Video Player Modal */}
       <AnimatePresence>
         {playingVideo && (
@@ -1400,7 +1590,19 @@ export default function App() {
               </p>
               
               <div className="bg-slate-50 p-6 rounded-3xl mb-8 border border-slate-100">
-                {VIDEOS.some(v => v.id === showReward) ? (
+                {showReward === 'story-unlocked' ? (
+                  <>
+                    <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-lg border-2 border-white bg-red-600 text-white">
+                      <BookOpen size={40} />
+                    </div>
+                    <h3 className="text-xl font-bold text-red-600">
+                      Story Unlocked!
+                    </h3>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">
+                      Check your Library
+                    </p>
+                  </>
+                ) : VIDEOS.some(v => v.id === showReward) ? (
                   <>
                     <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-lg border-2 border-white bg-sodor-blue text-white">
                       <PlayCircle size={40} />

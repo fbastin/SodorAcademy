@@ -1,5 +1,19 @@
 import { LucideIcon, Train, BookOpen, Calculator, History, MapPin, Trophy, PlayCircle, Music } from 'lucide-react';
 
+export interface StoryQuestion {
+  question: string;
+  options: string[];
+  correctAnswer: string;
+}
+
+export interface Story {
+  id: string;
+  title: string;
+  content: string;
+  questions: StoryQuestion[];
+  thumbnail: string;
+}
+
 export type Grade = 'Primary' | 'Secondary';
 
 export interface Exercise {
@@ -37,6 +51,8 @@ export interface UserStats {
   enginesCollected: string[];
   videosUnlocked: string[];
   currentGrade: Grade;
+  fractionExercisesCompleted?: string[];
+  completedStories?: string[];
 }
 
 export interface Video {
@@ -68,6 +84,13 @@ export const VIDEOS: Video[] = [
     filename: 'Knapford_Busy_Day.mp4',
     thumbnail: '🚉',
     description: 'Watch Thomas handle the express!'
+  },
+  {
+    id: 'thomas-sharing',
+    title: 'Thomas Likes to Share',
+    filename: 'Thomas_is_using_is_whistle_to.mp4',
+    thumbnail: '🍎',
+    description: 'Thomas learns the importance of sharing with his friends.'
   }
 ];
 
@@ -95,7 +118,10 @@ export const SUBJECTS: Subject[] = [
     description: 'Master spelling and station announcements.',
     station: 'Tidmouth Sheds',
     x: 14,
-    y: 45
+    y: 45,
+    exercises: [
+      { id: 'eng-stories', name: 'Story Adventure', description: 'Read a story and answer questions!', type: 'custom', component: 'StoryExercise' }
+    ]
   },
   {
     id: 'science',
@@ -105,7 +131,10 @@ export const SUBJECTS: Subject[] = [
     description: 'Learn how steam and engines work.',
     station: 'Vicarstown',
     x: 91,
-    y: 40
+    y: 40,
+    exercises: [
+      { id: 'sci-quiz', name: 'Vicarstown Quiz', description: 'Discover the science of steam power!', type: 'quiz' }
+    ]
   },
   {
     id: 'history',
@@ -115,7 +144,10 @@ export const SUBJECTS: Subject[] = [
     description: 'Discover the heritage of Sodor.',
     station: 'Wellsworth',
     x: 44,
-    y: 72
+    y: 72,
+    exercises: [
+      { id: 'his-quiz', name: 'Wellsworth Quiz', description: 'Explore the history of the railway!', type: 'quiz' }
+    ]
   },
   {
     id: 'geography',
@@ -125,7 +157,10 @@ export const SUBJECTS: Subject[] = [
     description: 'Navigate the tracks and hills.',
     station: 'Peel Godred',
     x: 52,
-    y: 28
+    y: 28,
+    exercises: [
+      { id: 'geo-quiz', name: 'Peel Godred Quiz', description: 'Master the map of Sodor!', type: 'quiz' }
+    ]
   },
   {
     id: 'music',
@@ -135,7 +170,10 @@ export const SUBJECTS: Subject[] = [
     description: 'Listen to the whistles and bells.',
     station: "Crovan's Gate",
     x: 72,
-    y: 48
+    y: 48,
+    exercises: [
+      { id: 'mus-quiz', name: "Crovan's Gate Quiz", description: 'Identify the sounds of the engines!', type: 'quiz' }
+    ]
   }
 ];
 
