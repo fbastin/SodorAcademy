@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Train, Activity, Globe } from 'lucide-react';
+import { Train, Activity, Globe, Compass } from 'lucide-react';
 import { Subject, SUBJECTS } from '../types';
 
 interface SodorMapProps {
   onSelectSubject: (subject: Subject) => void;
+  onOpenPreferences: () => void;
 }
 
-const SodorMap: React.FC<SodorMapProps> = ({ onSelectSubject }) => {
+const SodorMap: React.FC<SodorMapProps> = ({ onSelectSubject, onOpenPreferences }) => {
   return (
     <div className="relative w-full aspect-[16/9] bg-[#0c1a2b] rounded-[40px] overflow-hidden border-[12px] border-[#1e293b] shadow-[0_0_100px_rgba(0,0,0,0.6)] group/map font-sans">
       {/* Official Map Background Image */}
@@ -23,6 +24,19 @@ const SodorMap: React.FC<SodorMapProps> = ({ onSelectSubject }) => {
 
       {/* Interactive HUD Layer */}
       <div className="absolute inset-4">
+        {/* COMPASS TRIGGER (TOP LEFT) */}
+        <div className="absolute top-4 left-4 z-20">
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 45 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={onOpenPreferences}
+            className="w-12 h-12 bg-slate-900/90 backdrop-blur-xl rounded-full border-2 border-white/20 flex items-center justify-center text-white shadow-2xl hover:border-sodor-gold/50 hover:text-sodor-gold transition-all group"
+            title="Lesson Preferences"
+          >
+            <Compass size={28} className="transition-transform group-hover:animate-pulse" />
+          </motion.button>
+        </div>
+
         {/* FIXED STATION MARKERS (ALIGNED TO IMAGE LANDMARKS) */}
         {SUBJECTS.map((subject) => {
           const Icon = subject.icon;

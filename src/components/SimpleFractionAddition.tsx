@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, RotateCcw, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
-import { Grade, Question } from '../types';
+import { Train, RotateCcw, ArrowRight, XCircle } from 'lucide-react';
+import { Grade } from '../types';
 
-interface FractionMultiplicationProps {
+interface SimpleFractionAdditionProps {
   grade: Grade;
   questionsCount?: number;
   onComplete: (reward: string) => void;
@@ -20,7 +20,7 @@ interface FractionProblem {
   options: string[];
 }
 
-export default function FractionMultiplication({ grade, questionsCount = 10, onComplete, onCancel }: FractionMultiplicationProps) {
+export default function SimpleFractionAddition({ grade, questionsCount = 10, onComplete, onCancel }: SimpleFractionAdditionProps) {
   const [problem, setProblem] = useState<FractionProblem | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -33,32 +33,33 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
 
   const generateProblem = () => {
     const maxVal = grade === 'Primary' ? 6 : 10;
-    const n1 = Math.floor(Math.random() * maxVal) + 1;
-    const d1 = Math.floor(Math.random() * maxVal) + 2;
-    const n2 = Math.floor(Math.random() * maxVal) + 1;
-    const d2 = Math.floor(Math.random() * maxVal) + 2;
+    
+    // Forced same denominators
+    const commonD = Math.floor(Math.random() * maxVal) + 2;
+    const n1 = Math.floor(Math.random() * (commonD - 1)) + 1;
+    const n2 = Math.floor(Math.random() * (commonD - 1)) + 1;
 
-    const finalN = n1 * n2;
-    const finalD = d1 * d2;
+    const finalN = n1 + n2;
+    const finalD = commonD;
+    
     const common = getGCD(finalN, finalD);
     const simplifiedN = finalN / common;
     const simplifiedD = finalD / common;
 
     const correctAns = `${simplifiedN}/${simplifiedD}`;
     
-    // Generate some distractor answers
     const options = new Set<string>();
     options.add(correctAns);
     
     while (options.size < 4) {
       const dn = Math.max(1, simplifiedN + Math.floor(Math.random() * 5) - 2);
-      const dd = Math.max(2, simplifiedD + Math.floor(Math.random() * 5) - 2);
+      const dd = simplifiedD; // Keep same denominator for distractors mostly
       const distractor = `${dn}/${dd}`;
       if (distractor !== correctAns) options.add(distractor);
     }
 
     setProblem({
-      n1, d1, n2, d2,
+      n1, d1: commonD, n2, d2: commonD,
       correctN: simplifiedN,
       correctD: simplifiedD,
       options: Array.from(options).sort(() => Math.random() - 0.5)
@@ -91,16 +92,14 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
   if (!problem) return null;
 
   return (
-    <div className="max-w-3xl mx-auto py-12 px-6">
-      {/* Progress Track */}
-      <div className="mb-12 relative">
-        <div className="h-4 w-full bg-slate-200 rounded-full train-track overflow-hidden">
-          <motion.div 
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            className="h-full bg-sodor-blue"
-          />
-        </div>
+    <div className="max-w-4xl mx-auto py-12 px-6">
+      <div className="mb-8 relative h-4 bg-slate-200 rounded-full overflow-hidden shadow-inner">
+        <motion.div 
+          className="absolute top-0 left-0 h-full bg-sodor-blue shadow-[0_0_10px_rgba(30,64,175,0.5)]"
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 0.5 }}
+        />
         <motion.div 
           animate={{ left: `${progress}%` }}
           className="absolute -top-6 -ml-4 text-sodor-blue transition-all"
@@ -115,7 +114,7 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={progress}
+          key={`${problem.n1}/${problem.d1}+${problem.n2}/${problem.d2}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -123,11 +122,11 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
         >
           <div className="absolute top-0 left-0 w-2 h-full bg-sodor-blue" />
           <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-xs font-bold mb-4 uppercase tracking-wider">
-            Mathematics • Fraction Multiplication
+            Mathematics • Simple Addition
           </span>
           
           <h2 className="text-2xl font-extrabold mb-8 leading-tight text-slate-900">
-            Thomas needs to deliver fraction loads. Help him multiply these fractions:
+            The parts are already the same size! Help Percy add these:
           </h2>
 
           <div className={`flex items-center justify-center gap-6 mb-12 text-4xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
@@ -135,7 +134,7 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
               <span className="border-b-4 border-slate-800 px-2">{problem.n1}</span>
               <span>{problem.d1}</span>
             </div>
-            <span className="text-sodor-blue">×</span>
+            <span className="text-sodor-blue">+</span>
             <div className="flex flex-col items-center">
               <span className="border-b-4 border-slate-800 px-2">{problem.n2}</span>
               <span>{problem.d2}</span>
@@ -149,6 +148,7 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
           <div className="grid grid-cols-2 gap-4">
             {problem.options.map((option, idx) => {
               const [on, od] = option.split('/');
+              const isCorrectOption = option === `${problem.correctN}/${problem.correctD}`;
               return (
                 <motion.button
                   key={idx}
@@ -160,7 +160,7 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
                     p-6 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 relative
                     ${selectedAnswer === option 
                       ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
-                      : (selectedAnswer && option === `${problem?.correctN}/${problem?.correctD}` ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-lg')
+                      : (selectedAnswer && isCorrectOption ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-lg')
                     }
                   `}
                 >
@@ -168,9 +168,9 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
                     <span className="border-b-2 border-current px-2">{on}</span>
                     <span>{od}</span>
                   </div>
-                  {(selectedAnswer === option || (selectedAnswer && option === `${problem?.correctN}/${problem?.correctD}`)) && (
+                  {(selectedAnswer === option || (selectedAnswer && isCorrectOption)) && (
                     <span className="text-xl absolute top-2 right-2">
-                      {option === `${problem?.correctN}/${problem?.correctD}` ? '🚂' : '❌'}
+                      {isCorrectOption ? '🚂' : '❌'}
                     </span>
                   )}
                 </motion.button>
@@ -189,26 +189,31 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
                 <span>Cinders and Ashes!</span>
               </div>
               <p className="text-slate-600 text-sm">
-                To multiply fractions, multiply the numerators (top numbers) together and the denominators (bottom numbers) together. Then simplify!
+                When denominators are the same, just add the top numbers! The bottom number stays as {problem.d1}.
               </p>
               <button 
                 onClick={generateProblem}
-                className="mt-4 w-full py-3 bg-red-600 text-white rounded-xl font-bold text-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
+                className="mt-4 bg-white text-red-600 border-2 border-red-200 px-6 py-2 rounded-xl font-bold hover:bg-red-50 transition-colors flex items-center gap-2 self-start"
               >
-                <RotateCcw size={16} /> Try another load
+                <RotateCcw size={18} />
+                Try Again
               </button>
             </motion.div>
           )}
 
-          {isCorrect === true && progress < 100 && (
-             <motion.button
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              onClick={generateProblem}
-              className="mt-8 w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
-             >
-               Next Station <ArrowRight size={20} />
-             </motion.button>
+          {isCorrect === true && questionsAnswered < questionsCount && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mt-8 flex justify-center"
+            >
+              <button 
+                onClick={generateProblem}
+                className="bg-sodor-blue text-white px-10 py-4 rounded-2xl font-black shadow-lg hover:bg-blue-700 transition-all flex items-center gap-3"
+              >
+                Next Load! <ArrowRight size={20} />
+              </button>
+            </motion.div>
           )}
         </motion.div>
       </AnimatePresence>

@@ -1,28 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle, ArrowRight } from 'lucide-react';
+import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle, ArrowRight, Compass, Activity, Search } from 'lucide-react';
 import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video, Exercise } from './types';
 import { generateQuestion } from './services/questionService';
 import { apiService, User } from './services/apiService';
 import SodorMap from './components/SodorMap';
 import FractionMultiplication from './components/FractionMultiplication';
 import FractionAddition from './components/FractionAddition';
+import SimpleFractionAddition from './components/SimpleFractionAddition';
+import FractionIntegerAddition from './components/FractionIntegerAddition';
+import FractionAdditionLesson from './components/FractionAdditionLesson';
+import LCMLesson from './components/LCMLesson';
+import LCMExercise from './components/LCMExercise';
 import StoryExercise from './components/StoryExercise';
+import Piano from './components/Piano';
+import PianoSequence from './components/PianoSequence';
 import { STORIES } from './services/storyData';
+import { MUSIC_LIBRARY } from './services/musicData';
+import { MusicScore } from './types';
 
 // --- Components ---
 
-const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmin }: { 
+const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmin, onOpenTopics }: { 
   stats: UserStats; 
   userName: string; 
   isAdmin?: boolean;
   onLogout: () => void;
   onOpenSettings: () => void;
   onOpenAdmin: () => void;
+  onOpenTopics: () => void;
 }) => (
   <nav className="h-16 border-b bg-white flex items-center justify-between px-6 sticky top-0 z-50">
     <div className="flex items-center gap-2">
-      <div className="w-10 h-10 bg-sodor-blue rounded-lg flex items-center justify-center text-white shadow-lg relative overflow-hidden group">
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={onOpenTopics}
+        className="w-10 h-10 bg-sodor-blue rounded-lg flex items-center justify-center text-white shadow-lg relative overflow-hidden group"
+      >
         <motion.div
           animate={{ y: [-5, -15], x: [0, 5], opacity: [0, 1, 0] }}
           transition={{ repeat: Infinity, duration: 1, ease: "easeOut" }}
@@ -34,7 +49,7 @@ const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmi
           className="absolute top-2 right-3 w-1 h-1 bg-white/30 rounded-full blur-[1px]"
         />
         <Train size={24} className="relative z-10" />
-      </div>
+      </motion.button>
       <span className="font-extrabold text-xl tracking-tight text-sodor-blue uppercase hidden md:inline">Sodor Academy</span>
     </div>
     
@@ -82,7 +97,8 @@ const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmi
   </nav>
 );
 
-const ValidationView = ({ email, onValidated, onCancel }: { 
+const ValidationView = ({ name, email, onValidated, onCancel }: { 
+  name: string;
   email: string; 
   onValidated: () => void;
   onCancel: () => void;
@@ -96,7 +112,7 @@ const ValidationView = ({ email, onValidated, onCancel }: {
     setError('');
     setLoading(true);
     try {
-      await apiService.validateEmail(email, code);
+      await apiService.validateEmail(name, email, code);
       onValidated();
     } catch (err: any) {
       setError(err.message);
@@ -151,6 +167,7 @@ const ValidationView = ({ email, onValidated, onCancel }: {
 };
 
 const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [newPin, setNewPin] = useState('');
@@ -164,7 +181,7 @@ const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
     setError('');
     setLoading(true);
     try {
-      await apiService.requestRecovery(email);
+      await apiService.requestRecovery(name, email);
       setStep('reset');
     } catch (err: any) {
       setError(err.message);
@@ -178,7 +195,7 @@ const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
     setError('');
     setLoading(true);
     try {
-      await apiService.resetPin(email, code, newPin);
+      await apiService.resetPin(name, email, code, newPin);
       setSuccess(true);
     } catch (err: any) {
       setError(err.message);
@@ -227,6 +244,20 @@ const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
         </p>
 
         <form onSubmit={step === 'request' ? handleRequest : handleReset} className="space-y-4">
+          {step === 'request' && (
+            <div className="relative">
+              <UserIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+              <input
+                type="text"
+                placeholder="Student Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl border-2 border-transparent focus:border-sodor-blue focus:bg-white transition-all outline-none font-bold"
+                required
+              />
+            </div>
+          )}
+
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
             <input
@@ -287,7 +318,7 @@ const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
 
 const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: { 
   onLogin: (user: User, pin: string, isNewUser: boolean) => void;
-  onShowValidation: (email: string) => void;
+  onShowValidation: (name: string, email: string) => void;
   onShowRecovery: () => void;
   onGuestLogin: () => void;
 }) => {
@@ -305,14 +336,14 @@ const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: 
     try {
       if (isRegistering) {
         const user = await apiService.register(name, pin, email);
-        onShowValidation(email);
+        onShowValidation(name, email);
       } else {
         const user = await apiService.login(name, pin);
         onLogin(user, pin, false);
       }
     } catch (err: any) {
       if (err.type === 'VALIDATION_REQUIRED') {
-        onShowValidation(err.email);
+        onShowValidation(err.name || name, err.email);
       } else {
         setError(err.message);
       }
@@ -447,6 +478,132 @@ const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: 
   );
 };
 
+const TopicsModal = ({ onClose, onSelectTopic }: { 
+  onClose: () => void;
+  onSelectTopic: (subject: Subject, exercise: Exercise) => void;
+}) => {
+  const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const allTopics = SUBJECTS.flatMap(subject => 
+    (subject.exercises || []).map(exercise => ({
+      subject,
+      exercise,
+      id: exercise.id,
+      name: exercise.name,
+      description: exercise.description,
+      isLesson: exercise.type === 'lesson'
+    }))
+  );
+
+  const filteredTopics = allTopics.filter(t => {
+    const matchesSearch = t.name.toLowerCase().includes(search.toLowerCase()) || 
+                         t.subject.name.toLowerCase().includes(search.toLowerCase()) ||
+                         t.description.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = !selectedCategory || t.subject.id === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        className="bg-white rounded-[40px] p-8 md:p-10 max-w-2xl w-full max-h-[85vh] shadow-2xl relative overflow-hidden flex flex-col"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
+        >
+          <X size={24} />
+        </button>
+
+        <h2 className="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3 shrink-0">
+          <Search className="text-sodor-blue" />
+          Academy Topics
+        </h2>
+
+        <div className="space-y-4 mb-6 shrink-0">
+          {/* Category Selector */}
+          <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar no-scrollbar">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap
+                ${!selectedCategory 
+                  ? 'bg-sodor-blue text-white shadow-lg shadow-sodor-blue/20' 
+                  : 'bg-slate-100 text-slate-400 hover:bg-slate-200'}
+              `}
+            >
+              All Topics
+            </button>
+            {SUBJECTS.map(s => (
+              <button
+                key={s.id}
+                onClick={() => setSelectedCategory(s.id)}
+                className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap flex items-center gap-2
+                  ${selectedCategory === s.id 
+                    ? `${s.color} text-white shadow-lg` 
+                    : 'bg-slate-100 text-slate-400 hover:bg-slate-200'}
+                `}
+              >
+                <s.icon size={14} />
+                {s.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+            <input
+              type="text"
+              placeholder="Search for a lesson or adventure..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-12 pr-4 py-4 bg-slate-50 rounded-2xl border-2 border-transparent focus:border-sodor-blue focus:bg-white transition-all outline-none font-bold"
+            />
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar space-y-3">
+          {filteredTopics.map(({ subject, exercise, isLesson }) => (
+            <button
+              key={exercise.id}
+              onClick={() => onSelectTopic(subject, exercise)}
+              className="w-full p-4 rounded-2xl border-2 border-slate-50 hover:border-sodor-blue/20 hover:bg-slate-50 transition-all text-left flex items-center justify-between group"
+            >
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full ${subject.color} text-white`}>
+                    {subject.name}
+                  </span>
+                  {isLesson && (
+                    <span className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-blue-100 text-blue-600">
+                      (L) Lesson
+                    </span>
+                  )}
+                </div>
+                <h3 className="font-black text-slate-900 group-hover:text-sodor-blue transition-colors">{exercise.name}</h3>
+                <p className="text-xs text-slate-500 font-medium line-clamp-1">{exercise.description}</p>
+              </div>
+              <ArrowRight className="text-slate-300 group-hover:text-sodor-blue transition-all group-hover:translate-x-1" size={20} />
+            </button>
+          ))}
+          
+          {filteredTopics.length === 0 && (
+            <div className="py-20 text-center text-slate-400">
+              <Search size={48} className="mx-auto mb-4 opacity-20" />
+              <p className="font-bold">No topics found matching your search.</p>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: { 
   user: User; 
   pin: string;
@@ -533,21 +690,21 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
       <motion.div
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
-        className="bg-white rounded-[40px] p-8 md:p-10 max-w-lg w-full shadow-2xl relative overflow-hidden"
+        className="bg-white rounded-[40px] p-8 md:p-10 max-w-lg w-full max-h-[90vh] shadow-2xl relative overflow-hidden flex flex-col"
       >
         <button 
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors"
+          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
         >
           <X size={24} />
         </button>
 
-        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3">
+        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3 shrink-0">
           <Settings className="text-sodor-blue" />
           Account Settings
         </h2>
 
-        <div className="space-y-8">
+        <div className="space-y-8 overflow-y-auto flex-1 pr-2 custom-scrollbar">
           {user.id === 'guest' ? (
             <section className="bg-sodor-blue/5 p-8 rounded-3xl border-2 border-dashed border-sodor-blue/20 text-center">
               <UserIcon size={48} className="mx-auto text-sodor-blue mb-4 opacity-50" />
@@ -670,6 +827,108 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
               {message.text}
             </p>
           )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const LessonPreferencesModal = ({ user, onClose, onUpdateUser }: { 
+  user: User; 
+  onClose: () => void;
+  onUpdateUser: (updatedUser: User) => void;
+}) => {
+  const [questionsPerSubject, setQuestionsPerSubject] = useState(user.stats.preferences?.questionsPerSubject || {});
+
+  const handleUpdateQuestions = async (subject: string, count: number) => {
+    const updatedQuestions = { ...questionsPerSubject, [subject]: count };
+    setQuestionsPerSubject(updatedQuestions);
+    
+    const updatedUser = { 
+      ...user, 
+      stats: { 
+        ...user.stats, 
+        preferences: { 
+          ...user.stats.preferences, 
+          questionsPerSubject: updatedQuestions 
+        } 
+      } 
+    };
+    onUpdateUser(updatedUser);
+    
+    if (user.id !== 'guest') {
+      try {
+        await apiService.updateProgress(user.id, updatedUser.stats);
+      } catch (err) {
+        console.error('Failed to sync settings:', err);
+      }
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        className="bg-white rounded-[40px] p-8 md:p-10 max-w-lg w-full max-h-[90vh] shadow-2xl relative overflow-hidden flex flex-col"
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
+        >
+          <X size={24} />
+        </button>
+
+        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3 shrink-0">
+          <Compass className="text-sodor-gold" />
+          Lesson Preferences
+        </h2>
+
+        <div className="overflow-y-auto flex-1 pr-2 custom-scrollbar">
+          <section className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+            <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <Calculator size={18} className="text-sodor-blue" />
+              Questions per Lesson
+            </h3>
+            <p className="text-xs text-slate-500 mb-6 font-medium leading-relaxed">
+              Adjust how many questions you want for each station. Less questions for a quick trip, or more for a long haul!
+            </p>
+            <div className="space-y-3">
+              {Object.entries(questionsPerSubject).map(([subject, count]) => (
+                <div key={subject} className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                  <span className="text-sm font-bold text-slate-700">{subject}</span>
+                  <div className="flex items-center gap-4">
+                    <input
+                      type="range"
+                      min="3"
+                      max="20"
+                      value={count}
+                      onChange={(e) => handleUpdateQuestions(subject, parseInt(e.target.value))}
+                      className="w-28 accent-sodor-blue h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer"
+                    />
+                    <div className="w-10 h-10 bg-sodor-blue/10 rounded-lg flex items-center justify-center">
+                      <span className="text-sm font-black text-sodor-blue">{count}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <div className="mt-8 p-6 bg-sodor-blue/5 rounded-3xl border border-sodor-blue/10">
+            <h4 className="font-bold text-sodor-blue mb-2 flex items-center gap-2">
+              <Activity size={16} />
+              Training Tip
+            </h4>
+            <p className="text-xs text-slate-500 font-medium leading-relaxed">
+              Settings are saved automatically to your profile. Changes take effect on your next station visit!
+            </p>
+          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -846,9 +1105,10 @@ const VideoModal = ({ video, onClose }: { video: Video; onClose: () => void }) =
 );
 
 
-const ExerciseView = ({ subject, grade, onComplete, onCancel }: { 
+const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCancel }: { 
   subject: Subject; 
   grade: Grade; 
+  questionsCount?: number;
   onComplete: (reward: string) => void;
   onCancel: () => void;
 }) => {
@@ -857,6 +1117,7 @@ const ExerciseView = ({ subject, grade, onComplete, onCancel }: {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [progress, setProgress] = useState(0);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
 
   useEffect(() => {
     loadNext();
@@ -881,8 +1142,11 @@ const ExerciseView = ({ subject, grade, onComplete, onCancel }: {
     const correct = answer === question?.correctAnswer;
     setIsCorrect(correct);
     if (correct) {
-      setProgress(prev => Math.min(prev + 34, 100));
-      if (progress >= 66) {
+      const newQuestionsAnswered = questionsAnswered + 1;
+      setQuestionsAnswered(newQuestionsAnswered);
+      const newProgress = Math.min((newQuestionsAnswered / questionsCount) * 100, 100);
+      setProgress(newProgress);
+      if (newQuestionsAnswered >= questionsCount) {
         setTimeout(() => onComplete(question?.rewardType || 'engine'), 1500);
       }
     }
@@ -938,7 +1202,7 @@ const ExerciseView = ({ subject, grade, onComplete, onCancel }: {
             <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-xs font-bold mb-4 uppercase tracking-wider">
               {subject.name} • {grade}
             </span>
-            <h2 className="text-2xl font-extrabold mb-8 leading-tight">
+            <h2 className={`text-2xl font-extrabold mb-8 leading-tight ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
               {question?.text}
             </h2>
 
@@ -954,14 +1218,14 @@ const ExerciseView = ({ subject, grade, onComplete, onCancel }: {
                     p-5 rounded-2xl text-left font-bold border-2 transition-all flex items-center justify-between
                     ${selectedAnswer === option 
                       ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
-                      : 'bg-slate-50 border-transparent text-slate-700 hover:bg-slate-100'
+                      : (selectedAnswer && option === question?.correctAnswer ? 'bg-green-50 border-green-500 text-green-700' : 'bg-slate-50 border-transparent text-slate-700 hover:bg-slate-100')
                     }
                   `}
                 >
                   {option}
-                  {selectedAnswer === option && (
+                  {(selectedAnswer === option || (selectedAnswer && option === question?.correctAnswer)) && (
                     <span className="text-xl">
-                      {isCorrect ? '🚂' : '❌'}
+                      {option === question?.correctAnswer ? '🚂' : '❌'}
                     </span>
                   )}
                 </motion.button>
@@ -1012,48 +1276,89 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
   subject: Subject; 
   onSelectExercise: (exercise: Exercise) => void;
   onCancel: () => void;
-}) => (
-  <div className="max-w-4xl mx-auto py-12 px-6">
-    <div className="text-center mb-12">
-      <div className={`w-20 h-20 ${subject.color} rounded-3xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg`}>
-        <subject.icon size={40} />
+}) => {
+  const lessons = subject.exercises?.filter(e => e.type === 'lesson') || [];
+  const exercises = subject.exercises?.filter(e => e.type !== 'lesson') || [];
+
+  return (
+    <div className="max-w-4xl mx-auto py-12 px-6">
+      <div className="text-center mb-12">
+        <div className={`w-20 h-20 ${subject.color} rounded-3xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg`}>
+          <subject.icon size={40} />
+        </div>
+        <h2 className="text-4xl font-black text-slate-900 mb-4">{subject.name} Station</h2>
+        <p className="text-lg text-slate-500 font-medium">Start a lesson or join an adventure at {subject.station}!</p>
       </div>
-      <h2 className="text-4xl font-black text-slate-900 mb-4">{subject.name} Lessons</h2>
-      <p className="text-lg text-slate-500 font-medium">Choose your next adventure at {subject.station}!</p>
-    </div>
 
-    <div className="grid md:grid-cols-2 gap-6">
-      {subject.exercises?.map(exercise => (
-        <motion.button
-          key={exercise.id}
-          whileHover={{ y: -5, scale: 1.02 }}
-          onClick={() => onSelectExercise(exercise)}
-          className="bg-white p-8 rounded-[32px] border-2 border-slate-100 shadow-xl text-left group transition-all hover:border-sodor-blue/20"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-sodor-blue/10 rounded-2xl flex items-center justify-center text-sodor-blue group-hover:bg-sodor-blue group-hover:text-white transition-colors">
-              <PlayCircle size={24} />
-            </div>
-            <ArrowRight className="text-slate-300 group-hover:text-sodor-blue transition-colors" size={24} />
+      {lessons.length > 0 && (
+        <div className="mb-12">
+          <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2 px-2">
+            <BookOpen size={14} className="text-blue-600" />
+            Academy Lessons
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {lessons.map(exercise => (
+              <motion.button
+                key={exercise.id}
+                whileHover={{ y: -5, scale: 1.02 }}
+                onClick={() => onSelectExercise(exercise)}
+                className="bg-white p-8 rounded-[32px] border-2 border-blue-100 shadow-xl text-left group transition-all hover:border-blue-400/20"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <BookOpen size={24} />
+                  </div>
+                  <ArrowRight className="text-slate-300 group-hover:text-blue-600 transition-colors" size={24} />
+                </div>
+                <h3 className="text-2xl font-black text-slate-900 mb-2">{exercise.name}</h3>
+                <p className="text-slate-500 font-medium text-sm leading-relaxed">{exercise.description}</p>
+              </motion.button>
+            ))}
           </div>
-          <h3 className="text-2xl font-black text-slate-900 mb-2">{exercise.name}</h3>
-          <p className="text-slate-500 font-medium text-sm leading-relaxed">{exercise.description}</p>
-        </motion.button>
-      ))}
+        </div>
+      )}
+
+      <div>
+        <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2 px-2">
+          <PlayCircle size={14} className="text-emerald-600" />
+          Station Adventures
+        </h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          {exercises.map(exercise => (
+            <motion.button
+              key={exercise.id}
+              whileHover={{ y: -5, scale: 1.02 }}
+              onClick={() => onSelectExercise(exercise)}
+              className="bg-white p-8 rounded-[32px] border-2 border-slate-100 shadow-xl text-left group transition-all hover:border-sodor-blue/20"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-sodor-blue/10 rounded-2xl flex items-center justify-center text-sodor-blue group-hover:bg-sodor-blue group-hover:text-white transition-colors">
+                  <PlayCircle size={24} />
+                </div>
+                <ArrowRight className="text-slate-300 group-hover:text-sodor-blue transition-colors" size={24} />
+              </div>
+              <h3 className="text-2xl font-black text-slate-900 mb-2">{exercise.name}</h3>
+              <p className="text-slate-500 font-medium text-sm leading-relaxed">{exercise.description}</p>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      <button 
+        onClick={onCancel}
+        className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
+      >
+        Return to Sodor Map
+      </button>
     </div>
+  );
+};
 
-    <button 
-      onClick={onCancel}
-      className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
-    >
-      Return to Sodor Map
-    </button>
-  </div>
-);
-
-const LibraryModal = ({ stories, onClose }: { stories: Story[]; onClose: () => void }) => {
-  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
-
+const MusicLibraryModal = ({ user, onClose, onSelectMusic }: { 
+  user: User; 
+  onClose: () => void;
+  onSelectMusic: (score: MusicScore) => void;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -1067,74 +1372,46 @@ const LibraryModal = ({ stories, onClose }: { stories: Story[]; onClose: () => v
         className="bg-white rounded-[40px] p-8 md:p-12 max-w-5xl w-full h-[85vh] shadow-2xl relative overflow-hidden flex flex-col"
       >
         <button 
-          onClick={() => selectedStory ? setSelectedStory(null) : onClose()}
+          onClick={onClose}
           className="absolute top-8 right-8 p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition-colors z-10"
         >
-          {selectedStory ? <RotateCcw size={24} /> : <X size={24} />}
+          <X size={24} />
         </button>
 
-        <AnimatePresence mode="wait">
-          {!selectedStory ? (
-            <motion.div
-              key="list"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="flex-1 overflow-y-auto pr-4 custom-scrollbar"
-            >
-              <div className="mb-12">
-                <h2 className="text-4xl font-black text-slate-900 flex items-center gap-4">
-                  <BookOpen size={40} className="text-red-600" />
-                  Sodor Story Library
-                </h2>
-                <p className="text-slate-500 font-medium mt-2">Relive your favorite adventures from the Island of Sodor.</p>
-              </div>
+        <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar">
+          <div className="mb-12">
+            <h2 className="text-4xl font-black text-slate-900 flex items-center gap-4">
+              <Music size={40} className="text-pink-600" />
+              Sodor Concert Hall
+            </h2>
+            <p className="text-slate-500 font-medium mt-2">Listen to and perform classical engine melodies on the grand piano.</p>
+          </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {stories.map(story => (
-                  <button
-                    key={story.id}
-                    onClick={() => setSelectedStory(story)}
-                    className="bg-slate-50 p-6 rounded-[32px] border-2 border-transparent hover:border-red-600/20 hover:bg-white hover:shadow-xl transition-all text-left group"
-                  >
-                    <div className="text-5xl mb-6">{story.thumbnail}</div>
-                    <h3 className="text-xl font-black text-slate-900 mb-2 group-hover:text-red-600 transition-colors">
-                      {story.title}
-                    </h3>
-                    <p className="text-slate-500 text-sm font-medium line-clamp-3">
-                      {story.content}
-                    </p>
-                  </button>
-                ))}
-                {stories.length === 0 && (
-                  <div className="col-span-full py-20 text-center bg-slate-50 rounded-[40px] border-2 border-dashed border-slate-200">
-                    <BookOpen size={48} className="mx-auto text-slate-300 mb-4" />
-                    <p className="text-slate-400 font-bold uppercase tracking-widest">No stories unlocked yet!</p>
-                    <p className="text-slate-400 text-sm mt-1">Visit Tidmouth Sheds to start an adventure.</p>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="reader"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="flex-1 overflow-y-auto pr-4 custom-scrollbar"
-            >
-              <div className="max-w-3xl mx-auto py-8">
-                <div className="text-7xl mb-8 text-center">{selectedStory.thumbnail}</div>
-                <h2 className="text-5xl font-black text-center text-slate-900 mb-12">{selectedStory.title}</h2>
-                <div className="prose prose-slate max-w-none">
-                  <p className="text-2xl leading-relaxed text-slate-700 font-medium whitespace-pre-wrap first-letter:text-7xl first-letter:font-black first-letter:text-red-600 first-letter:mr-3 first-letter:float-left">
-                    {selectedStory.content}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {MUSIC_LIBRARY.map(score => {
+              const isUnlocked = (user.stats.unlockedMusic || []).includes(score.id);
+              return (
+                <button
+                  key={score.id}
+                  onClick={() => isUnlocked && onSelectMusic(score)}
+                  className={`bg-slate-50 p-8 rounded-[32px] border-2 transition-all text-left group flex flex-col items-center text-center
+                    ${isUnlocked 
+                      ? 'hover:border-pink-600/20 hover:bg-white hover:shadow-xl border-transparent' 
+                      : 'border-dashed border-slate-200 opacity-40 cursor-not-allowed'}
+                  `}
+                >
+                  <div className="text-6xl mb-6 grayscale-0">{isUnlocked ? score.thumbnail : '🔒'}</div>
+                  <h3 className={`text-xl font-black mb-2 transition-colors ${isUnlocked ? 'text-slate-900 group-hover:text-pink-600' : 'text-slate-400'}`}>
+                    {isUnlocked ? score.title : 'Locked Melody'}
+                  </h3>
+                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
+                    {isUnlocked ? 'Ready to Perform' : 'Keep learning to unlock'}
                   </p>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </motion.div>
     </motion.div>
   );
@@ -1148,11 +1425,16 @@ export default function App() {
   const [showReward, setShowReward] = useState<string | null>(null);
   const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
   const [showSettings, setShowSettings] = useState(false);
+  const [showPreferences, setShowPreferences] = useState(false);
+  const [showTopics, setShowTopics] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
   const [showLibrary, setShowLibrary] = useState(false);
+  const [showMusicLibrary, setShowMusicLibrary] = useState(false);
+  const [selectedMusicScore, setSelectedMusicScore] = useState<MusicScore | null>(null);
   
   const [authView, setAuthView] = useState<'login' | 'validation' | 'recovery'>('login');
   const [validationEmail, setValidationEmail] = useState('');
+  const [recoveryName, setRecoveryName] = useState('');
 
   const GUEST_USER: User = {
     id: 'guest',
@@ -1163,7 +1445,18 @@ export default function App() {
       enginesCollected: [],
       videosUnlocked: ['welcome'],
       currentGrade: 'Primary',
-      completedStories: []
+      completedStories: [],
+      unlockedMusic: ['thomas-theme'],
+      preferences: {
+        questionsPerSubject: {
+          'Mathematics': 10,
+          'English': 10,
+          'Science': 10,
+          'History': 10,
+          'Geography': 10,
+          'Music': 10
+        }
+      }
     }
   };
 
@@ -1172,7 +1465,24 @@ export default function App() {
     const savedUser = localStorage.getItem('sodor_academy_user');
     const savedPin = localStorage.getItem('sodor_academy_pin');
     if (savedUser && savedPin) {
-      setUser(JSON.parse(savedUser));
+      let loadedUser = JSON.parse(savedUser);
+      // Ensure preferences exist
+      if (!loadedUser.stats.preferences) {
+        loadedUser.stats.preferences = {
+          questionsPerSubject: {
+            'Mathematics': 10,
+            'English': 10,
+            'Science': 10,
+            'History': 10,
+            'Geography': 10,
+            'Music': 10
+          }
+        };
+      }
+      if (!loadedUser.stats.unlockedMusic) {
+        loadedUser.stats.unlockedMusic = ['thomas-theme'];
+      }
+      setUser(loadedUser);
       setCurrentPin(savedPin);
     }
   }, []);
@@ -1237,6 +1547,14 @@ export default function App() {
       rewardId = 'story-unlocked'; // Generic flag for story reward UI
     }
 
+    // Unlock new music score
+    const lockedMusic = MUSIC_LIBRARY.filter(m => !(newStats.unlockedMusic || []).includes(m.id));
+    if (lockedMusic.length > 0 && Math.random() > 0.5) { // 50% chance to unlock music per lesson
+      const randomMusic = lockedMusic[Math.floor(Math.random() * lockedMusic.length)];
+      newStats.unlockedMusic = [...(newStats.unlockedMusic || []), randomMusic.id];
+      if (!rewardId) rewardId = 'music-unlocked';
+    }
+
     if (!rewardId) {
       if (rewardType === 'video') {
         const lockedVideos = VIDEOS.filter(v => !(user.stats.videosUnlocked || []).includes(v.id));
@@ -1296,13 +1614,18 @@ export default function App() {
         {authView === 'login' && (
           <LoginView 
             onLogin={handleLogin} 
-            onShowValidation={(email) => { setValidationEmail(email); setAuthView('validation'); }}
+            onShowValidation={(name, email) => { 
+              setRecoveryName(name); // reuse state for simplicity or add a dedicated one
+              setValidationEmail(email); 
+              setAuthView('validation'); 
+            }}
             onShowRecovery={() => setAuthView('recovery')}
             onGuestLogin={handleGuestLogin}
           />
         )}
         {authView === 'validation' && (
           <ValidationView 
+            name={recoveryName}
             email={validationEmail} 
             onValidated={() => setAuthView('login')} 
             onCancel={() => setAuthView('login')} 
@@ -1324,9 +1647,10 @@ export default function App() {
         onLogout={handleLogout} 
         onOpenSettings={() => setShowSettings(true)}
         onOpenAdmin={() => setShowAdmin(true)}
+        onOpenTopics={() => setShowTopics(true)}
       />
 
-      <main className="max-w-6xl mx-auto px-6 py-12">
+      <main className={`${(activeExercise?.component === 'Piano' || activeExercise?.component === 'PianoSequence') ? 'max-w-[98vw]' : 'max-w-6xl'} mx-auto px-2 md:px-6 py-12 transition-all duration-500`}>
         <AnimatePresence mode="wait">
           {!activeSubject ? (
             <motion.div
@@ -1362,7 +1686,10 @@ export default function App() {
                   Select a station on the map to start your next adventure!
                 </p>
 
-                <SodorMap onSelectSubject={(subject) => setActiveSubject(subject)} />
+                <SodorMap 
+                  onSelectSubject={(subject) => setActiveSubject(subject)} 
+                  onOpenPreferences={() => setShowPreferences(true)}
+                />
               </div>
 
               {/* Video Gallery */}
@@ -1442,6 +1769,41 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Music Library Preview */}
+              <div className="mt-24">
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
+                    <Music className="text-pink-600" />
+                    Concert Hall
+                  </h2>
+                  <button 
+                    onClick={() => setShowMusicLibrary(true)}
+                    className="text-sm font-bold text-pink-600 hover:underline uppercase tracking-widest"
+                  >
+                    Open Library
+                  </button>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {MUSIC_LIBRARY.slice(0, 4).map(score => {
+                    const isUnlocked = (user.stats.unlockedMusic || []).includes(score.id);
+                    return (
+                      <button
+                        key={score.id}
+                        onClick={() => isUnlocked && setShowMusicLibrary(true)}
+                        className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center text-center group
+                          ${isUnlocked 
+                            ? 'bg-white shadow-lg border-pink-100 hover:border-pink-600/20' 
+                            : 'bg-slate-100 border-transparent opacity-40 grayscale'}
+                        `}
+                      >
+                        <div className="text-4xl mb-4">{isUnlocked ? score.thumbnail : '🔒'}</div>
+                        <h4 className="font-extrabold text-sm mb-1 leading-tight">{isUnlocked ? score.title : 'Locked Melody'}</h4>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
               {/* Reward Gallery */}
               <div className="mt-24">
                 <div className="flex items-center justify-between mb-8">
@@ -1496,19 +1858,72 @@ export default function App() {
                 />
               ) : activeExercise?.id === 'eng-stories' ? (
                 <StoryExercise 
+                  grade={user.stats.currentGrade}
                   completedStories={user.stats.completedStories || []}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['English'] || 10}
                   onComplete={(storyId) => handleLessonComplete(storyId)}
                   onCancel={() => setActiveExercise(null)}
                 />
               ) : activeExercise?.component === 'FractionMultiplication' ? (
                 <FractionMultiplication 
                   grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
                   onComplete={handleLessonComplete}
                   onCancel={() => setActiveExercise(null)}
                 />
               ) : activeExercise?.component === 'FractionAddition' ? (
                 <FractionAddition 
                   grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'SimpleFractionAddition' ? (
+                <SimpleFractionAddition 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'FractionIntegerAddition' ? (
+                <FractionIntegerAddition 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'FractionAdditionLesson' ? (
+                <FractionAdditionLesson 
+                  onCancel={() => setActiveExercise(null)}
+                  onStartExercise={() => {
+                    const exercise = activeSubject.exercises?.find(e => e.id === 'math-fractions-add');
+                    if (exercise) setActiveExercise(exercise);
+                  }}
+                />
+              ) : activeExercise?.component === 'LCMLesson' ? (
+                <LCMLesson 
+                  onCancel={() => setActiveExercise(null)}
+                  onStartExercise={() => {
+                    const exercise = activeSubject.exercises?.find(e => e.id === 'math-lcm');
+                    if (exercise) setActiveExercise(exercise);
+                  }}
+                />
+              ) : activeExercise?.component === 'LCMExercise' ? (
+                <LCMExercise 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'Piano' ? (
+                <Piano 
+                  autoPlayScore={selectedMusicScore || MUSIC_LIBRARY.find(m => m.id === 'thomas-theme')}
+                  onCancel={() => { setActiveExercise(null); setSelectedMusicScore(null); }}
+                />
+              ) : activeExercise?.component === 'PianoSequence' ? (
+                <PianoSequence 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Music'] || 10}
                   onComplete={handleLessonComplete}
                   onCancel={() => setActiveExercise(null)}
                 />
@@ -1516,6 +1931,7 @@ export default function App() {
                 <ExerciseView 
                   subject={activeSubject} 
                   grade={user.stats.currentGrade} 
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.[activeSubject.name] || 10}
                   onComplete={handleLessonComplete}
                   onCancel={() => activeSubject.exercises ? setActiveExercise(null) : setActiveSubject(null)}
                 />
@@ -1534,6 +1950,51 @@ export default function App() {
             onClose={() => setShowSettings(false)}
             onUpdateUser={handleUpdateUser}
             onLogout={handleLogout}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Preferences Modal */}
+      <AnimatePresence>
+        {showPreferences && (
+          <LessonPreferencesModal 
+            user={user}
+            onClose={() => setShowPreferences(false)}
+            onUpdateUser={handleUpdateUser}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Topics List Modal */}
+      <AnimatePresence>
+        {showTopics && (
+          <TopicsModal 
+            onClose={() => setShowTopics(false)}
+            onSelectTopic={(subject, exercise) => {
+              setActiveSubject(subject);
+              setActiveExercise(exercise);
+              setShowTopics(false);
+            }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Music Library Modal */}
+      <AnimatePresence>
+        {showMusicLibrary && user && (
+          <MusicLibraryModal 
+            user={user}
+            onClose={() => setShowMusicLibrary(false)}
+            onSelectMusic={(score) => {
+              setSelectedMusicScore(score);
+              setShowMusicLibrary(false);
+              const musicStation = SUBJECTS.find(s => s.id === 'music');
+              const pianoExercise = musicStation?.exercises?.find(e => e.component === 'Piano');
+              if (musicStation && pianoExercise) {
+                setActiveSubject(musicStation);
+                setActiveExercise(pianoExercise);
+              }
+            }}
           />
         )}
       </AnimatePresence>
@@ -1600,6 +2061,18 @@ export default function App() {
                     </h3>
                     <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">
                       Check your Library
+                    </p>
+                  </>
+                ) : showReward === 'music-unlocked' ? (
+                  <>
+                    <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl shadow-lg border-2 border-white bg-pink-600 text-white">
+                      <Music size={40} />
+                    </div>
+                    <h3 className="text-xl font-bold text-pink-600">
+                      Melody Unlocked!
+                    </h3>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1">
+                      Visit the Concert Hall
                     </p>
                   </>
                 ) : VIDEOS.some(v => v.id === showReward) ? (

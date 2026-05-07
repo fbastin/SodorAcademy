@@ -33,11 +33,11 @@ export const apiService = {
     return data.user;
   },
 
-  async validateEmail(email: string, code: string): Promise<void> {
+  async validateEmail(name: string, email: string, code: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/validate-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, code })
+      body: JSON.stringify({ name, email, code })
     });
     if (!response.ok) {
       let errorMsg = 'Validation failed';
@@ -72,6 +72,7 @@ export const apiService = {
       const err = new Error(errorMsg) as any;
       if (response.status === 403) {
         err.email = errorData.email;
+        err.name = name; // Pass the name along for validation
         err.type = 'VALIDATION_REQUIRED';
       }
       throw err;
@@ -80,11 +81,11 @@ export const apiService = {
     return data.user;
   },
 
-  async requestRecovery(email: string): Promise<void> {
+  async requestRecovery(name: string, email: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/request-recovery`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({ name, email })
     });
     if (!response.ok) {
       let errorMsg = 'Recovery request failed';
@@ -99,11 +100,11 @@ export const apiService = {
     }
   },
 
-  async resetPin(email: string, code: string, newPin: string): Promise<void> {
+  async resetPin(name: string, email: string, code: string, newPin: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/reset-pin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, code, newPin })
+      body: JSON.stringify({ name, email, code, newPin })
     });
     if (!response.ok) {
       let errorMsg = 'PIN reset failed';

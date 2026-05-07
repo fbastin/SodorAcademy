@@ -20,7 +20,7 @@ export interface Exercise {
   id: string;
   name: string;
   description: string;
-  type: 'quiz' | 'custom';
+  type: 'quiz' | 'custom' | 'lesson';
   component?: string;
 }
 
@@ -45,6 +45,19 @@ export interface Question {
   rewardType: 'badge' | 'engine' | 'coin' | 'video';
 }
 
+export interface MusicNote {
+  keyIndex: number;
+  time: number; // in seconds
+  duration?: number;
+}
+
+export interface MusicScore {
+  id: string;
+  title: string;
+  thumbnail: string;
+  notes: MusicNote[];
+}
+
 export interface UserStats {
   score: number;
   completedLessons: number;
@@ -53,6 +66,10 @@ export interface UserStats {
   currentGrade: Grade;
   fractionExercisesCompleted?: string[];
   completedStories?: string[];
+  unlockedMusic?: string[];
+  preferences?: {
+    questionsPerSubject?: Record<string, number>;
+  };
 }
 
 export interface Video {
@@ -105,9 +122,13 @@ export const SUBJECTS: Subject[] = [
     x: 24,
     y: 65,
     exercises: [
-      { id: 'math-quiz', name: 'Knapford Quiz', description: 'Test your general math skills!', type: 'quiz' },
+      { id: 'math-fractions-add-lesson', name: 'Adding Fractions Lesson', description: 'Learn how to add fractions with Percy!', type: 'lesson', component: 'FractionAdditionLesson' },
+      { id: 'math-lcm-lesson', name: 'Least Common Multiple Lesson', description: 'Master the smallest common multiplier with Thomas!', type: 'lesson', component: 'LCMLesson' },
       { id: 'math-fractions-mult', name: 'Fraction Multiplication', description: 'Help Thomas multiply fractions!', type: 'custom', component: 'FractionMultiplication' },
-      { id: 'math-fractions-add', name: 'Fraction Addition', description: 'Help Percy add fraction loads!', type: 'custom', component: 'FractionAddition' }
+      { id: 'math-fractions-add', name: 'Fraction Addition', description: 'Help Percy add fraction loads!', type: 'custom', component: 'FractionAddition' },
+      { id: 'math-fractions-simple', name: 'Simple Fraction Addition', description: 'Add fractions with the same denominator!', type: 'custom', component: 'SimpleFractionAddition' },
+      { id: 'math-fraction-int', name: 'Fraction & Integer Addition', description: 'Help Gordon add integers and fractions!', type: 'custom', component: 'FractionIntegerAddition' },
+      { id: 'math-lcm', name: 'LCM Challenge', description: 'Find the smallest common multiplier for the engines!', type: 'custom', component: 'LCMExercise' }
     ]
   },
   {
@@ -172,7 +193,8 @@ export const SUBJECTS: Subject[] = [
     x: 72,
     y: 48,
     exercises: [
-      { id: 'mus-quiz', name: "Crovan's Gate Quiz", description: 'Identify the sounds of the engines!', type: 'quiz' }
+      { id: 'mus-ear-training', name: 'Ear Training', description: 'Listen carefully and identify the sequence of three notes!', type: 'custom', component: 'PianoSequence' },
+      { id: 'mus-piano', name: 'Piano Practice', description: 'Play your favorite songs on the 88-key piano!', type: 'custom', component: 'Piano' }
     ]
   }
 ];

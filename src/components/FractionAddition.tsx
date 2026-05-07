@@ -5,6 +5,7 @@ import { Grade } from '../types';
 
 interface FractionAdditionProps {
   grade: Grade;
+  questionsCount?: number;
   onComplete: (reward: string) => void;
   onCancel: () => void;
 }
@@ -19,11 +20,12 @@ interface FractionProblem {
   options: string[];
 }
 
-export default function FractionAddition({ grade, onComplete, onCancel }: FractionAdditionProps) {
+export default function FractionAddition({ grade, questionsCount = 10, onComplete, onCancel }: FractionAdditionProps) {
   const [problem, setProblem] = useState<FractionProblem | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [progress, setProgress] = useState(0);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
 
   const getGCD = (a: number, b: number): number => {
     return b === 0 ? a : getGCD(b, a % b);
@@ -86,9 +88,11 @@ export default function FractionAddition({ grade, onComplete, onCancel }: Fracti
     setIsCorrect(correct);
     
     if (correct) {
-      const newProgress = Math.min(progress + 34, 100);
+      const newQuestionsAnswered = questionsAnswered + 1;
+      setQuestionsAnswered(newQuestionsAnswered);
+      const newProgress = Math.min((newQuestionsAnswered / questionsCount) * 100, 100);
       setProgress(newProgress);
-      if (newProgress >= 100) {
+      if (newQuestionsAnswered >= questionsCount) {
         setTimeout(() => onComplete('engine'), 1500);
       }
     }
@@ -136,7 +140,7 @@ export default function FractionAddition({ grade, onComplete, onCancel }: Fracti
             Percy is collecting mail loads. Help him add these fractions:
           </h2>
 
-          <div className="flex items-center justify-center gap-6 mb-12 text-4xl font-black text-slate-800">
+          <div className={`flex items-center justify-center gap-6 mb-12 text-4xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
             <div className="flex flex-col items-center">
               <span className="border-b-4 border-slate-800 px-2">{problem.n1}</span>
               <span>{problem.d1}</span>
@@ -163,10 +167,10 @@ export default function FractionAddition({ grade, onComplete, onCancel }: Fracti
                   onClick={() => handleAnswer(option)}
                   disabled={!!selectedAnswer}
                   className={`
-                    p-6 rounded-2xl border-2 transition-all flex flex-col items-center gap-1
+                    p-6 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 relative
                     ${selectedAnswer === option 
                       ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
-                      : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-lg'
+                      : (selectedAnswer && option === `${problem?.correctN}/${problem?.correctD}` ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-lg')
                     }
                   `}
                 >
@@ -174,6 +178,11 @@ export default function FractionAddition({ grade, onComplete, onCancel }: Fracti
                     <span className="border-b-2 border-current px-2">{on}</span>
                     <span>{od}</span>
                   </div>
+                  {(selectedAnswer === option || (selectedAnswer && option === `${problem?.correctN}/${problem?.correctD}`)) && (
+                    <span className="text-xl absolute top-2 right-2">
+                      {option === `${problem?.correctN}/${problem?.correctD}` ? '🚂' : '❌'}
+                    </span>
+                  )}
                 </motion.button>
               );
             })}

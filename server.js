@@ -83,9 +83,6 @@ apiRouter.post('/register', async (req, res) => {
   if (users.find(u => u.name === name)) {
     return res.status(400).json({ error: 'Username already exists' });
   }
-  if (users.find(u => u.email === email)) {
-    return res.status(400).json({ error: 'Email already registered' });
-  }
 
   const hashedPin = await bcrypt.hash(pin, 10);
   const validationCode = generateCode();
@@ -140,11 +137,11 @@ apiRouter.post('/register', async (req, res) => {
 });
 
 apiRouter.post('/validate-email', async (req, res) => {
-  const { email, code } = req.body;
-  if (!email || !code) return res.status(400).json({ error: 'Email and code required' });
+  const { name, email, code } = req.body;
+  if (!name || !email || !code) return res.status(400).json({ error: 'Name, Email, and code required' });
 
   const users = await readUsers();
-  const index = users.findIndex(u => u.email === email);
+  const index = users.findIndex(u => u.name === name && u.email === email);
 
   if (index === -1) return res.status(404).json({ error: 'User not found' });
   if (users[index].validationCode !== code) return res.status(400).json({ error: 'Invalid validation code' });
@@ -242,13 +239,13 @@ apiRouter.post('/admin/users/:userId/validate', async (req, res) => {
 });
 
 apiRouter.post('/request-recovery', async (req, res) => {
-  const { email } = req.body;
-  if (!email) return res.status(400).json({ error: 'Email required' });
+  const { name, email } = req.body;
+  if (!name || !email) return res.status(400).json({ error: 'Name and Email required' });
 
   const users = await readUsers();
-  const index = users.findIndex(u => u.email === email);
+  const index = users.findIndex(u => u.name === name && u.email === email);
 
-  if (index === -1) return res.status(404).json({ error: 'Email not found' });
+  if (index === -1) return res.status(404).json({ error: 'Account not found for this name and email' });
 
   const recoveryCode = generateCode();
   users[index].recoveryCode = recoveryCode;
@@ -257,11 +254,11 @@ apiRouter.post('/request-recovery', async (req, res) => {
   await sendEmail(
     email,
     'Sodor Academy - Account Recovery 🛡️',
-    `Hello!\n\nYou requested a recovery code for your Sodor Academy account. Please use this 6-digit code to reset your PIN:\n\n${recoveryCode}\n\nIf you did not request this, you can safely ignore this email.`,
+    `Hello ${name}!\n\nYou requested a recovery code for your Sodor Academy account. Please use this 6-digit code to reset your PIN:\n\n${recoveryCode}\n\nIf you did not request this, you can safely ignore this email.`,
     `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; rounded: 20px;">
         <h2 style="color: #1e40af;">Account Recovery 🛡️</h2>
-        <p>Hello!</p>
+        <p>Hello <strong>${name}</strong>!</p>
         <p>You requested a recovery code for your Sodor Academy account. Please use this 6-digit code to reset your PIN:</p>
         <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-radius: 10px; margin: 20px 0;">
           <span style="font-size: 32px; font-weight: bold; letter-spacing: 10px; color: #1e40af;">${recoveryCode}</span>
@@ -275,11 +272,11 @@ apiRouter.post('/request-recovery', async (req, res) => {
 });
 
 apiRouter.post('/reset-pin', async (req, res) => {
-  const { email, code, newPin } = req.body;
-  if (!email || !code || !newPin) return res.status(400).json({ error: 'Email, code, and new PIN required' });
+  const { name, email, code, newPin } = req.body;
+  if (!name || !email || !code || !newPin) return res.status(400).json({ error: 'Name, Email, code, and new PIN required' });
 
   const users = await readUsers();
-  const index = users.findIndex(u => u.email === email);
+  const index = users.findIndex(u => u.name === name && u.email === email);
 
   if (index === -1) return res.status(404).json({ error: 'User not found' });
   if (users[index].recoveryCode !== code) return res.status(400).json({ error: 'Invalid recovery code' });

@@ -3,24 +3,40 @@
     "id": "1777985793917",
     "name": "Fabian",
     "email": "fabian.bastin@gmail.com",
-    "pin": "$2b$10$eC4lGyOWu.KcJ0rdG0XuQu.gKqR5ECd.QRJ1Eu8q6SOUVqYmW.I06",
+    "pin": "$2b$10$oW7f1.Sm2QzKTsZ8dvXPPOUIRZ3NPu2wDk0BdgKXQI/KV3OorQJa6",
     "isActive": true,
     "isAdmin": true,
     "stats": {
-      "score": 400,
-      "completedLessons": 4,
+      "score": 700,
+      "completedLessons": 7,
       "enginesCollected": [
         "james",
-        "percy"
+        "percy",
+        "thomas",
+        "gordon"
       ],
       "videosUnlocked": [
         "welcome",
         "thomas-sharing"
       ],
-      "currentGrade": "Primary",
+      "currentGrade": "Secondary",
       "fractionExercisesCompleted": [
         "math-fractions-mult",
         "math-fractions-add"
+      ],
+      "preferences": {
+        "questionsPerSubject": {
+          "Mathematics": 10,
+          "English": 10,
+          "Science": 10,
+          "History": 10,
+          "Geography": 10,
+          "Music": 10
+        }
+      },
+      "unlockedMusic": [
+        "thomas-theme",
+        "percy-theme"
       ]
     }
   }
