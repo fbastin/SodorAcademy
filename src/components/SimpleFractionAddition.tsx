@@ -52,8 +52,8 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
     options.add(correctAns);
     
     while (options.size < 4) {
-      const dn = Math.max(1, simplifiedN + Math.floor(Math.random() * 5) - 2);
-      const dd = simplifiedD; // Keep same denominator for distractors mostly
+      const dn = Math.max(1, simplifiedN + Math.floor(Math.random() * 10) - 5);
+      const dd = Math.max(1, simplifiedD + (Math.random() > 0.7 ? Math.floor(Math.random() * 3) - 1 : 0)); 
       const distractor = `${dn}/${dd}`;
       if (distractor !== correctAns) options.add(distractor);
     }
