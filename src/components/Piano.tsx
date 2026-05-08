@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'motion/react';
-import { Music, X, Play, RotateCcw } from 'lucide-react';
+import { Music, X, Play, RotateCcw, Upload, FileText } from 'lucide-react';
 import { MusicScore } from '../types';
+import { playNote, SoundType, SOUND_PRESETS } from '../services/audioSynthesis';
+import { parseMusicXml } from '../services/musicXmlParser';
 
 interface PianoProps {
-  autoPlayScore?: MusicScore;
+  autoPlayScore?: MusicScore | null;
   onCancel: () => void;
 }
 
@@ -13,16 +15,13 @@ const NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 export default function Piano({ autoPlayScore, onCancel }: PianoProps) {
   const [activeKeys, setActiveKeys] = useState<Set<number>>(new Set());
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [soundType, setSoundType] = useState<SoundType>('grand');
+  const [currentScore, setCurrentScore] = useState<MusicScore | null>(autoPlayScore || null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const stopAutoPlayRef = useRef(false);
 
   useEffect(() => {
-    if (autoPlayScore) {
-      // Small delay to ensure user interaction (resuming audio context)
-      const timer = setTimeout(() => {
-        handleAutoPlay(autoPlayScore);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
+    setCurrentScore(autoPlayScore || null);
   }, [autoPlayScore]);
 
   useEffect(() => {
@@ -30,80 +29,79 @@ export default function Piano({ autoPlayScore, onCancel }: PianoProps) {
       if (audioContextRef.current) {
         audioContextRef.current.close();
       }
+      stopAutoPlayRef.current = true;
     };
   }, []);
 
-  const getFrequency = (keyIndex: number) => {
-    // A0 is keyIndex 0, frequency is 27.5 Hz
-    return 27.5 * Math.pow(2, keyIndex / 12);
+  const handleImportXml = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const xmlString = event.target?.result as string;
+      try {
+        const parsedScore = parseMusicXml(xmlString);
+        setCurrentScore(parsedScore);
+      } catch (err) {
+        console.error('Failed to parse MusicXML:', err);
+        alert('Cinders and ashes! That MusicXML file seems to have a problem.');
+      }
+    };
+    reader.readAsText(file);
   };
 
-  const playNote = useCallback((keyIndex: number, duration = 1.2) => {
-    try {
-      if (!audioContextRef.current) {
-        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-      }
+  const playNoteInternal = useCallback((keyIndex: number, duration = 1.2) => {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
 
-      if (audioContextRef.current.state === 'suspended') {
-        audioContextRef.current.resume();
-      }
+    playNote(audioContextRef.current, keyIndex, soundType, duration);
 
-      const osc = audioContextRef.current.createOscillator();
-      const gain = audioContextRef.current.createGain();
+    setActiveKeys(prev => {
+      const next = new Set(prev);
+      next.add(keyIndex);
+      return next;
+    });
 
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(getFrequency(keyIndex), audioContextRef.current.currentTime);
-
-      gain.gain.setValueAtTime(0.3, audioContextRef.current.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioContextRef.current.currentTime + duration);
-
-      osc.connect(gain);
-      gain.connect(audioContextRef.current.destination);
-
-      osc.start();
-      osc.stop(audioContextRef.current.currentTime + duration);
-
+    setTimeout(() => {
       setActiveKeys(prev => {
         const next = new Set(prev);
-        next.add(keyIndex);
+        next.delete(keyIndex);
         return next;
       });
+    }, 250);
+  }, [soundType]);
 
-      setTimeout(() => {
-        setActiveKeys(prev => {
-          const next = new Set(prev);
-          next.delete(keyIndex);
-          return next;
-        });
-      }, 250);
-    } catch (e) {
-      console.error('Audio error:', e);
-    }
-  }, []);
-
-  const handleAutoPlay = async (score: MusicScore) => {
-    if (isAutoPlaying) return;
+  const handleAutoPlay = async () => {
+    if (isAutoPlaying || !currentScore) return;
     setIsAutoPlaying(true);
+    stopAutoPlayRef.current = false;
     
-    // We need to resume audio context on a user-initiated event if possible, 
-    // but here we try our best.
-    
-    for (const note of score.notes) {
-      playNote(note.keyIndex, note.duration || 0.8);
-      // Wait for the next note
-      const nextNote = score.notes[score.notes.indexOf(note) + 1];
+    for (const note of currentScore.notes) {
+      if (stopAutoPlayRef.current) break;
+      playNoteInternal(note.keyIndex, note.duration || 0.8);
+      const nextNote = currentScore.notes[currentScore.notes.indexOf(note) + 1];
       if (nextNote) {
-        await new Promise(resolve => setTimeout(resolve, (nextNote.time - note.time) * 1000));
+        await new Promise(resolve => {
+          const timer = setTimeout(resolve, (nextNote.time - note.time) * 1000);
+          if (stopAutoPlayRef.current) clearTimeout(timer);
+        });
       }
     }
     
     setIsAutoPlaying(false);
   };
 
+  const stopAutoPlay = () => {
+    stopAutoPlayRef.current = true;
+    setIsAutoPlaying(false);
+  };
+
   const pianoKeys = [];
   // 88 keys: A0 to C8
   for (let i = 0; i < 88; i++) {
-    const noteIndex = (i + 9) % 12; // A is index 9 in NOTES
+    const noteIndex = (i + 9) % 12;
     const noteName = NOTES[noteIndex];
     const octave = Math.floor((i + 9) / 12);
     const isBlack = noteName.includes('#');
@@ -120,11 +118,65 @@ export default function Piano({ autoPlayScore, onCancel }: PianoProps) {
           </div>
           <div>
             <h2 className="text-2xl font-black text-white leading-tight">
-              {isAutoPlaying ? `PLAYING: ${autoPlayScore?.title}` : 'SODOR CONCERT GRAND'}
+              {isAutoPlaying ? `PLAYING: ${currentScore?.title}` : (currentScore ? `SCORE: ${currentScore.title}` : 'SODOR PIANO STUDIO')}
             </h2>
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">
-              {isAutoPlaying ? 'Automated Performance System' : '88-Key Integrated System'}
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">
+                {isAutoPlaying ? 'Automated Performance System' : 'Integrated Synthesis System'}
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap gap-2">
+                  {(Object.keys(SOUND_PRESETS) as SoundType[]).map((type) => (
+                    <button
+                      key={type}
+                      onClick={() => setSoundType(type)}
+                      className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all border ${
+                        soundType === type 
+                          ? 'bg-pink-600 text-white border-pink-400 shadow-[0_0_15px_rgba(236,72,153,0.4)]' 
+                          : 'bg-slate-800 text-slate-400 border-white/5 hover:bg-slate-700 hover:text-slate-200'
+                      }`}
+                    >
+                      {SOUND_PRESETS[type].name}
+                    </button>
+                  ))}
+                </div>
+                
+                <div className="flex items-center gap-2 border-l border-white/10 pl-4">
+                  <label className="cursor-pointer px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-black rounded-lg transition-all flex items-center gap-2 uppercase tracking-widest border border-white/5">
+                    <Upload size={12} />
+                    Import XML
+                    <input 
+                      type="file" 
+                      accept=".musicxml,.xml" 
+                      onChange={handleImportXml} 
+                      className="hidden" 
+                    />
+                  </label>
+
+                  {currentScore && (
+                    <>
+                      {!isAutoPlaying ? (
+                        <button 
+                          onClick={handleAutoPlay}
+                          className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-black rounded-lg transition-all flex items-center gap-2 uppercase tracking-widest shadow-lg shadow-emerald-900/20"
+                        >
+                          <Play size={12} fill="currentColor" />
+                          Play Song
+                        </button>
+                      ) : (
+                        <button 
+                          onClick={stopAutoPlay}
+                          className="px-4 py-1.5 bg-red-600 hover:bg-red-500 text-white text-[10px] font-black rounded-lg transition-all flex items-center gap-2 uppercase tracking-widest shadow-lg shadow-red-900/20"
+                        >
+                          <X size={12} />
+                          Stop
+                        </button>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -143,10 +195,10 @@ export default function Piano({ autoPlayScore, onCancel }: PianoProps) {
           {pianoKeys.map((key) => (
             <div 
               key={key.index}
-              onMouseDown={() => playNote(key.index)}
+              onMouseDown={() => playNoteInternal(key.index)}
               onTouchStart={(e) => {
                 e.preventDefault();
-                playNote(key.index);
+                playNoteInternal(key.index);
               }}
               className={`
                 flex-1 relative transition-all cursor-pointer select-none

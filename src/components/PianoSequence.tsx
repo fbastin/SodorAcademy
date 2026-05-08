@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Music, X, Play, RotateCcw, Volume2, Trophy, Train } from 'lucide-react';
 import { Grade } from '../types';
+import { playNote } from '../services/audioSynthesis';
 
 interface PianoSequenceProps {
   grade: Grade;
@@ -32,51 +33,26 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
     };
   }, []);
 
-  const getFrequency = (keyIndex: number) => {
-    return 27.5 * Math.pow(2, keyIndex / 12);
-  };
+  const playNoteInternal = useCallback((keyIndex: number, duration = 0.8) => {
+    if (!audioContextRef.current) {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
 
-  const playNote = useCallback((keyIndex: number, duration = 0.8) => {
-    try {
-      if (!audioContextRef.current) {
-        audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-      }
+    playNote(audioContextRef.current, keyIndex, 'grand', duration);
 
-      if (audioContextRef.current.state === 'suspended') {
-        audioContextRef.current.resume();
-      }
+    setActiveKeys(prev => {
+      const next = new Set(prev);
+      next.add(keyIndex);
+      return next;
+    });
 
-      const osc = audioContextRef.current.createOscillator();
-      const gain = audioContextRef.current.createGain();
-
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(getFrequency(keyIndex), audioContextRef.current.currentTime);
-
-      gain.gain.setValueAtTime(0.3, audioContextRef.current.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioContextRef.current.currentTime + duration);
-
-      osc.connect(gain);
-      gain.connect(audioContextRef.current.destination);
-
-      osc.start();
-      osc.stop(audioContextRef.current.currentTime + duration);
-
+    setTimeout(() => {
       setActiveKeys(prev => {
         const next = new Set(prev);
-        next.add(keyIndex);
+        next.delete(keyIndex);
         return next;
       });
-
-      setTimeout(() => {
-        setActiveKeys(prev => {
-          const next = new Set(prev);
-          next.delete(keyIndex);
-          return next;
-        });
-      }, 300);
-    } catch (e) {
-      console.error('Audio error:', e);
-    }
+    }, 300);
   }, []);
 
   const generateNewSequence = () => {
@@ -102,7 +78,7 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
     setIsCorrect(null);
     
     for (let i = 0; i < sequence.length; i++) {
-      playNote(sequence[i]);
+      playNoteInternal(sequence[i]);
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
     
@@ -113,7 +89,7 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
   const handleKeyClick = (keyIndex: number) => {
     if (isPlaying || questionsAnswered >= questionsCount) return;
     
-    playNote(keyIndex);
+    playNoteInternal(keyIndex);
     
     const nextInput = [...userInput, keyIndex];
     setUserInput(nextInput);

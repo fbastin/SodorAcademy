@@ -1667,7 +1667,10 @@ export default function App() {
         onLogout={handleLogout} 
         onOpenSettings={() => setShowSettings(true)}
         onOpenAdmin={() => setShowAdmin(true)}
-        onOpenTopics={() => setShowTopics(true)}
+        onOpenTopics={() => {
+          setSelectedMusicScore(null);
+          setShowTopics(true);
+        }}
       />
 
       <main className={`${(activeExercise?.component === 'Piano' || activeExercise?.component === 'PianoSequence') ? 'max-w-[98vw]' : 'max-w-6xl'} mx-auto px-2 md:px-6 py-12 transition-all duration-500`}>
@@ -1937,11 +1940,10 @@ export default function App() {
                 />
               ) : activeExercise?.component === 'Piano' ? (
                 <Piano 
-                  autoPlayScore={selectedMusicScore || MUSIC_LIBRARY.find(m => m.id === 'thomas-theme')}
-                  onCancel={() => { setActiveExercise(null); setSelectedMusicScore(null); }}
+                  autoPlayScore={selectedMusicScore} 
+                  onCancel={() => { setActiveExercise(null); setSelectedMusicScore(null); }} 
                 />
-              ) : activeExercise?.component === 'PianoSequence' ? (
-                <PianoSequence 
+              ) : activeExercise?.component === 'PianoSequence' ? (                <PianoSequence 
                   grade={user.stats.currentGrade}
                   questionsCount={user.stats.preferences?.questionsPerSubject?.['Music'] || 10}
                   onComplete={handleLessonComplete}
