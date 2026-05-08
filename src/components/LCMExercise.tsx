@@ -197,12 +197,14 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
                   <div className="flex items-center gap-2 text-green-600 font-black text-xl">
                     <CheckCircle2 size={24} /> Really Useful Work!
                   </div>
-                  <button 
-                    onClick={generateProblem}
-                    className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all flex items-center gap-2 mx-auto"
-                  >
-                    Next Challenge <ArrowRight size={20} />
-                  </button>
+                  {questionsAnswered < questionsCount && (
+                    <button
+                      onClick={generateProblem}
+                      className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all flex items-center gap-2 mx-auto"
+                    >
+                      Next Challenge <ArrowRight size={20} />
+                    </button>
+                  )}
                 </div>
               ) : (
                 <div className="flex flex-col items-center gap-4">

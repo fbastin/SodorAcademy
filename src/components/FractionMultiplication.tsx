@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Train, RotateCcw, ArrowRight, CheckCircle2, XCircle, Volume2 } from 'lucide-react';
-import { Grade, Question } from '../types';
+import { Grade } from '../types';
 import { speak } from '../services/speechService';
 
 interface FractionMultiplicationProps {
@@ -116,7 +116,7 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={progress}
+          key={`${problem.n1}/${problem.d1}*${problem.n2}/${problem.d2}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}

@@ -39,20 +39,52 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
     'Primary': [
       {
         id: 'sci-p-1',
-        text: 'What do steam engines like Thomas need to make steam?',
-        options: ['Juice and Cookies', 'Coal and Water', 'Gasoline', 'Electricity'],
-        correctAnswer: 'Coal and Water',
-        explanation: 'Coal heats the water to make the steam that moves the pistons!',
+        text: 'What is a force?',
+        options: ['A push or a pull', 'A type of engine', 'A station on Sodor', 'Coal and water'],
+        correctAnswer: 'A push or a pull',
+        explanation: 'A force is simply pushing or pulling something to make it move!',
+        rewardType: 'engine'
+      },
+      {
+        id: 'sci-p-2',
+        text: 'What pulling force keeps Thomas and his coaches on the tracks?',
+        options: ['Magnetism', 'Gravity', 'Wind', 'Steam'],
+        correctAnswer: 'Gravity',
+        explanation: 'Gravity pulls everything toward the center of the Earth, keeping engines on the rails!',
+        rewardType: 'badge'
+      },
+      {
+        id: 'sci-p-3',
+        text: 'If Thomas pushes a heavy truck with more force, what happens?',
+        options: ['It goes slower', 'It stops', 'It goes faster', 'It changes color'],
+        correctAnswer: 'It goes faster',
+        explanation: 'More force means more acceleration, so the truck goes faster!',
         rewardType: 'engine'
       }
     ],
     'Secondary': [
       {
         id: 'sci-s-1',
-        text: 'In a steam engine, what part is responsible for turning the heat from fire into mechanical motion?',
-        options: ['The Whistle', 'The Funnel', 'The Pistons', 'The Coal Bunker'],
-        correctAnswer: 'The Pistons',
-        explanation: 'Steam pressure pushes the pistons, which turn the wheels!',
+        text: 'Which formula represents Newton\'s Second Law of Motion?',
+        options: ['E = mc²', 'F = ma', 'A = πr²', 'V = IR'],
+        correctAnswer: 'F = ma',
+        explanation: 'Force equals Mass times Acceleration. This explains how objects move!',
+        rewardType: 'engine'
+      },
+      {
+        id: 'sci-s-2',
+        text: 'What is the approximate acceleration due to gravity on Earth?',
+        options: ['1.62 m/s²', '3.72 m/s²', '9.81 m/s²', '24.79 m/s²'],
+        correctAnswer: '9.81 m/s²',
+        explanation: 'On Earth, objects accelerate downwards at about 9.81 meters per second squared.',
+        rewardType: 'badge'
+      },
+      {
+        id: 'sci-s-3',
+        text: 'Why do a heavy engine and a light coach fall at the same speed (ignoring air resistance)?',
+        options: ['Gravity doesn\'t pull on light things', 'Heavy things are easier to move', 'Gravity pulls harder on heavy things, but they have more mass to move', 'They don\'t fall at the same speed'],
+        correctAnswer: 'Gravity pulls harder on heavy things, but they have more mass to move',
+        explanation: 'The extra pull of gravity on the heavy object is perfectly balanced by the extra effort needed to move its larger mass!',
         rewardType: 'engine'
       }
     ]

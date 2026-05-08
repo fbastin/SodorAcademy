@@ -154,7 +154,8 @@ export const SUBJECTS: Subject[] = [
     x: 91,
     y: 40,
     exercises: [
-      { id: 'sci-quiz', name: 'Vicarstown Quiz', description: 'Discover the science of steam power!', type: 'quiz' }
+      { id: 'sci-force-lesson', name: 'Force & Motion Lesson', description: 'Learn about pushes, pulls, and gravity with Thomas!', type: 'lesson', component: 'ForceLesson' },
+      { id: 'sci-force-exercise', name: 'Force Challenge', description: 'Test your knowledge of forces and motion!', type: 'quiz' }
     ]
   },
   {

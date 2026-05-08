@@ -2,16 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle, ArrowRight, Compass, Activity, Search, Volume2 } from 'lucide-react';
 
-const speak = (text: string) => {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9;
-    utterance.pitch = 1.1;
-    window.speechSynthesis.speak(utterance);
-  }
-};
 import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video, Exercise } from './types';
+import { speak } from './services/speechService';
 import { generateQuestion } from './services/questionService';
 import { apiService, User } from './services/apiService';
 import SodorMap from './components/SodorMap';
@@ -23,6 +15,7 @@ import FractionAdditionLesson from './components/FractionAdditionLesson';
 import LCMLesson from './components/LCMLesson';
 import LCMExercise from './components/LCMExercise';
 import StoryExercise from './components/StoryExercise';
+import ForceLesson from './components/ForceLesson';
 import Piano from './components/Piano';
 import PianoSequence from './components/PianoSequence';
 import { STORIES } from './services/storyData';
@@ -353,7 +346,7 @@ const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: 
       }
     } catch (err: any) {
       if (err.type === 'VALIDATION_REQUIRED') {
-        onShowValidation(err.name || name, err.email);
+        onShowValidation(err.userName || name, err.email);
       } else {
         setError(err.message);
       }
@@ -1374,7 +1367,66 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
   );
 };
 
-const MusicLibraryModal = ({ user, onClose, onSelectMusic }: { 
+const LibraryModal = ({ stories, onClose }: {
+  stories: import('./types').Story[];
+  onClose: () => void;
+}) => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
+  >
+    <motion.div
+      initial={{ scale: 0.9, y: 20 }}
+      animate={{ scale: 1, y: 0 }}
+      className="bg-white rounded-[40px] p-8 md:p-10 max-w-4xl w-full max-h-[85vh] shadow-2xl relative overflow-hidden flex flex-col"
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
+      >
+        <X size={24} />
+      </button>
+
+      <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3 shrink-0">
+        <BookOpen className="text-red-600" />
+        The Library
+      </h2>
+
+      <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+        {stories.length === 0 ? (
+          <div className="py-20 text-center text-slate-400">
+            <BookOpen size={48} className="mx-auto mb-4 opacity-20" />
+            <p className="font-bold">No stories unlocked yet.</p>
+            <p className="text-sm mt-2">Complete story adventures to add them to your library!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {stories.map(story => (
+              <div
+                key={story.id}
+                className="bg-slate-50 p-6 rounded-3xl border border-slate-100"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-3xl">
+                    {story.thumbnail}
+                  </div>
+                  <h3 className="text-xl font-black text-slate-900">{story.title}</h3>
+                </div>
+                <p className="text-sm text-slate-600 font-medium leading-relaxed line-clamp-4">
+                  {story.content}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </motion.div>
+  </motion.div>
+);
+
+const MusicLibraryModal = ({ user, onClose, onSelectMusic }: {
   user: User; 
   onClose: () => void;
   onSelectMusic: (score: MusicScore) => void;
@@ -1577,11 +1629,11 @@ export default function App() {
 
     if (!rewardId) {
       if (rewardType === 'video') {
-        const lockedVideos = VIDEOS.filter(v => !(user.stats.videosUnlocked || []).includes(v.id));
+        const lockedVideos = VIDEOS.filter(v => !(newStats.videosUnlocked || []).includes(v.id));
         if (lockedVideos.length > 0) {
           const randomVideo = lockedVideos[Math.floor(Math.random() * lockedVideos.length)];
           rewardId = randomVideo.id;
-          newStats.videosUnlocked = Array.from(new Set([...(user.stats.videosUnlocked || []), randomVideo.id]));
+          newStats.videosUnlocked = Array.from(new Set([...(newStats.videosUnlocked || []), randomVideo.id]));
         }
       } else {
         const randomEngine = ENGINES[Math.floor(Math.random() * ENGINES.length)];
@@ -1937,6 +1989,14 @@ export default function App() {
                   questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
                   onComplete={handleLessonComplete}
                   onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'ForceLesson' ? (
+                <ForceLesson 
+                  onCancel={() => setActiveExercise(null)}
+                  onStartExercise={() => {
+                    const exercise = activeSubject.exercises?.find(e => e.id === 'sci-force-exercise');
+                    if (exercise) setActiveExercise(exercise);
+                  }}
                 />
               ) : activeExercise?.component === 'Piano' ? (
                 <Piano 

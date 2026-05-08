@@ -126,7 +126,7 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={progress}
+          key={`${problem.n1}/${problem.d1}+${problem.n2}/${problem.d2}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}

@@ -37,12 +37,17 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
     }
   }, [completedStories]);
 
+  const scoreRef = React.useRef(0);
+
   const handleAnswer = (answer: string) => {
     if (selectedAnswer) return;
     setSelectedAnswer(answer);
     const correct = answer === story?.questions[currentQuestionIdx].correctAnswer;
     setIsCorrect(correct);
-    if (correct) setScore(prev => prev + 1);
+    if (correct) {
+      scoreRef.current += 1;
+      setScore(scoreRef.current);
+    }
   };
 
   const nextQuestion = () => {
@@ -51,13 +56,12 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
       setSelectedAnswer(null);
       setIsCorrect(null);
     } else {
-      // Completed all requested questions
       const passMark = Math.ceil(actualQuestionsCount * 0.8);
-      if (score >= passMark && story) { // Require 80% to pass
+      if (scoreRef.current >= passMark && story) {
         onComplete(story.id);
       } else {
-        // Reset or show failure
         setCurrentQuestionIdx(0);
+        scoreRef.current = 0;
         setScore(0);
         setSelectedAnswer(null);
         setIsCorrect(null);

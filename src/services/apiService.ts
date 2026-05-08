@@ -72,7 +72,7 @@ export const apiService = {
       const err = new Error(errorMsg) as any;
       if (response.status === 403) {
         err.email = errorData.email;
-        err.name = name; // Pass the name along for validation
+        err.userName = name;
         err.type = 'VALIDATION_REQUIRED';
       }
       throw err;
@@ -137,8 +137,15 @@ export const apiService = {
       body: JSON.stringify({ userId, newPin })
     });
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to change PIN');
+      let errorMsg = 'Failed to change PIN';
+      try {
+        const error = await response.json();
+        errorMsg = error.error || errorMsg;
+      } catch (e) {
+        const text = await response.text();
+        errorMsg = `Server error (${response.status}): ${text.slice(0, 100)}`;
+      }
+      throw new Error(errorMsg);
     }
   },
 
@@ -175,14 +182,21 @@ export const apiService = {
   async getAdminUsers(adminId: string): Promise<User[]> {
     const response = await fetch(`${BASE_URL}/admin/users`, {
       method: 'GET',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         'X-Admin-ID': adminId
       }
     });
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to fetch users');
+      let errorMsg = 'Failed to fetch users';
+      try {
+        const error = await response.json();
+        errorMsg = error.error || errorMsg;
+      } catch (e) {
+        const text = await response.text();
+        errorMsg = `Server error (${response.status}): ${text.slice(0, 100)}`;
+      }
+      throw new Error(errorMsg);
     }
     const data = await response.json();
     return data.users;
@@ -191,28 +205,42 @@ export const apiService = {
   async deleteUserAsAdmin(adminId: string, targetUserId: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/admin/users/${targetUserId}`, {
       method: 'DELETE',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         'X-Admin-ID': adminId
       }
     });
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to delete user');
+      let errorMsg = 'Failed to delete user';
+      try {
+        const error = await response.json();
+        errorMsg = error.error || errorMsg;
+      } catch (e) {
+        const text = await response.text();
+        errorMsg = `Server error (${response.status}): ${text.slice(0, 100)}`;
+      }
+      throw new Error(errorMsg);
     }
   },
 
   async validateUserAsAdmin(adminId: string, targetUserId: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/admin/users/${targetUserId}/validate`, {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         'X-Admin-ID': adminId
       }
     });
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to validate user');
+      let errorMsg = 'Failed to validate user';
+      try {
+        const error = await response.json();
+        errorMsg = error.error || errorMsg;
+      } catch (e) {
+        const text = await response.text();
+        errorMsg = `Server error (${response.status}): ${text.slice(0, 100)}`;
+      }
+      throw new Error(errorMsg);
     }
   },
 
@@ -223,8 +251,15 @@ export const apiService = {
       body: JSON.stringify({ userData })
     });
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Import failed');
+      let errorMsg = 'Import failed';
+      try {
+        const error = await response.json();
+        errorMsg = error.error || errorMsg;
+      } catch (e) {
+        const text = await response.text();
+        errorMsg = `Server error (${response.status}): ${text.slice(0, 100)}`;
+      }
+      throw new Error(errorMsg);
     }
     const data = await response.json();
     return data.user;

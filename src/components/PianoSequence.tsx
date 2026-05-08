@@ -118,14 +118,23 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
     }
   };
 
-  const pianoKeys = [];
+  const whiteKeys: {index: number, noteName: string, octave: number}[] = [];
+  const blackKeys: {index: number, noteName: string, octave: number, leftPercent: number}[] = [];
+
+  let whiteCount = 0;
   for (let i = 0; i < 88; i++) {
     const noteIndex = (i + 9) % 12;
     const noteName = NOTES[noteIndex];
     const octave = Math.floor((i + 9) / 12);
-    const isBlack = noteName.includes('#');
-    pianoKeys.push({ index: i, noteName, octave, isBlack });
+    if (noteName.includes('#')) {
+      const centerPercent = (whiteCount / 52) * 100;
+      blackKeys.push({ index: i, noteName, octave, leftPercent: centerPercent });
+    } else {
+      whiteKeys.push({ index: i, noteName, octave });
+      whiteCount++;
+    }
   }
+  const blackKeyWidth = (1 / 52) * 100 * 0.60;
 
   const progress = (questionsAnswered / questionsCount) * 100;
 
@@ -222,38 +231,71 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
         </div>
 
         {/* The Piano Bed */}
-        <div className="w-full relative aspect-[21/9] md:aspect-[32/9] bg-slate-800 rounded-xl p-1 shadow-inner flex overflow-hidden">
-          {pianoKeys.map((key) => (
-            <div 
-              key={key.index}
-              onMouseDown={() => handleKeyClick(key.index)}
-              onTouchStart={(e) => {
-                e.preventDefault();
-                handleKeyClick(key.index);
-              }}
-              className={`
-                flex-1 relative transition-all cursor-pointer select-none
-                ${key.isBlack 
-                  ? 'bg-slate-950 z-20 -mx-[0.6%] h-[60%] rounded-b-md border-x border-slate-800 shadow-xl' 
-                  : 'bg-white z-10 h-full rounded-b-lg border-x border-slate-200'
-                }
-                ${activeKeys.has(key.index) 
-                  ? (key.isBlack ? '!bg-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.8)]' : '!bg-pink-100') 
-                  : (isCorrect === false && sequence.includes(key.index) 
-                      ? (key.isBlack ? '!bg-green-500 shadow-[0_0_15px_rgba(34,197,94,0.8)]' : '!bg-green-100') 
-                      : '')
-                }
-              `}
-            >
-              {!key.isBlack && (key.noteName === 'C' || key.index === 0 || key.index === 87) && (
-                <div className="absolute bottom-2 left-0 w-full text-center pointer-events-none opacity-40">
-                  <span className="text-[7px] font-black text-slate-900 uppercase">
-                    {key.noteName}{key.octave}
-                  </span>
-                </div>
-              )}
+        <div className="w-full aspect-[52/9] bg-slate-800 rounded-xl p-1 shadow-inner overflow-hidden">
+          <div className="relative w-full h-full">
+            {/* White keys */}
+            <div className="flex h-full">
+              {whiteKeys.map((key) => {
+                const isActive = activeKeys.has(key.index);
+                const isReveal = !isActive && isCorrect === false && sequence.includes(key.index);
+                return (
+                  <div
+                    key={key.index}
+                    onMouseDown={() => handleKeyClick(key.index)}
+                    onTouchStart={(e) => { e.preventDefault(); handleKeyClick(key.index); }}
+                    style={{
+                      boxShadow: isActive
+                        ? 'inset 0 -2px 3px rgba(219,39,119,0.15), 0 2px 4px rgba(0,0,0,0.1)'
+                        : isReveal
+                          ? 'inset 0 -2px 3px rgba(34,197,94,0.15), 0 2px 4px rgba(0,0,0,0.1)'
+                          : 'inset 0 -3px 4px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.1)'
+                    }}
+                    className={`
+                      flex-1 relative rounded-b-lg border-x border-slate-300/60 cursor-pointer select-none transition-colors
+                      ${isActive ? 'bg-pink-100' : isReveal ? 'bg-green-100' : 'bg-[#f8f8f2] hover:bg-[#f0f0ea] active:bg-[#e8e8e0]'}
+                    `}
+                  >
+                    {(key.noteName === 'C' || key.index === 0 || key.index === 87) && (
+                      <div className="absolute bottom-2 left-0 w-full text-center pointer-events-none opacity-40">
+                        <span className="text-[7px] font-black text-slate-900 uppercase">
+                          {key.noteName}{key.octave}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          ))}
+            {/* Black keys */}
+            {blackKeys.map((key) => {
+              const isActive = activeKeys.has(key.index);
+              const isReveal = !isActive && isCorrect === false && sequence.includes(key.index);
+              return (
+                <div
+                  key={key.index}
+                  onMouseDown={() => handleKeyClick(key.index)}
+                  onTouchStart={(e) => { e.preventDefault(); handleKeyClick(key.index); }}
+                  style={{
+                    left: `${key.leftPercent - blackKeyWidth / 2}%`,
+                    width: `${blackKeyWidth}%`,
+                    boxShadow: isActive
+                      ? '0 2px 4px rgba(0,0,0,0.4), 0 0 15px rgba(236,72,153,0.8)'
+                      : isReveal
+                        ? '0 2px 4px rgba(0,0,0,0.4), 0 0 15px rgba(34,197,94,0.8)'
+                        : '2px 5px 8px rgba(0,0,0,0.6), inset 0 -1px 2px rgba(255,255,255,0.05)'
+                  }}
+                  className={`
+                    absolute top-0 h-[62%] rounded-b-md cursor-pointer select-none transition-colors
+                    ${isActive
+                      ? 'bg-gradient-to-b from-pink-400 via-pink-500 to-pink-700'
+                      : isReveal
+                        ? 'bg-gradient-to-b from-green-400 via-green-500 to-green-700'
+                        : 'bg-gradient-to-b from-[#333] via-[#222] to-[#111] hover:from-[#3a3a3a] hover:via-[#2a2a2a] hover:to-[#1a1a1a] active:from-[#2a2a2a] active:via-[#1a1a1a] active:to-[#0a0a0a]'}
+                  `}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
