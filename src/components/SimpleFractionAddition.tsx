@@ -92,8 +92,8 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
   if (!problem) return null;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="mb-8 relative h-4 bg-slate-200 rounded-full overflow-hidden shadow-inner">
+    <div className="max-w-3xl mx-auto py-6 px-4">
+      <div className="mb-6 relative h-3 bg-slate-200 rounded-full overflow-hidden shadow-inner">
         <motion.div 
           className="absolute top-0 left-0 h-full bg-sodor-blue shadow-[0_0_10px_rgba(30,64,175,0.5)]"
           initial={{ width: 0 }}
@@ -102,11 +102,11 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
         />
         <motion.div 
           animate={{ left: `${progress}%` }}
-          className="absolute -top-6 -ml-4 text-sodor-blue transition-all"
+          className="absolute -top-5 -ml-3 text-sodor-blue transition-all"
         >
-          <Train size={32} />
+          <Train size={24} />
         </motion.div>
-        <div className="flex justify-between mt-2 text-xs font-bold text-slate-400 uppercase tracking-widest px-1">
+        <div className="flex justify-between mt-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-1">
           <span>Tidmouth Sheds</span>
           <span>Knapford Station</span>
         </div>
@@ -118,34 +118,34 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-3xl p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
+          className="engine-glass rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
         >
-          <div className="absolute top-0 left-0 w-2 h-full bg-sodor-blue" />
-          <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-xs font-bold mb-4 uppercase tracking-wider">
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
+          <span className="inline-block px-2.5 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-bold mb-3 uppercase tracking-wider">
             Mathematics • Simple Addition
           </span>
           
-          <h2 className="text-2xl font-extrabold mb-8 leading-tight text-slate-900">
+          <h2 className="text-xl font-extrabold mb-6 leading-tight text-slate-900">
             The parts are already the same size! Help Percy add these:
           </h2>
 
-          <div className={`flex items-center justify-center gap-6 mb-12 text-4xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
+          <div className={`flex items-center justify-center gap-4 md:gap-6 mb-8 text-3xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
             <div className="flex flex-col items-center">
-              <span className="border-b-4 border-slate-800 px-2">{problem.n1}</span>
+              <span className="border-b-4 border-slate-800 px-1.5">{problem.n1}</span>
               <span>{problem.d1}</span>
             </div>
             <span className="text-sodor-blue">+</span>
             <div className="flex flex-col items-center">
-              <span className="border-b-4 border-slate-800 px-2">{problem.n2}</span>
+              <span className="border-b-4 border-slate-800 px-1.5">{problem.n2}</span>
               <span>{problem.d2}</span>
             </div>
             <span className="text-slate-400">=</span>
-            <div className="w-16 h-20 bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center">
-              <span className="text-slate-300">?</span>
+            <div className="w-14 h-16 bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center">
+              <span className="text-slate-300 text-2xl">?</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {problem.options.map((option, idx) => {
               const [on, od] = option.split('/');
               const isCorrectOption = option === `${problem.correctN}/${problem.correctD}`;
@@ -157,19 +157,19 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
                   onClick={() => handleAnswer(option)}
                   disabled={!!selectedAnswer}
                   className={`
-                    p-6 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 relative
+                    p-4 md:p-6 rounded-xl border-2 transition-all flex flex-col items-center gap-1 relative
                     ${selectedAnswer === option 
                       ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
                       : (selectedAnswer && isCorrectOption ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-lg')
                     }
                   `}
                 >
-                  <div className="flex flex-col items-center text-2xl font-black">
+                  <div className="flex flex-col items-center text-xl md:text-2xl font-black">
                     <span className="border-b-2 border-current px-2">{on}</span>
                     <span>{od}</span>
                   </div>
                   {(selectedAnswer === option || (selectedAnswer && isCorrectOption)) && (
-                    <span className="text-xl absolute top-2 right-2">
+                    <span className="text-lg absolute top-1 right-1">
                       {isCorrectOption ? '🚂' : '❌'}
                     </span>
                   )}
@@ -182,20 +182,20 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-8 p-6 bg-red-50 rounded-2xl border border-red-100 flex flex-col gap-2"
+              className="mt-6 p-4 bg-red-50 rounded-xl border border-red-100 flex flex-col gap-2"
             >
-              <div className="flex items-center gap-2 text-red-700 font-bold">
-                <XCircle size={20} />
+              <div className="flex items-center gap-2 text-red-700 font-bold text-sm">
+                <XCircle size={18} />
                 <span>Cinders and Ashes!</span>
               </div>
-              <p className="text-slate-600 text-sm">
+              <p className="text-slate-600 text-xs">
                 When denominators are the same, just add the top numbers! The bottom number stays as {problem.d1}.
               </p>
               <button 
                 onClick={generateProblem}
-                className="mt-4 bg-white text-red-600 border-2 border-red-200 px-6 py-2 rounded-xl font-bold hover:bg-red-50 transition-colors flex items-center gap-2 self-start"
+                className="mt-2 bg-white text-red-600 border-2 border-red-200 px-4 py-1.5 rounded-lg font-bold text-sm hover:bg-red-50 transition-colors flex items-center gap-2 self-start"
               >
-                <RotateCcw size={18} />
+                <RotateCcw size={16} />
                 Try Again
               </button>
             </motion.div>
@@ -205,13 +205,13 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-8 flex justify-center"
+              className="mt-6 flex justify-center"
             >
               <button 
                 onClick={generateProblem}
-                className="bg-sodor-blue text-white px-10 py-4 rounded-2xl font-black shadow-lg hover:bg-blue-700 transition-all flex items-center gap-3"
+                className="bg-sodor-blue text-white px-8 py-3 rounded-xl font-black shadow-lg hover:bg-blue-700 transition-all flex items-center gap-2"
               >
-                Next Load! <ArrowRight size={20} />
+                Next Load! <ArrowRight size={18} />
               </button>
             </motion.div>
           )}
@@ -220,7 +220,7 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
       
       <button 
         onClick={onCancel}
-        className="mt-8 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
+        className="mt-6 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors text-sm"
       >
         Return to Roundhouse
       </button>

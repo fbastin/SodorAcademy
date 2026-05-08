@@ -80,8 +80,8 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
   if (!problem) return null;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="mb-8 relative h-4 bg-slate-200 rounded-full overflow-hidden shadow-inner">
+    <div className="max-w-3xl mx-auto py-6 px-4">
+      <div className="mb-6 relative h-3 bg-slate-200 rounded-full overflow-hidden shadow-inner">
         <motion.div 
           className="absolute top-0 left-0 h-full bg-sodor-blue"
           initial={{ width: 0 }}
@@ -89,9 +89,9 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
         />
         <motion.div 
           animate={{ left: `${progress}%` }}
-          className="absolute -top-6 -ml-4 text-sodor-blue transition-all"
+          className="absolute -top-5 -ml-3 text-sodor-blue transition-all"
         >
-          <Train size={32} />
+          <Train size={24} />
         </motion.div>
       </div>
 
@@ -101,33 +101,33 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-[40px] p-10 md:p-16 shadow-2xl relative overflow-hidden bg-white/90 backdrop-blur-xl border-2 border-white/50"
+          className="engine-glass rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden bg-white/90 backdrop-blur-xl border-2 border-white/50"
         >
-          <div className="absolute top-0 left-0 w-2 h-full bg-sodor-blue" />
-          <span className="inline-block px-4 py-1.5 rounded-full bg-sodor-blue/10 text-sodor-blue text-xs font-black mb-6 uppercase tracking-widest">
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
+          <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-black mb-4 uppercase tracking-widest">
             Special Assignment • Mixed Loads
           </span>
 
-          <h2 className="text-3xl font-black mb-12 text-slate-900 leading-tight">
+          <h2 className="text-xl font-black mb-8 text-slate-900 leading-tight">
             Gordon has <span className="text-sodor-blue">{problem.integer}</span> full coal cars and <span className="text-sodor-blue">{problem.n}/{problem.d}</span> of another. How many parts does he have in total?
           </h2>
 
-          <div className="flex items-center justify-center gap-8 mb-16">
-            <div className="text-7xl font-black text-slate-800 bg-slate-50 w-32 h-32 rounded-3xl flex items-center justify-center shadow-inner border border-slate-100">
+          <div className="flex items-center justify-center gap-6 mb-12">
+            <div className="text-5xl font-black text-slate-800 bg-slate-50 w-24 h-24 rounded-2xl flex items-center justify-center shadow-inner border border-slate-100">
               {problem.integer}
             </div>
-            <span className="text-5xl font-black text-sodor-blue">+</span>
-            <div className={`flex flex-col items-center text-6xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
-              <span className="border-b-4 border-slate-800 px-4">{problem.n}</span>
+            <span className="text-3xl font-black text-sodor-blue">+</span>
+            <div className={`flex flex-col items-center text-4xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
+              <span className="border-b-4 border-slate-800 px-3">{problem.n}</span>
               <span>{problem.d}</span>
             </div>
-            <span className="text-4xl font-black text-slate-300">=</span>
-            <div className="w-24 h-32 bg-slate-100 rounded-3xl border-4 border-dashed border-slate-200 flex items-center justify-center">
-              <span className="text-slate-300 text-4xl">?</span>
+            <span className="text-2xl font-black text-slate-300">=</span>
+            <div className="w-20 h-24 bg-slate-100 rounded-2xl border-4 border-dashed border-slate-200 flex items-center justify-center">
+              <span className="text-slate-300 text-3xl">?</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
+          <div className="grid grid-cols-2 gap-4 max-w-xl mx-auto">
             {problem.options.map((option, idx) => {
               const [on, od] = option.split('/');
               const isCorrectOption = option === problem.correctAns;
@@ -139,19 +139,19 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
                   onClick={() => handleAnswer(option)}
                   disabled={!!selectedAnswer}
                   className={`
-                    p-8 rounded-3xl border-4 transition-all flex flex-col items-center gap-1 relative
+                    p-6 rounded-2xl border-4 transition-all flex flex-col items-center gap-1 relative
                     ${selectedAnswer === option 
                       ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
                       : (selectedAnswer && isCorrectOption ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-xl')
                     }
                   `}
                 >
-                  <div className="flex flex-col items-center text-3xl font-black">
-                    <span className="border-b-2 border-current px-3">{on}</span>
+                  <div className="flex flex-col items-center text-2xl font-black">
+                    <span className="border-b-2 border-current px-2">{on}</span>
                     <span>{od}</span>
                   </div>
                   {(selectedAnswer === option || (selectedAnswer && isCorrectOption)) && (
-                    <span className="text-2xl absolute top-4 right-4">
+                    <span className="text-xl absolute top-2 right-2">
                       {isCorrectOption ? '🚂' : '❌'}
                     </span>
                   )}
@@ -164,22 +164,22 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-12 p-8 bg-red-50 rounded-3xl border-2 border-red-100 flex flex-col gap-3"
+              className="mt-8 p-6 bg-red-50 rounded-2xl border-2 border-red-100 flex flex-col gap-2"
             >
-              <div className="flex items-center gap-2 text-red-700 font-black text-xl">
-                <XCircle size={24} />
+              <div className="flex items-center gap-2 text-red-700 font-black text-lg">
+                <XCircle size={20} />
                 <span>Oh, the Indignity!</span>
               </div>
-              <p className="text-slate-600 font-medium leading-relaxed">
+              <p className="text-slate-600 text-xs font-medium leading-relaxed">
                 Remember: To add an integer to a fraction, turn the integer into a fraction first! 
                 <br/>
                 <span className="font-black text-slate-800">{problem.integer}</span> is the same as <span className="font-black text-slate-800">({problem.integer} × {problem.d}) / {problem.d}</span> = <span className="font-black text-slate-800">{(problem.integer * problem.d)} / {problem.d}</span>.
               </p>
               <button 
                 onClick={generateProblem}
-                className="mt-4 bg-white text-red-600 border-2 border-red-200 px-8 py-3 rounded-2xl font-black hover:bg-red-50 transition-all flex items-center gap-2 self-start"
+                className="mt-4 bg-white text-red-600 border-2 border-red-200 px-6 py-2 rounded-xl font-black hover:bg-red-50 transition-all flex items-center gap-2 self-start text-sm"
               >
-                <RotateCcw size={20} />
+                <RotateCcw size={18} />
                 Try Next Express
               </button>
             </motion.div>
@@ -189,13 +189,13 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-12 flex justify-center"
+              className="mt-8 flex justify-center"
             >
               <button 
                 onClick={generateProblem}
-                className="bg-slate-900 text-white px-12 py-5 rounded-[24px] font-black shadow-2xl hover:bg-slate-800 transition-all flex items-center gap-4 text-xl"
+                className="bg-slate-900 text-white px-10 py-4 rounded-xl font-black shadow-2xl hover:bg-slate-800 transition-all flex items-center gap-3 text-lg"
               >
-                Next Station! <ArrowRight size={24} />
+                Next Station! <ArrowRight size={20} />
               </button>
             </motion.div>
           )}
@@ -204,7 +204,7 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
       
       <button 
         onClick={onCancel}
-        className="mt-12 mx-auto block text-slate-400 font-black hover:text-slate-600 transition-colors uppercase tracking-widest text-sm"
+        className="mt-8 mx-auto block text-slate-400 font-black hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
         Return to Roundhouse
       </button>

@@ -101,10 +101,10 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
   if (!problem) return null;
 
   return (
-    <div className="max-w-3xl mx-auto py-12 px-6">
+    <div className="max-w-3xl mx-auto py-6 px-4">
       {/* Progress Track */}
-      <div className="mb-12 relative">
-        <div className="h-4 w-full bg-slate-200 rounded-full train-track overflow-hidden">
+      <div className="mb-8 relative">
+        <div className="h-3 w-full bg-slate-200 rounded-full train-track overflow-hidden">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -113,11 +113,11 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
         </div>
         <motion.div 
           animate={{ left: `${progress}%` }}
-          className="absolute -top-6 -ml-4 text-sodor-blue transition-all"
+          className="absolute -top-5 -ml-3 text-sodor-blue transition-all"
         >
-          <Train size={32} />
+          <Train size={24} />
         </motion.div>
-        <div className="flex justify-between mt-2 text-xs font-bold text-slate-400 uppercase tracking-widest px-1">
+        <div className="flex justify-between mt-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-1">
           <span>Tidmouth Sheds</span>
           <span>Knapford Station</span>
         </div>
@@ -129,34 +129,34 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-3xl p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
+          className="engine-glass rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
         >
-          <div className="absolute top-0 left-0 w-2 h-full bg-sodor-blue" />
-          <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-xs font-bold mb-4 uppercase tracking-wider">
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
+          <span className="inline-block px-2.5 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-bold mb-3 uppercase tracking-wider">
             Mathematics • Fraction Addition
           </span>
           
-          <h2 className="text-2xl font-extrabold mb-8 leading-tight text-slate-900">
+          <h2 className="text-xl font-extrabold mb-6 leading-tight text-slate-900">
             Percy is collecting mail loads. Help him add these fractions:
           </h2>
 
-          <div className={`flex items-center justify-center gap-6 mb-12 text-4xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
+          <div className={`flex items-center justify-center gap-4 md:gap-6 mb-8 text-3xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
             <div className="flex flex-col items-center">
-              <span className="border-b-4 border-slate-800 px-2">{problem.n1}</span>
+              <span className="border-b-4 border-slate-800 px-1.5">{problem.n1}</span>
               <span>{problem.d1}</span>
             </div>
             <span className="text-sodor-blue">+</span>
             <div className="flex flex-col items-center">
-              <span className="border-b-4 border-slate-800 px-2">{problem.n2}</span>
+              <span className="border-b-4 border-slate-800 px-1.5">{problem.n2}</span>
               <span>{problem.d2}</span>
             </div>
             <span className="text-slate-400">=</span>
-            <div className="w-16 h-20 bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center">
-              <span className="text-slate-300">?</span>
+            <div className="w-14 h-16 bg-slate-100 rounded-xl border-2 border-dashed border-slate-300 flex items-center justify-center">
+              <span className="text-slate-300 text-2xl">?</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {problem.options.map((option, idx) => {
               const [on, od] = option.split('/');
               return (
@@ -167,19 +167,19 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
                   onClick={() => handleAnswer(option)}
                   disabled={!!selectedAnswer}
                   className={`
-                    p-6 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 relative
+                    p-4 md:p-6 rounded-xl border-2 transition-all flex flex-col items-center gap-1 relative
                     ${selectedAnswer === option 
                       ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
                       : (selectedAnswer && option === `${problem?.correctN}/${problem?.correctD}` ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-lg')
                     }
                   `}
                 >
-                  <div className="flex flex-col items-center text-2xl font-black">
+                  <div className="flex flex-col items-center text-xl md:text-2xl font-black">
                     <span className="border-b-2 border-current px-2">{on}</span>
                     <span>{od}</span>
                   </div>
                   {(selectedAnswer === option || (selectedAnswer && option === `${problem?.correctN}/${problem?.correctD}`)) && (
-                    <span className="text-xl absolute top-2 right-2">
+                    <span className="text-lg absolute top-1 right-1">
                       {option === `${problem?.correctN}/${problem?.correctD}` ? '🚂' : '❌'}
                     </span>
                   )}
@@ -192,18 +192,18 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-8 p-6 bg-red-50 rounded-2xl border border-red-100 flex flex-col gap-2"
+              className="mt-6 p-4 bg-red-50 rounded-xl border border-red-100 flex flex-col gap-2"
             >
-              <div className="flex items-center gap-2 text-red-700 font-bold">
-                <XCircle size={20} />
+              <div className="flex items-center gap-2 text-red-700 font-bold text-sm">
+                <XCircle size={18} />
                 <span>Cinders and Ashes!</span>
               </div>
-              <p className="text-slate-600 text-sm">
+              <p className="text-slate-600 text-xs">
                 To add fractions, find a common denominator (bottom number). Then add the numerators (top numbers) together. Finally, simplify your answer!
               </p>
               <button 
                 onClick={generateProblem}
-                className="mt-4 w-full py-3 bg-red-600 text-white rounded-xl font-bold text-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
+                className="mt-2 w-full py-2 bg-red-600 text-white rounded-lg font-bold text-sm hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
               >
                 <RotateCcw size={16} /> Try another load
               </button>
@@ -215,9 +215,9 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               onClick={generateProblem}
-              className="mt-8 w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+              className="mt-6 w-full py-3 bg-sodor-blue text-white rounded-xl font-bold shadow-lg hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
              >
-               Next Station <ArrowRight size={20} />
+               Next Station <ArrowRight size={18} />
              </motion.button>
           )}
         </motion.div>
@@ -225,7 +225,7 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
       
       <button 
         onClick={onCancel}
-        className="mt-8 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
+        className="mt-6 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors text-sm"
       >
         Return to Roundhouse
       </button>
