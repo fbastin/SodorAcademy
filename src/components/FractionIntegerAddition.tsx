@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, RotateCcw, ArrowRight, XCircle, CheckCircle2 } from 'lucide-react';
+import { Train, RotateCcw, ArrowRight, XCircle, CheckCircle2, Volume2 } from 'lucide-react';
 import { Grade } from '../types';
+import { speak } from '../services/speechService';
 
 interface FractionIntegerAdditionProps {
   grade: Grade;
@@ -104,9 +105,18 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
           className="engine-glass rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden bg-white/90 backdrop-blur-xl border-2 border-white/50"
         >
           <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
-          <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-black mb-4 uppercase tracking-widest">
-            Special Assignment • Mixed Loads
-          </span>
+          <div className="flex justify-between items-start mb-4">
+            <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-black uppercase tracking-widest">
+              Special Assignment • Mixed Loads
+            </span>
+            <button 
+              onClick={() => speak("Gordon has " + problem.integer + " full coal cars and " + problem.n + " over " + problem.d + " of another. How many parts does he have in total?")}
+              className="p-2 bg-slate-100 hover:bg-sodor-blue/10 text-slate-400 hover:text-sodor-blue rounded-full transition-colors"
+              title="Listen to question"
+            >
+              <Volume2 size={16} />
+            </button>
+          </div>
 
           <h2 className="text-xl font-black mb-8 text-slate-900 leading-tight">
             Gordon has <span className="text-sodor-blue">{problem.integer}</span> full coal cars and <span className="text-sodor-blue">{problem.n}/{problem.d}</span> of another. How many parts does he have in total?

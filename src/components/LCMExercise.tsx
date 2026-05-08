@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, RotateCcw, ArrowRight, CheckCircle2, XCircle, Search, Trophy } from 'lucide-react';
+import { Train, RotateCcw, ArrowRight, CheckCircle2, XCircle, Search, Trophy, Volume2 } from 'lucide-react';
 import { Grade } from '../types';
+import { speak } from '../services/speechService';
 
 interface LCMExerciseProps {
   grade: Grade;
@@ -118,9 +119,18 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
           <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
             LCM Challenge {questionsAnswered + 1} of {questionsCount}
           </span>
-          <div className="flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-full border border-indigo-100">
-            <Trophy size={16} className="text-indigo-600" />
-            <span className="text-xs font-black text-indigo-600 uppercase">Mastery in Progress</span>
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={() => speak("Thomas stops every " + problem.n1 + " stations, and Percy stops every " + problem.n2 + " stations. At which station will they both stop first?")}
+              className="p-2 bg-slate-100 hover:bg-indigo-600/10 text-slate-400 hover:text-indigo-600 rounded-full transition-colors mr-2"
+              title="Listen to question"
+            >
+              <Volume2 size={18} />
+            </button>
+            <div className="flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-full border border-indigo-100">
+              <Trophy size={16} className="text-indigo-600" />
+              <span className="text-xs font-black text-indigo-600 uppercase">Mastery in Progress</span>
+            </div>
           </div>
         </div>
 

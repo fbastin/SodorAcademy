@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BookOpen, ArrowRight, ArrowLeft, CheckCircle, X, List, Search, Trophy } from 'lucide-react';
+import { BookOpen, ArrowRight, ArrowLeft, CheckCircle, X, List, Search, Trophy, Volume2 } from 'lucide-react';
+import { speak } from '../services/speechService';
 
 interface LCMLessonProps {
   onCancel: () => void;
@@ -105,7 +106,16 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
                   {step.image}
                 </div>
                 <div>
-                  <span className="text-indigo-600 font-black text-xs uppercase tracking-widest block mb-1">Step {currentStep + 1} of {STEPS.length}</span>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-indigo-600 font-black text-xs uppercase tracking-widest block">Step {currentStep + 1} of {STEPS.length}</span>
+                    <button 
+                      onClick={() => speak(step.title + ". " + step.content)}
+                      className="p-2 bg-slate-100 hover:bg-indigo-100 text-slate-400 hover:text-indigo-600 rounded-full transition-colors"
+                      title="Listen to lesson"
+                    >
+                      <Volume2 size={18} />
+                    </button>
+                  </div>
                   <h3 className="text-3xl font-black text-slate-900">{step.title}</h3>
                 </div>
               </div>

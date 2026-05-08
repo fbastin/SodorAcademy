@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, BookOpen, ArrowRight, RotateCcw, CheckCircle2, XCircle } from 'lucide-react';
+import { Train, BookOpen, ArrowRight, RotateCcw, CheckCircle2, XCircle, Volume2 } from 'lucide-react';
 import { Story, StoryQuestion, Grade } from '../types';
 import { STORIES } from '../services/storyData';
+import { speak } from '../services/speechService';
 
 interface StoryExerciseProps {
   grade: Grade;
@@ -78,14 +79,23 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
             exit={{ opacity: 0, y: -20 }}
             className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-slate-100"
           >
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-4xl">
-                {story.thumbnail}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-4xl">
+                  {story.thumbnail}
+                </div>
+                <div>
+                  <h2 className="text-3xl font-black text-slate-900">{story.title}</h2>
+                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Tidmouth Story Adventure</p>
+                </div>
               </div>
-              <div>
-                <h2 className="text-3xl font-black text-slate-900">{story.title}</h2>
-                <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Tidmouth Story Adventure</p>
-              </div>
+              <button 
+                onClick={() => speak(story.content)}
+                className="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-2xl transition-all shadow-sm"
+                title="Listen to story"
+              >
+                <Volume2 size={24} />
+              </button>
             </div>
 
             <div className="prose prose-slate max-w-none mb-12">
@@ -121,9 +131,18 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
               <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
                 Question {currentQuestionIdx + 1} of {actualQuestionsCount}
               </span>
-              <span className="text-sm font-black text-green-600 uppercase tracking-widest">
-                Score: {score}
-              </span>
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={() => speak(story.questions[currentQuestionIdx].question)}
+                  className="p-2 bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-600 rounded-full transition-colors"
+                  title="Listen to question"
+                >
+                  <Volume2 size={18} />
+                </button>
+                <span className="text-sm font-black text-green-600 uppercase tracking-widest">
+                  Score: {score}
+                </span>
+              </div>
             </div>
 
             <h3 className={`text-2xl font-black mb-8 ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>

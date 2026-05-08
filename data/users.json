@@ -7,8 +7,8 @@
     "isActive": true,
     "isAdmin": true,
     "stats": {
-      "score": 700,
-      "completedLessons": 7,
+      "score": 800,
+      "completedLessons": 8,
       "enginesCollected": [
         "james",
         "percy",
@@ -24,6 +24,38 @@
         "math-fractions-mult",
         "math-fractions-add"
       ],
+      "preferences": {
+        "questionsPerSubject": {
+          "Mathematics": 10,
+          "English": 10,
+          "Science": 10,
+          "History": 10,
+          "Geography": 10,
+          "Music": 10
+        }
+      },
+      "unlockedMusic": [
+        "thomas-theme",
+        "percy-theme"
+      ]
+    }
+  },
+  {
+    "id": "1778188448408",
+    "name": "Alan",
+    "email": "fabian.bastin@gmail.com",
+    "pin": "$2b$10$/9YSygZtTSxrhZEHIXCgVueCStZXJqUbvqWe1TZ1UFLoPZBPAvh2S",
+    "isActive": true,
+    "stats": {
+      "score": 200,
+      "completedLessons": 2,
+      "enginesCollected": [
+        "percy"
+      ],
+      "videosUnlocked": [
+        "welcome"
+      ],
+      "currentGrade": "Primary",
       "preferences": {
         "questionsPerSubject": {
           "Mathematics": 10,

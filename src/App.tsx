@@ -1,6 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle, ArrowRight, Compass, Activity, Search } from 'lucide-react';
+import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, LogOut, User as UserIcon, Lock, PlayCircle, X, Settings, Download, Upload, Trash2, Music, Mail, CheckCircle, ArrowRight, Compass, Activity, Search, Volume2 } from 'lucide-react';
+
+const speak = (text: string) => {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.9;
+    utterance.pitch = 1.1;
+    window.speechSynthesis.speak(utterance);
+  }
+};
 import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video, Exercise } from './types';
 import { generateQuestion } from './services/questionService';
 import { apiService, User } from './services/apiService';
@@ -1168,7 +1178,7 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-12 px-6">
+    <div className="max-w-3xl mx-auto py-6 px-4">
       {/* Progress Track */}
       <div className="mb-12 relative">
         <div className="h-4 w-full bg-slate-200 rounded-full train-track overflow-hidden">
@@ -1199,10 +1209,20 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
           className="engine-glass rounded-3xl p-8 shadow-2xl relative overflow-hidden"
         >
             <div className="absolute top-0 left-0 w-2 h-full bg-sodor-blue" />
-            <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-xs font-bold mb-4 uppercase tracking-wider">
-              {subject.name} • {grade}
-            </span>
-            <h2 className={`text-2xl font-extrabold mb-8 leading-tight ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
+            <div className="flex justify-between items-start mb-4">
+              <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-xs font-bold uppercase tracking-wider">
+                {subject.name} • {grade}
+              </span>
+              <button 
+                onClick={() => question && speak(question.text)}
+                className="p-2 bg-slate-100 hover:bg-sodor-blue/10 text-slate-400 hover:text-sodor-blue rounded-full transition-colors"
+                title="Listen to question"
+              >
+                <Volume2 size={18} />
+              </button>
+            </div>
+            
+            <h2 className={`text-xl font-extrabold mb-8 leading-tight ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
               {question?.text}
             </h2>
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, RotateCcw, ArrowRight, CheckCircle2, XCircle } from 'lucide-react';
+import { Train, RotateCcw, ArrowRight, CheckCircle2, XCircle, Volume2 } from 'lucide-react';
 import { Grade, Question } from '../types';
+import { speak } from '../services/speechService';
 
 interface FractionMultiplicationProps {
   grade: Grade;
@@ -122,9 +123,18 @@ export default function FractionMultiplication({ grade, questionsCount = 10, onC
           className="engine-glass rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
         >
           <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
-          <span className="inline-block px-2.5 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-bold mb-3 uppercase tracking-wider">
-            Mathematics • Fraction Multiplication
-          </span>
+          <div className="flex justify-between items-start mb-3">
+            <span className="inline-block px-2.5 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-bold uppercase tracking-wider">
+              Mathematics • Fraction Multiplication
+            </span>
+            <button 
+              onClick={() => speak("Thomas needs to deliver fraction loads. Help him multiply these fractions: " + problem.n1 + " over " + problem.d1 + " times " + problem.n2 + " over " + problem.d2)}
+              className="p-2 bg-slate-100 hover:bg-sodor-blue/10 text-slate-400 hover:text-sodor-blue rounded-full transition-colors"
+              title="Listen to question"
+            >
+              <Volume2 size={16} />
+            </button>
+          </div>
           
           <h2 className="text-xl font-extrabold mb-6 leading-tight text-slate-900">
             Thomas needs to deliver fraction loads. Help him multiply these fractions:
