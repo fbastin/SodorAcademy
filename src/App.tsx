@@ -1121,18 +1121,21 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [progress, setProgress] = useState(0);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [usedQuestionIds, setUsedQuestionIds] = useState<string[]>([]);
 
   useEffect(() => {
-    loadNext();
+    loadNext([]);
   }, [subject, grade]);
 
-  const loadNext = async () => {
+  const loadNext = async (currentUsedIds?: string[]) => {
     setLoading(true);
     setSelectedAnswer(null);
     setIsCorrect(null);
     try {
-      const q = await generateQuestion(subject.name, grade);
+      const idsToExclude = currentUsedIds || usedQuestionIds;
+      const q = await generateQuestion(subject.name, grade, idsToExclude);
       setQuestion(q);
+      setUsedQuestionIds(prev => [...prev, q.id]);
     } catch (e) {
       console.error(e);
     }
@@ -1153,6 +1156,10 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
         setTimeout(() => onComplete(question?.rewardType || 'engine'), 1500);
       }
     }
+  };
+
+  const handleNext = () => {
+    loadNext();
   };
 
   if (loading) {
@@ -1254,7 +1261,7 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
                 <p className="text-red-700 font-bold">Cinders and Ashes!</p>
                 <p className="text-slate-600 text-sm">{question?.explanation}</p>
                 <button 
-                  onClick={loadNext}
+                  onClick={handleNext}
                   className="mt-2 text-red-600 flex items-center gap-1 font-bold text-sm hover:underline"
                 >
                   <RotateCcw size={14} /> Try another track
@@ -1266,7 +1273,7 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
                <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                onClick={loadNext}
+                onClick={handleNext}
                 className="mt-8 w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-colors"
                >
                  Next Station

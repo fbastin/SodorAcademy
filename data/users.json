@@ -7,27 +7,25 @@
     "isActive": true,
     "isAdmin": true,
     "stats": {
-      "score": 800,
-      "completedLessons": 8,
+      "score": 500,
+      "completedLessons": 5,
       "enginesCollected": [
         "james",
-        "percy",
-        "thomas",
-        "gordon"
+        "percy"
       ],
       "videosUnlocked": [
         "welcome",
         "thomas-sharing"
       ],
-      "currentGrade": "Secondary",
+      "currentGrade": "Primary",
       "fractionExercisesCompleted": [
         "math-fractions-mult",
         "math-fractions-add"
       ],
       "preferences": {
         "questionsPerSubject": {
-          "Mathematics": 10,
-          "English": 10,
+          "Mathematics": 20,
+          "English": 3,
           "Science": 10,
           "History": 10,
           "Geography": 10,

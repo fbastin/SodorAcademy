@@ -376,6 +376,9 @@ app.use(`${BASE_PATH}/api`, apiRouter);
 
 // --- Static Files ---
 
+// Serve the standalone piano application
+app.use(`${BASE_PATH}/piano`, express.static(path.join(__dirname, 'dist-piano')));
+
 // Serve static files from the 'dist' directory under the base path
 app.use(BASE_PATH, express.static(path.join(__dirname, 'dist')));
 
