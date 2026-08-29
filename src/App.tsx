@@ -5,19 +5,27 @@ import { Train, Trophy, Star, Shield, Layout, BookOpen, Calculator, RotateCcw, L
 import { Grade, Subject, Question, UserStats, SUBJECTS, ENGINES, VIDEOS, Video, Exercise } from './types';
 import { speak } from './services/speechService';
 import { generateQuestion } from './services/questionService';
-import { apiService, User } from './services/apiService';
+import { apiService, User, setAuthToken } from './services/apiService';
 import SodorMap from './components/SodorMap';
 import FractionMultiplication from './components/FractionMultiplication';
 import FractionAddition from './components/FractionAddition';
 import SimpleFractionAddition from './components/SimpleFractionAddition';
 import FractionIntegerAddition from './components/FractionIntegerAddition';
 import FractionAdditionLesson from './components/FractionAdditionLesson';
+import PrismsLesson from './components/PrismsLesson';
 import LCMLesson from './components/LCMLesson';
 import LCMExercise from './components/LCMExercise';
 import StoryExercise from './components/StoryExercise';
 import ForceLesson from './components/ForceLesson';
+import ContinentsLesson from './components/ContinentsLesson';
+import ContinentsExercise from './components/ContinentsExercise';
+import ArithmeticMeanLesson from './components/ArithmeticMeanLesson';
+import ArithmeticMeanExercise from './components/ArithmeticMeanExercise';
+import ArithmeticMeanMastery from './components/ArithmeticMeanMastery';
+import ArithmeticMeanWordProblems from './components/ArithmeticMeanWordProblems';
 import Piano from './components/Piano';
 import PianoSequence from './components/PianoSequence';
+import SoundWavesLesson from './components/SoundWavesLesson';
 import { STORIES } from './services/storyData';
 import { MUSIC_LIBRARY } from './services/musicData';
 import { MusicScore } from './types';
@@ -152,7 +160,7 @@ const ValidationView = ({ name, email, onValidated, onCancel }: {
           <button
             type="submit"
             disabled={loading || code.length !== 6}
-            className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95 disabled:opacity-50"
+            className="w-full py-4 btn-3d-blue disabled:opacity-50 disabled:translate-y-0"
           >
             {loading ? 'Validating...' : 'Validate Account'}
           </button>
@@ -222,7 +230,7 @@ const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
           <p className="text-slate-500 mb-8 font-medium">Your PIN has been successfully updated. You can now log in with your new PIN.</p>
           <button
             onClick={onCancel}
-            className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95"
+            className="w-full py-4 btn-3d-blue"
           >
             Back to Login
           </button>
@@ -302,7 +310,7 @@ const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95 disabled:opacity-50"
+            className="w-full py-4 btn-3d-blue disabled:opacity-50 disabled:translate-y-0"
           >
             {loading ? 'Processing...' : (step === 'request' ? 'Send Code' : 'Reset PIN')}
           </button>
@@ -320,7 +328,7 @@ const RecoveryView = ({ onCancel }: { onCancel: () => void }) => {
 };
 
 const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: { 
-  onLogin: (user: User, pin: string, isNewUser: boolean) => void;
+  onLogin: (user: User, token: string, isNewUser: boolean) => void;
   onShowValidation: (name: string, email: string) => void;
   onShowRecovery: () => void;
   onGuestLogin: () => void;
@@ -342,7 +350,7 @@ const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: 
         onShowValidation(name, email);
       } else {
         const user = await apiService.login(name, pin);
-        onLogin(user, pin, false);
+        onLogin(user, user.token!, false);
       }
     } catch (err: any) {
       if (err.type === 'VALIDATION_REQUIRED') {
@@ -364,7 +372,7 @@ const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: 
       try {
         const data = JSON.parse(event.target?.result as string);
         const user = await apiService.importData(data);
-        onLogin(user, data.pin, false);
+        onLogin(user, user.token!, false);
       } catch (err) {
         setError('Failed to import data. Invalid file format.');
       }
@@ -443,7 +451,7 @@ const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95 disabled:opacity-50"
+            className="w-full py-4 btn-3d-blue disabled:opacity-50 disabled:translate-y-0"
           >
             {loading ? 'Processing...' : (isRegistering ? 'Sign Up' : 'Log In')}
           </button>
@@ -452,7 +460,7 @@ const LoginView = ({ onLogin, onShowValidation, onShowRecovery, onGuestLogin }: 
         <div className="mt-8 flex flex-col gap-4">
           <button
             onClick={onGuestLogin}
-            className="w-full py-4 bg-white text-sodor-blue border-2 border-sodor-blue/20 rounded-2xl font-bold hover:bg-sodor-blue/5 transition-all active:scale-95"
+            className="w-full py-4 bg-white text-sodor-blue rounded-2xl font-bold hover:bg-slate-50 btn-3d border-2 border-slate-200" style={{boxShadow: '0 6px 0 #cbd5e1'}}
           >
             Continue as Guest
           </button>
@@ -655,7 +663,7 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
   const handleExport = () => {
     const dataToExport = {
       ...user,
-      pin: pin
+      pin: pin || "1234"
     };
     const blob = new Blob([JSON.stringify(dataToExport, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -717,7 +725,7 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
               </p>
               <button
                 onClick={onLogout}
-                className="px-8 py-3 bg-sodor-blue text-white rounded-xl font-bold shadow-lg shadow-sodor-blue/20 hover:bg-blue-700 transition-all"
+                className="px-8 py-3 btn-3d-blue"
               >
                 Sign Up / Log In
               </button>
@@ -1274,7 +1282,7 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 onClick={handleNext}
-                className="mt-8 w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-colors"
+                className="mt-8 w-full py-4 btn-3d-blue"
                >
                  Next Station
                </motion.button>
@@ -1542,9 +1550,10 @@ export default function App() {
   // Load user from localStorage on start
   useEffect(() => {
     const savedUser = localStorage.getItem('sodor_academy_user');
-    const savedPin = localStorage.getItem('sodor_academy_pin');
-    if (savedUser && savedPin) {
+    const savedToken = localStorage.getItem('sodor_academy_token');
+    if (savedUser && savedToken) {
       let loadedUser = JSON.parse(savedUser);
+      setAuthToken(savedToken);
       // Ensure preferences exist
       if (!loadedUser.stats.preferences) {
         loadedUser.stats.preferences = {
@@ -1562,15 +1571,14 @@ export default function App() {
         loadedUser.stats.unlockedMusic = ['thomas-theme'];
       }
       setUser(loadedUser);
-      setCurrentPin(savedPin);
     }
   }, []);
 
-  const handleLogin = (newUser: User, pin: string, isNewUser: boolean) => {
+  const handleLogin = (newUser: User, token: string, isNewUser: boolean) => {
     setUser(newUser);
-    setCurrentPin(pin);
+    setAuthToken(token);
     localStorage.setItem('sodor_academy_user', JSON.stringify(newUser));
-    localStorage.setItem('sodor_academy_pin', pin);
+    localStorage.setItem('sodor_academy_token', token);
     if (isNewUser) {
       setPlayingVideo(VIDEOS.find(v => v.id === 'welcome') || null);
     }
@@ -1578,23 +1586,22 @@ export default function App() {
 
   const handleGuestLogin = () => {
     setUser(GUEST_USER);
-    setCurrentPin('');
   };
 
   const handleLogout = () => {
     setUser(null);
-    setCurrentPin('');
+    setAuthToken(null);
     localStorage.removeItem('sodor_academy_user');
-    localStorage.removeItem('sodor_academy_pin');
+    localStorage.removeItem('sodor_academy_token');
     setAuthView('login');
   };
 
-  const handleUpdateUser = (updatedUser: User, newPin?: string) => {
+  const handleUpdateUser = (updatedUser: User, newToken?: string) => {
     setUser(updatedUser);
     localStorage.setItem('sodor_academy_user', JSON.stringify(updatedUser));
-    if (newPin) {
-      setCurrentPin(newPin);
-      localStorage.setItem('sodor_academy_pin', newPin);
+    if (newToken) {
+      setAuthToken(newToken);
+      localStorage.setItem('sodor_academy_token', newToken);
     }
   };
   const handleLessonComplete = async (rewardType: string) => {
@@ -1974,6 +1981,39 @@ export default function App() {
                   onComplete={handleLessonComplete}
                   onCancel={() => setActiveExercise(null)}
                 />
+              ) : activeExercise?.component === 'ArithmeticMeanLesson' ? (
+                <ArithmeticMeanLesson 
+                  onCancel={() => setActiveExercise(null)}
+                  onStartExercise={() => {
+                    const exercise = activeSubject.exercises?.find(e => e.id === 'math-mean-exercise');
+                    if (exercise) setActiveExercise(exercise);
+                  }}
+                />
+              ) : activeExercise?.component === 'ArithmeticMeanExercise' ? (
+                <ArithmeticMeanExercise 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'ArithmeticMeanMastery' ? (
+                <ArithmeticMeanMastery 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'ArithmeticMeanWordProblems' ? (
+                <ArithmeticMeanWordProblems 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Mathematics'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'PrismsLesson' ? (
+                <PrismsLesson 
+                  onCancel={() => setActiveExercise(null)}
+                />
               ) : activeExercise?.component === 'FractionAdditionLesson' ? (
                 <FractionAdditionLesson 
                   onCancel={() => setActiveExercise(null)}
@@ -2002,6 +2042,29 @@ export default function App() {
                   onCancel={() => setActiveExercise(null)}
                   onStartExercise={() => {
                     const exercise = activeSubject.exercises?.find(e => e.id === 'sci-force-exercise');
+                    if (exercise) setActiveExercise(exercise);
+                  }}
+                />
+              ) : activeExercise?.component === 'ContinentsLesson' ? (
+                <ContinentsLesson 
+                  onCancel={() => setActiveExercise(null)}
+                  onStartExercise={() => {
+                    const exercise = activeSubject.exercises?.find(e => e.id === 'geo-continents-exercise');
+                    if (exercise) setActiveExercise(exercise);
+                  }}
+                />
+              ) : activeExercise?.component === 'ContinentsExercise' ? (
+                <ContinentsExercise 
+                  grade={user.stats.currentGrade}
+                  questionsCount={user.stats.preferences?.questionsPerSubject?.['Geography'] || 10}
+                  onComplete={handleLessonComplete}
+                  onCancel={() => setActiveExercise(null)}
+                />
+              ) : activeExercise?.component === 'SoundWavesLesson' ? (
+                <SoundWavesLesson 
+                  onCancel={() => setActiveExercise(null)}
+                  onStartExercise={() => {
+                    const exercise = activeSubject.exercises?.find(e => e.id === 'mus-ear-training');
                     if (exercise) setActiveExercise(exercise);
                   }}
                 />
@@ -2201,7 +2264,7 @@ export default function App() {
                   const video = VIDEOS.find(v => v.id === videoId);
                   if (video) setPlayingVideo(video);
                 }}
-                className="w-full py-4 bg-sodor-blue text-white rounded-2xl font-bold shadow-lg shadow-sodor-blue/30 hover:bg-blue-700 transition-all active:scale-95"
+                className="w-full py-4 btn-3d-blue"
               >
                 {VIDEOS.some(v => v.id === showReward) ? 'Watch Now' : 'Add to Collection'}
               </button>

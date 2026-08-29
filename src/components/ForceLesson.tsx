@@ -10,38 +10,38 @@ interface ForceLessonProps {
 
 const STEPS = [
   {
-    title: "What is a Force?",
-    content: "A force is a push or a pull! When Thomas pulls his coaches, or Gordon pushes his trucks, they are using force to move them. Forces can make things speed up, slow down, or even change direction!",
+    title: "Definition of Force",
+    content: "A force is an interaction that, when unopposed, alters the motion of an object. It can cause an object with mass to change its velocity, acceleration, or direction.",
     image: "🚂",
     type: "intro"
   },
   {
     title: "Newton's Second Law",
-    content: "Force (F) = Mass (m) × Acceleration (a). This is the 'Big Idea' of motion! It means the harder you push, the faster you go. But if the load is heavier (more mass), you need even more force to get it moving!",
+    content: "Newton's Second Law of Motion states that force (F) equals mass (m) multiplied by acceleration (a) ($F = ma$). Consequently, greater mass requires proportional force to achieve the same acceleration.",
     image: "https://www.slashbin.net/Physics-for-kids/2nd%20Newton%20Law/2nd%20Newton%20Law%20Thomas.png",
     type: "image"
   },
   {
-    title: "Understanding Gravity",
-    content: "Gravity is a special pulling force! Every object pulls on every other object. The Earth is so big that its gravity pulls everything toward its center. That's what keeps the engines' wheels firmly on the tracks!",
+    title: "Gravitational Interaction",
+    content: "Gravity is a fundamental attractive force acting between all bodies with mass. Earth's gravity accelerates objects toward its center, stabilizing structures and objects on its surface.",
     image: "🌍",
     type: "gravity"
   },
   {
-    title: "The Great Discovery",
-    content: "Did you know? On Earth, heavy things and light things fall at the same speed! Even though gravity pulls harder on heavy things, they are also harder to move. These two things cancel out perfectly!",
+    title: "Equivalence Principle",
+    content: "In a vacuum, all objects undergo identical gravitational acceleration regardless of mass. The greater gravitational force on a more massive object is offset by its greater inertia.",
     image: "⚖️",
     type: "discovery"
   },
   {
-    title: "Gravity on Other Worlds",
-    content: "Gravity depends on mass. On the Moon, which is smaller than Earth, you would feel very light and fall slowly. On Jupiter, the biggest planet, you would feel very heavy and fall very fast!",
+    title: "Varying Gravitational Fields",
+    content: "Gravitational force depends on the mass and radius of the celestial body. Gravitational acceleration is weaker on the Moon and significantly stronger on Jupiter compared to Earth.",
     image: "🌕",
     type: "planets"
   },
   {
-    title: "Extra Exploration",
-    content: "Ready to see gravity in action? Check out these amazing resources from the Science Station to learn even more about forces!",
+    title: "Reference Resources",
+    content: "Consult these scientific resources to further examine the physical properties of force and gravity.",
     links: [
       { name: "Gravity Lab", url: "https://www.slashbin.net/Physics-for-kids/2nd%20Newton%20Law/ground-gravity-lab.html", icon: PlayCircle },
       { name: "Gravity Lesson", url: "https://www.slashbin.net/Physics-for-kids/2nd%20Newton%20Law/gravity-lesson.html", icon: BookOpen },

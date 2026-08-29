@@ -30,3 +30,21 @@
   @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
 }
 
+.btn-3d {
+  @apply transition-all relative font-black uppercase tracking-wider;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+}
+.btn-3d:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 rgba(0,0,0,0.15);
+}
+
+.btn-3d-blue {
+  @apply bg-sodor-blue text-white rounded-2xl hover:bg-blue-700 transition-all relative font-black uppercase tracking-wider;
+  box-shadow: 0 6px 0 #1e3a8a;
+}
+.btn-3d-blue:active {
+  transform: translateY(6px);
+  box-shadow: 0 0 0 #1e3a8a;
+}
+

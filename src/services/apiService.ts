@@ -9,13 +9,31 @@ export interface User {
   stats: UserStats;
   isActive?: boolean;
   isAdmin?: boolean;
+  token?: string;
+}
+
+let currentToken: string | null = null;
+
+export const setAuthToken = (token: string | null) => {
+  currentToken = token;
+};
+
+function getHeaders(extraHeaders: Record<string, string> = {}) {
+  const headers: Record<string, string> = { 
+    'Content-Type': 'application/json',
+    ...extraHeaders
+  };
+  if (currentToken) {
+    headers['Authorization'] = `Bearer ${currentToken}`;
+  }
+  return headers;
 }
 
 export const apiService = {
   async register(name: string, pin: string, email: string): Promise<User> {
     const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ name, pin, email })
     });
     if (!response.ok) {
@@ -30,13 +48,14 @@ export const apiService = {
       throw new Error(errorMsg);
     }
     const data = await response.json();
+    if (data.user?.token) setAuthToken(data.user.token);
     return data.user;
   },
 
   async validateEmail(name: string, email: string, code: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/validate-email`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ name, email, code })
     });
     if (!response.ok) {
@@ -55,7 +74,7 @@ export const apiService = {
   async login(name: string, pin: string): Promise<User> {
     const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ name, pin })
     });
     if (!response.ok) {
@@ -78,13 +97,14 @@ export const apiService = {
       throw err;
     }
     const data = await response.json();
+    if (data.user?.token) setAuthToken(data.user.token);
     return data.user;
   },
 
   async requestRecovery(name: string, email: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/request-recovery`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ name, email })
     });
     if (!response.ok) {
@@ -103,7 +123,7 @@ export const apiService = {
   async resetPin(name: string, email: string, code: string, newPin: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/reset-pin`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ name, email, code, newPin })
     });
     if (!response.ok) {
@@ -122,7 +142,7 @@ export const apiService = {
   async updateProgress(userId: string, stats: UserStats): Promise<void> {
     const response = await fetch(`${BASE_URL}/progress/${userId}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ stats })
     });
     if (!response.ok) {
@@ -133,7 +153,7 @@ export const apiService = {
   async changePin(userId: string, newPin: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/change-pin`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ userId, newPin })
     });
     if (!response.ok) {
@@ -152,7 +172,7 @@ export const apiService = {
   async changeName(userId: string, newName: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/change-name`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ userId, newName })
     });
     if (!response.ok) {
@@ -170,7 +190,8 @@ export const apiService = {
 
   async deleteAccount(userId: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/account/${userId}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: getHeaders()
     });
     if (!response.ok) {
       throw new Error('Failed to delete account');
@@ -182,10 +203,7 @@ export const apiService = {
   async getAdminUsers(adminId: string): Promise<User[]> {
     const response = await fetch(`${BASE_URL}/admin/users`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Admin-ID': adminId
-      }
+      headers: getHeaders({ 'X-Admin-ID': adminId })
     });
     if (!response.ok) {
       let errorMsg = 'Failed to fetch users';
@@ -205,10 +223,7 @@ export const apiService = {
   async deleteUserAsAdmin(adminId: string, targetUserId: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/admin/users/${targetUserId}`, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Admin-ID': adminId
-      }
+      headers: getHeaders({ 'X-Admin-ID': adminId })
     });
     if (!response.ok) {
       let errorMsg = 'Failed to delete user';
@@ -226,10 +241,7 @@ export const apiService = {
   async validateUserAsAdmin(adminId: string, targetUserId: string): Promise<void> {
     const response = await fetch(`${BASE_URL}/admin/users/${targetUserId}/validate`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Admin-ID': adminId
-      }
+      headers: getHeaders({ 'X-Admin-ID': adminId })
     });
     if (!response.ok) {
       let errorMsg = 'Failed to validate user';
@@ -247,7 +259,7 @@ export const apiService = {
   async importData(userData: any): Promise<User> {
     const response = await fetch(`${BASE_URL}/import`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify({ userData })
     });
     if (!response.ok) {
@@ -262,16 +274,11 @@ export const apiService = {
       throw new Error(errorMsg);
     }
     const data = await response.json();
+    if (data.user?.token) setAuthToken(data.user.token);
     return data.user;
   },
 
-  // Helper to get full data for export (since client normally only has stats)
   async getFullData(name: string, pin: string): Promise<any> {
-    // We can reuse login logic to get the full object from server context if needed, 
-    // but the server login returns User which has stats. 
-    // The export should ideally include the PIN to be useful for full restoration.
-    // For simplicity, we'll assume the user object we want to export is the one in the database.
-    // Let's add an endpoint or just use the local state + current pin.
-    return null; // Will be handled in App.tsx by combining local user + known pin
+    return null;
   }
 };

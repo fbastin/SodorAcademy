@@ -5,11 +5,7 @@ export const STORIES: Story[] = [
     id: 'story-1',
     title: 'Thomas and the Missing Whistle',
     thumbnail: '📢',
-    content: `One sunny morning at Tidmouth Sheds, Thomas the Tank Engine woke up feeling very excited. Today was the day of the Great Sodor Parade! But as Thomas prepared to leave, he realized something terrible. His whistle was gone! "Cinders and ashes!" Thomas cried. "I can't lead the parade without my whistle!" 
-
-Thomas looked everywhere. He checked his coal bunker, he looked behind the water tower, and he even asked Percy if he had seen it. "Sorry, Thomas," Percy peeped, "I haven't seen a whistle all morning." Thomas was starting to feel very sad. Just then, he saw Sir Topham Hatt walking towards him. 
-
-"Thomas," said Sir Topham Hatt, "it's time for the parade. Why aren't you ready?" Thomas explained about his missing whistle. Sir Topham Hatt smiled. "Don't worry, Thomas. Look over there by the workbench." Thomas looked, and there it was! The workmen had taken it to be polished so it would shine for the parade. Thomas was so happy. He puffed and huffed, and his whistle blew louder than ever before!`,
+    content: `During preparations for the Great Sodor Parade at Tidmouth Sheds, Thomas discovered his whistle was missing. He expressed frustration, invoking the exclamation 'Cinders and ashes!' He searched the water tower and consulted Percy without success. Sir Topham Hatt subsequently directed Thomas to a workbench, where the whistle had been sent for polishing. Thomas retrieved it and happily led the parade.`,
     questions: [
       { question: "Where did Thomas wake up?", options: ["Knapford Station", "Tidmouth Sheds", "The Docks", "Vicarstown"], correctAnswer: "Tidmouth Sheds" },
       { question: "What special event was happening today?", options: ["A Birthday Party", "The Great Sodor Parade", "A Race", "A Football Match"], correctAnswer: "The Great Sodor Parade" },
@@ -27,11 +23,7 @@ Thomas looked everywhere. He checked his coal bunker, he looked behind the water
     id: 'story-2',
     title: 'Percy and the Giant Pumpkin',
     thumbnail: '🎃',
-    content: `Harvest time had arrived on the Island of Sodor. Percy was busy delivering vegetables to all the villages. At Farmer McColl's farm, there was a pumpkin so large that it needed its own flatbed truck! "Be careful, Percy," warned Farmer McColl. "This pumpkin is very heavy and very slippery."
-
-Percy puffed slowly, making sure to stay on the tracks. But as he climbed Gordon's Hill, the flatbed started to wobble. "Oh no!" cried Percy. The giant pumpkin began to slide. It slid right off the truck and started rolling down the hill! 
-
-It rolled past James, who was resting at the bottom. "Look out!" whistled Percy. The pumpkin rolled through a haystack and ended up right in the middle of the village square. When Percy finally caught up, everyone was laughing. The pumpkin hadn't broken! Instead, it was perfectly placed for the Harvest Festival. Sir Topham Hatt was very pleased. "Well done, Percy," he said. "You've delivered the best decoration we've ever had!"`,
+    content: `During the harvest season on Sodor, Percy was tasked with transporting an exceptionally large, heavy pumpkin from Farmer McColl's farm on a flatbed truck. While ascending Gordon's Hill, the cargo slipped off, rolled down the incline passing James, rolled through a haystack, and stopped in the village square intact. The pumpkin was utilized as a Harvest Festival decoration, satisfying Sir Topham Hatt.`,
     questions: [
       { question: "What time of year was it?", options: ["Winter", "Harvest time", "Spring", "Christmas"], correctAnswer: "Harvest time" },
       { question: "Where did Percy get the pumpkin?", options: ["The Market", "Farmer McColl's farm", "Tidmouth Sheds", "The Docks"], correctAnswer: "Farmer McColl's farm" },
@@ -49,11 +41,7 @@ It rolled past James, who was resting at the bottom. "Look out!" whistled Percy.
     id: 'story-3',
     title: 'Gordon and the High-Speed Record',
     thumbnail: '🚅',
-    content: `Gordon is the fastest engine on Sodor, and he never lets anyone forget it. One Tuesday, Sir Topham Hatt announced a special test. "Gordon, I want to see if you can break the speed record from Knapford to Vicarstown." Gordon was thrilled. "I am the fastest! I am the best!" he boasted to the other engines.
-
-The signals were all set to green. Gordon started his cylinders and puff-puff-puffed away. He was flying! He zoomed past Wellsworth and sped through Maron. But suddenly, he heard a strange clanking sound. "Oh, my boilers!" Gordon groaned. A small part of his valve gear had come loose.
-
-Gordon had to slow down. He didn't break the record, and he felt very embarrassed. Thomas came to help him back to the works. "It's okay, Gordon," said Thomas. "Even the fastest engines need a check-up sometimes." Gordon learned that being the fastest isn't as important as being a really useful engine.`,
+    content: `Gordon, the fastest engine on Sodor, was assigned by Sir Topham Hatt on Tuesday to break the speed record from Knapford to Vicarstown. Operating under green signals, he bypassed Wellsworth and Maron before experiencing loose valve gear accompanied by a clanking sound. Thomas towed Gordon back to the maintenance works, where Gordon acknowledged that being useful is more important than being fast.`,
     questions: [
       { question: "Who is the fastest engine on Sodor?", options: ["Thomas", "Gordon", "James", "Percy"], correctAnswer: "Gordon" },
       { question: "What day was the special test?", options: ["Monday", "Tuesday", "Friday", "Sunday"], correctAnswer: "Tuesday" },
@@ -71,11 +59,7 @@ Gordon had to slow down. He didn't break the record, and he felt very embarrasse
     id: 'story-4',
     title: 'James and the Splendid New Coat',
     thumbnail: '🎨',
-    content: `James loves his red paint. He thinks he is the most splendid engine on the whole railway. One morning, Sir Topham Hatt gave James a special job. "James, you are to take the Mayor of Sodor to the Grand Opening of the new museum. You must look your best!"
-
-James spent two hours getting cleaned and polished. He looked like a shiny ruby! But on the way to the station, James had to pass the coal mines. "I must be careful," James whispered. "I don't want any coal dust on my splendid paint."
-
-Suddenly, a gust of wind blew a big cloud of black dust right over James! "Oh, no! I'm ruined!" James cried. He was covered in black spots. He arrived at the station feeling very sad. But when the Mayor saw him, he smiled. "James! You look like a dalmatian engine! How unique and wonderful!" James realized that even with spots, he was still a very special engine.`,
+    content: `James polished his red paint for two hours until it resembled a shiny ruby to transport the Mayor of Sodor. While passing the coal mines, wind-blown black coal dust coated him in spots, making him feel ruined. The Mayor commended the unique Dalmation-like aesthetic, and James realized he is special even with spots.`,
     questions: [
       { question: "What color is James?", options: ["Blue", "Red", "Green", "Black"], correctAnswer: "Red" },
       { question: "Who was James taking to the museum?", options: ["Sir Topham Hatt", "The Mayor", "Percy", "The Queen"], correctAnswer: "The Mayor" },
@@ -93,11 +77,7 @@ Suddenly, a gust of wind blew a big cloud of black dust right over James! "Oh, n
     id: 'story-5',
     title: 'Toby and the Old Bridge',
     thumbnail: '🌉',
-    content: `Toby is a tram engine. He is wise and very kind. One day, Toby was asked to explore a very old track that hadn't been used in many years. At the end of the track was a wooden bridge. "Be careful, Toby," said his driver. "This bridge looks very shaky."
-
-Toby moved onto the bridge slowly. Creak! Crack! The wood made scary noises under Toby's wheels. Toby stopped. He was right in the middle, and he was afraid. "I can't go forward, and I'm scared to go back!" Toby rang his bell loudly.
-
-Luckily, Henrietta was right behind him. She encouraged him. "You can do it, Toby! Just one small step at a time." Toby took a deep breath and slowly rolled back to safety. Later that week, the workmen came and built a strong new stone bridge. Toby was happy that he had helped them find the old bridge before anyone got hurt.`,
+    content: `Toby, a tram engine, was ordered to inspect an unused track terminating at a shaky wooden bridge. Upon reaching the midpoint, the bridge emitted a creak and crack sound, prompting the afraid Toby to stop. Henrietta, positioned behind Toby, offered encouragement, allowing Toby to reverse safely. A replacement stone bridge was subsequently constructed. Toby was happy with the outcome.`,
     questions: [
       { question: "What kind of engine is Toby?", options: ["Steam engine", "Tram engine", "Diesel engine", "Electric engine"], correctAnswer: "Tram engine" },
       { question: "What was Toby exploring?", options: ["A new station", "An old track", "A tunnel", "A coal mine"], correctAnswer: "An old track" },
@@ -115,11 +95,7 @@ Luckily, Henrietta was right behind him. She encouraged him. "You can do it, Tob
     id: 'story-6',
     title: 'Emily and the New Passengers',
     thumbnail: '👒',
-    content: `Emily is a very helpful engine with a beautiful emerald green coat. One afternoon, the regular passenger train was much busier than usual. "Emily," said Sir Topham Hatt, "we need you to take the extra passengers to the seaside resort. They are visiting from the mainland."
-
-Emily was very proud. She loved meeting new people. She pulled four shiny coaches behind her. On the way, the passengers saw many wonderful things. They saw the windmills, the bluebells in the forest, and the tall mountains. Emily whistled a happy tune as she puffed along.
-
-But then, Emily saw a sheep on the tracks! "Peep! Peep!" Emily whistled. The sheep didn't move. Emily stopped very gently so the passengers wouldn't bump their heads. Emily's driver helped the sheep back into its field. The passengers weren't upset about the delay; they were happy to see the sheep! They arrived at the seaside just in time for sunset.`,
+    content: `Emily, a helpful locomotive with an emerald green coat, was assigned by Sir Topham Hatt to pull four coaches to the seaside resort. During the transit, Emily stopped gently to prevent passengers from bumping their heads when she encountered a sheep on the tracks. Emily whistled a happy tune during the journey, and the passengers were not upset by the delay. They reached the destination at sunset.`,
     questions: [
       { question: "What color is Emily?", options: ["Blue", "Emerald green", "Red", "Green"], correctAnswer: "Emerald green" },
       { question: "Where were the extra passengers going?", options: ["The mountains", "The seaside resort", "The docks", "The farm"], correctAnswer: "The seaside resort" },
@@ -137,11 +113,7 @@ But then, Emily saw a sheep on the tracks! "Peep! Peep!" Emily whistled. The she
     id: 'story-7',
     title: 'Henry and the Forest Fire',
     thumbnail: '🌲',
-    content: `Henry is a big green engine who loves nature. His favorite place on Sodor is the Whispering Woods. One hot summer day, it hadn't rained for a long time. The grass was dry and yellow. Henry was delivering timber when he saw a small wisp of smoke rising from the trees.
-
-"Oh no! A fire!" Henry whistled loudly to warn everyone. The wind was blowing the smoke towards the station. Henry knew he had to act fast. He puffed to the nearest water tower and filled his tanks. Then, he used his steam and the water from his tender to help the firemen dampen the ground around the station.
-
-Soon, the big fire engines arrived and put out the fire. "Well done, Henry," said Sir Topham Hatt. "Your quick thinking saved the station and much of the forest." Henry was very tired, but he was glad his favorite woods were safe. That night, it finally rained, and Henry slept very soundly.`,
+    content: `Henry, a green engine, observed a wisp of smoke in the Whispering Woods during a hot and dry period while delivering timber. He signaled an alarm, collected water from a water tower, and damp-treated the station perimeter to limit fire spread. Fire engines completed the containment, receiving commendations of 'Well done' from Sir Topham Hatt. Subsequent rain that night secured the area.`,
     questions: [
       { question: "What color is Henry?", options: ["Blue", "Green", "Red", "Brown"], correctAnswer: "Green" },
       { question: "What is Henry's favorite place?", options: ["The Docks", "Whispering Woods", "The Station", "Gordon's Hill"], correctAnswer: "Whispering Woods" },
@@ -159,11 +131,7 @@ Soon, the big fire engines arrived and put out the fire. "Well done, Henry," sai
     id: 'story-8',
     title: 'Thomas and the Birthday Surprise',
     thumbnail: '🎂',
-    content: `It was Sir Topham Hatt's birthday, and Thomas wanted to give him the best surprise ever. "I have a plan," Thomas told Percy. "We are going to bring a giant birthday cake from the bakery all the way to Knapford Station."
-
-The cake was huge, with blue icing and a little sugar engine on top. It was very delicate. Thomas moved as smoothly as he could. He didn't want the cake to wobble. But on the way, Thomas saw a group of children by the track. They were waving and cheering. 
-
-Thomas wanted to whistle back, but he knew the noise might startle his driver and cause a bump. He just gave a soft "peep-peep" and kept going. When he arrived at the station, everyone was there. Sir Topham Hatt was so surprised! "Thomas, this is the most delicious-looking cake I've ever seen. Thank you for being such a thoughtful engine." Thomas felt very proud.`,
+    content: `To celebrate Sir Topham Hatt's birthday, Thomas transported a giant birthday cake decorated with blue icing and a sugar engine from the bakery to Knapford Station. To avoid potential disturbances that might cause a bump, Thomas operated at low speed and avoided loud whistles when passing a group of children, who were waving and cheering. Sir Topham Hatt expressed surprise and appreciation, leaving Thomas proud.`,
     questions: [
       { question: "Whose birthday was it?", options: ["Thomas's", "Sir Topham Hatt's", "Percy's", "The Mayor's"], correctAnswer: "Sir Topham Hatt's" },
       { question: "What was the surprise?", options: ["A new engine", "A giant birthday cake", "A party", "A vacation"], correctAnswer: "A giant birthday cake" },
@@ -181,11 +149,7 @@ Thomas wanted to whistle back, but he knew the noise might startle his driver an
     id: 'story-9',
     title: 'Percy and the Troublesome Trucks',
     thumbnail: '🚛',
-    content: `The troublesome trucks are always looking for ways to cause mischief. One day, Percy had to take a long line of them to the Quarry. "We're going to have some fun today!" the trucks giggled. They started to push and pull at Percy's coupling.
-
-"Stop that!" whistled Percy. But the trucks didn't listen. When they reached the bottom of the big hill, the trucks began to sing: "On, on, on! Faster, faster, faster!" They pushed Percy harder and harder. Percy's wheels were spinning.
-
-Suddenly, the trucks pushed too hard, and the last three trucks jumped right off the tracks! "Oh no!" cried Percy. He had to stop the rest of the train. It took a long time to get the trucks back on the line. The trucks were very quiet for the rest of the trip. They realized that their mischief had only made their journey longer. Percy was firm but fair, and he eventually got them all to the Quarry safely.`,
+    content: `Percy was tasked with hauling troublesome trucks to the Quarry. The trucks, prone to mischief, manipulated Percy's coupling and pushed him down a hill while singing 'On, on, on! Faster, faster, faster!'. The excessive force resulted in three trucks derailing, forcing Percy to stop the train. The remaining trucks remained quiet for the remainder of the journey, realizing mischief made the journey longer.`,
     questions: [
       { question: "Who was Percy taking to the Quarry?", options: ["Coaches", "Troublesome trucks", "Timber", "Coal"], correctAnswer: "Troublesome trucks" },
       { question: "What do the trucks like to cause?", options: ["Happiness", "Mischief", "Sleep", "Speed"], correctAnswer: "Mischief" },
@@ -203,11 +167,7 @@ Suddenly, the trucks pushed too hard, and the last three trucks jumped right off
     id: 'story-10',
     title: 'Edward and the Winter Snow',
     thumbnail: '❄️',
-    content: `Edward is the oldest engine on Sodor, and he is very wise. One winter evening, a big snowstorm hit the island. The tracks were covered in thick, white snow. Most of the engines were tucked away in their warm sheds. But the village of Ulfstead was running out of coal for their heaters.
-
-"I will go," said Edward. He was fitted with a large snowplow. It was cold, and the wind was howling. Edward pushed through the deep drifts. Sometimes the snow was so high he could barely see the tracks. But Edward didn't give up. "I must get the coal to the people," he whispered.
-
-He finally reached Ulfstead. The people were so happy to see him! They cheered and rang bells. Edward felt warm inside, even though his metal was very cold. He stayed at the village until the storm passed. Sir Topham Hatt called him a "Heroic Engine." Edward just smiled. He was just happy to be useful.`,
+    content: `During a winter snowstorm, Edward, Sodor's oldest engine, was equipped with a large snowplow to transport coal to Ulfstead. Despite howling winds and deep drifts that compromised visibility, Edward did not give up. The residents cheered and rang bells upon his arrival, and Sir Topham Hatt designated him a 'Heroic Engine'. Edward was happy to be useful.`,
     questions: [
       { question: "Who is the oldest engine on Sodor?", options: ["Thomas", "Edward", "Gordon", "Henry"], correctAnswer: "Edward" },
       { question: "What happened one winter evening?", options: ["A rainstorm", "A snowstorm", "A heatwave", "A hurricane"], correctAnswer: "A snowstorm" },
@@ -219,6 +179,42 @@ He finally reached Ulfstead. The people were so happy to see him! They cheered a
       { question: "How did the people of Ulfstead react?", options: ["They were angry", "They cheered and rang bells", "They were scared", "They didn't notice"], correctAnswer: "They cheered and rang bells" },
       { question: "What did Sir Topham Hatt call Edward?", options: ["An old engine", "A Heroic Engine", "A slow engine", "A blue engine"], correctAnswer: "A Heroic Engine" },
       { question: "Why was Edward happy?", options: ["He got a medal", "He was useful", "He liked the snow", "He was the oldest"], correctAnswer: "He was useful" }
+    ]
+  },
+  {
+    id: 'story-11',
+    title: 'Thomas and the Fog',
+    thumbnail: '🌫️',
+    content: `Dense fog restricted visibility on Sodor, forcing Thomas to travel slowly. Hearing a detonator make a 'Bang' sound warning of danger ahead, Thomas stopped, avoiding a collision with a fallen tree. Sir Topham Hatt was pleased, calling Thomas a really useful engine.`,
+    questions: [
+      { question: "What covered the island one morning?", options: ["Snow", "Rain", "Fog", "Dust"], correctAnswer: "Fog" },
+      { question: "Could Thomas see well?", options: ["Yes", "No", "Only a little", "He used a flashlight"], correctAnswer: "No" },
+      { question: "How did Thomas have to travel?", options: ["Fast", "Slowly", "By flying", "Backward"], correctAnswer: "Slowly" },
+      { question: "What did Thomas listen for?", options: ["Birds", "Music", "Detonators", "Other engines"], correctAnswer: "Detonators" },
+      { question: "What sound did the detonator make?", options: ["Pop", "Bang", "Whistle", "Ding"], correctAnswer: "Bang" },
+      { question: "What did the 'Bang' mean?", options: ["Lunch time", "Danger ahead", "Go faster", "End of the line"], correctAnswer: "Danger ahead" },
+      { question: "What was on the track?", options: ["A cow", "A fallen tree", "A big rock", "A snowman"], correctAnswer: "A fallen tree" },
+      { question: "What would have happened if Thomas didn't stop?", options: ["He would be late", "He might have crashed", "He would find gold", "Nothing"], correctAnswer: "He might have crashed" },
+      { question: "Was Sir Topham Hatt pleased?", options: ["Yes", "No", "He was angry", "He didn't care"], correctAnswer: "Yes" },
+      { question: "What kind of engine was Thomas called?", options: ["Fast engine", "Really useful engine", "Blue engine", "Careful engine"], correctAnswer: "Really useful engine" }
+    ]
+  },
+  {
+    id: 'story-12',
+    title: "Percy's New Friend",
+    thumbnail: '🤝',
+    content: `Percy was working at the Docks when he met Kevin, a yellow mobile crane unit. Despite Kevin's clumsy handling of oranges, Percy bravely demonstrated dockside stabilization protocols. Kevin acquired the skills rapidly, moving crates perfectly by end of day. Kevin liked Sodor and Percy was happy with the new friendship.`,
+    questions: [
+      { question: "Where was Percy working?", options: ["The Quarry", "The Docks", "The Farm", "The Station"], correctAnswer: "The Docks" },
+      { question: "What color was the new engine?", options: ["Red", "Blue", "Yellow", "Green"], correctAnswer: "Yellow" },
+      { question: "What was the name of the new friend?", options: ["Thomas", "Kevin", "Cranky", "Edward"], correctAnswer: "Kevin" },
+      { question: "Was Kevin a normal engine?", options: ["Yes", "No, he was a crane", "No, he was a car", "No, he was a boat"], correctAnswer: "No, he was a crane" },
+      { question: "How did Percy feel when he said hello?", options: ["Scared", "Brave", "Angry", "Sad"], correctAnswer: "Brave" },
+      { question: "What did Kevin nearly drop?", options: ["Coal", "Oranges", "Apples", "Tools"], correctAnswer: "Oranges" },
+      { question: "What did Percy show Kevin?", options: ["The beach", "The Docks", "His shed", "The mountains"], correctAnswer: "The Docks" },
+      { question: "What did Kevin learn to do?", options: ["Fly", "Stay steady", "Whistle loudly", "Paint himself red"], correctAnswer: "Stay steady" },
+      { question: "How was Kevin moving crates at the end of the day?", options: ["Badly", "Perfectly", "Slowly", "He wasn't"], correctAnswer: "Perfectly" },
+      { question: "Did Kevin like Sodor?", options: ["Yes", "No", "He wanted to leave", "He didn't say"], correctAnswer: "Yes" }
     ]
   }
 ];

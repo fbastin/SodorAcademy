@@ -10,40 +10,40 @@ interface FractionAdditionLessonProps {
 
 const STEPS = [
   {
-    title: "What is a Fraction?",
-    content: "A fraction tells us how many parts of a whole we have. Imagine a mail truck that can hold 4 crates. If Percy is carrying 1 crate, he has 1/4 of a full load!",
+    title: "Concept of Fractions",
+    content: "A fraction represents a numerical value that is a part of a whole, indicating the ratio of equal parts relative to the total quantity.",
     image: "📦",
     example: { n: 1, d: 4 }
   },
   {
-    title: "The Numerator & Denominator",
-    content: "The top number (Numerator) is how many parts we HAVE. The bottom number (Denominator) is how many parts make a WHOLE.",
+    title: "Numerator & Denominator",
+    content: "The numerator (top) indicates the quantity of parts possessed. The denominator (bottom) specifies the total number of parts that constitute a whole.",
     image: "🚂",
     example: { n: 3, d: 8 }
   },
   {
-    title: "Case 1: Same Denominators",
-    content: "When denominators are the same, the parts are already the same size! Just add the Numerators together. The Denominator stays the same because the size of the parts hasn't changed.",
+    title: "Addition with Equal Denominators",
+    content: "When denominators are equal, sum the numerators directly. The denominator remains unchanged as the base partition size is identical.",
     image: "✉️",
     equation: { n1: 1, d1: 4, n2: 2, d2: 4, rn: 3, rd: 4 }
   },
   {
-    title: "Case 2: Different Denominators",
-    content: "If the parts are different sizes (like 1/2 and 1/4), we can't add them directly. We must find a way to make the parts the same size first!",
+    title: "Addition with Unequal Denominators",
+    content: "If denominators differ, the fractions cannot be summed directly. They must be converted to equivalent fractions with a common denominator first.",
     image: "🛤️",
     equation: { n1: 1, d1: 2, n2: 1, d2: 4, rn: '?', rd: '?' }
   },
   {
-    title: "Smallest Common Multiplier",
-    content: "To make the denominators the same, we find the Smallest Common Multiplier (LCM). This is the smallest number that both denominators can divide into perfectly.",
+    title: "Least Common Multiple (LCM)",
+    content: "To establish a common denominator, identify the Least Common Multiple (LCM) of the denominators, which is the smallest integer divisible by both.",
     image: "🔍",
-    equation: { n1: '1', d1: 2, n2: '1', d2: 4, hint: "For 2 and 4, the smallest multiplier is 4!" }
+    equation: { n1: '1', d1: 2, n2: '1', d2: 4, hint: "For 2 and 4, the LCM is 4." }
   },
   {
-    title: "Making Parts the Same Size",
-    content: "Once we have the LCM, we convert the fractions. Since 4 is our LCM, we turn 1/2 into 2/4. Now both fractions have 4 as the denominator!",
+    title: "Conversion and Summation",
+    content: "Convert the fractions using the LCM. For example, 1/2 becomes 2/4. Since the denominators are now identical, sum the numerators.",
     image: "⚙️",
-    equation: { n1: 2, d1: 4, n2: 1, d2: 4, rn: 3, rd: 4, hint: "Now we can just add the numerators!" }
+    equation: { n1: 2, d1: 4, n2: 1, d2: 4, rn: 3, rd: 4, hint: "Perform direct summation of the numerators." }
   }
 ];
 

@@ -8,7 +8,7 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         text: 'Thomas needs to deliver 5 trucks of coal to Knapford and 3 trucks to Wellsworth. How many trucks is he pulling in total?',
         options: ['7', '8', '9', '10'],
         correctAnswer: '8',
-        explanation: '5 + 3 = 8 trucks in total!',
+        explanation: '5 + 3 = 8.',
         rewardType: 'engine'
       },
       {
@@ -16,8 +16,32 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         text: 'Percy started with 10 mail bags. He dropped off 4 at Ffarquhar. How many mail bags does he have left?',
         options: ['4', '5', '6', '7'],
         correctAnswer: '6',
-        explanation: '10 - 4 = 6 mail bags left for Percy!',
+        explanation: '10 - 4 = 6.',
         rewardType: 'badge'
+      },
+      {
+        id: 'math-p-3',
+        text: 'James has 12 coaches. If he leaves 5 at the platform, how many coaches is he pulling now?',
+        options: ['5', '6', '7', '8'],
+        correctAnswer: '7',
+        explanation: '12 - 5 = 7.',
+        rewardType: 'coin'
+      },
+      {
+        id: 'math-p-4',
+        text: 'There are 4 engines in Tidmouth Sheds and 3 engines at Knapford Station. How many engines are there altogether?',
+        options: ['6', '7', '8', '9'],
+        correctAnswer: '7',
+        explanation: '4 + 3 = 7.',
+        rewardType: 'badge'
+      },
+      {
+        id: 'math-p-5',
+        text: 'Annie has 8 seats and Clarabel has 8 seats. How many seats do Thomas\'s coaches have in total?',
+        options: ['12', '14', '16', '18'],
+        correctAnswer: '16',
+        explanation: '8 + 8 = 16.',
+        rewardType: 'engine'
       }
     ],
     'Secondary': [
@@ -28,12 +52,70 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         correctAnswer: '45 miles',
         explanation: 'At 60 mph, he travels 1 mile per minute. So in 45 minutes, he travels 45 miles.',
         rewardType: 'engine'
+      },
+      {
+        id: 'math-s-2',
+        text: 'A train ticket costs £15. If there is a 20% discount for children, how much does a child ticket cost?',
+        options: ['£10', '£12', '£13', '£14'],
+        correctAnswer: '£12',
+        explanation: '20% of £15 is £3. £15 - £3 = £12.',
+        rewardType: 'badge'
+      },
+      {
+        id: 'math-s-3',
+        text: 'Henry\'s tender holds 5000 gallons of water. If he uses 250 gallons every 10 miles, how many miles can he travel before he is empty?',
+        options: ['100 miles', '150 miles', '200 miles', '250 miles'],
+        correctAnswer: '200 miles',
+        explanation: '5000 / 250 = 20 segments of 10 miles each. 20 * 10 = 200 miles.',
+        rewardType: 'coin'
       }
     ]
   },
   'English': {
-    'Primary': [],
-    'Secondary': []
+    'Primary': [
+      {
+        id: 'eng-p-1',
+        text: 'Which of these is a naming word (noun)?',
+        options: ['Puff', 'Thomas', 'Fast', 'Quickly'],
+        correctAnswer: 'Thomas',
+        explanation: 'Thomas is a proper noun.',
+        rewardType: 'badge'
+      },
+      {
+        id: 'eng-p-2',
+        text: 'What is the opposite of "fast"?',
+        options: ['Quick', 'Slow', 'Shiny', 'Red'],
+        correctAnswer: 'Slow',
+        explanation: 'The antonym of fast is slow.',
+        rewardType: 'coin'
+      },
+      {
+        id: 'eng-p-3',
+        text: 'Which word describes James\'s paint?',
+        options: ['Splendid', 'He', 'Runs', 'And'],
+        correctAnswer: 'Splendid',
+        explanation: 'Splendid is an adjective.',
+        rewardType: 'engine'
+      }
+    ],
+    'Secondary': [
+      {
+        id: 'eng-s-1',
+        text: 'In the sentence "Gordon boasted about his speed," what is the verb?',
+        options: ['Gordon', 'Boasted', 'About', 'Speed'],
+        correctAnswer: 'Boasted',
+        explanation: 'Boasted functions as the verb.',
+        rewardType: 'badge'
+      },
+      {
+        id: 'eng-s-2',
+        text: 'Which of these is a synonym for "industrious"?',
+        options: ['Lazy', 'Hard-working', 'Fast', 'Shiny'],
+        correctAnswer: 'Hard-working',
+        explanation: 'Industrious is synonymous with hard-working.',
+        rewardType: 'coin'
+      }
+    ]
   },
   'Science': {
     'Primary': [
@@ -368,8 +450,40 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         text: 'Where do the engines sleep at night?',
         options: ['The Airport', 'Tidmouth Sheds', 'The Docks', 'The Library'],
         correctAnswer: 'Tidmouth Sheds',
-        explanation: 'Tidmouth Sheds is the famous home where Thomas and his friends rest.',
+        explanation: 'Tidmouth Sheds serves as the primary terminal and residence.',
         rewardType: 'badge'
+      },
+      {
+        id: 'geo-p-2',
+        text: 'Where do the big ships bring goods to Sodor?',
+        options: ['Brendam Docks', 'Blue Mountain', 'The Farm', 'The Woods'],
+        correctAnswer: 'Brendam Docks',
+        explanation: 'Brendam Docks is the shipping port where Cranky operates.',
+        rewardType: 'coin'
+      },
+      {
+        id: 'geo-p-3',
+        text: 'Which of these is a body of water surrounding Sodor?',
+        options: ['The Irish Sea', 'The Sahara Desert', 'The Amazon River', 'The Moon'],
+        correctAnswer: 'The Irish Sea',
+        explanation: 'Sodor is situated within the Irish Sea.',
+        rewardType: 'engine'
+      },
+      {
+        id: 'geo-p-4',
+        text: 'How many continents are there in the world?',
+        options: ['5', '6', '7', '8'],
+        correctAnswer: '7',
+        explanation: 'Earth comprises 7 distinct continents.',
+        rewardType: 'badge'
+      },
+      {
+        id: 'geo-p-5',
+        text: 'Which continent is the coldest and covered in ice?',
+        options: ['Asia', 'Africa', 'Antarctica', 'Australia'],
+        correctAnswer: 'Antarctica',
+        explanation: 'Antarctica occupies the South Pole and features sub-zero temperatures.',
+        rewardType: 'coin'
       }
     ],
     'Secondary': [
@@ -380,6 +494,30 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         correctAnswer: 'The Blue Mountain Quarry',
         explanation: 'The Blue Mountain Quarry is a key location on the Isle of Sodor.',
         rewardType: 'coin'
+      },
+      {
+        id: 'geo-s-2',
+        text: 'What is the name of the main railway on Sodor?',
+        options: ['North Western Railway', 'Great Western Railway', 'Southern Railway', 'London Underground'],
+        correctAnswer: 'North Western Railway',
+        explanation: 'The North Western Railway is the main railway system on Sodor.',
+        rewardType: 'badge'
+      },
+      {
+        id: 'geo-s-3',
+        text: 'Which is the largest continent by land area?',
+        options: ['Africa', 'Asia', 'North America', 'Europe'],
+        correctAnswer: 'Asia',
+        explanation: 'Asia is the largest continent, covering about 30% of Earth\'s land area.',
+        rewardType: 'engine'
+      },
+      {
+        id: 'geo-s-4',
+        text: 'In which continent would you find the Amazon Rainforest?',
+        options: ['Africa', 'Asia', 'South America', 'Australia'],
+        correctAnswer: 'South America',
+        explanation: 'The Amazon Rainforest is located in South America.',
+        rewardType: 'badge'
       }
     ]
   },
@@ -390,8 +528,16 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         text: 'Who is the famous gentleman that runs the North Western Railway?',
         options: ['Sir Topham Hatt', 'Captain Hook', 'Santa Claus', 'The Mayor'],
         correctAnswer: 'Sir Topham Hatt',
-        explanation: 'Sir Topham Hatt (The Fat Controller) has run the railway for many years.',
+        explanation: 'Sir Topham Hatt directs railway operations.',
         rewardType: 'video'
+      },
+      {
+        id: 'his-p-2',
+        text: 'Which engine was the very first one to arrive on Sodor?',
+        options: ['Thomas', 'Edward', 'Gordon', 'James'],
+        correctAnswer: 'Edward',
+        explanation: 'Edward preceded Thomas on the island.',
+        rewardType: 'badge'
       }
     ],
     'Secondary': [
@@ -400,8 +546,16 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         text: 'Which engine is known as the "Emerald Engine" and is very old?',
         options: ['Thomas', 'Emily', 'Edward', 'Henry'],
         correctAnswer: 'Emily',
-        explanation: 'Emily is based on a Stirling Single locomotive, a very elegant and historic design.',
+        explanation: 'Emily is modeled on the Stirling Single locomotive class.',
         rewardType: 'engine'
+      },
+      {
+        id: 'his-s-2',
+        text: 'Who was the author of the original "Railway Series" books?',
+        options: ['Rev. W. Awdry', 'Roald Dahl', 'J.K. Rowling', 'Enid Blyton'],
+        correctAnswer: 'Rev. W. Awdry',
+        explanation: 'The Reverend Wilbert Awdry authored the Railway Series.',
+        rewardType: 'badge'
       }
     ]
   },
@@ -412,8 +566,16 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         text: 'What sound does Thomas make to say hello?',
         options: ['Moo!', 'Peep Peep!', 'Roar!', 'Quack!'],
         correctAnswer: 'Peep Peep!',
-        explanation: 'Thomas uses his whistle to go "Peep Peep!"',
+        explanation: 'Thomas signals using his whistle.',
         rewardType: 'coin'
+      },
+      {
+        id: 'mus-p-2',
+        text: 'How many beats are in a "Peep Peep" sound?',
+        options: ['1', '2', '3', '4'],
+        correctAnswer: '2',
+        explanation: 'The signal consists of two acoustic units.',
+        rewardType: 'badge'
       }
     ],
     'Secondary': [
@@ -422,8 +584,16 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
         text: 'If the engines whistle in a rhythm: Peep, Peep-Peep, Peep... how many whistles were there?',
         options: ['2', '3', '4', '5'],
         correctAnswer: '4',
-        explanation: '1 (Peep) + 2 (Peep-Peep) + 1 (Peep) = 4 whistles.',
+        explanation: '1 + 2 + 1 = 4.',
         rewardType: 'badge'
+      },
+      {
+        id: 'mus-s-2',
+        text: 'Which of these instruments sounds most like an engine\'s whistle?',
+        options: ['Drum', 'Flute', 'Piano', 'Guitar'],
+        correctAnswer: 'Flute',
+        explanation: 'A flute and a steam whistle are both wind instruments.',
+        rewardType: 'coin'
       }
     ]
   }

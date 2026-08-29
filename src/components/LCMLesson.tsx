@@ -10,14 +10,14 @@ interface LCMLessonProps {
 
 const STEPS = [
   {
-    title: "What is a Multiple?",
-    content: "A multiple is what you get when you multiply a number by 1, 2, 3, and so on. It's like counting by that number!",
+    title: "Definition of a Multiple",
+    content: "A multiple of a number is the product of that number and any integer.",
     image: "🚂",
     list: { number: 3, values: [3, 6, 9, 12, 15] }
   },
   {
-    title: "Listing Multiples",
-    content: "To find the Smallest Common Multiplier (LCM), start by listing the multiples for BOTH numbers.",
+    title: "Generating Sequences",
+    content: "To find the Least Common Multiple (LCM), list the positive multiples for both integers in ascending order.",
     image: "🗒️",
     dualList: { 
       n1: 4, v1: [4, 8, 12, 16, 20],
@@ -25,8 +25,8 @@ const STEPS = [
     }
   },
   {
-    title: "Finding Common Multiples",
-    content: "Now, look for numbers that appear in BOTH lists. These are called Common Multiples. They are stations where both engines stop!",
+    title: "Identifying Common Multiples",
+    content: "Identify numbers that appear in both sequences. These are common multiples, indicating shared products of the two integers.",
     image: "🔍",
     comparison: {
       n1: 4, v1: [4, 8, 12, 16, 20, 24],
@@ -35,8 +35,8 @@ const STEPS = [
     }
   },
   {
-    title: "The Smallest One (LCM)",
-    content: "The Smallest Common Multiplier is simply the SMALLEST number that is in both lists. In our example, 12 is the LCM of 4 and 6!",
+    title: "Least Common Multiple (LCM)",
+    content: "The Least Common Multiple is the smallest positive integer that is divisible by both numbers. Here, 12 is the LCM of 4 and 6.",
     image: "🏆",
     result: { n1: 4, n2: 6, lcm: 12 }
   }

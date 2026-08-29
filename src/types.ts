@@ -122,13 +122,18 @@ export const SUBJECTS: Subject[] = [
     x: 24,
     y: 65,
     exercises: [
+      { id: 'math-mean-lesson', name: 'Arithmetic Mean Lesson', description: 'Learn how to calculate averages with Gordon!', type: 'lesson', component: 'ArithmeticMeanLesson' },
+      { id: 'math-mean-mastery', name: 'Arithmetic Mean Mastery', description: 'Master averages with a variable number of trucks!', type: 'custom', component: 'ArithmeticMeanMastery' },
+      { id: 'math-mean-word-problems', name: 'Average Adventures', description: 'Solve advanced textual problems about averages!', type: 'custom', component: 'ArithmeticMeanWordProblems' },
+      { id: 'math-mean-exercise', name: 'Arithmetic Mean (Simple)', description: 'Quick average practice for beginners.', type: 'custom', component: 'ArithmeticMeanExercise' },
       { id: 'math-fractions-add-lesson', name: 'Adding Fractions Lesson', description: 'Learn how to add fractions with Percy!', type: 'lesson', component: 'FractionAdditionLesson' },
       { id: 'math-lcm-lesson', name: 'Least Common Multiple Lesson', description: 'Master the smallest common multiplier with Thomas!', type: 'lesson', component: 'LCMLesson' },
       { id: 'math-fractions-mult', name: 'Fraction Multiplication', description: 'Help Thomas multiply fractions!', type: 'custom', component: 'FractionMultiplication' },
       { id: 'math-fractions-add', name: 'Fraction Addition', description: 'Help Percy add fraction loads!', type: 'custom', component: 'FractionAddition' },
       { id: 'math-fractions-simple', name: 'Simple Fraction Addition', description: 'Add fractions with the same denominator!', type: 'custom', component: 'SimpleFractionAddition' },
       { id: 'math-fraction-int', name: 'Fraction & Integer Addition', description: 'Help Gordon add integers and fractions!', type: 'custom', component: 'FractionIntegerAddition' },
-      { id: 'math-lcm', name: 'LCM Challenge', description: 'Find the smallest common multiplier for the engines!', type: 'custom', component: 'LCMExercise' }
+      { id: 'math-lcm', name: 'LCM Challenge', description: 'Find the smallest common multiplier for the engines!', type: 'custom', component: 'LCMExercise' },
+      { id: 'math-prisms-lesson', name: 'Discovering Prisms & Pyramids', description: 'Learn about 3D shapes with Thomas!', type: 'lesson', component: 'PrismsLesson' }
     ]
   },
   {
@@ -181,6 +186,8 @@ export const SUBJECTS: Subject[] = [
     x: 52,
     y: 28,
     exercises: [
+      { id: 'geo-continents-lesson', name: '7 Continents Lesson', description: 'Explore the massive lands of our world!', type: 'lesson', component: 'ContinentsLesson' },
+      { id: 'geo-continents-exercise', name: 'Continents Challenge', description: 'Can you identify all the continents?', type: 'custom', component: 'ContinentsExercise' },
       { id: 'geo-quiz', name: 'Peel Godred Quiz', description: 'Master the map of Sodor!', type: 'quiz' }
     ]
   },
@@ -194,6 +201,7 @@ export const SUBJECTS: Subject[] = [
     x: 72,
     y: 48,
     exercises: [
+      { id: 'mus-waves-lesson', name: 'Sound Waves & Frequencies Lesson', description: 'Learn about frequencies, amplitude, and waveforms!', type: 'lesson', component: 'SoundWavesLesson' },
       { id: 'mus-ear-training', name: 'Ear Training', description: 'Listen carefully and identify the sequence of three notes!', type: 'custom', component: 'PianoSequence' },
       { id: 'mus-piano', name: 'Piano Practice', description: 'Play your favorite songs on the 88-key piano!', type: 'custom', component: 'Piano' }
     ]
