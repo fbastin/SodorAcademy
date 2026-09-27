@@ -7,6 +7,7 @@ import { speak } from './services/speechService';
 import { generateQuestion } from './services/questionService';
 import { apiService, User, setAuthToken } from './services/apiService';
 import SodorMap from './components/SodorMap';
+import Modal from './components/Modal';
 import FractionMultiplication from './components/FractionMultiplication';
 import FractionAddition from './components/FractionAddition';
 import SimpleFractionAddition from './components/SimpleFractionAddition';
@@ -32,7 +33,7 @@ import { MusicScore } from './types';
 
 // --- Components ---
 
-const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmin, onOpenTopics }: { 
+const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmin, onOpenTopics, onHome }: { 
   stats: UserStats; 
   userName: string; 
   isAdmin?: boolean;
@@ -40,51 +41,62 @@ const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmi
   onOpenSettings: () => void;
   onOpenAdmin: () => void;
   onOpenTopics: () => void;
+  onHome: () => void;
 }) => (
-  <nav className="h-16 border-b bg-white flex items-center justify-between px-6 sticky top-0 z-50">
-    <div className="flex items-center gap-2">
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onOpenTopics}
-        className="w-10 h-10 bg-sodor-blue rounded-lg flex items-center justify-center text-white shadow-lg relative overflow-hidden group"
-      >
-        <motion.div
+  <nav className="h-16 border-b bg-white/95 backdrop-blur flex items-center justify-between gap-2 px-3 sm:px-6 sticky top-0 z-50">
+    <button
+      onClick={onHome}
+      className="flex items-center gap-2 shrink-0 rounded-xl"
+      title="Back to the Sodor map"
+      aria-label="Sodor Academy home"
+    >
+      <span className="w-10 h-10 bg-sodor-blue rounded-lg flex items-center justify-center text-white shadow-lg relative overflow-hidden">
+        <motion.span
           animate={{ y: [-5, -15], x: [0, 5], opacity: [0, 1, 0] }}
           transition={{ repeat: Infinity, duration: 1, ease: "easeOut" }}
           className="absolute top-1 right-2 w-1.5 h-1.5 bg-white/40 rounded-full blur-[1px]"
         />
-        <motion.div
+        <motion.span
           animate={{ y: [-2, -10], x: [0, -3], opacity: [0, 1, 0] }}
           transition={{ repeat: Infinity, duration: 1.2, ease: "easeOut", delay: 0.3 }}
           className="absolute top-2 right-3 w-1 h-1 bg-white/30 rounded-full blur-[1px]"
         />
         <Train size={24} className="relative z-10" />
-      </motion.button>
-      <span className="font-extrabold text-xl tracking-tight text-sodor-blue uppercase hidden md:inline">Sodor Academy</span>
-    </div>
+      </span>
+      <span className="font-extrabold text-xl tracking-tight text-sodor-blue uppercase hidden lg:inline">Sodor Academy</span>
+    </button>
+
+    <button
+      onClick={onOpenTopics}
+      className="flex-1 max-w-xs flex items-center gap-2 px-3 sm:px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-500 text-sm font-bold transition-colors min-w-0"
+      title="Find a lesson or adventure"
+    >
+      <Search size={16} className="shrink-0" />
+      <span className="truncate"><span className="sm:hidden">Search</span><span className="hidden sm:inline">Find a lesson…</span></span>
+    </button>
     
-    <div className="flex items-center gap-4">
-      <div className="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
-        <UserIcon size={16} className="text-slate-500" />
-        <span className="font-bold text-slate-700 text-sm">{userName}</span>
+    <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+      <div className="hidden md:flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 max-w-[12rem]">
+        <UserIcon size={16} className="text-slate-500 shrink-0" />
+        <span className="font-bold text-slate-700 text-sm truncate">{userName}</span>
       </div>
-      <div className="flex items-center gap-2 bg-sodor-gold/10 px-3 py-1.5 rounded-full border border-sodor-gold/20">
+      <div className="flex items-center gap-1.5 bg-sodor-gold/10 px-2.5 sm:px-3 py-1.5 rounded-full border border-sodor-gold/20" title="Points">
         <Star size={18} className="text-sodor-gold fill-sodor-gold" />
-        <span className="font-bold text-sodor-gold">{stats.score}</span>
+        <span className="font-bold text-amber-600">{stats.score}</span>
       </div>
-      <div className="flex items-center gap-2 bg-sodor-blue/10 px-3 py-1.5 rounded-full border border-sodor-blue/20">
+      <div className="flex items-center gap-1.5 bg-sodor-blue/10 px-2.5 sm:px-3 py-1.5 rounded-full border border-sodor-blue/20" title="Engines collected">
         <Trophy size={18} className="text-sodor-blue" />
         <span className="font-bold text-sodor-blue">{stats.enginesCollected.length}</span>
       </div>
       
-      <div className="h-8 w-[1px] bg-slate-200 mx-1" />
+      <div className="h-8 w-[1px] bg-slate-200 mx-0.5 hidden sm:block" />
       
       {isAdmin && (
         <button 
           onClick={onOpenAdmin}
-          className="p-2 text-sodor-blue hover:scale-110 transition-all"
+          className="p-2 text-sodor-blue hover:bg-slate-100 rounded-full transition-all"
           title="Admin Panel"
+          aria-label="Admin Panel"
         >
           <Shield size={20} />
         </button>
@@ -92,15 +104,17 @@ const Navbar = ({ stats, userName, isAdmin, onLogout, onOpenSettings, onOpenAdmi
 
       <button 
         onClick={onOpenSettings}
-        className="p-2 text-slate-400 hover:text-sodor-blue transition-colors"
+        className="p-2 text-slate-400 hover:text-sodor-blue hover:bg-slate-100 rounded-full transition-colors"
         title="Settings"
+        aria-label="Settings"
       >
         <Settings size={20} />
       </button>
       <button 
         onClick={onLogout}
-        className="p-2 text-slate-400 hover:text-red-500 transition-colors"
+        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors hidden sm:block"
         title="Logout"
+        aria-label="Logout"
       >
         <LogOut size={20} />
       </button>
@@ -516,25 +530,9 @@ const TopicsModal = ({ onClose, onSelectTopic }: {
   });
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
-    >
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        className="bg-white rounded-[40px] p-8 md:p-10 max-w-2xl w-full max-h-[85vh] shadow-2xl relative overflow-hidden flex flex-col"
-      >
-        <button 
-          onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
-        >
-          <X size={24} />
-        </button>
+    <Modal title="Academy Topics" onClose={onClose} className="max-w-2xl">
 
-        <h2 className="text-3xl font-black mb-6 text-slate-900 flex items-center gap-3 shrink-0">
+        <h2 className="text-2xl sm:text-3xl font-black mb-6 text-slate-900 flex items-center gap-3 shrink-0 pr-10">
           <Search className="text-sodor-blue" />
           Academy Topics
         </h2>
@@ -611,8 +609,7 @@ const TopicsModal = ({ onClose, onSelectTopic }: {
             </div>
           )}
         </div>
-      </motion.div>
-    </motion.div>
+    </Modal>
   );
 };
 const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: { 
@@ -692,25 +689,9 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
-    >
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        className="bg-white rounded-[40px] p-8 md:p-10 max-w-lg w-full max-h-[90vh] shadow-2xl relative overflow-hidden flex flex-col"
-      >
-        <button 
-          onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
-        >
-          <X size={24} />
-        </button>
+    <Modal title="Account Settings" onClose={onClose} className="max-w-lg">
 
-        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3 shrink-0">
+        <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8 text-slate-900 flex items-center gap-3 shrink-0 pr-10">
           <Settings className="text-sodor-blue" />
           Account Settings
         </h2>
@@ -834,13 +815,22 @@ const SettingsModal = ({ user, pin, onClose, onUpdateUser, onLogout }: {
           )}
 
           {message.text && (
-            <p className={`text-center font-bold text-sm ${message.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+            <p role="status" className={`text-center font-bold text-sm ${message.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
               {message.text}
             </p>
           )}
+
+          {user.id !== 'guest' && (
+            <button
+              onClick={onLogout}
+              className="w-full flex items-center justify-center gap-2 py-3 bg-slate-100 text-slate-600 rounded-xl font-bold text-sm hover:bg-slate-200 transition-all"
+            >
+              <LogOut size={18} />
+              Log Out
+            </button>
+          )}
         </div>
-      </motion.div>
-    </motion.div>
+    </Modal>
   );
 };
 
@@ -877,25 +867,9 @@ const LessonPreferencesModal = ({ user, onClose, onUpdateUser }: {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
-    >
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        className="bg-white rounded-[40px] p-8 md:p-10 max-w-lg w-full max-h-[90vh] shadow-2xl relative overflow-hidden flex flex-col"
-      >
-        <button 
-          onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
-        >
-          <X size={24} />
-        </button>
+    <Modal title="Lesson Preferences" onClose={onClose} className="max-w-lg">
 
-        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3 shrink-0">
+        <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8 text-slate-900 flex items-center gap-3 shrink-0 pr-10">
           <Compass className="text-sodor-gold" />
           Lesson Preferences
         </h2>
@@ -941,8 +915,7 @@ const LessonPreferencesModal = ({ user, onClose, onUpdateUser }: {
             </p>
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+    </Modal>
   );
 };
 
@@ -990,25 +963,9 @@ const AdminModal = ({ adminId, onClose }: { adminId: string; onClose: () => void
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
-    >
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        className="bg-white rounded-[40px] p-8 md:p-10 max-w-4xl w-full shadow-2xl relative overflow-hidden flex flex-col max-h-[90vh]"
-      >
-        <button 
-          onClick={onClose}
-          className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors"
-        >
-          <X size={24} />
-        </button>
+    <Modal title="Admin Control Panel" onClose={onClose} className="max-w-4xl">
 
-        <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3">
+        <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8 text-slate-900 flex items-center gap-3 pr-10">
           <Shield className="text-sodor-blue" />
           Admin Control Panel
         </h2>
@@ -1086,34 +1043,50 @@ const AdminModal = ({ adminId, onClose }: { adminId: string; onClose: () => void
             </table>
           </div>
         )}
-      </motion.div>
-    </motion.div>
+    </Modal>
   );
 };
 
-const VideoModal = ({ video, onClose }: { video: Video; onClose: () => void }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    className="fixed inset-0 z-[150] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8"
-  >
-    <div className="relative max-w-5xl w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl">
-      <button 
-        onClick={onClose}
-        className="absolute top-4 right-4 z-[160] p-2 bg-white/20 hover:bg-white/40 rounded-full text-white transition-colors"
+const VideoModal = ({ video, onClose }: { video: Video; onClose: () => void }) => {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      className="fixed inset-0 z-[150] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-8"
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={video.title}
+        onClick={(e) => e.stopPropagation()}
+        className="relative max-w-5xl w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl"
       >
-        <X size={24} />
-      </button>
-      <video 
-        src={`/SodorAcademy/media/${video.filename}`}
-        controls
-        autoPlay
-        className="w-full h-full"
-      />
-    </div>
-  </motion.div>
-);
+        <button
+          onClick={onClose}
+          aria-label="Close video"
+          title="Close (Esc)"
+          className="absolute top-4 right-4 z-[160] p-2 bg-white/20 hover:bg-white/40 rounded-full text-white transition-colors"
+        >
+          <X size={24} />
+        </button>
+        <video
+          src={`/SodorAcademy/media/${video.filename}`}
+          controls
+          autoPlay
+          className="w-full h-full"
+        />
+      </div>
+    </motion.div>
+  );
+};
 
 
 const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCancel }: { 
@@ -1309,13 +1282,19 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
   const exercises = subject.exercises?.filter(e => e.type !== 'lesson') || [];
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="text-center mb-12">
-        <div className={`w-20 h-20 ${subject.color} rounded-3xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg`}>
+    <div className="max-w-4xl mx-auto py-2 sm:py-6 px-1 sm:px-6">
+      <button
+        onClick={onCancel}
+        className="mb-6 px-4 py-2 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-white font-bold text-sm transition-colors"
+      >
+        ← All stations
+      </button>
+      <div className="text-center mb-10 sm:mb-12">
+        <div className={`w-16 h-16 sm:w-20 sm:h-20 ${subject.color} rounded-3xl flex items-center justify-center text-white mx-auto mb-5 shadow-lg`}>
           <subject.icon size={40} />
         </div>
-        <h2 className="text-4xl font-black text-slate-900 mb-4">{subject.name} Station</h2>
-        <p className="text-lg text-slate-500 font-medium">Start a lesson or join an adventure at {subject.station}!</p>
+        <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3">{subject.name} Station</h2>
+        <p className="text-base sm:text-lg text-slate-600 font-medium">Start a lesson or join an adventure at {subject.station}!</p>
       </div>
 
       {lessons.length > 0 && (
@@ -1330,7 +1309,7 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
                 key={exercise.id}
                 whileHover={{ y: -5, scale: 1.02 }}
                 onClick={() => onSelectExercise(exercise)}
-                className="bg-white p-8 rounded-[32px] border-2 border-blue-100 shadow-xl text-left group transition-all hover:border-blue-400/20"
+                className="bg-white p-5 sm:p-7 rounded-[28px] border-2 border-blue-100 shadow-lg text-left group transition-all hover:border-blue-300"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
@@ -1338,7 +1317,7 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
                   </div>
                   <ArrowRight className="text-slate-300 group-hover:text-blue-600 transition-colors" size={24} />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900 mb-2">{exercise.name}</h3>
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-1.5">{exercise.name}</h3>
                 <p className="text-slate-500 font-medium text-sm leading-relaxed">{exercise.description}</p>
               </motion.button>
             ))}
@@ -1357,7 +1336,7 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
               key={exercise.id}
               whileHover={{ y: -5, scale: 1.02 }}
               onClick={() => onSelectExercise(exercise)}
-              className="bg-white p-8 rounded-[32px] border-2 border-slate-100 shadow-xl text-left group transition-all hover:border-sodor-blue/20"
+              className="bg-white p-5 sm:p-7 rounded-[28px] border-2 border-slate-100 shadow-lg text-left group transition-all hover:border-sodor-blue/30"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-sodor-blue/10 rounded-2xl flex items-center justify-center text-sodor-blue group-hover:bg-sodor-blue group-hover:text-white transition-colors">
@@ -1365,7 +1344,7 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
                 </div>
                 <ArrowRight className="text-slate-300 group-hover:text-sodor-blue transition-colors" size={24} />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-2">{exercise.name}</h3>
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-1.5">{exercise.name}</h3>
               <p className="text-slate-500 font-medium text-sm leading-relaxed">{exercise.description}</p>
             </motion.button>
           ))}
@@ -1374,9 +1353,9 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
 
       <button 
         onClick={onCancel}
-        className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
+        className="mt-12 mx-auto block text-slate-500 font-bold hover:text-slate-800 transition-colors"
       >
-        Return to Sodor Map
+        ← Return to Sodor Map
       </button>
     </div>
   );
@@ -1385,61 +1364,70 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
 const LibraryModal = ({ stories, onClose }: {
   stories: import('./types').Story[];
   onClose: () => void;
-}) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-6"
-  >
-    <motion.div
-      initial={{ scale: 0.9, y: 20 }}
-      animate={{ scale: 1, y: 0 }}
-      className="bg-white rounded-[40px] p-8 md:p-10 max-w-4xl w-full max-h-[85vh] shadow-2xl relative overflow-hidden flex flex-col"
-    >
-      <button
-        onClick={onClose}
-        className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 transition-colors z-10"
-      >
-        <X size={24} />
-      </button>
+}) => {
+  const [openStory, setOpenStory] = useState<import('./types').Story | null>(null);
 
-      <h2 className="text-3xl font-black mb-8 text-slate-900 flex items-center gap-3 shrink-0">
+  return (
+    <Modal title="The Library" onClose={onClose} className="max-w-4xl">
+      <h2 className="text-2xl sm:text-3xl font-black mb-6 sm:mb-8 text-slate-900 flex items-center gap-3 shrink-0 pr-10">
         <BookOpen className="text-red-600" />
-        The Library
+        {openStory ? openStory.title : 'The Library'}
       </h2>
 
       <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-        {stories.length === 0 ? (
+        {openStory ? (
+          <article>
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <button
+                onClick={() => setOpenStory(null)}
+                className="px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-sm transition-colors"
+              >
+                ← All stories
+              </button>
+              <button
+                onClick={() => speak(openStory.content)}
+                className="px-4 py-2 rounded-full bg-red-50 hover:bg-red-100 text-red-600 font-bold text-sm transition-colors flex items-center gap-2"
+              >
+                <Volume2 size={16} /> Read aloud
+              </button>
+            </div>
+            <div className="text-6xl mb-6">{openStory.thumbnail}</div>
+            <p className="text-lg text-slate-700 font-medium leading-relaxed whitespace-pre-line">
+              {openStory.content}
+            </p>
+          </article>
+        ) : stories.length === 0 ? (
           <div className="py-20 text-center text-slate-400">
             <BookOpen size={48} className="mx-auto mb-4 opacity-20" />
             <p className="font-bold">No stories unlocked yet.</p>
             <p className="text-sm mt-2">Complete story adventures to add them to your library!</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             {stories.map(story => (
-              <div
+              <button
                 key={story.id}
-                className="bg-slate-50 p-6 rounded-3xl border border-slate-100"
+                onClick={() => setOpenStory(story)}
+                className="bg-slate-50 p-6 rounded-3xl border-2 border-slate-100 hover:border-red-200 hover:bg-white text-left transition-all group"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-3xl">
+                  <div className="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-3xl shrink-0">
                     {story.thumbnail}
                   </div>
-                  <h3 className="text-xl font-black text-slate-900">{story.title}</h3>
+                  <h3 className="text-xl font-black text-slate-900 group-hover:text-red-600 transition-colors">{story.title}</h3>
                 </div>
-                <p className="text-sm text-slate-600 font-medium leading-relaxed line-clamp-4">
+                <p className="text-sm text-slate-600 font-medium leading-relaxed line-clamp-3">
                   {story.content}
                 </p>
-              </div>
+                <span className="mt-3 inline-block text-xs font-black uppercase tracking-widest text-red-600">Read the story →</span>
+              </button>
             ))}
           </div>
         )}
       </div>
-    </motion.div>
-  </motion.div>
-);
+    </Modal>
+  );
+};
 
 const MusicLibraryModal = ({ user, onClose, onSelectMusic }: {
   user: User; 
@@ -1447,27 +1435,11 @@ const MusicLibraryModal = ({ user, onClose, onSelectMusic }: {
   onSelectMusic: (score: MusicScore) => void;
 }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/80 backdrop-blur-md p-6"
-    >
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        className="bg-white rounded-[40px] p-8 md:p-12 max-w-5xl w-full h-[85vh] shadow-2xl relative overflow-hidden flex flex-col"
-      >
-        <button 
-          onClick={onClose}
-          className="absolute top-8 right-8 p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition-colors z-10"
-        >
-          <X size={24} />
-        </button>
+    <Modal title="Sodor Concert Hall" onClose={onClose} className="max-w-5xl h-[85vh]">
 
         <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar">
           <div className="mb-12">
-            <h2 className="text-4xl font-black text-slate-900 flex items-center gap-4">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 flex items-center gap-3 sm:gap-4 pr-10">
               <Music size={40} className="text-pink-600" />
               Sodor Concert Hall
             </h2>
@@ -1499,10 +1471,31 @@ const MusicLibraryModal = ({ user, onClose, onSelectMusic }: {
             })}
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+    </Modal>
   );
 };
+
+const SectionHeader = ({ id, icon, title, count, total, action }: {
+  id: string;
+  icon: React.ReactNode;
+  title: string;
+  count?: number;
+  total?: number;
+  action?: React.ReactNode;
+}) => (
+  <div className="flex items-center justify-between gap-3 mb-5 sm:mb-6">
+    <h2 id={id} className="text-2xl sm:text-3xl font-black flex items-center gap-3 text-slate-900">
+      {icon}
+      {title}
+      {total !== undefined && (
+        <span className="text-xs sm:text-sm font-bold text-slate-500 bg-white/90 border border-slate-200 rounded-full px-2.5 py-0.5" title={`${count} of ${total} unlocked`}>
+          {count}/{total}
+        </span>
+      )}
+    </h2>
+    {action}
+  </div>
+);
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -1724,6 +1717,18 @@ export default function App() {
     );
   }
 
+  const goHome = () => {
+    setActiveSubject(null);
+    setActiveExercise(null);
+    setSelectedMusicScore(null);
+    window.scrollTo({ top: 0 });
+  };
+
+  const videosUnlocked = VIDEOS.filter(v => (user.stats.videosUnlocked || []).includes(v.id)).length;
+  const storiesUnlocked = STORIES.filter(s => (user.stats.completedStories || []).includes(s.id)).length;
+  const musicUnlocked = MUSIC_LIBRARY.filter(m => (user.stats.unlockedMusic || []).includes(m.id)).length;
+  const enginesCollected = ENGINES.filter(e => user.stats.enginesCollected.includes(e.id)).length;
+
   return (
     <div className="min-h-screen bg-transparent font-sans">
       <Navbar 
@@ -1737,9 +1742,10 @@ export default function App() {
           setSelectedMusicScore(null);
           setShowTopics(true);
         }}
+        onHome={goHome}
       />
 
-      <main className={`${(activeExercise?.component === 'Piano' || activeExercise?.component === 'PianoSequence') ? 'max-w-[98vw]' : 'max-w-6xl'} mx-auto px-2 md:px-6 py-12 transition-all duration-500`}>
+      <main className={`${(activeExercise?.component === 'Piano' || activeExercise?.component === 'PianoSequence') ? 'max-w-[98vw]' : 'max-w-6xl'} mx-auto px-3 md:px-6 py-8 md:py-12 transition-all duration-500`}>
         <AnimatePresence mode="wait">
           {!activeSubject ? (
             <motion.div
@@ -1748,189 +1754,217 @@ export default function App() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <div className="text-center mb-12">
-                <motion.div
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: 1 }}
-                  className="inline-flex gap-4 p-1 bg-slate-200 rounded-2xl mb-8"
-                >
-                  <button 
-                    onClick={() => updateGrade('Primary')}
-                    className={`px-6 py-2 rounded-xl font-bold transition-all ${user.stats.currentGrade === 'Primary' ? 'bg-white text-sodor-blue shadow-sm' : 'text-slate-500'}`}
+              <div className="text-center mb-10">
+                <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+                  <div className="inline-flex gap-1 p-1 bg-slate-200/90 rounded-2xl" role="group" aria-label="School level">
+                    <button 
+                      onClick={() => updateGrade('Primary')}
+                      aria-pressed={user.stats.currentGrade === 'Primary'}
+                      className={`px-4 sm:px-6 py-2 rounded-xl font-bold transition-all ${user.stats.currentGrade === 'Primary' ? 'bg-white text-sodor-blue shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                    >
+                      Primary<span className="hidden sm:inline"> School</span>
+                    </button>
+                    <button 
+                      onClick={() => updateGrade('Secondary')}
+                      aria-pressed={user.stats.currentGrade === 'Secondary'}
+                      className={`px-4 sm:px-6 py-2 rounded-xl font-bold transition-all ${user.stats.currentGrade === 'Secondary' ? 'bg-white text-sodor-blue shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                    >
+                      Secondary<span className="hidden sm:inline"> Academy</span>
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => setShowPreferences(true)}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-white/90 hover:bg-white rounded-2xl font-bold text-slate-600 hover:text-sodor-blue border border-slate-200 transition-all"
+                    title="Choose how many questions each lesson has"
                   >
-                    Primary School
+                    <Compass size={18} className="text-sodor-gold" />
+                    Lesson length
                   </button>
-                  <button 
-                    onClick={() => updateGrade('Secondary')}
-                    className={`px-6 py-2 rounded-xl font-bold transition-all ${user.stats.currentGrade === 'Secondary' ? 'bg-white text-sodor-blue shadow-sm' : 'text-slate-500'}`}
-                  >
-                    Secondary Academy
-                  </button>
-                </motion.div>
+                </div>
                 
-                <h1 className="text-5xl font-black text-slate-900 mb-4 tracking-tight">
-                  Welcome back, <span className="text-sodor-blue">{user.name}</span>!
+                <h1 className="text-3xl sm:text-5xl font-black text-slate-900 mb-3 tracking-tight">
+                  {user.id === 'guest' ? 'Welcome, ' : 'Welcome back, '}
+                  <span className="text-sodor-blue">{user.id === 'guest' ? 'explorer' : user.name}</span>!
                 </h1>
-                <p className="text-lg text-slate-500 max-w-2xl mx-auto font-medium mb-12">
-                  Select a station on the map to start your next adventure!
+                <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium">
+                  Pick a station to start your next adventure.
                 </p>
+              </div>
 
+              <div className="hidden sm:block mb-10">
                 <SodorMap 
                   onSelectSubject={(subject) => setActiveSubject(subject)} 
                   onOpenPreferences={() => setShowPreferences(true)}
                 />
               </div>
 
-              {/* Video Gallery */}
-              <div className="mt-24">
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
-                    <PlayCircle className="text-sodor-blue" />
-                    Sodor Cinema
-                  </h2>
+              {/* Stations */}
+              <section aria-labelledby="stations-title">
+                <SectionHeader id="stations-title" icon={<Train className="text-sodor-blue" />} title="Stations" />
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                  {SUBJECTS.map(subject => {
+                    const lessons = subject.exercises?.filter(e => e.type === 'lesson').length || 0;
+                    const adventures = (subject.exercises?.length || 0) - lessons;
+                    return (
+                      <motion.button
+                        key={subject.id}
+                        whileHover={{ y: -3 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => setActiveSubject(subject)}
+                        className="bg-white/95 p-4 sm:p-5 rounded-3xl border-2 border-slate-100 hover:border-slate-300 shadow-md text-left flex items-center gap-3 sm:gap-4 group transition-colors"
+                      >
+                        <div className={`w-12 h-12 sm:w-14 sm:h-14 ${subject.color} rounded-2xl flex items-center justify-center text-white shadow-md shrink-0`}>
+                          <subject.icon size={26} />
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="font-black text-slate-900 text-base sm:text-lg leading-tight">{subject.name}</h3>
+                          <p className="text-xs sm:text-sm text-slate-500 font-medium truncate">{subject.station}</p>
+                          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mt-1 hidden sm:block">
+                            {lessons > 0 && `${lessons} lesson${lessons > 1 ? 's' : ''} · `}{adventures} adventure{adventures > 1 ? 's' : ''}
+                          </p>
+                        </div>
+                        <ArrowRight className="ml-auto text-slate-300 group-hover:text-slate-600 transition-colors shrink-0 hidden sm:block" size={20} />
+                      </motion.button>
+                    );
+                  })}
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              </section>
+
+              {/* Video Gallery */}
+              <section className="mt-14 sm:mt-20" aria-labelledby="cinema-title">
+                <SectionHeader id="cinema-title" icon={<PlayCircle className="text-sodor-blue" />} title="Sodor Cinema" count={videosUnlocked} total={VIDEOS.length} />
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5">
                   {VIDEOS.map(video => {
                     const isUnlocked = (user.stats.videosUnlocked || []).includes(video.id);
                     return (
                       <motion.button
                         key={video.id}
-                        whileHover={isUnlocked ? { y: -5 } : {}}
+                        whileHover={isUnlocked ? { y: -4 } : {}}
                         onClick={() => isUnlocked && setPlayingVideo(video)}
+                        disabled={!isUnlocked}
                         className={`text-left rounded-3xl overflow-hidden border-2 transition-all group
                           ${isUnlocked 
-                            ? 'bg-white shadow-lg border-slate-100' 
-                            : 'bg-slate-100 border-transparent opacity-40'}
+                            ? 'bg-white shadow-lg border-slate-100 hover:border-sodor-blue/30' 
+                            : 'bg-slate-100/90 border-dashed border-slate-200 cursor-not-allowed'}
                         `}
                       >
-                        <div className={`aspect-video flex items-center justify-center text-4xl bg-slate-200 relative`}>
-                          {video.thumbnail}
-                          {isUnlocked && (
-                            <div className="absolute inset-0 bg-sodor-blue/0 group-hover:bg-sodor-blue/10 transition-colors flex items-center justify-center">
-                              <PlayCircle size={48} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className={`aspect-video flex items-center justify-center text-4xl relative ${isUnlocked ? 'bg-sodor-blue/10' : 'bg-slate-200/70'}`}>
+                          <span className={isUnlocked ? '' : 'opacity-30 grayscale'}>{video.thumbnail}</span>
+                          {isUnlocked ? (
+                            <div className="absolute inset-0 bg-sodor-blue/0 group-hover:bg-sodor-blue/20 transition-colors flex items-center justify-center">
+                              <PlayCircle size={44} className="text-white drop-shadow opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
+                          ) : (
+                            <Lock size={20} className="absolute top-3 right-3 text-slate-400" />
                           )}
                         </div>
-                        <div className="p-6">
-                          <h4 className="font-extrabold text-lg mb-1">{video.title}</h4>
-                          <p className="text-sm text-slate-500 line-clamp-2">
-                            {isUnlocked ? video.description : 'Unlock this video by learning!'}
+                        <div className="p-3 sm:p-4">
+                          <h4 className={`font-extrabold text-sm sm:text-base leading-tight mb-1 ${isUnlocked ? 'text-slate-900' : 'text-slate-500'}`}>{video.title}</h4>
+                          <p className="text-xs text-slate-500 line-clamp-2">
+                            {isUnlocked ? video.description : 'Keep learning to unlock!'}
                           </p>
                         </div>
                       </motion.button>
                     );
                   })}
                 </div>
-              </div>
+              </section>
 
-              {/* Story Library Preview */}
-              <div className="mt-24">
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
-                    <BookOpen className="text-red-600" />
-                    The Library
-                  </h2>
-                  <button 
-                    onClick={() => setShowLibrary(true)}
-                    className="text-sm font-bold text-red-600 hover:underline uppercase tracking-widest"
-                  >
-                    Open Library
-                  </button>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {STORIES.slice(0, 4).map(story => {
-                    const isUnlocked = (user.stats.completedStories || []).includes(story.id);
-                    return (
-                      <button
-                        key={story.id}
-                        onClick={() => isUnlocked && setShowLibrary(true)}
-                        className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center text-center group
-                          ${isUnlocked 
-                            ? 'bg-white shadow-lg border-red-100 hover:border-red-600/20' 
-                            : 'bg-slate-100 border-transparent opacity-40 grayscale'}
-                        `}
-                      >
-                        <div className="text-4xl mb-4">{isUnlocked ? story.thumbnail : '🔒'}</div>
-                        <h4 className="font-extrabold text-sm mb-1 leading-tight">{isUnlocked ? story.title : 'Locked Story'}</h4>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
+              <div className="mt-14 sm:mt-20 grid lg:grid-cols-2 gap-14 lg:gap-8">
+                {/* Story Library Preview */}
+                <section aria-labelledby="library-title">
+                  <SectionHeader
+                    id="library-title"
+                    icon={<BookOpen className="text-red-600" />}
+                    title="The Library"
+                    count={storiesUnlocked}
+                    total={STORIES.length}
+                    action={<button onClick={() => setShowLibrary(true)} className="text-sm font-bold text-red-600 hover:underline">Open →</button>}
+                  />
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {STORIES.slice(0, 4).map(story => {
+                      const isUnlocked = (user.stats.completedStories || []).includes(story.id);
+                      return (
+                        <button
+                          key={story.id}
+                          onClick={() => setShowLibrary(true)}
+                          className={`p-4 rounded-3xl border-2 transition-all flex flex-col items-center text-center min-h-[7.5rem] justify-center
+                            ${isUnlocked 
+                              ? 'bg-white shadow-md border-red-100 hover:border-red-300' 
+                              : 'bg-slate-100/90 border-dashed border-slate-200'}
+                          `}
+                        >
+                          <div className={`text-3xl mb-2 ${isUnlocked ? '' : 'opacity-40 grayscale'}`}>{isUnlocked ? story.thumbnail : '🔒'}</div>
+                          <h4 className={`font-extrabold text-xs sm:text-sm leading-tight ${isUnlocked ? 'text-slate-900' : 'text-slate-500'}`}>{isUnlocked ? story.title : 'Locked story'}</h4>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
 
-              {/* Music Library Preview */}
-              <div className="mt-24">
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
-                    <Music className="text-pink-600" />
-                    Concert Hall
-                  </h2>
-                  <button 
-                    onClick={() => setShowMusicLibrary(true)}
-                    className="text-sm font-bold text-pink-600 hover:underline uppercase tracking-widest"
-                  >
-                    Open Library
-                  </button>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {MUSIC_LIBRARY.slice(0, 4).map(score => {
-                    const isUnlocked = (user.stats.unlockedMusic || []).includes(score.id);
-                    return (
-                      <button
-                        key={score.id}
-                        onClick={() => isUnlocked && setShowMusicLibrary(true)}
-                        className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center text-center group
-                          ${isUnlocked 
-                            ? 'bg-white shadow-lg border-pink-100 hover:border-pink-600/20' 
-                            : 'bg-slate-100 border-transparent opacity-40 grayscale'}
-                        `}
-                      >
-                        <div className="text-4xl mb-4">{isUnlocked ? score.thumbnail : '🔒'}</div>
-                        <h4 className="font-extrabold text-sm mb-1 leading-tight">{isUnlocked ? score.title : 'Locked Melody'}</h4>
-                      </button>
-                    );
-                  })}
-                </div>
+                {/* Music Library Preview */}
+                <section aria-labelledby="concert-title">
+                  <SectionHeader
+                    id="concert-title"
+                    icon={<Music className="text-pink-600" />}
+                    title="Concert Hall"
+                    count={musicUnlocked}
+                    total={MUSIC_LIBRARY.length}
+                    action={<button onClick={() => setShowMusicLibrary(true)} className="text-sm font-bold text-pink-600 hover:underline">Open →</button>}
+                  />
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {MUSIC_LIBRARY.slice(0, 4).map(score => {
+                      const isUnlocked = (user.stats.unlockedMusic || []).includes(score.id);
+                      return (
+                        <button
+                          key={score.id}
+                          onClick={() => setShowMusicLibrary(true)}
+                          className={`p-4 rounded-3xl border-2 transition-all flex flex-col items-center text-center min-h-[7.5rem] justify-center
+                            ${isUnlocked 
+                              ? 'bg-white shadow-md border-pink-100 hover:border-pink-300' 
+                              : 'bg-slate-100/90 border-dashed border-slate-200'}
+                          `}
+                        >
+                          <div className={`text-3xl mb-2 ${isUnlocked ? '' : 'opacity-40 grayscale'}`}>{isUnlocked ? score.thumbnail : '🔒'}</div>
+                          <h4 className={`font-extrabold text-xs sm:text-sm leading-tight ${isUnlocked ? 'text-slate-900' : 'text-slate-500'}`}>{isUnlocked ? score.title : 'Locked melody'}</h4>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
               </div>
 
               {/* Reward Gallery */}
-              <div className="mt-24">
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-3xl font-black flex items-center gap-3 text-slate-900">
-                    <Layout className="text-sodor-blue" />
-                    The Roundhouse
-                  </h2>
-                  <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-                    Your Collection
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <section className="mt-14 sm:mt-20" aria-labelledby="roundhouse-title">
+                <SectionHeader id="roundhouse-title" icon={<Layout className="text-sodor-blue" />} title="The Roundhouse" count={enginesCollected} total={ENGINES.length} />
+                <div className="grid grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
                   {ENGINES.map(engine => {
                     const isCollected = user.stats.enginesCollected.includes(engine.id);
                     return (
                       <div 
                         key={engine.id}
-                        className={`p-6 rounded-3xl border-2 transition-all flex flex-col items-center text-center group
+                        title={isCollected ? engine.description : 'Finish lessons to collect this engine'}
+                        className={`p-3 sm:p-5 rounded-3xl border-2 transition-all flex flex-col items-center text-center
                           ${isCollected 
-                            ? 'bg-white shadow-lg border-sodor-blue/20' 
-                            : 'bg-slate-100 border-transparent opacity-40 grayscale'}
+                            ? 'bg-white shadow-md border-sodor-blue/20' 
+                            : 'bg-slate-100/90 border-dashed border-slate-200'}
                         `}
                       >
                         <div 
-                          className="w-12 h-12 rounded-full mb-4 flex items-center justify-center text-2xl shadow-inner border border-white/50"
+                          className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full mb-3 flex items-center justify-center text-2xl shadow-inner border border-white/50 ${isCollected ? '' : 'opacity-40 grayscale'}`}
                           style={{ backgroundColor: engine.color }}
                         >
                           🚂
                         </div>
-                        <h4 className="font-extrabold text-sm mb-1">{engine.name}</h4>
-                        <p className="text-[10px] text-slate-500 uppercase font-black tracking-tighter">
+                        <h4 className={`font-extrabold text-sm mb-0.5 ${isCollected ? 'text-slate-900' : 'text-slate-500'}`}>{engine.name}</h4>
+                        <p className={`text-[10px] uppercase font-black tracking-wide ${isCollected ? 'text-sodor-blue' : 'text-slate-400'}`}>
                           {isCollected ? 'Collected' : 'Locked'}
                         </p>
                       </div>
                     );
                   })}
                 </div>
-              </div>
+              </section>
             </motion.div>
           ) : (
             <motion.div
