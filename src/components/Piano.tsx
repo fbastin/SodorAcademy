@@ -14,7 +14,6 @@ export default function Piano({ autoPlayScore, onCancel }: PianoProps) {
   useEffect(() => {
     if (containerRef.current && !pianoRef.current) {
       pianoRef.current = new SodorPiano(containerRef.current);
-      pianoRef.current.onExit = onCancel;
     }
 
     if (pianoRef.current && autoPlayScore) {
@@ -26,22 +25,28 @@ export default function Piano({ autoPlayScore, onCancel }: PianoProps) {
         pianoRef.current.stopScore();
       }
     };
-  }, [autoPlayScore, onCancel]);
+  }, [autoPlayScore]);
 
   return (
-    <div className="w-full h-[600px] relative sp-academy-wrapper">
-      <div ref={containerRef} className="w-full h-full" />
-      <div className="absolute bottom-10 left-6 z-[100] flex gap-2">
-        <a 
-          href="/SodorAcademy/piano/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="px-4 py-2 bg-slate-800/80 hover:bg-sodor-blue text-white font-bold rounded-lg text-[10px] uppercase tracking-widest border border-white/10 flex items-center gap-2 transition-all shadow-lg backdrop-blur-sm"
+    <div className="w-full sp-academy-wrapper">
+      <div className="flex items-center justify-between gap-3 mb-3">
+        <button
+          onClick={onCancel}
+          className="px-4 py-2 rounded-full bg-white/90 border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-white font-bold text-sm transition-colors"
         >
-          <span className="text-sm">↗</span>
-          Standalone Version
+          ← Back to Music Station
+        </button>
+        <a
+          href="/SodorPiano/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 rounded-full bg-slate-800 hover:bg-sodor-blue text-white font-bold text-sm transition-colors flex items-center gap-2"
+        >
+          <span aria-hidden="true">↗</span>
+          Full-screen piano
         </a>
       </div>
+      <div ref={containerRef} className="w-full h-[min(640px,calc(100vh-10rem))] min-h-[420px] rounded-2xl overflow-hidden" />
     </div>
   );
 }

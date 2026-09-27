@@ -25,3 +25,7 @@ To see the app at `https://slashbin.net/SodorAcademy/`, you must serve the conte
 
 ### GitHub Pages
 This repository is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
+
+## Piano
+
+`piano-lib/` is a copy of [SodorPiano](https://github.com/fbastin/SodorPiano). To bring in a newer version, run `scripts/sync-piano.sh [path to SodorPiano]` (default `../SodorPiano`), then `npm run build`. The synced revision is recorded in `piano-lib/VERSION`.
