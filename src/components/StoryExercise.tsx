@@ -73,7 +73,7 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
   if (!story) return null;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
       <AnimatePresence mode="wait">
         {view === 'reading' ? (
           <motion.div
@@ -81,7 +81,7 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-slate-100"
+            className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100"
           >
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
@@ -102,8 +102,8 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
               </button>
             </div>
 
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-xl leading-relaxed text-slate-700 font-medium whitespace-pre-wrap">
+            <div className="prose prose-slate max-w-none mb-6 xl:mb-12">
+              <p className="text-lg xl:text-xl leading-relaxed text-slate-700 font-medium whitespace-pre-wrap">
                 {story.content}
               </p>
             </div>
@@ -120,7 +120,7 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
             key="questions"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-slate-100 relative overflow-hidden"
+            className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100 relative overflow-hidden"
           >
             {/* Progress Bar */}
             <div className="absolute top-0 left-0 h-2 bg-slate-100 w-full">
@@ -131,7 +131,7 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
               />
             </div>
 
-            <div className="mb-10 flex justify-between items-center">
+            <div className="mb-5 xl:mb-10 flex justify-between items-center">
               <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
                 Question {currentQuestionIdx + 1} of {actualQuestionsCount}
               </span>
@@ -153,7 +153,7 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
               {story.questions[currentQuestionIdx].question}
             </h3>
 
-            <div className="grid gap-4 mb-10">
+            <div className="grid gap-4 mb-5 xl:mb-10">
               {story.questions[currentQuestionIdx].options.map((option, idx) => (
                 <button
                   key={idx}
@@ -199,9 +199,9 @@ export default function StoryExercise({ grade, completedStories, questionsCount 
 
       <button
         onClick={onCancel}
-        className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
+        className="mt-6 xl:mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );

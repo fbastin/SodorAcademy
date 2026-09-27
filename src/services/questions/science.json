@@ -1,0 +1,1046 @@
+{
+  "Primary": [
+    {
+      "id": "x-sci-p-1",
+      "text": "Harvey the crane uses a magnet to lift scrap. Which of these would his magnet pick up?",
+      "options": [
+        "An iron nail",
+        "A wooden peg",
+        "A plastic cup",
+        "A glass marble"
+      ],
+      "correctAnswer": "An iron nail",
+      "explanation": "Iron is a magnetic material; wood, plastic and glass are not.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-2",
+      "text": "What happens when you push the north poles of two magnets towards each other?",
+      "options": [
+        "They push apart",
+        "They stick together",
+        "Nothing happens",
+        "They get hot"
+      ],
+      "correctAnswer": "They push apart",
+      "explanation": "Like poles repel each other.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-3",
+      "text": "Inside Thomas's boiler, water is heated until it becomes steam. What state of matter is that steam?",
+      "options": [
+        "A gas",
+        "A solid",
+        "A liquid",
+        "A metal"
+      ],
+      "correctAnswer": "A gas",
+      "explanation": "Steam is water in its gas state, called water vapour.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-4",
+      "text": "What is it called when ice changes into water?",
+      "options": [
+        "Melting",
+        "Freezing",
+        "Boiling",
+        "Condensing"
+      ],
+      "correctAnswer": "Melting",
+      "explanation": "Heating a solid until it becomes a liquid is called melting.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-5",
+      "text": "On a cold morning, drops of water appear on the inside of the station window. What is this called?",
+      "options": [
+        "Condensation",
+        "Evaporation",
+        "Melting",
+        "Freezing"
+      ],
+      "correctAnswer": "Condensation",
+      "explanation": "Water vapour in the air cools on the cold glass and turns back into liquid.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-6",
+      "text": "In the water cycle, what happens when the Sun warms water in the sea?",
+      "options": [
+        "It evaporates",
+        "It freezes",
+        "It melts",
+        "It sinks"
+      ],
+      "correctAnswer": "It evaporates",
+      "explanation": "Warmed water turns into water vapour and rises into the air.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-7",
+      "text": "What do green plants need to make their own food?",
+      "options": [
+        "Sunlight",
+        "Moonlight",
+        "Darkness",
+        "Sand"
+      ],
+      "correctAnswer": "Sunlight",
+      "explanation": "Plants use energy from sunlight to make food in their leaves.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-8",
+      "text": "Which part of a plant mainly takes in water from the soil?",
+      "options": [
+        "The roots",
+        "The petals",
+        "The leaves",
+        "The fruit"
+      ],
+      "correctAnswer": "The roots",
+      "explanation": "Roots soak up water and hold the plant in the ground.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-9",
+      "text": "Which of these animals is a mammal?",
+      "options": [
+        "A dolphin",
+        "A shark",
+        "A frog",
+        "A robin"
+      ],
+      "correctAnswer": "A dolphin",
+      "explanation": "Dolphins breathe air and feed their babies milk, like all mammals.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-10",
+      "text": "What do we call the natural home of an animal or plant?",
+      "options": [
+        "Its habitat",
+        "Its skeleton",
+        "Its diet",
+        "Its predator"
+      ],
+      "correctAnswer": "Its habitat",
+      "explanation": "A habitat is the place where a living thing naturally lives.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-11",
+      "text": "Which organ pumps blood all around your body?",
+      "options": [
+        "The heart",
+        "The lungs",
+        "The stomach",
+        "The brain"
+      ],
+      "correctAnswer": "The heart",
+      "explanation": "The heart is a muscle that pumps blood through your blood vessels.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-12",
+      "text": "Which body part do you use to hear Thomas's whistle?",
+      "options": [
+        "Your ears",
+        "Your nose",
+        "Your tongue",
+        "Your skin"
+      ],
+      "correctAnswer": "Your ears",
+      "explanation": "Our ears collect sound so we can hear.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-13",
+      "text": "A shadow forms when an object...",
+      "options": [
+        "Blocks the light",
+        "Reflects sound",
+        "Gives off light",
+        "Makes heat"
+      ],
+      "correctAnswer": "Blocks the light",
+      "explanation": "Light travels in straight lines, so an object that blocks it leaves a dark shadow.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-14",
+      "text": "What word describes a material that does not let any light through?",
+      "options": [
+        "Opaque",
+        "Transparent",
+        "Translucent",
+        "Flexible"
+      ],
+      "correctAnswer": "Opaque",
+      "explanation": "Opaque materials, like wood or metal, block light completely.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-15",
+      "text": "Where does the Moon's light come from?",
+      "options": [
+        "It reflects light from the Sun",
+        "It makes its own light",
+        "It burns like a fire",
+        "It is lit by volcanoes"
+      ],
+      "correctAnswer": "It reflects light from the Sun",
+      "explanation": "The Moon does not glow by itself; it reflects sunlight.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-16",
+      "text": "What is the Sun?",
+      "options": [
+        "A star",
+        "A planet",
+        "A moon",
+        "A comet"
+      ],
+      "correctAnswer": "A star",
+      "explanation": "The Sun is a star, a huge ball of very hot gas.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-17",
+      "text": "About how long does it take the Earth to travel once around the Sun?",
+      "options": [
+        "One year",
+        "One day",
+        "One month",
+        "One week"
+      ],
+      "correctAnswer": "One year",
+      "explanation": "One trip of the Earth around the Sun takes about 365 days.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-18",
+      "text": "What causes day and night?",
+      "options": [
+        "The Earth spinning",
+        "The Sun moving around the Earth",
+        "The Moon blocking the Sun",
+        "Clouds covering the Sun"
+      ],
+      "correctAnswer": "The Earth spinning",
+      "explanation": "As the Earth spins, each place turns towards the Sun (day) and away from it (night).",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-19",
+      "text": "A bulb in a simple circuit will not light because there is a gap in the wire. Why?",
+      "options": [
+        "The circuit is not complete",
+        "The battery is too cold",
+        "The bulb is too big",
+        "The wires are too long"
+      ],
+      "correctAnswer": "The circuit is not complete",
+      "explanation": "Electricity can only flow around a complete loop.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-20",
+      "text": "Which of these materials lets electricity flow through it best?",
+      "options": [
+        "Copper",
+        "Rubber",
+        "Plastic",
+        "Wood"
+      ],
+      "correctAnswer": "Copper",
+      "explanation": "Copper is a metal and a good electrical conductor, so it is used in wires.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-21",
+      "text": "Sounds are made when something...",
+      "options": [
+        "Vibrates",
+        "Freezes",
+        "Melts",
+        "Shrinks"
+      ],
+      "correctAnswer": "Vibrates",
+      "explanation": "All sounds are made by vibrations, like a whistle's air shaking.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-22",
+      "text": "What happens to the sound of Thomas's whistle as he steams further away from you?",
+      "options": [
+        "It gets quieter",
+        "It gets louder",
+        "It stays the same",
+        "It turns into light"
+      ],
+      "correctAnswer": "It gets quieter",
+      "explanation": "Sound spreads out as it travels, so it is quieter further from the source.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-23",
+      "text": "Which material is best for the window of an engine's cab?",
+      "options": [
+        "Glass",
+        "Wood",
+        "Steel",
+        "Cardboard"
+      ],
+      "correctAnswer": "Glass",
+      "explanation": "Glass is transparent, so the driver can see through it.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-24",
+      "text": "Why are railway rails made of steel?",
+      "options": [
+        "Steel is strong and hard",
+        "Steel is soft and bendy",
+        "Steel is very light",
+        "Steel is see-through"
+      ],
+      "correctAnswer": "Steel is strong and hard",
+      "explanation": "Rails must be strong and hard to carry heavy engines without wearing out.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-25",
+      "text": "Which of these is a liquid at room temperature?",
+      "options": [
+        "Water",
+        "Coal",
+        "Iron",
+        "Air"
+      ],
+      "correctAnswer": "Water",
+      "explanation": "Water flows and takes the shape of its container, so it is a liquid.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-26",
+      "text": "Which state of matter spreads out to fill any container it is put in?",
+      "options": [
+        "Gas",
+        "Solid",
+        "Liquid",
+        "Crystal"
+      ],
+      "correctAnswer": "Gas",
+      "explanation": "Gas particles move freely and spread out to fill all the space.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-27",
+      "text": "Which gas from the air do our bodies need to stay alive?",
+      "options": [
+        "Oxygen",
+        "Carbon dioxide",
+        "Helium",
+        "Smoke"
+      ],
+      "correctAnswer": "Oxygen",
+      "explanation": "We breathe in oxygen, which our bodies use to release energy from food.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-28",
+      "text": "Which of these is a living thing?",
+      "options": [
+        "A tree",
+        "A stone",
+        "A steam engine",
+        "A raindrop"
+      ],
+      "correctAnswer": "A tree",
+      "explanation": "A tree grows, feeds and reproduces, so it is alive.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-29",
+      "text": "What does a caterpillar turn into when it grows up?",
+      "options": [
+        "A butterfly",
+        "A bee",
+        "A spider",
+        "A beetle"
+      ],
+      "correctAnswer": "A butterfly",
+      "explanation": "Caterpillars change into butterflies (or moths) through metamorphosis.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-30",
+      "text": "What does your skeleton do?",
+      "options": [
+        "Holds you up and protects organs",
+        "Digests your food",
+        "Pumps your blood",
+        "Helps you smell"
+      ],
+      "correctAnswer": "Holds you up and protects organs",
+      "explanation": "Bones support the body and protect organs like the brain and heart.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-31",
+      "text": "Why do railway workers sometimes put sand on slippery rails?",
+      "options": [
+        "To increase friction",
+        "To make the rails shiny",
+        "To cool the wheels",
+        "To make trains quieter"
+      ],
+      "correctAnswer": "To increase friction",
+      "explanation": "Sand gives the wheels more grip so they do not slip.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-32",
+      "text": "A flat sheet of paper and the same sheet squashed into a ball are dropped together. Which lands first?",
+      "options": [
+        "The ball",
+        "The flat sheet",
+        "They land together",
+        "Neither falls"
+      ],
+      "correctAnswer": "The ball",
+      "explanation": "The flat sheet has more air resistance, so it falls more slowly.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-33",
+      "text": "Which material is best for a saucepan handle so it does not get too hot to hold?",
+      "options": [
+        "Wood",
+        "Steel",
+        "Copper",
+        "Aluminium"
+      ],
+      "correctAnswer": "Wood",
+      "explanation": "Wood is a thermal insulator, so heat passes through it slowly.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-34",
+      "text": "What does a thermometer measure?",
+      "options": [
+        "Temperature",
+        "Weight",
+        "Speed",
+        "Length"
+      ],
+      "correctAnswer": "Temperature",
+      "explanation": "A thermometer tells us how hot or cold something is.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-35",
+      "text": "What do we call animals that eat only plants?",
+      "options": [
+        "Herbivores",
+        "Carnivores",
+        "Omnivores",
+        "Predators"
+      ],
+      "correctAnswer": "Herbivores",
+      "explanation": "Herbivores, like cows and rabbits, eat only plants.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-36",
+      "text": "Which planet is closest to the Sun?",
+      "options": [
+        "Mercury",
+        "Venus",
+        "Mars",
+        "Earth"
+      ],
+      "correctAnswer": "Mercury",
+      "explanation": "Mercury is the first planet from the Sun.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-37",
+      "text": "On a sunny day, when is your shadow shortest?",
+      "options": [
+        "Around midday",
+        "Early morning",
+        "Late evening",
+        "Just before sunset"
+      ],
+      "correctAnswer": "Around midday",
+      "explanation": "At midday the Sun is highest in the sky, so shadows are shortest.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-p-38",
+      "text": "Which of these actions is a push?",
+      "options": [
+        "Kicking a ball",
+        "Pulling on a sock",
+        "Tugging a rope",
+        "Picking an apple"
+      ],
+      "correctAnswer": "Kicking a ball",
+      "explanation": "Kicking pushes the ball away from you.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-p-39",
+      "text": "What do most seeds need to start growing?",
+      "options": [
+        "Water and warmth",
+        "Salt and darkness",
+        "Only sunlight",
+        "Only cold"
+      ],
+      "correctAnswer": "Water and warmth",
+      "explanation": "Seeds germinate when they have water, warmth and air.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-p-40",
+      "text": "Why do smoke and steam rise up from Thomas's funnel?",
+      "options": [
+        "Hot gases rise",
+        "Gravity pushes them up",
+        "They are heavier than air",
+        "The rails push them up"
+      ],
+      "correctAnswer": "Hot gases rise",
+      "explanation": "Hot gases are less dense than the cooler air around them, so they rise.",
+      "rewardType": "badge"
+    }
+  ],
+  "Secondary": [
+    {
+      "id": "x-sci-s-1",
+      "text": "What is the unit of force?",
+      "options": [
+        "Newton (N)",
+        "Joule (J)",
+        "Watt (W)",
+        "Pascal (Pa)"
+      ],
+      "correctAnswer": "Newton (N)",
+      "explanation": "Force is measured in newtons, named after Isaac Newton.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-2",
+      "text": "What is the unit of energy?",
+      "options": [
+        "Joule (J)",
+        "Newton (N)",
+        "Watt (W)",
+        "Volt (V)"
+      ],
+      "correctAnswer": "Joule (J)",
+      "explanation": "Energy and work done are both measured in joules.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-3",
+      "text": "One watt is equal to...",
+      "options": [
+        "One joule per second",
+        "One newton per metre",
+        "One volt per amp",
+        "One joule per metre"
+      ],
+      "correctAnswer": "One joule per second",
+      "explanation": "Power is the energy transferred each second.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-4",
+      "text": "Thomas travels 120 m in 20 s. What is his average speed?",
+      "options": [
+        "6 m/s",
+        "2400 m/s",
+        "0.17 m/s",
+        "60 m/s"
+      ],
+      "correctAnswer": "6 m/s",
+      "explanation": "Speed = distance ÷ time = 120 ÷ 20 = 6 m/s.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-5",
+      "text": "An engine speeds up from rest to 10 m/s in 5 s. What is its acceleration?",
+      "options": [
+        "2 m/s²",
+        "50 m/s²",
+        "0.5 m/s²",
+        "15 m/s²"
+      ],
+      "correctAnswer": "2 m/s²",
+      "explanation": "Acceleration = change in velocity ÷ time = 10 ÷ 5 = 2 m/s².",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-6",
+      "text": "What resultant force is needed to accelerate a 2000 kg truck at 0.5 m/s²?",
+      "options": [
+        "1000 N",
+        "4000 N",
+        "2000 N",
+        "400 N"
+      ],
+      "correctAnswer": "1000 N",
+      "explanation": "F = ma = 2000 × 0.5 = 1000 N.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-7",
+      "text": "A 50 kg mass is on Earth, where g ≈ 10 N/kg. What is its weight?",
+      "options": [
+        "500 N",
+        "50 N",
+        "5 N",
+        "50 kg"
+      ],
+      "correctAnswer": "500 N",
+      "explanation": "Weight = mass × gravitational field strength = 50 × 10 = 500 N.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-8",
+      "text": "How is heat mainly transferred along a solid metal rod?",
+      "options": [
+        "Conduction",
+        "Convection",
+        "Radiation",
+        "Evaporation"
+      ],
+      "correctAnswer": "Conduction",
+      "explanation": "In solids, vibrating particles pass heat energy to their neighbours.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-9",
+      "text": "How does heat from the Sun reach Earth through empty space?",
+      "options": [
+        "Radiation",
+        "Conduction",
+        "Convection",
+        "Condensation"
+      ],
+      "correctAnswer": "Radiation",
+      "explanation": "Infrared radiation is a wave and needs no particles to travel.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-10",
+      "text": "Warm water rises and cooler water sinks as a kettle heats up. What is this called?",
+      "options": [
+        "A convection current",
+        "A conduction current",
+        "An electric current",
+        "A radiation current"
+      ],
+      "correctAnswer": "A convection current",
+      "explanation": "Warmer fluid is less dense, so it rises and cooler fluid sinks to replace it.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-11",
+      "text": "In a steam locomotive, what does the high-pressure steam push on to turn the wheels?",
+      "options": [
+        "Pistons in the cylinders",
+        "The funnel",
+        "The firebox door",
+        "The tender"
+      ],
+      "correctAnswer": "Pistons in the cylinders",
+      "explanation": "Steam pushes pistons back and forth, and connecting rods turn the wheels.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-12",
+      "text": "The coal in a steam engine's tender is a store of which type of energy?",
+      "options": [
+        "Chemical energy",
+        "Kinetic energy",
+        "Nuclear energy",
+        "Elastic energy"
+      ],
+      "correctAnswer": "Chemical energy",
+      "explanation": "Burning coal releases its chemical energy as heat.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-13",
+      "text": "What does the law of conservation of energy say?",
+      "options": [
+        "Energy cannot be created or destroyed",
+        "Energy is always used up",
+        "Energy can be made from nothing",
+        "Energy only exists as heat"
+      ],
+      "correctAnswer": "Energy cannot be created or destroyed",
+      "explanation": "Energy is only transferred or changed from one store to another.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-14",
+      "text": "A machine is supplied with 200 J of energy and transfers 50 J usefully. What is its efficiency?",
+      "options": [
+        "25%",
+        "50%",
+        "75%",
+        "400%"
+      ],
+      "correctAnswer": "25%",
+      "explanation": "Efficiency = useful output ÷ total input = 50 ÷ 200 = 25%.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-15",
+      "text": "What is the unit of pressure?",
+      "options": [
+        "Pascal (Pa)",
+        "Newton (N)",
+        "Joule (J)",
+        "Watt (W)"
+      ],
+      "correctAnswer": "Pascal (Pa)",
+      "explanation": "One pascal is one newton per square metre.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-16",
+      "text": "Why does a sharp knife cut more easily than a blunt one?",
+      "options": [
+        "Smaller area gives greater pressure",
+        "Larger area gives greater pressure",
+        "It has less mass",
+        "It has less friction"
+      ],
+      "correctAnswer": "Smaller area gives greater pressure",
+      "explanation": "The same force over a smaller area produces a higher pressure.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-17",
+      "text": "A 12 V battery drives a current of 3 A through a lamp. What is the lamp's resistance?",
+      "options": [
+        "4 Ω",
+        "36 Ω",
+        "0.25 Ω",
+        "15 Ω"
+      ],
+      "correctAnswer": "4 Ω",
+      "explanation": "R = V ÷ I = 12 ÷ 3 = 4 Ω.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-18",
+      "text": "In a series circuit of three bulbs, what happens if one bulb breaks?",
+      "options": [
+        "All the bulbs go out",
+        "Only that bulb goes out",
+        "The others get brighter",
+        "The current increases"
+      ],
+      "correctAnswer": "All the bulbs go out",
+      "explanation": "A series circuit has only one path, so a break stops the current everywhere.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-19",
+      "text": "In a parallel circuit, what happens to the current from the cell?",
+      "options": [
+        "It splits between the branches",
+        "It flows through only one branch",
+        "It stops at each junction",
+        "It doubles in each branch"
+      ],
+      "correctAnswer": "It splits between the branches",
+      "explanation": "The currents in the branches add up to the total current from the cell.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-20",
+      "text": "How should a voltmeter be connected to measure the voltage across a lamp?",
+      "options": [
+        "In parallel with the lamp",
+        "In series with the lamp",
+        "Across the battery only",
+        "Between two ammeters"
+      ],
+      "correctAnswer": "In parallel with the lamp",
+      "explanation": "A voltmeter measures the potential difference between two points, so it goes across the component.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-21",
+      "text": "Which of these can sound NOT travel through?",
+      "options": [
+        "A vacuum",
+        "Water",
+        "Steel",
+        "Air"
+      ],
+      "correctAnswer": "A vacuum",
+      "explanation": "Sound needs particles to vibrate, and a vacuum has none.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-22",
+      "text": "Through which material does sound travel fastest?",
+      "options": [
+        "Steel",
+        "Air",
+        "Water",
+        "Rubber"
+      ],
+      "correctAnswer": "Steel",
+      "explanation": "Particles in solids like steel are close together and strongly linked, so sound travels quickly.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-23",
+      "text": "Why do you see lightning before you hear the thunder?",
+      "options": [
+        "Light travels much faster than sound",
+        "Sound travels faster than light",
+        "Thunder is made later",
+        "Eyes work faster than ears"
+      ],
+      "correctAnswer": "Light travels much faster than sound",
+      "explanation": "Light reaches you almost instantly, while sound travels about 340 m each second in air.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-24",
+      "text": "What is the unit of frequency?",
+      "options": [
+        "Hertz (Hz)",
+        "Decibel (dB)",
+        "Metre (m)",
+        "Newton (N)"
+      ],
+      "correctAnswer": "Hertz (Hz)",
+      "explanation": "One hertz means one wave or vibration per second.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-25",
+      "text": "When light reflects off a flat mirror, how does the angle of reflection compare with the angle of incidence?",
+      "options": [
+        "They are equal",
+        "It is always bigger",
+        "It is always smaller",
+        "It is always 90°"
+      ],
+      "correctAnswer": "They are equal",
+      "explanation": "The law of reflection says the angle of incidence equals the angle of reflection.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-26",
+      "text": "A prism splits white light into a spectrum of colours. What is this called?",
+      "options": [
+        "Dispersion",
+        "Reflection",
+        "Diffusion",
+        "Absorption"
+      ],
+      "correctAnswer": "Dispersion",
+      "explanation": "Each colour refracts by a different amount, so white light spreads into a spectrum.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-27",
+      "text": "Which part of a cell contains the genetic material and controls the cell?",
+      "options": [
+        "The nucleus",
+        "The cell membrane",
+        "The cytoplasm",
+        "The cell wall"
+      ],
+      "correctAnswer": "The nucleus",
+      "explanation": "The nucleus holds DNA, which controls the cell's activities.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-28",
+      "text": "Which of these is found in plant cells but not in animal cells?",
+      "options": [
+        "Chloroplasts",
+        "A nucleus",
+        "A cell membrane",
+        "Mitochondria"
+      ],
+      "correctAnswer": "Chloroplasts",
+      "explanation": "Chloroplasts contain chlorophyll to absorb light for photosynthesis.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-29",
+      "text": "In which part of a cell does most aerobic respiration take place?",
+      "options": [
+        "Mitochondria",
+        "Nucleus",
+        "Cell wall",
+        "Vacuole"
+      ],
+      "correctAnswer": "Mitochondria",
+      "explanation": "Mitochondria release energy from glucose using oxygen.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-30",
+      "text": "What are the products of photosynthesis?",
+      "options": [
+        "Glucose and oxygen",
+        "Carbon dioxide and water",
+        "Glucose and carbon dioxide",
+        "Oxygen and water"
+      ],
+      "correctAnswer": "Glucose and oxygen",
+      "explanation": "Carbon dioxide + water → glucose + oxygen, using light energy.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-31",
+      "text": "What are the waste products of aerobic respiration?",
+      "options": [
+        "Carbon dioxide and water",
+        "Glucose and oxygen",
+        "Oxygen and water",
+        "Nitrogen and glucose"
+      ],
+      "correctAnswer": "Carbon dioxide and water",
+      "explanation": "Glucose + oxygen → carbon dioxide + water, releasing energy.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-32",
+      "text": "Which organs are mainly responsible for gas exchange in humans?",
+      "options": [
+        "The lungs",
+        "The kidneys",
+        "The liver",
+        "The stomach"
+      ],
+      "correctAnswer": "The lungs",
+      "explanation": "In the alveoli of the lungs, oxygen enters the blood and carbon dioxide leaves.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-33",
+      "text": "What is the chemical symbol for iron?",
+      "options": [
+        "Fe",
+        "Ir",
+        "In",
+        "I"
+      ],
+      "correctAnswer": "Fe",
+      "explanation": "Fe comes from ferrum, the Latin word for iron.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-34",
+      "text": "Water (H₂O) is an example of a...",
+      "options": [
+        "Compound",
+        "Element",
+        "Mixture",
+        "Metal"
+      ],
+      "correctAnswer": "Compound",
+      "explanation": "Water is made of hydrogen and oxygen atoms chemically bonded together.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-35",
+      "text": "Which pH value shows a strong acid?",
+      "options": [
+        "pH 1",
+        "pH 7",
+        "pH 10",
+        "pH 14"
+      ],
+      "correctAnswer": "pH 1",
+      "explanation": "Low pH values are acidic; pH 7 is neutral and high values are alkaline.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-36",
+      "text": "When an acid neutralises an alkali, what is produced?",
+      "options": [
+        "A salt and water",
+        "Oxygen and hydrogen",
+        "Carbon dioxide only",
+        "A metal and a gas"
+      ],
+      "correctAnswer": "A salt and water",
+      "explanation": "Acid + alkali → salt + water is a neutralisation reaction.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-37",
+      "text": "What two things must iron be exposed to in order to rust?",
+      "options": [
+        "Oxygen and water",
+        "Nitrogen and salt",
+        "Carbon dioxide and heat",
+        "Hydrogen and light"
+      ],
+      "correctAnswer": "Oxygen and water",
+      "explanation": "Rusting is iron reacting with oxygen in the presence of water.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-sci-s-38",
+      "text": "When the carbon in coal burns completely in plenty of oxygen, which gas is produced?",
+      "options": [
+        "Carbon dioxide",
+        "Hydrogen",
+        "Nitrogen",
+        "Chlorine"
+      ],
+      "correctAnswer": "Carbon dioxide",
+      "explanation": "Carbon + oxygen → carbon dioxide in complete combustion.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-sci-s-39",
+      "text": "Which is the largest planet in our solar system?",
+      "options": [
+        "Jupiter",
+        "Saturn",
+        "Neptune",
+        "Earth"
+      ],
+      "correctAnswer": "Jupiter",
+      "explanation": "Jupiter is a gas giant more than 11 times wider than Earth.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-sci-s-40",
+      "text": "What causes the seasons on Earth?",
+      "options": [
+        "The tilt of Earth's axis",
+        "Earth getting closer to the Sun",
+        "The Sun getting hotter",
+        "The Moon blocking sunlight"
+      ],
+      "correctAnswer": "The tilt of Earth's axis",
+      "explanation": "The tilt changes how directly sunlight hits each hemisphere through the year.",
+      "rewardType": "badge"
+    }
+  ]
+}

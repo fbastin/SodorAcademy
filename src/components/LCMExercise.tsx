@@ -104,8 +104,8 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
   if (!problem) return null;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-slate-100 relative overflow-hidden">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+      <div className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100 relative overflow-hidden">
         {/* Progress Bar */}
         <div className="absolute top-0 left-0 h-2 bg-slate-100 w-full">
           <motion.div 
@@ -115,7 +115,7 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
           />
         </div>
 
-        <div className="mb-10 flex justify-between items-center">
+        <div className="mb-5 xl:mb-10 flex justify-between items-center">
           <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
             LCM Challenge {questionsAnswered + 1} of {questionsCount}
           </span>
@@ -134,7 +134,7 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
           </div>
         </div>
 
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 xl:mb-12">
           <div className="w-20 h-20 bg-indigo-100 rounded-3xl flex items-center justify-center text-indigo-600 mx-auto mb-6 shadow-lg shadow-indigo-100">
             <Search size={40} />
           </div>
@@ -148,9 +148,9 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-5 xl:gap-8 mb-6 xl:mb-12">
           <div className="flex flex-col items-center gap-2">
-            <div className="w-24 h-24 bg-slate-50 rounded-[32px] border-2 border-slate-100 flex items-center justify-center text-5xl font-black text-slate-800 shadow-inner">
+            <div className="w-16 h-16 xl:w-24 xl:h-24 bg-slate-50 rounded-[32px] border-2 border-slate-100 flex items-center justify-center text-4xl xl:text-5xl font-black text-slate-800 shadow-inner">
               {problem.n1}
             </div>
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Number 1</span>
@@ -159,7 +159,7 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
           <div className="text-4xl font-black text-indigo-200">&</div>
 
           <div className="flex flex-col items-center gap-2">
-            <div className="w-24 h-24 bg-slate-50 rounded-[32px] border-2 border-slate-100 flex items-center justify-center text-5xl font-black text-slate-800 shadow-inner">
+            <div className="w-16 h-16 xl:w-24 xl:h-24 bg-slate-50 rounded-[32px] border-2 border-slate-100 flex items-center justify-center text-4xl xl:text-5xl font-black text-slate-800 shadow-inner">
               {problem.n2}
             </div>
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Number 2</span>
@@ -190,7 +190,7 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-12 text-center"
+              className="mt-6 xl:mt-12 text-center"
             >
               {isCorrect ? (
                 <div className="flex flex-col items-center gap-4">
@@ -229,7 +229,7 @@ export default function LCMExercise({ grade, questionsCount = 10, onComplete, on
         onClick={onCancel}
         className="mt-8 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );

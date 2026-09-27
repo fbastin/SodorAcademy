@@ -118,8 +118,8 @@ export default function ArithmeticMeanWordProblems({ grade, questionsCount = 10,
   if (!problem) return null;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-slate-100 relative overflow-hidden">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+      <div className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100 relative overflow-hidden">
         {/* Progress Bar */}
         <div className="absolute top-0 left-0 h-2 bg-slate-100 w-full">
           <motion.div 
@@ -129,7 +129,7 @@ export default function ArithmeticMeanWordProblems({ grade, questionsCount = 10,
           />
         </div>
 
-        <div className="mb-10 flex justify-between items-center">
+        <div className="mb-5 xl:mb-10 flex justify-between items-center">
           <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
             Average Adventure {questionsAnswered + 1} of {questionsCount}
           </span>
@@ -148,7 +148,7 @@ export default function ArithmeticMeanWordProblems({ grade, questionsCount = 10,
           </div>
         </div>
 
-        <div className="mb-12">
+        <div className="mb-6 xl:mb-12">
           <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-6 shadow-lg shadow-orange-100">
             <BookOpen size={32} />
           </div>
@@ -182,7 +182,7 @@ export default function ArithmeticMeanWordProblems({ grade, questionsCount = 10,
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-12 p-8 bg-slate-50 rounded-3xl border border-slate-200"
+              className="mt-6 xl:mt-12 p-5 md:p-6 xl:p-8 bg-slate-50 rounded-3xl border border-slate-200"
             >
               {isCorrect ? (
                 <div className="flex flex-col items-center gap-4">
@@ -226,7 +226,7 @@ export default function ArithmeticMeanWordProblems({ grade, questionsCount = 10,
         onClick={onCancel}
         className="mt-8 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );

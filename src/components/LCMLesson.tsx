@@ -60,10 +60,10 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
   const step = STEPS[currentStep];
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="bg-white rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col min-h-[600px]">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+      <div className="bg-white rounded-[28px] xl:rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col xl:min-h-[600px]">
         {/* Header */}
-        <div className="bg-indigo-600 p-8 text-white flex items-center justify-between">
+        <div className="bg-indigo-600 p-5 md:p-6 xl:p-8 text-white flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
               <List size={28} />
@@ -92,7 +92,7 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-8 md:p-12 flex flex-col">
+        <div className="flex-1 p-5 md:p-7 xl:p-12 flex flex-col">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -102,7 +102,7 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
               className="h-full flex flex-col"
             >
               <div className="flex items-center gap-6 mb-8">
-                <div className="text-6xl bg-slate-50 w-24 h-24 rounded-[32px] flex items-center justify-center shadow-inner shrink-0">
+                <div className="text-4xl xl:text-6xl bg-slate-50 w-16 h-16 xl:w-24 xl:h-24 rounded-[32px] flex items-center justify-center shadow-inner shrink-0">
                   {step.image}
                 </div>
                 <div>
@@ -121,12 +121,12 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
               </div>
 
               <div className="flex-1">
-                <p className="text-xl leading-relaxed text-slate-700 font-medium mb-12">
+                <p className="text-lg xl:text-xl leading-relaxed text-slate-700 font-medium mb-6 xl:mb-12">
                   {step.content}
                 </p>
 
                 {/* Visualization */}
-                <div className="bg-slate-50 rounded-3xl p-8 border border-slate-100 flex flex-col items-center justify-center min-h-[180px]">
+                <div className="bg-slate-50 rounded-3xl p-5 md:p-6 xl:p-8 border border-slate-100 flex flex-col items-center justify-center min-h-[180px]">
                   {step.list && (
                     <div className="flex flex-col items-center gap-4">
                       <span className="text-sm font-black text-slate-400 uppercase">Multiples of {step.list.number}</span>
@@ -187,7 +187,7 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
 
                   {step.result && (
                     <div className="flex flex-col items-center gap-6">
-                      <div className="flex items-center gap-8">
+                      <div className="flex items-center gap-5 xl:gap-8">
                          <div className="flex flex-col items-center">
                             <span className="text-4xl">🚂</span>
                             <span className="font-black text-slate-400">Number {step.result.n1}</span>
@@ -208,7 +208,7 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
               </div>
 
               {/* Navigation */}
-              <div className="mt-12 flex justify-between items-center">
+              <div className="mt-6 xl:mt-12 flex justify-between items-center">
                 <button
                   onClick={prev}
                   disabled={currentStep === 0}
@@ -240,7 +240,7 @@ export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps)
       
       <button 
         onClick={onCancel}
-        className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
+        className="mt-6 xl:mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
         Return to Station
       </button>

@@ -1,0 +1,1046 @@
+{
+  "Primary": [
+    {
+      "id": "x-his-p-1",
+      "text": "What did most steam engines burn to heat the water in their boilers?",
+      "options": [
+        "Coal",
+        "Sand",
+        "Chalk",
+        "Straw"
+      ],
+      "correctAnswer": "Coal",
+      "explanation": "Burning coal heated water into steam, which pushed the pistons.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-2",
+      "text": "Besides coal, what did a steam engine need to take on often at stations?",
+      "options": [
+        "Water",
+        "Milk",
+        "Oil paint",
+        "Salt"
+      ],
+      "correctAnswer": "Water",
+      "explanation": "Steam is made by boiling water, so engines needed regular refills.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-3",
+      "text": "In 1804, Richard Trevithick's steam locomotive ran on a tramway in which country?",
+      "options": [
+        "Wales",
+        "Scotland",
+        "Ireland",
+        "France"
+      ],
+      "correctAnswer": "Wales",
+      "explanation": "Trevithick's engine ran at Penydarren in South Wales.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-4",
+      "text": "Which engine pulled the first train on the Stockton and Darlington Railway in 1825?",
+      "options": [
+        "Locomotion No. 1",
+        "The Rocket",
+        "Puffing Billy",
+        "Flying Scotsman"
+      ],
+      "correctAnswer": "Locomotion No. 1",
+      "explanation": "Locomotion No. 1 hauled the opening train in 1825.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-5",
+      "text": "Before railways, heavy goods were often carried on narrow boats along...",
+      "options": [
+        "Canals",
+        "Motorways",
+        "Airports",
+        "Cycle paths"
+      ],
+      "correctAnswer": "Canals",
+      "explanation": "Canals were Britain's main way to move heavy goods before railways.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-6",
+      "text": "What did the Romans build across Britain that were famously long and straight?",
+      "options": [
+        "Roads",
+        "Railways",
+        "Canals",
+        "Skyscrapers"
+      ],
+      "correctAnswer": "Roads",
+      "explanation": "Roman roads linked towns and forts across Britain.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-7",
+      "text": "Which Roman emperor ordered a great wall to be built across northern England?",
+      "options": [
+        "Hadrian",
+        "Nero",
+        "Augustus",
+        "Caligula"
+      ],
+      "correctAnswer": "Hadrian",
+      "explanation": "Hadrian's Wall was begun around AD 122.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-8",
+      "text": "What did the Romans call the town that became London?",
+      "options": [
+        "Londinium",
+        "Londonia",
+        "Lundenburg",
+        "Londria"
+      ],
+      "correctAnswer": "Londinium",
+      "explanation": "The Romans founded Londinium on the River Thames.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-9",
+      "text": "Which language did the ancient Romans speak?",
+      "options": [
+        "Latin",
+        "Greek",
+        "French",
+        "English"
+      ],
+      "correctAnswer": "Latin",
+      "explanation": "Latin was the language of ancient Rome.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-10",
+      "text": "In which year did the Great Fire of London happen?",
+      "options": [
+        "1666",
+        "1066",
+        "1766",
+        "1566"
+      ],
+      "correctAnswer": "1666",
+      "explanation": "The Great Fire burned for several days in September 1666.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-11",
+      "text": "Where did the Great Fire of London start?",
+      "options": [
+        "In a bakery on Pudding Lane",
+        "In a castle tower",
+        "In a ship on the Thames",
+        "In a church on Bread Street"
+      ],
+      "correctAnswer": "In a bakery on Pudding Lane",
+      "explanation": "The fire began in Thomas Farriner's bakery on Pudding Lane.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-12",
+      "text": "Which man wrote a famous diary describing the Great Fire of London?",
+      "options": [
+        "Samuel Pepys",
+        "William Shakespeare",
+        "Isaac Newton",
+        "Charles Dickens"
+      ],
+      "correctAnswer": "Samuel Pepys",
+      "explanation": "Samuel Pepys recorded the fire in his diary.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-13",
+      "text": "The Vikings came to Britain from which part of Europe?",
+      "options": [
+        "Scandinavia",
+        "Italy",
+        "Spain",
+        "Greece"
+      ],
+      "correctAnswer": "Scandinavia",
+      "explanation": "Vikings came from lands such as Norway, Denmark and Sweden.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-14",
+      "text": "What were the Vikings' long, narrow wooden ships called?",
+      "options": [
+        "Longships",
+        "Steamships",
+        "Galleons",
+        "Submarines"
+      ],
+      "correctAnswer": "Longships",
+      "explanation": "Viking longships could sail on seas and up rivers.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-15",
+      "text": "What is the name of the water-filled ditch dug around some castles?",
+      "options": [
+        "A moat",
+        "A tunnel",
+        "A canal",
+        "A well"
+      ],
+      "correctAnswer": "A moat",
+      "explanation": "A moat made it harder for attackers to reach the walls.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-16",
+      "text": "What was the strongest, safest tower in the middle of a castle called?",
+      "options": [
+        "The keep",
+        "The barn",
+        "The mill",
+        "The porch"
+      ],
+      "correctAnswer": "The keep",
+      "explanation": "The keep was the castle's last line of defence.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-17",
+      "text": "A young helper who looked after a knight's armour and horse while training was called a...",
+      "options": [
+        "Squire",
+        "Jester",
+        "Pharaoh",
+        "Sheriff"
+      ],
+      "correctAnswer": "Squire",
+      "explanation": "A squire served a knight while learning to become one.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-18",
+      "text": "What did knights wear to protect themselves in battle?",
+      "options": [
+        "Armour",
+        "Wellington boots",
+        "Raincoats",
+        "Tracksuits"
+      ],
+      "correctAnswer": "Armour",
+      "explanation": "Knights wore chain mail or metal plate armour.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-19",
+      "text": "Which long embroidered cloth tells the story of the Battle of Hastings?",
+      "options": [
+        "The Bayeux Tapestry",
+        "The Magna Carta",
+        "The Domesday Book",
+        "The Union Flag"
+      ],
+      "correctAnswer": "The Bayeux Tapestry",
+      "explanation": "The Bayeux Tapestry shows the Norman Conquest of 1066 in pictures.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-20",
+      "text": "How many wives did King Henry VIII have?",
+      "options": [
+        "Six",
+        "Two",
+        "Four",
+        "Eight"
+      ],
+      "correctAnswer": "Six",
+      "explanation": "Henry VIII married six times.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-21",
+      "text": "Queen Elizabeth I was the daughter of which king?",
+      "options": [
+        "Henry VIII",
+        "William the Conqueror",
+        "Richard III",
+        "George III"
+      ],
+      "correctAnswer": "Henry VIII",
+      "explanation": "Elizabeth I was the daughter of Henry VIII and Anne Boleyn.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-22",
+      "text": "Which November celebration remembers the Gunpowder Plot of 1605?",
+      "options": [
+        "Bonfire Night",
+        "Christmas",
+        "Easter",
+        "Pancake Day"
+      ],
+      "correctAnswer": "Bonfire Night",
+      "explanation": "Bonfire Night on 5 November recalls Guy Fawkes and the plot.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-23",
+      "text": "What were the kings of ancient Egypt called?",
+      "options": [
+        "Pharaohs",
+        "Emperors",
+        "Sultans",
+        "Chiefs"
+      ],
+      "correctAnswer": "Pharaohs",
+      "explanation": "Ancient Egyptian rulers were known as pharaohs.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-24",
+      "text": "Why did the ancient Egyptians build the great pyramids?",
+      "options": [
+        "As tombs for pharaohs",
+        "As railway stations",
+        "As lighthouses",
+        "As schools"
+      ],
+      "correctAnswer": "As tombs for pharaohs",
+      "explanation": "The pyramids were built as burial places for kings.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-25",
+      "text": "Which Egyptian boy king's tomb was discovered by Howard Carter in 1922?",
+      "options": [
+        "Tutankhamun",
+        "Ramesses",
+        "Cleopatra",
+        "Khufu"
+      ],
+      "correctAnswer": "Tutankhamun",
+      "explanation": "Tutankhamun's tomb was found full of treasure in 1922.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-26",
+      "text": "In which country did the Olympic Games begin long ago?",
+      "options": [
+        "Greece",
+        "Egypt",
+        "China",
+        "Norway"
+      ],
+      "correctAnswer": "Greece",
+      "explanation": "The ancient Olympics were held at Olympia in Greece.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-27",
+      "text": "Who was the first person to walk on the Moon?",
+      "options": [
+        "Neil Armstrong",
+        "Yuri Gagarin",
+        "Buzz Aldrin",
+        "Tim Peake"
+      ],
+      "correctAnswer": "Neil Armstrong",
+      "explanation": "Neil Armstrong stepped onto the Moon in 1969.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-28",
+      "text": "In 1903, the Wright brothers were the first to fly what kind of machine?",
+      "options": [
+        "A powered aeroplane",
+        "A hot-air balloon",
+        "A helicopter",
+        "A rocket"
+      ],
+      "correctAnswer": "A powered aeroplane",
+      "explanation": "The Wright brothers' Flyer made the first powered flight in 1903.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-29",
+      "text": "Which ocean did Christopher Columbus sail across in 1492?",
+      "options": [
+        "The Atlantic Ocean",
+        "The Pacific Ocean",
+        "The Indian Ocean",
+        "The Arctic Ocean"
+      ],
+      "correctAnswer": "The Atlantic Ocean",
+      "explanation": "Columbus crossed the Atlantic and reached the Caribbean.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-30",
+      "text": "Which explorer's team was the first to reach the South Pole, in 1911?",
+      "options": [
+        "Roald Amundsen",
+        "Captain Scott",
+        "Christopher Columbus",
+        "Marco Polo"
+      ],
+      "correctAnswer": "Roald Amundsen",
+      "explanation": "Amundsen's Norwegian team reached the South Pole in December 1911.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-31",
+      "text": "In 1770, Captain James Cook sailed along and mapped the east coast of which land?",
+      "options": [
+        "Australia",
+        "Iceland",
+        "Canada",
+        "India"
+      ],
+      "correctAnswer": "Australia",
+      "explanation": "Cook charted Australia's east coast in 1770.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-32",
+      "text": "Which nurse was known as 'The Lady with the Lamp'?",
+      "options": [
+        "Florence Nightingale",
+        "Mary Seacole",
+        "Queen Victoria",
+        "Grace Darling"
+      ],
+      "correctAnswer": "Florence Nightingale",
+      "explanation": "She checked on sick soldiers at night carrying a lamp.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-33",
+      "text": "Which fossil hunter found amazing sea reptile fossils at Lyme Regis in the 1800s?",
+      "options": [
+        "Mary Anning",
+        "Marie Curie",
+        "Ada Lovelace",
+        "Jane Austen"
+      ],
+      "correctAnswer": "Mary Anning",
+      "explanation": "Mary Anning's discoveries helped scientists learn about prehistoric life.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-34",
+      "text": "Who is usually credited with inventing the telephone in 1876?",
+      "options": [
+        "Alexander Graham Bell",
+        "George Stephenson",
+        "Thomas Telford",
+        "Isaac Newton"
+      ],
+      "correctAnswer": "Alexander Graham Bell",
+      "explanation": "Bell received a patent for the telephone in 1876.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-35",
+      "text": "Which woman led a famous campaign for women to get the vote in Britain?",
+      "options": [
+        "Emmeline Pankhurst",
+        "Florence Nightingale",
+        "Queen Victoria",
+        "Mary Anning"
+      ],
+      "correctAnswer": "Emmeline Pankhurst",
+      "explanation": "Emmeline Pankhurst led the suffragette movement.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-36",
+      "text": "The Penny Black, first used in 1840, was the world's first...",
+      "options": [
+        "Postage stamp",
+        "Railway ticket",
+        "Bank note",
+        "Newspaper"
+      ],
+      "correctAnswer": "Postage stamp",
+      "explanation": "The Penny Black let people prepay for posting letters.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-37",
+      "text": "Which dangerous job did some poor Victorian children do inside chimneys?",
+      "options": [
+        "Chimney sweep",
+        "Train driver",
+        "Lighthouse keeper",
+        "Ship's captain"
+      ],
+      "correctAnswer": "Chimney sweep",
+      "explanation": "Small children were sent up chimneys to clean them, until laws stopped it.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-p-38",
+      "text": "Before electric lights, how did most people light their homes at night?",
+      "options": [
+        "Candles and oil lamps",
+        "Torches with batteries",
+        "Neon signs",
+        "Street lamps indoors"
+      ],
+      "correctAnswer": "Candles and oil lamps",
+      "explanation": "Homes were lit with candles, oil lamps and later gas lights.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-p-39",
+      "text": "Stonehenge was built long ago by people living in which age?",
+      "options": [
+        "The Stone Age",
+        "The Space Age",
+        "The Victorian age",
+        "The Viking age"
+      ],
+      "correctAnswer": "The Stone Age",
+      "explanation": "Stonehenge was begun around 5,000 years ago in the Stone Age.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-p-40",
+      "text": "Long ago, how did many people wash clothes before washing machines?",
+      "options": [
+        "By hand with a washboard and tub",
+        "With a dishwasher",
+        "At a car wash",
+        "With a vacuum cleaner"
+      ],
+      "correctAnswer": "By hand with a washboard and tub",
+      "explanation": "Clothes were scrubbed by hand and squeezed through a mangle.",
+      "rewardType": "badge"
+    }
+  ],
+  "Secondary": [
+    {
+      "id": "x-his-s-1",
+      "text": "In which year did the Stockton and Darlington Railway open?",
+      "options": [
+        "1825",
+        "1805",
+        "1845",
+        "1865"
+      ],
+      "correctAnswer": "1825",
+      "explanation": "It opened on 27 September 1825 as a public railway using steam.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-2",
+      "text": "In which year did the Liverpool and Manchester Railway open?",
+      "options": [
+        "1830",
+        "1820",
+        "1840",
+        "1850"
+      ],
+      "correctAnswer": "1830",
+      "explanation": "It opened in 1830 as the first inter-city steam railway.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-3",
+      "text": "Which politician was fatally injured by the Rocket at the Liverpool and Manchester Railway's opening?",
+      "options": [
+        "William Huskisson",
+        "Robert Peel",
+        "Duke of Wellington",
+        "William Pitt"
+      ],
+      "correctAnswer": "William Huskisson",
+      "explanation": "Huskisson was struck by Rocket on the opening day in 1830.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-4",
+      "text": "What was the width of the 'standard gauge' used on most British railways?",
+      "options": [
+        "4 ft 8½ in",
+        "7 ft ¼ in",
+        "3 ft 6 in",
+        "5 ft 3 in"
+      ],
+      "correctAnswer": "4 ft 8½ in",
+      "explanation": "Stephenson's 4 ft 8½ in gauge became the British standard.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-5",
+      "text": "What was the width of Brunel's broad gauge on the Great Western Railway?",
+      "options": [
+        "7 ft ¼ in",
+        "4 ft 8½ in",
+        "5 ft 6 in",
+        "6 ft 2 in"
+      ],
+      "correctAnswer": "7 ft ¼ in",
+      "explanation": "Brunel chose a 7 ft ¼ in gauge for speed and stability.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-6",
+      "text": "In which year did the Great Western Railway finally end its broad gauge?",
+      "options": [
+        "1892",
+        "1846",
+        "1869",
+        "1901"
+      ],
+      "correctAnswer": "1892",
+      "explanation": "The last broad gauge lines were converted in May 1892.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-7",
+      "text": "Which London terminus was built for Brunel's Great Western Railway?",
+      "options": [
+        "Paddington",
+        "King's Cross",
+        "Euston",
+        "Waterloo"
+      ],
+      "correctAnswer": "Paddington",
+      "explanation": "Paddington station is the GWR's London terminus.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-8",
+      "text": "Brunel's suspension bridge across the Avon Gorge is in which city?",
+      "options": [
+        "Bristol",
+        "Bath",
+        "Cardiff",
+        "Gloucester"
+      ],
+      "correctAnswer": "Bristol",
+      "explanation": "The Clifton Suspension Bridge spans the Avon Gorge in Bristol.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-9",
+      "text": "Which Brunel ship, launched in 1843, combined an iron hull with a screw propeller?",
+      "options": [
+        "SS Great Britain",
+        "HMS Victory",
+        "RMS Titanic",
+        "Cutty Sark"
+      ],
+      "correctAnswer": "SS Great Britain",
+      "explanation": "SS Great Britain was the first iron, screw-driven ship to cross the Atlantic.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-10",
+      "text": "In 1923, most of Britain's railway companies were grouped into how many large companies?",
+      "options": [
+        "Four",
+        "Two",
+        "Six",
+        "Ten"
+      ],
+      "correctAnswer": "Four",
+      "explanation": "The 'Big Four' were the GWR, LMS, LNER and Southern Railway.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-11",
+      "text": "Mallard was built by which of the 'Big Four' railway companies?",
+      "options": [
+        "LNER",
+        "GWR",
+        "LMS",
+        "Southern Railway"
+      ],
+      "correctAnswer": "LNER",
+      "explanation": "Mallard was an LNER A4 class locomotive.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-12",
+      "text": "Which engineer designed both Flying Scotsman and Mallard?",
+      "options": [
+        "Sir Nigel Gresley",
+        "Isambard Kingdom Brunel",
+        "Robert Stephenson",
+        "Oliver Bulleid"
+      ],
+      "correctAnswer": "Sir Nigel Gresley",
+      "explanation": "Gresley was the LNER's Chief Mechanical Engineer.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-13",
+      "text": "What top speed did Mallard reach in its 1938 record run?",
+      "options": [
+        "126 mph",
+        "100 mph",
+        "150 mph",
+        "112 mph"
+      ],
+      "correctAnswer": "126 mph",
+      "explanation": "Mallard reached 126 mph on 3 July 1938.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-14",
+      "text": "The Flying Scotsman express service linked London with which city?",
+      "options": [
+        "Edinburgh",
+        "Glasgow",
+        "Aberdeen",
+        "Manchester"
+      ],
+      "correctAnswer": "Edinburgh",
+      "explanation": "The service ran between London King's Cross and Edinburgh.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-15",
+      "text": "The Beeching report that led to many railway closures was published in which year?",
+      "options": [
+        "1963",
+        "1948",
+        "1955",
+        "1975"
+      ],
+      "correctAnswer": "1963",
+      "explanation": "'The Reshaping of British Railways' appeared in 1963.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-16",
+      "text": "In which year did regular steam-hauled trains end on British Railways' main lines?",
+      "options": [
+        "1968",
+        "1948",
+        "1958",
+        "1978"
+      ],
+      "correctAnswer": "1968",
+      "explanation": "The last BR steam passenger trains ran in August 1968.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-17",
+      "text": "Railways helped all of Britain set its clocks to the same time, based on...",
+      "options": [
+        "Greenwich",
+        "Paris",
+        "Edinburgh",
+        "Bristol"
+      ],
+      "correctAnswer": "Greenwich",
+      "explanation": "'Railway time' used Greenwich Mean Time across the country.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-18",
+      "text": "Who invented the spinning jenny in the 1760s?",
+      "options": [
+        "James Hargreaves",
+        "Richard Arkwright",
+        "Edmund Cartwright",
+        "John Kay"
+      ],
+      "correctAnswer": "James Hargreaves",
+      "explanation": "Hargreaves' spinning jenny let one worker spin many threads at once.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-19",
+      "text": "Which inventor developed the water frame and built early cotton mills?",
+      "options": [
+        "Richard Arkwright",
+        "James Hargreaves",
+        "Samuel Crompton",
+        "Thomas Newcomen"
+      ],
+      "correctAnswer": "Richard Arkwright",
+      "explanation": "Arkwright's water frame used water power to spin cotton.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-20",
+      "text": "The world's first major cast-iron bridge, opened in 1779, stands in which English county?",
+      "options": [
+        "Shropshire",
+        "Yorkshire",
+        "Cornwall",
+        "Kent"
+      ],
+      "correctAnswer": "Shropshire",
+      "explanation": "The Iron Bridge crosses the River Severn at Coalbrookdale in Shropshire.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-21",
+      "text": "Which group of workers smashed new machines in the early 1800s to protest about their jobs?",
+      "options": [
+        "The Luddites",
+        "The Chartists",
+        "The Suffragettes",
+        "The Levellers"
+      ],
+      "correctAnswer": "The Luddites",
+      "explanation": "Luddites were textile workers who feared machines would replace them.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-22",
+      "text": "Which object helped scholars finally read Egyptian hieroglyphs?",
+      "options": [
+        "The Rosetta Stone",
+        "The Bayeux Tapestry",
+        "The Magna Carta",
+        "The Dead Sea Scrolls"
+      ],
+      "correctAnswer": "The Rosetta Stone",
+      "explanation": "It carried the same text in hieroglyphs, demotic and Greek.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-23",
+      "text": "Which ancient Greek city is known as the birthplace of democracy?",
+      "options": [
+        "Athens",
+        "Sparta",
+        "Troy",
+        "Corinth"
+      ],
+      "correctAnswer": "Athens",
+      "explanation": "Citizens of Athens voted on laws in their assembly.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-24",
+      "text": "In which year was Julius Caesar assassinated?",
+      "options": [
+        "44 BC",
+        "55 BC",
+        "AD 43",
+        "AD 79"
+      ],
+      "correctAnswer": "44 BC",
+      "explanation": "Caesar was killed on the Ides of March, 44 BC.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-25",
+      "text": "Under which emperor did the Romans invade Britain in AD 43?",
+      "options": [
+        "Claudius",
+        "Julius Caesar",
+        "Hadrian",
+        "Constantine"
+      ],
+      "correctAnswer": "Claudius",
+      "explanation": "Emperor Claudius launched the Roman conquest of Britain in AD 43.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-26",
+      "text": "Which king agreed to Magna Carta in 1215?",
+      "options": [
+        "King John",
+        "Henry II",
+        "Richard I",
+        "Edward I"
+      ],
+      "correctAnswer": "King John",
+      "explanation": "King John sealed Magna Carta at Runnymede in 1215.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-27",
+      "text": "Which English king was defeated at the Battle of Hastings in 1066?",
+      "options": [
+        "Harold II",
+        "Alfred the Great",
+        "Edward the Confessor",
+        "William I"
+      ],
+      "correctAnswer": "Harold II",
+      "explanation": "Harold II lost to William of Normandy at Hastings.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-28",
+      "text": "Which great survey of England was ordered by William the Conqueror and completed in 1086?",
+      "options": [
+        "The Domesday Book",
+        "Magna Carta",
+        "The Bayeux Tapestry",
+        "The Bill of Rights"
+      ],
+      "correctAnswer": "The Domesday Book",
+      "explanation": "The Domesday Book recorded land and property across England.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-29",
+      "text": "In which country did Johannes Gutenberg develop his printing press around 1440?",
+      "options": [
+        "Germany",
+        "Italy",
+        "England",
+        "Spain"
+      ],
+      "correctAnswer": "Germany",
+      "explanation": "Gutenberg worked in Mainz, in what is now Germany.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-30",
+      "text": "Who set up the first printing press in England in 1476?",
+      "options": [
+        "William Caxton",
+        "Geoffrey Chaucer",
+        "Thomas Cromwell",
+        "Francis Bacon"
+      ],
+      "correctAnswer": "William Caxton",
+      "explanation": "Caxton set up his press at Westminster in 1476.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-31",
+      "text": "In which country did the Renaissance begin?",
+      "options": [
+        "Italy",
+        "France",
+        "England",
+        "Netherlands"
+      ],
+      "correctAnswer": "Italy",
+      "explanation": "The Renaissance began in Italian cities such as Florence.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-32",
+      "text": "Which Renaissance artist painted the Mona Lisa?",
+      "options": [
+        "Leonardo da Vinci",
+        "Michelangelo",
+        "Raphael",
+        "Botticelli"
+      ],
+      "correctAnswer": "Leonardo da Vinci",
+      "explanation": "Leonardo da Vinci painted the Mona Lisa in the early 1500s.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-33",
+      "text": "Which explorer reached India by sailing around Africa in 1498?",
+      "options": [
+        "Vasco da Gama",
+        "Christopher Columbus",
+        "Ferdinand Magellan",
+        "Francis Drake"
+      ],
+      "correctAnswer": "Vasco da Gama",
+      "explanation": "Vasco da Gama opened a sea route from Europe to India.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-34",
+      "text": "Whose expedition of 1519–1522 was the first to sail all the way around the world?",
+      "options": [
+        "Ferdinand Magellan",
+        "Vasco da Gama",
+        "James Cook",
+        "Walter Raleigh"
+      ],
+      "correctAnswer": "Ferdinand Magellan",
+      "explanation": "Magellan died on the way, but his expedition completed the voyage.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-35",
+      "text": "In which year did the First World War end?",
+      "options": [
+        "1918",
+        "1914",
+        "1921",
+        "1939"
+      ],
+      "correctAnswer": "1918",
+      "explanation": "The Armistice was signed on 11 November 1918.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-36",
+      "text": "During the Second World War, moving British children from cities to the countryside for safety was called...",
+      "options": [
+        "Evacuation",
+        "Rationing",
+        "Emigration",
+        "Conscription"
+      ],
+      "correctAnswer": "Evacuation",
+      "explanation": "Many children were evacuated to the countryside from 1939.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-37",
+      "text": "Which space mission first landed astronauts on the Moon in 1969?",
+      "options": [
+        "Apollo 11",
+        "Apollo 13",
+        "Gemini 4",
+        "Vostok 1"
+      ],
+      "correctAnswer": "Apollo 11",
+      "explanation": "Apollo 11 landed on the Moon on 20 July 1969.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-his-s-38",
+      "text": "What was the title of the first Railway Series book, published in 1945?",
+      "options": [
+        "The Three Railway Engines",
+        "Thomas the Tank Engine",
+        "James the Red Engine",
+        "Tank Engine Thomas Again"
+      ],
+      "correctAnswer": "The Three Railway Engines",
+      "explanation": "The Three Railway Engines was the first book, in 1945.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-his-s-39",
+      "text": "In the Railway Series, the Island of Sodor lies between Barrow-in-Furness and...",
+      "options": [
+        "The Isle of Man",
+        "The Isle of Wight",
+        "Anglesey",
+        "The Isle of Skye"
+      ],
+      "correctAnswer": "The Isle of Man",
+      "explanation": "Awdry placed Sodor in the Irish Sea near Barrow-in-Furness.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-his-s-40",
+      "text": "Who continued writing the Railway Series after the Rev. W. Awdry retired?",
+      "options": [
+        "His son Christopher Awdry",
+        "His brother George Awdry",
+        "Britt Allcroft",
+        "Ringo Starr"
+      ],
+      "correctAnswer": "His son Christopher Awdry",
+      "explanation": "Christopher Awdry wrote further books from 1983.",
+      "rewardType": "badge"
+    }
+  ]
+}

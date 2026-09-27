@@ -139,7 +139,7 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
   const progress = (questionsAnswered / questionsCount) * 100;
 
   return (
-    <div className="w-full flex flex-col bg-slate-950 rounded-[40px] overflow-hidden shadow-2xl border-4 border-slate-800">
+    <div className="w-full flex flex-col bg-slate-950 rounded-[28px] xl:rounded-[40px] overflow-hidden shadow-2xl border-4 border-slate-800">
       {/* Top Console */}
       <div className="flex items-center justify-between p-6 bg-gradient-to-b from-slate-900 to-slate-950 border-b border-white/5">
         <div className="flex items-center gap-4">
@@ -161,7 +161,7 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
         </button>
       </div>
 
-      <div className="p-8 flex flex-col items-center">
+      <div className="p-5 md:p-6 xl:p-8 flex flex-col items-center">
         {/* Progress Tracker */}
         <div className="w-full max-w-2xl mb-8">
            <div className="flex justify-between items-end mb-2">
@@ -182,7 +182,7 @@ export default function PianoSequence({ grade, questionsCount = 10, onComplete, 
            </div>
         </div>
 
-        <div className="bg-slate-900 w-full max-w-4xl p-8 rounded-3xl border border-white/5 mb-8 text-center relative overflow-hidden">
+        <div className="bg-slate-900 w-full max-w-4xl p-5 md:p-6 xl:p-8 rounded-3xl border border-white/5 mb-8 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-600 to-transparent opacity-50" />
           
           <p className={`text-xl font-bold mb-8 transition-colors ${isCorrect === true ? 'text-emerald-400' : isCorrect === false ? 'text-red-400' : 'text-white'}`}>

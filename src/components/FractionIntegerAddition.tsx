@@ -82,18 +82,24 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
 
   return (
     <div className="max-w-3xl mx-auto py-6 px-4">
-      <div className="mb-6 relative h-3 bg-slate-200 rounded-full overflow-hidden shadow-inner">
-        <motion.div 
-          className="absolute top-0 left-0 h-full bg-sodor-blue"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-        />
+      <div className="mb-8 relative">
+        <div className="h-3 w-full bg-slate-200 rounded-full train-track overflow-hidden">
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            className="h-full bg-sodor-blue"
+          />
+        </div>
         <motion.div 
           animate={{ left: `${progress}%` }}
           className="absolute -top-5 -ml-3 text-sodor-blue transition-all"
         >
           <Train size={24} />
         </motion.div>
+        <div className="flex justify-between mt-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-1">
+          <span>Tidmouth Sheds</span>
+          <span>Knapford Station</span>
+        </div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -102,7 +108,7 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden bg-white/90 backdrop-blur-xl border-2 border-white/50"
+          className="engine-glass rounded-3xl p-5 md:p-7 xl:p-12 shadow-2xl relative overflow-hidden bg-white/90 backdrop-blur-xl border-2 border-white/50"
         >
           <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
           <div className="flex justify-between items-start mb-4">
@@ -122,8 +128,8 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
             Gordon has <span className="text-sodor-blue">{problem.integer}</span> full coal cars and <span className="text-sodor-blue">{problem.n}/{problem.d}</span> of another. How many parts does he have in total?
           </h2>
 
-          <div className="flex items-center justify-center gap-6 mb-12">
-            <div className="text-5xl font-black text-slate-800 bg-slate-50 w-24 h-24 rounded-2xl flex items-center justify-center shadow-inner border border-slate-100">
+          <div className="flex items-center justify-center gap-6 mb-6 xl:mb-12">
+            <div className="text-4xl xl:text-5xl font-black text-slate-800 bg-slate-50 w-16 h-16 xl:w-24 xl:h-24 rounded-2xl flex items-center justify-center shadow-inner border border-slate-100">
               {problem.integer}
             </div>
             <span className="text-3xl font-black text-sodor-blue">+</span>
@@ -216,7 +222,7 @@ export default function FractionIntegerAddition({ grade, questionsCount = 10, on
         onClick={onCancel}
         className="mt-8 mx-auto block text-slate-400 font-black hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );

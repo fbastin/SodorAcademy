@@ -1,0 +1,1046 @@
+{
+  "Primary": [
+    {
+      "id": "x-mus-p-1",
+      "text": "Which instrument family does the violin belong to?",
+      "options": [
+        "Percussion",
+        "Brass",
+        "Strings",
+        "Woodwind"
+      ],
+      "correctAnswer": "Strings",
+      "explanation": "The violin makes its sound with vibrating strings, so it is in the string family.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-2",
+      "text": "A trumpet belongs to which instrument family?",
+      "options": [
+        "Strings",
+        "Woodwind",
+        "Keyboard",
+        "Brass"
+      ],
+      "correctAnswer": "Brass",
+      "explanation": "Trumpets are made of brass and played by buzzing the lips.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-3",
+      "text": "Which of these is a woodwind instrument?",
+      "options": [
+        "Trombone",
+        "Clarinet",
+        "Xylophone",
+        "Cello"
+      ],
+      "correctAnswer": "Clarinet",
+      "explanation": "The clarinet is a woodwind instrument played by blowing through a reed.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-4",
+      "text": "How does a trumpet player make a sound?",
+      "options": [
+        "By shaking beads inside a shell",
+        "By pressing keys that hit hammers",
+        "By buzzing their lips into the mouthpiece",
+        "By plucking strings with their fingers"
+      ],
+      "correctAnswer": "By buzzing their lips into the mouthpiece",
+      "explanation": "Brass players buzz their lips, and the air inside the tube vibrates.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-5",
+      "text": "What makes the sound when you strum a guitar?",
+      "options": [
+        "A drum skin being hit",
+        "Vibrating strings",
+        "Air blown through a tube",
+        "Metal bars being struck"
+      ],
+      "correctAnswer": "Vibrating strings",
+      "explanation": "Strumming makes the strings vibrate, and that vibration is the sound.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-6",
+      "text": "How does a flute make its sound?",
+      "options": [
+        "It is hit with a pair of sticks",
+        "Hammers strike strings inside it",
+        "Air is blown across a hole and vibrates inside",
+        "A bow is pulled across its strings"
+      ],
+      "correctAnswer": "Air is blown across a hole and vibrates inside",
+      "explanation": "Blowing across the flute's mouth hole makes the air inside it vibrate.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-7",
+      "text": "The piano, the organ and the harpsichord belong to which family?",
+      "options": [
+        "Brass",
+        "Percussion",
+        "Woodwind",
+        "Keyboard"
+      ],
+      "correctAnswer": "Keyboard",
+      "explanation": "They are all played by pressing keys, so they are keyboard instruments.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-8",
+      "text": "Timpani are large drums in the orchestra. Which family do they belong to?",
+      "options": [
+        "Woodwind",
+        "Percussion",
+        "Brass",
+        "Strings"
+      ],
+      "correctAnswer": "Percussion",
+      "explanation": "Timpani are hit with sticks, so they are percussion instruments.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-9",
+      "text": "Which percussion instrument has wooden bars that you hit with beaters?",
+      "options": [
+        "Triangle",
+        "Cymbals",
+        "Xylophone",
+        "Maracas"
+      ],
+      "correctAnswer": "Xylophone",
+      "explanation": "A xylophone has a row of wooden bars, each playing a different note.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-10",
+      "text": "Which string instrument is held under the chin and played with a bow?",
+      "options": [
+        "Cello",
+        "Harp",
+        "Double bass",
+        "Violin"
+      ],
+      "correctAnswer": "Violin",
+      "explanation": "The violin rests under the chin; the cello and double bass stand on the floor.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-11",
+      "text": "Which string instrument has lots of strings that are plucked, not bowed?",
+      "options": [
+        "Cello",
+        "Harp",
+        "Violin",
+        "Viola"
+      ],
+      "correctAnswer": "Harp",
+      "explanation": "The harpist plucks the harp's many strings with their fingers.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-12",
+      "text": "Which brass instrument plays the lowest notes?",
+      "options": [
+        "Cornet",
+        "Trumpet",
+        "French horn",
+        "Tuba"
+      ],
+      "correctAnswer": "Tuba",
+      "explanation": "The tuba is the biggest brass instrument, so it plays the lowest notes.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-13",
+      "text": "Which instrument plays the highest notes?",
+      "options": [
+        "Bassoon",
+        "Double bass",
+        "Piccolo",
+        "Tuba"
+      ],
+      "correctAnswer": "Piccolo",
+      "explanation": "The piccolo is a tiny flute, and small instruments play high notes.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-14",
+      "text": "Thomas has a small whistle and Gordon has a big one. Whose whistle has the higher pitch?",
+      "options": [
+        "Gordon's",
+        "Neither whistle has a pitch",
+        "Thomas's",
+        "They are exactly the same"
+      ],
+      "correctAnswer": "Thomas's",
+      "explanation": "Smaller whistles make higher sounds, so Thomas's whistle is higher.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-15",
+      "text": "When you play keys further to the right on a piano, the notes get...",
+      "options": [
+        "Lower",
+        "Slower",
+        "Louder",
+        "Higher"
+      ],
+      "correctAnswer": "Higher",
+      "explanation": "Notes go up in pitch as you move to the right along the keyboard.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-16",
+      "text": "If Toby tiptoes quietly into the yard, which musical word describes his sound?",
+      "options": [
+        "Piano",
+        "Forte",
+        "Presto",
+        "Tempo"
+      ],
+      "correctAnswer": "Piano",
+      "explanation": "In music, piano means quiet.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-17",
+      "text": "Which animal would best suit slow, heavy music?",
+      "options": [
+        "An elephant",
+        "A rabbit",
+        "A mouse",
+        "A hummingbird"
+      ],
+      "correctAnswer": "An elephant",
+      "explanation": "An elephant moves slowly and heavily, just like slow, heavy music.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-18",
+      "text": "If you clap 4 even beats in every bar, how many claps are there in 3 bars?",
+      "options": [
+        "10",
+        "12",
+        "7",
+        "8"
+      ],
+      "correctAnswer": "12",
+      "explanation": "3 bars × 4 beats = 12 claps.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-19",
+      "text": "Which letters are used to name musical notes?",
+      "options": [
+        "A to M",
+        "A to G",
+        "A to Z",
+        "A to H"
+      ],
+      "correctAnswer": "A to G",
+      "explanation": "Musical notes use just the letters A, B, C, D, E, F and G.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-20",
+      "text": "How many different letter names do musical notes use?",
+      "options": [
+        "12",
+        "5",
+        "8",
+        "7"
+      ],
+      "correctAnswer": "7",
+      "explanation": "The note names are A, B, C, D, E, F and G, which is 7 letters.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-21",
+      "text": "In the musical alphabet, which note comes after G?",
+      "options": [
+        "A",
+        "F",
+        "H",
+        "C"
+      ],
+      "correctAnswer": "A",
+      "explanation": "After G the letters start again from A.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-22",
+      "text": "On a piano, the black keys come in groups of...",
+      "options": [
+        "1 and 4",
+        "2 and 3",
+        "2 and 4",
+        "3 and 4"
+      ],
+      "correctAnswer": "2 and 3",
+      "explanation": "The black keys repeat in a pattern of 2, then 3.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-23",
+      "text": "How many keys does a standard piano have?",
+      "options": [
+        "100",
+        "76",
+        "64",
+        "88"
+      ],
+      "correctAnswer": "88",
+      "explanation": "A full-size piano has 88 keys: 52 white and 36 black.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-24",
+      "text": "On a piano, where is every C found?",
+      "options": [
+        "In the middle of a group of 3 black keys",
+        "Just left of a group of 2 black keys",
+        "Just right of a group of 3 black keys",
+        "Just right of a group of 2 black keys"
+      ],
+      "correctAnswer": "Just left of a group of 2 black keys",
+      "explanation": "Each C sits on the white key just to the left of the 2 black keys.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-25",
+      "text": "Which white key sits between the two black keys in a group of 2?",
+      "options": [
+        "C",
+        "D",
+        "E",
+        "G"
+      ],
+      "correctAnswer": "D",
+      "explanation": "In the group C, D, E, the D is between the two black keys.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-26",
+      "text": "Which note do you play on the white key just to the right of middle C?",
+      "options": [
+        "F",
+        "B",
+        "E",
+        "D"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The notes go up C, D, E, so the next white key after C is D.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-27",
+      "text": "A minim lasts for how many crotchet beats?",
+      "options": [
+        "2",
+        "1",
+        "4",
+        "3"
+      ],
+      "correctAnswer": "2",
+      "explanation": "A minim is as long as two crotchets.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-28",
+      "text": "How many minims last as long as one semibreve?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "8"
+      ],
+      "correctAnswer": "2",
+      "explanation": "A semibreve lasts 4 beats and a minim lasts 2, so two minims fit.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-29",
+      "text": "Which of these notes is the shortest?",
+      "options": [
+        "Minim",
+        "Crotchet",
+        "Semibreve",
+        "Quaver"
+      ],
+      "correctAnswer": "Quaver",
+      "explanation": "A quaver lasts half a beat, shorter than the others.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-30",
+      "text": "How many quavers last as long as one minim?",
+      "options": [
+        "2",
+        "4",
+        "3",
+        "8"
+      ],
+      "correctAnswer": "4",
+      "explanation": "A minim is 2 beats and each beat holds 2 quavers, so 4 quavers.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-31",
+      "text": "What does a rest tell a musician to do?",
+      "options": [
+        "Stop the whole piece forever",
+        "Play one very long note",
+        "Play as loudly as possible",
+        "Stay silent for a set time"
+      ],
+      "correctAnswer": "Stay silent for a set time",
+      "explanation": "A rest is a silence that lasts a counted number of beats.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-32",
+      "text": "A crotchet rest means you stay silent for how many beats?",
+      "options": [
+        "1",
+        "3",
+        "2",
+        "4"
+      ],
+      "correctAnswer": "1",
+      "explanation": "A crotchet rest lasts the same time as a crotchet: 1 beat.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-33",
+      "text": "Who leads an orchestra by waving a stick called a baton?",
+      "options": [
+        "The drummer",
+        "The composer",
+        "The conductor",
+        "The soloist"
+      ],
+      "correctAnswer": "The conductor",
+      "explanation": "The conductor shows the players the beat and when to play.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-34",
+      "text": "What is the stick that a conductor holds called?",
+      "options": [
+        "A bow",
+        "A reed",
+        "A baton",
+        "A mallet"
+      ],
+      "correctAnswer": "A baton",
+      "explanation": "A conductor uses a thin stick called a baton to beat time.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-35",
+      "text": "What do we call a large group of musicians playing strings, woodwind, brass and percussion together?",
+      "options": [
+        "A choir",
+        "A duet",
+        "An orchestra",
+        "A solo"
+      ],
+      "correctAnswer": "An orchestra",
+      "explanation": "An orchestra brings together all four instrument families.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-36",
+      "text": "A piece played or sung by just one person is called a...",
+      "options": [
+        "Duet",
+        "Chorus",
+        "Solo",
+        "Trio"
+      ],
+      "correctAnswer": "Solo",
+      "explanation": "Solo means one performer; a duet is two and a trio is three.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-37",
+      "text": "Which composer went deaf but still kept writing music?",
+      "options": [
+        "Beethoven",
+        "Bach",
+        "Mozart",
+        "Vivaldi"
+      ],
+      "correctAnswer": "Beethoven",
+      "explanation": "Beethoven lost his hearing but went on composing great music.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-p-38",
+      "text": "Which composer began writing music when he was only about 5 years old?",
+      "options": [
+        "Beethoven",
+        "Bach",
+        "Handel",
+        "Mozart"
+      ],
+      "correctAnswer": "Mozart",
+      "explanation": "Mozart was a child star who composed his first pieces at about age 5.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-p-39",
+      "text": "Johann Sebastian Bach came from which country?",
+      "options": [
+        "Germany",
+        "Italy",
+        "France",
+        "England"
+      ],
+      "correctAnswer": "Germany",
+      "explanation": "Bach was born in Germany in 1685.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-p-40",
+      "text": "Which composer wrote the famous piano piece \"Für Elise\"?",
+      "options": [
+        "Beethoven",
+        "Bach",
+        "Chopin",
+        "Mozart"
+      ],
+      "correctAnswer": "Beethoven",
+      "explanation": "\"Für Elise\" is a well-known piano piece by Beethoven.",
+      "rewardType": "badge"
+    }
+  ],
+  "Secondary": [
+    {
+      "id": "x-mus-s-1",
+      "text": "How many lines does a musical staff (stave) have?",
+      "options": [
+        "5",
+        "6",
+        "4",
+        "7"
+      ],
+      "correctAnswer": "5",
+      "explanation": "A staff has 5 lines and 4 spaces.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-2",
+      "text": "The treble clef is also known as the...",
+      "options": [
+        "D clef",
+        "C clef",
+        "G clef",
+        "F clef"
+      ],
+      "correctAnswer": "G clef",
+      "explanation": "The treble clef curls around the G line, so it is called the G clef.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-3",
+      "text": "The bass clef is also known as the...",
+      "options": [
+        "A clef",
+        "C clef",
+        "F clef",
+        "G clef"
+      ],
+      "correctAnswer": "F clef",
+      "explanation": "The two dots of the bass clef sit either side of the F line.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-4",
+      "text": "In the treble clef, which note sits on the bottom line?",
+      "options": [
+        "F",
+        "C",
+        "E",
+        "G"
+      ],
+      "correctAnswer": "E",
+      "explanation": "The treble clef lines are E, G, B, D, F from the bottom.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-5",
+      "text": "In the treble clef, which word do the four spaces spell from bottom to top?",
+      "options": [
+        "FACE",
+        "BEAD",
+        "DEAF",
+        "CAGE"
+      ],
+      "correctAnswer": "FACE",
+      "explanation": "The treble clef spaces are F, A, C, E.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-6",
+      "text": "In the bass clef, which note sits on the top line?",
+      "options": [
+        "G",
+        "F",
+        "E",
+        "A"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The bass clef lines are G, B, D, F, A from the bottom.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-7",
+      "text": "What are the short extra lines added above or below the staff called?",
+      "options": [
+        "Ledger lines",
+        "Bar lines",
+        "Slur lines",
+        "Tie lines"
+      ],
+      "correctAnswer": "Ledger lines",
+      "explanation": "Ledger lines extend the staff for notes that are too high or too low.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-8",
+      "text": "Where is middle C written in the treble clef?",
+      "options": [
+        "On one ledger line above the staff",
+        "On one ledger line below the staff",
+        "In the bottom space of the staff",
+        "On the bottom line of the staff"
+      ],
+      "correctAnswer": "On one ledger line below the staff",
+      "explanation": "Middle C sits on its own ledger line just below the treble staff.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-9",
+      "text": "In 3/4 time, how many crotchet beats are there in each bar?",
+      "options": [
+        "3",
+        "4",
+        "2",
+        "6"
+      ],
+      "correctAnswer": "3",
+      "explanation": "The top number 3 means three beats, and the 4 means each is a crotchet.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-10",
+      "text": "A bar of 3/4 already has a minim in it. Which single note completes the bar?",
+      "options": [
+        "Crotchet",
+        "Quaver",
+        "Minim",
+        "Semibreve"
+      ],
+      "correctAnswer": "Crotchet",
+      "explanation": "A minim is 2 beats, so one more crotchet beat makes 3.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-11",
+      "text": "In 4/4 time, how many beats does a dotted minim last?",
+      "options": [
+        "2½",
+        "4",
+        "2",
+        "3"
+      ],
+      "correctAnswer": "3",
+      "explanation": "A dot adds half the note's value: 2 + 1 = 3 beats.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-12",
+      "text": "In 4/4 time, how many beats does a dotted crotchet last?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "1½"
+      ],
+      "correctAnswer": "1½",
+      "explanation": "A dot adds half the value: 1 + ½ = 1½ beats.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-13",
+      "text": "A sharp sign (♯) changes a note by...",
+      "options": [
+        "Raising it by a tone",
+        "Raising it by a semitone",
+        "Raising it by an octave",
+        "Lowering it by a semitone"
+      ],
+      "correctAnswer": "Raising it by a semitone",
+      "explanation": "A sharp raises a note by one semitone.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-14",
+      "text": "What does a natural sign (♮) do?",
+      "options": [
+        "Makes the note louder",
+        "Doubles the note's length",
+        "Raises a note by a tone",
+        "Cancels a sharp or flat"
+      ],
+      "correctAnswer": "Cancels a sharp or flat",
+      "explanation": "A natural returns the note to its plain, unaltered pitch.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-15",
+      "text": "How many semitones make one tone?",
+      "options": [
+        "1",
+        "3",
+        "4",
+        "2"
+      ],
+      "correctAnswer": "2",
+      "explanation": "A tone is made of two semitones.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-16",
+      "text": "Which pair of neighbouring white keys on a piano is only a semitone apart?",
+      "options": [
+        "F and G",
+        "A and B",
+        "C and D",
+        "E and F"
+      ],
+      "correctAnswer": "E and F",
+      "explanation": "There is no black key between E and F, so they are a semitone apart.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-17",
+      "text": "Which pattern of tones (T) and semitones (S) makes a major scale?",
+      "options": [
+        "T T T S T T S",
+        "T S T T S T T",
+        "S T T T S T T",
+        "T T S T T T S"
+      ],
+      "correctAnswer": "T T S T T T S",
+      "explanation": "Every major scale follows tone, tone, semitone, tone, tone, tone, semitone.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-18",
+      "text": "How many semitones are there in one octave?",
+      "options": [
+        "12",
+        "10",
+        "7",
+        "8"
+      ],
+      "correctAnswer": "12",
+      "explanation": "Counting every white and black key, an octave spans 12 semitones.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-19",
+      "text": "Which major key has no sharps or flats in its key signature?",
+      "options": [
+        "C major",
+        "G major",
+        "D major",
+        "F major"
+      ],
+      "correctAnswer": "C major",
+      "explanation": "C major uses only the white keys.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-20",
+      "text": "Which minor key has the same key signature as C major (no sharps or flats)?",
+      "options": [
+        "C minor",
+        "E minor",
+        "A minor",
+        "D minor"
+      ],
+      "correctAnswer": "A minor",
+      "explanation": "A minor is the relative minor of C major, so both have no sharps or flats.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-21",
+      "text": "The key signature of G major has one sharp. Which note is it?",
+      "options": [
+        "F♯",
+        "G♯",
+        "C♯",
+        "B♯"
+      ],
+      "correctAnswer": "F♯",
+      "explanation": "G major has F♯ so that the scale follows the major pattern.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-22",
+      "text": "Which two sharps are in the key signature of D major?",
+      "options": [
+        "C♯ and G♯",
+        "F♯ and C♯",
+        "F♯ and G♯",
+        "D♯ and A♯"
+      ],
+      "correctAnswer": "F♯ and C♯",
+      "explanation": "D major is D E F♯ G A B C♯ D.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-23",
+      "text": "The key signature of F major has one flat. Which note is it?",
+      "options": [
+        "A♭",
+        "F♭",
+        "B♭",
+        "E♭"
+      ],
+      "correctAnswer": "B♭",
+      "explanation": "F major needs B♭ to keep a semitone between A and B♭.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-24",
+      "text": "Which two flats are in the key signature of B♭ major?",
+      "options": [
+        "B♭ and D♭",
+        "B♭ and E♭",
+        "B♭ and A♭",
+        "E♭ and A♭"
+      ],
+      "correctAnswer": "B♭ and E♭",
+      "explanation": "B♭ major is B♭ C D E♭ F G A B♭.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-25",
+      "text": "What is the interval from C up to G?",
+      "options": [
+        "Perfect 4th",
+        "Major 3rd",
+        "Major 6th",
+        "Perfect 5th"
+      ],
+      "correctAnswer": "Perfect 5th",
+      "explanation": "Counting C, D, E, F, G gives five notes, a perfect 5th.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-26",
+      "text": "What is the interval from C up to E?",
+      "options": [
+        "Major 2nd",
+        "Major 3rd",
+        "Perfect 4th",
+        "Minor 3rd"
+      ],
+      "correctAnswer": "Major 3rd",
+      "explanation": "C to E spans 4 semitones, which is a major 3rd.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-27",
+      "text": "Which three notes make the C major triad?",
+      "options": [
+        "C, D, E",
+        "C, E, G",
+        "C, E♭, G",
+        "C, F, A"
+      ],
+      "correctAnswer": "C, E, G",
+      "explanation": "A major triad uses the root, major 3rd and perfect 5th: C, E, G.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-28",
+      "text": "Which three notes make the A minor triad?",
+      "options": [
+        "A, C, E",
+        "A, C♯, E",
+        "A, D, F",
+        "A, B, C"
+      ],
+      "correctAnswer": "A, C, E",
+      "explanation": "A minor has a minor 3rd (C) and a perfect 5th (E) above A.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-29",
+      "text": "What does the tempo marking \"allegro\" mean?",
+      "options": [
+        "At a walking pace",
+        "Fast and lively",
+        "Gradually slowing",
+        "Slow and calm"
+      ],
+      "correctAnswer": "Fast and lively",
+      "explanation": "Allegro is Italian for cheerful, and means a quick, lively speed.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-30",
+      "text": "What does the tempo marking \"adagio\" mean?",
+      "options": [
+        "Very fast",
+        "Slow",
+        "Gradually faster",
+        "At a walking pace"
+      ],
+      "correctAnswer": "Slow",
+      "explanation": "Adagio tells players to perform at a slow, leisurely speed.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-31",
+      "text": "What does the tempo marking \"andante\" mean?",
+      "options": [
+        "Extremely slow",
+        "Getting faster",
+        "At a walking pace",
+        "Very fast"
+      ],
+      "correctAnswer": "At a walking pace",
+      "explanation": "Andante comes from the Italian for \"walking\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-32",
+      "text": "What does \"diminuendo\" tell a musician to do?",
+      "options": [
+        "Gradually get slower",
+        "Play very short notes",
+        "Gradually get quieter",
+        "Gradually get louder"
+      ],
+      "correctAnswer": "Gradually get quieter",
+      "explanation": "Diminuendo means gradually becoming softer.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-33",
+      "text": "Which list of dynamics goes from quietest to loudest?",
+      "options": [
+        "ff, f, p, pp",
+        "pp, p, f, ff",
+        "f, p, ff, pp",
+        "p, pp, ff, f"
+      ],
+      "correctAnswer": "pp, p, f, ff",
+      "explanation": "Pianissimo, piano, forte, fortissimo go from very quiet to very loud.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-34",
+      "text": "Bach and Handel are famous composers from which musical period?",
+      "options": [
+        "Modern",
+        "Romantic",
+        "Classical",
+        "Baroque"
+      ],
+      "correctAnswer": "Baroque",
+      "explanation": "Bach and Handel worked in the Baroque period (about 1600–1750).",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-35",
+      "text": "Mozart and Haydn are famous composers from which musical period?",
+      "options": [
+        "Medieval",
+        "Baroque",
+        "Classical",
+        "Romantic"
+      ],
+      "correctAnswer": "Classical",
+      "explanation": "Mozart and Haydn worked in the Classical period (about 1750–1820).",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-36",
+      "text": "Chopin and Tchaikovsky are famous composers from which musical period?",
+      "options": [
+        "Romantic",
+        "Baroque",
+        "Classical",
+        "Renaissance"
+      ],
+      "correctAnswer": "Romantic",
+      "explanation": "Chopin and Tchaikovsky wrote in the Romantic period (about 1820–1900).",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-37",
+      "text": "Thomas's whistle sounds higher than Gordon's. Which property of the sound wave is greater for Thomas's whistle?",
+      "options": [
+        "Amplitude",
+        "Loudness",
+        "Frequency",
+        "Wavelength"
+      ],
+      "correctAnswer": "Frequency",
+      "explanation": "A higher pitch means a higher frequency (more vibrations per second).",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-mus-s-38",
+      "text": "Which property of a sound wave decides how loud it is?",
+      "options": [
+        "Wavelength",
+        "Frequency",
+        "Speed",
+        "Amplitude"
+      ],
+      "correctAnswer": "Amplitude",
+      "explanation": "A bigger amplitude means a louder sound.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-mus-s-39",
+      "text": "Orchestras usually tune to the A above middle C. What is its frequency?",
+      "options": [
+        "500 Hz",
+        "440 Hz",
+        "880 Hz",
+        "256 Hz"
+      ],
+      "correctAnswer": "440 Hz",
+      "explanation": "A4 is the standard tuning note at 440 hertz.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-mus-s-40",
+      "text": "If A4 is 440 Hz, what is the frequency of A5, one octave higher?",
+      "options": [
+        "660 Hz",
+        "880 Hz",
+        "540 Hz",
+        "1760 Hz"
+      ],
+      "correctAnswer": "880 Hz",
+      "explanation": "Going up one octave doubles the frequency: 440 × 2 = 880 Hz.",
+      "rewardType": "badge"
+    }
+  ]
+}

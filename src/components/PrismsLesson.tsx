@@ -110,10 +110,10 @@ export default function PrismsLesson({ onCancel, onStartExercise }: PrismsLesson
   const step = STEPS[currentStep];
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="bg-white rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col min-h-[650px]">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+      <div className="bg-white rounded-[28px] xl:rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col xl:min-h-[650px]">
         {/* Header */}
-        <div className="bg-blue-600 p-8 text-white flex items-center justify-between">
+        <div className="bg-blue-600 p-5 md:p-6 xl:p-8 text-white flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
               <Box size={28} />
@@ -142,7 +142,7 @@ export default function PrismsLesson({ onCancel, onStartExercise }: PrismsLesson
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-8 md:p-12 flex flex-col">
+        <div className="flex-1 p-5 md:p-7 xl:p-12 flex flex-col">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -168,12 +168,12 @@ export default function PrismsLesson({ onCancel, onStartExercise }: PrismsLesson
               </div>
 
               <div className="flex-1 flex flex-col">
-                <p className="text-xl leading-relaxed text-slate-700 font-medium mb-6">
+                <p className="text-lg xl:text-xl leading-relaxed text-slate-700 font-medium mb-6">
                   {step.content}
                 </p>
 
                 {/* Main Illustration */}
-                <div className="mb-6 w-full h-[320px] bg-slate-50 rounded-[32px] overflow-hidden shadow-xl border-[6px] border-white relative group flex items-center justify-center">
+                <div className="mb-6 w-full h-[220px] xl:h-[320px] bg-slate-50 rounded-[32px] overflow-hidden shadow-xl border-[6px] border-white relative group flex items-center justify-center">
                   <div className="absolute inset-0 bg-blue-500/5 mix-blend-multiply pointer-events-none z-10" />
                   <img src={step.image} alt={step.title} className="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700 p-2" />
                 </div>
@@ -187,7 +187,7 @@ export default function PrismsLesson({ onCancel, onStartExercise }: PrismsLesson
                   )}
 
                   {step.stats && (
-                    <div className="flex items-center gap-8 text-center">
+                    <div className="flex items-center gap-5 xl:gap-8 text-center">
                       <div className="flex flex-col items-center">
                         <span className="text-4xl font-black text-blue-600 mb-2">{step.stats.faces}</span>
                         <span className="text-sm font-bold text-slate-500 uppercase tracking-widest">Faces</span>
@@ -208,7 +208,7 @@ export default function PrismsLesson({ onCancel, onStartExercise }: PrismsLesson
               </div>
 
               {/* Navigation */}
-              <div className="mt-12 flex justify-between items-center">
+              <div className="mt-6 xl:mt-12 flex justify-between items-center">
                 <button
                   onClick={prev}
                   disabled={currentStep === 0}
@@ -240,7 +240,7 @@ export default function PrismsLesson({ onCancel, onStartExercise }: PrismsLesson
       
       <button 
         onClick={onCancel}
-        className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
+        className="mt-6 xl:mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
         Return to Station
       </button>

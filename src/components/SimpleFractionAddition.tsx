@@ -94,13 +94,14 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
 
   return (
     <div className="max-w-3xl mx-auto py-6 px-4">
-      <div className="mb-6 relative h-3 bg-slate-200 rounded-full overflow-hidden shadow-inner">
-        <motion.div 
-          className="absolute top-0 left-0 h-full bg-sodor-blue shadow-[0_0_10px_rgba(30,64,175,0.5)]"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.5 }}
-        />
+      <div className="mb-8 relative">
+        <div className="h-3 w-full bg-slate-200 rounded-full train-track overflow-hidden">
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            className="h-full bg-sodor-blue"
+          />
+        </div>
         <motion.div 
           animate={{ left: `${progress}%` }}
           className="absolute -top-5 -ml-3 text-sodor-blue transition-all"
@@ -119,7 +120,7 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
+          className="engine-glass rounded-2xl p-5 md:p-6 xl:p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
         >
           <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
           <div className="flex justify-between items-start mb-3">
@@ -232,7 +233,7 @@ export default function SimpleFractionAddition({ grade, questionsCount = 10, onC
         onClick={onCancel}
         className="mt-6 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors text-sm"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );

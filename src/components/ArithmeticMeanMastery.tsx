@@ -102,8 +102,8 @@ export default function ArithmeticMeanMastery({ grade, questionsCount = 10, onCo
   const questionText = `Calculate the arithmetic mean of these ${problem.values.length} numbers: ${problem.values.join(', ')}.`;
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-2xl border border-slate-100 relative overflow-hidden">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+      <div className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100 relative overflow-hidden">
         {/* Progress Bar */}
         <div className="absolute top-0 left-0 h-2 bg-slate-100 w-full">
           <motion.div 
@@ -113,7 +113,7 @@ export default function ArithmeticMeanMastery({ grade, questionsCount = 10, onCo
           />
         </div>
 
-        <div className="mb-10 flex justify-between items-center">
+        <div className="mb-5 xl:mb-10 flex justify-between items-center">
           <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
             Mastery Challenge {questionsAnswered + 1} of {questionsCount}
           </span>
@@ -132,7 +132,7 @@ export default function ArithmeticMeanMastery({ grade, questionsCount = 10, onCo
           </div>
         </div>
 
-        <div className="text-center mb-12">
+        <div className="text-center mb-6 xl:mb-12">
           <div className="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-blue-600 mx-auto mb-6 shadow-lg shadow-blue-100">
             <Calculator size={40} />
           </div>
@@ -144,7 +144,7 @@ export default function ArithmeticMeanMastery({ grade, questionsCount = 10, onCo
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-6 xl:mb-12">
           {problem.values.map((v, i) => (
             <motion.div 
               key={i}
@@ -184,7 +184,7 @@ export default function ArithmeticMeanMastery({ grade, questionsCount = 10, onCo
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-12 text-center"
+              className="mt-6 xl:mt-12 text-center"
             >
               {isCorrect ? (
                 <div className="flex flex-col items-center gap-4">
@@ -226,7 +226,7 @@ export default function ArithmeticMeanMastery({ grade, questionsCount = 10, onCo
         onClick={onCancel}
         className="mt-8 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );

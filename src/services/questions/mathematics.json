@@ -1,0 +1,1046 @@
+{
+  "Primary": [
+    {
+      "id": "x-math-p-1",
+      "text": "Thomas has 7 trucks. He collects 8 more at Wellsworth. How many trucks does he have now?",
+      "options": [
+        "14",
+        "16",
+        "15",
+        "13"
+      ],
+      "correctAnswer": "15",
+      "explanation": "7 + 8 = 15.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-2",
+      "text": "Toby's train has 23 passengers. 9 get off at Vicarstown. How many passengers are left?",
+      "options": [
+        "13",
+        "14",
+        "15",
+        "32"
+      ],
+      "correctAnswer": "14",
+      "explanation": "23 − 9 = 14.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-3",
+      "text": "Emily pulls 7 coaches and each coach carries 8 passengers. How many passengers can she carry?",
+      "options": [
+        "56",
+        "54",
+        "48",
+        "63"
+      ],
+      "correctAnswer": "56",
+      "explanation": "7 × 8 = 56.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-4",
+      "text": "35 mail bags are shared equally between 5 vans. How many mail bags go in each van?",
+      "options": [
+        "6",
+        "8",
+        "5",
+        "7"
+      ],
+      "correctAnswer": "7",
+      "explanation": "35 ÷ 5 = 7.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-5",
+      "text": "There are 36 coal trucks at Brendam Docks. Half of them go to Knapford. How many trucks go to Knapford?",
+      "options": [
+        "17",
+        "16",
+        "18",
+        "12"
+      ],
+      "correctAnswer": "18",
+      "explanation": "Half of 36 is 36 ÷ 2 = 18.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-6",
+      "text": "There are 20 coaches at Knapford. A quarter of them are red. How many coaches are red?",
+      "options": [
+        "4",
+        "5",
+        "10",
+        "15"
+      ],
+      "correctAnswer": "5",
+      "explanation": "A quarter of 20 is 20 ÷ 4 = 5.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-7",
+      "text": "Thomas's number board shows 472. What is the value of the digit 7?",
+      "options": [
+        "70",
+        "7",
+        "700",
+        "47"
+      ],
+      "correctAnswer": "70",
+      "explanation": "The 7 is in the tens place, so it is worth 70.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-8",
+      "text": "The station clock has its long hand on 12 and its short hand on 3. What time is it?",
+      "options": [
+        "12 o'clock",
+        "half past 3",
+        "quarter past 12",
+        "3 o'clock"
+      ],
+      "correctAnswer": "3 o'clock",
+      "explanation": "Long hand on 12 means o'clock; short hand on 3 means 3 o'clock.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-9",
+      "text": "Percy leaves Knapford at 2:15 and the journey takes 30 minutes. What time does he arrive?",
+      "options": [
+        "2:30",
+        "3:15",
+        "2:45",
+        "2:35"
+      ],
+      "correctAnswer": "2:45",
+      "explanation": "2:15 plus 30 minutes is 2:45.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-10",
+      "text": "A ticket costs 45p. Toby's driver pays with a 50p coin. How much change does he get?",
+      "options": [
+        "10p",
+        "5p",
+        "15p",
+        "4p"
+      ],
+      "correctAnswer": "5p",
+      "explanation": "50p − 45p = 5p.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-11",
+      "text": "At Knapford café, an apple costs 30p and a drink costs 45p. How much do they cost together?",
+      "options": [
+        "75p",
+        "65p",
+        "85p",
+        "70p"
+      ],
+      "correctAnswer": "75p",
+      "explanation": "30p + 45p = 75p.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-12",
+      "text": "How many sides does a hexagon have?",
+      "options": [
+        "5",
+        "8",
+        "7",
+        "6"
+      ],
+      "correctAnswer": "6",
+      "explanation": "A hexagon has 6 sides.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-13",
+      "text": "A milk tanker is shaped like a tin can lying on its side. Which 3D shape is that?",
+      "options": [
+        "Cube",
+        "Cone",
+        "Cylinder",
+        "Sphere"
+      ],
+      "correctAnswer": "Cylinder",
+      "explanation": "A tin-can shape with two circle ends is a cylinder.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-14",
+      "text": "The platform at Maron is 3 metres long. How many centimetres is that?",
+      "options": [
+        "30 cm",
+        "300 cm",
+        "3000 cm",
+        "103 cm"
+      ],
+      "correctAnswer": "300 cm",
+      "explanation": "1 metre = 100 cm, so 3 × 100 = 300 cm.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-15",
+      "text": "Percy counts trucks in a pattern: 5, 10, 15, 20, … What comes next?",
+      "options": [
+        "25",
+        "30",
+        "21",
+        "24"
+      ],
+      "correctAnswer": "25",
+      "explanation": "The pattern goes up by 5 each time: 20 + 5 = 25.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-16",
+      "text": "The number pattern on the signal box goes 30, 27, 24, 21, … What comes next?",
+      "options": [
+        "19",
+        "17",
+        "20",
+        "18"
+      ],
+      "correctAnswer": "18",
+      "explanation": "The pattern goes down by 3 each time: 21 − 3 = 18.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-17",
+      "text": "Harvey lifts 9 crates onto each of 6 flatbeds. How many crates does he lift?",
+      "options": [
+        "56",
+        "45",
+        "54",
+        "63"
+      ],
+      "correctAnswer": "54",
+      "explanation": "6 × 9 = 54.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-18",
+      "text": "Sir Topham Hatt shares 24 sweets equally between 3 drivers. How many sweets does each driver get?",
+      "options": [
+        "7",
+        "8",
+        "6",
+        "9"
+      ],
+      "correctAnswer": "8",
+      "explanation": "24 ÷ 3 = 8.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-19",
+      "text": "Gordon carries 38 passengers in the morning and 47 in the afternoon. How many is that altogether?",
+      "options": [
+        "85",
+        "75",
+        "95",
+        "84"
+      ],
+      "correctAnswer": "85",
+      "explanation": "38 + 47 = 85.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-20",
+      "text": "James had 62 barrels of oil. He delivers 27. How many barrels are left?",
+      "options": [
+        "45",
+        "34",
+        "25",
+        "35"
+      ],
+      "correctAnswer": "35",
+      "explanation": "62 − 27 = 35.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-21",
+      "text": "Henry carried 45 sacks on Monday and double that on Tuesday. How many sacks did he carry on Tuesday?",
+      "options": [
+        "80",
+        "85",
+        "90",
+        "95"
+      ],
+      "correctAnswer": "90",
+      "explanation": "Double 45 is 45 × 2 = 90.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-22",
+      "text": "Which number has 3 hundreds, 5 tens and 2 ones?",
+      "options": [
+        "325",
+        "352",
+        "532",
+        "3052"
+      ],
+      "correctAnswer": "352",
+      "explanation": "300 + 50 + 2 = 352.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-23",
+      "text": "There are 67 passengers on the platform. What is 67 rounded to the nearest ten?",
+      "options": [
+        "70",
+        "60",
+        "80",
+        "100"
+      ],
+      "correctAnswer": "70",
+      "explanation": "67 is closer to 70 than to 60.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-24",
+      "text": "How many minutes are there in half an hour?",
+      "options": [
+        "50",
+        "15",
+        "60",
+        "30"
+      ],
+      "correctAnswer": "30",
+      "explanation": "An hour has 60 minutes, and half of 60 is 30.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-25",
+      "text": "Thomas works every day for 2 weeks. How many days is that?",
+      "options": [
+        "12",
+        "10",
+        "14",
+        "21"
+      ],
+      "correctAnswer": "14",
+      "explanation": "A week has 7 days, so 2 × 7 = 14.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-26",
+      "text": "Edward has £2. He spends £1.25 on oil. How much money does he have left?",
+      "options": [
+        "85p",
+        "75p",
+        "65p",
+        "25p"
+      ],
+      "correctAnswer": "75p",
+      "explanation": "£2.00 − £1.25 = 75p.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-27",
+      "text": "Which set of coins makes exactly 50p?",
+      "options": [
+        "20p + 20p + 10p",
+        "20p + 20p + 5p",
+        "20p + 10p + 10p",
+        "10p + 10p + 5p"
+      ],
+      "correctAnswer": "20p + 20p + 10p",
+      "explanation": "20p + 20p + 10p = 50p.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-28",
+      "text": "A sack of flour for Wellsworth weighs 2 kg. How many grams is that?",
+      "options": [
+        "200 g",
+        "20 g",
+        "2100 g",
+        "2000 g"
+      ],
+      "correctAnswer": "2000 g",
+      "explanation": "1 kg = 1000 g, so 2 kg = 2000 g.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-29",
+      "text": "Diesel has 8 trucks. Three quarters of them are full of coal. How many trucks are full?",
+      "options": [
+        "2",
+        "4",
+        "6",
+        "3"
+      ],
+      "correctAnswer": "6",
+      "explanation": "A quarter of 8 is 2, so three quarters is 3 × 2 = 6.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-30",
+      "text": "A square window on Clarabel has sides of 4 cm. How far is it all the way around the edge?",
+      "options": [
+        "8 cm",
+        "16 cm",
+        "12 cm",
+        "20 cm"
+      ],
+      "correctAnswer": "16 cm",
+      "explanation": "A square has 4 equal sides: 4 × 4 = 16 cm.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-31",
+      "text": "Which of these coach numbers is odd?",
+      "options": [
+        "27",
+        "14",
+        "32",
+        "50"
+      ],
+      "correctAnswer": "27",
+      "explanation": "27 ends in 7, so it cannot be split into two equal groups.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-32",
+      "text": "The water tower holds 100 buckets of water. 64 buckets have been used. How many are left?",
+      "options": [
+        "46",
+        "44",
+        "34",
+        "36"
+      ],
+      "correctAnswer": "36",
+      "explanation": "100 − 64 = 36.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-33",
+      "text": "Which of these truck numbers is the largest?",
+      "options": [
+        "509",
+        "95",
+        "590",
+        "559"
+      ],
+      "correctAnswer": "590",
+      "explanation": "590 has 5 hundreds and 9 tens, more than 559 or 509.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-34",
+      "text": "Each truck carries 10 sacks of mail. How many sacks are in 12 trucks?",
+      "options": [
+        "112",
+        "120",
+        "22",
+        "1200"
+      ],
+      "correctAnswer": "120",
+      "explanation": "12 × 10 = 120.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-35",
+      "text": "The train leaves at quarter to 5. How is that time written on a digital clock?",
+      "options": [
+        "4:45",
+        "5:45",
+        "5:15",
+        "4:15"
+      ],
+      "correctAnswer": "4:45",
+      "explanation": "Quarter to 5 is 15 minutes before 5:00, which is 4:45.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-36",
+      "text": "Toby's journey takes 1 hour 20 minutes. How many minutes is that?",
+      "options": [
+        "120",
+        "70",
+        "60",
+        "80"
+      ],
+      "correctAnswer": "80",
+      "explanation": "1 hour is 60 minutes, and 60 + 20 = 80.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-37",
+      "text": "Emily's coaches are painted in a pattern: circle, square, circle, square, circle, … What shape comes next?",
+      "options": [
+        "Circle",
+        "Triangle",
+        "Square",
+        "Star"
+      ],
+      "correctAnswer": "Square",
+      "explanation": "The pattern repeats circle, square, so after a circle comes a square.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-p-38",
+      "text": "Percy had some parcels. He picked up 15 more and now has 40. How many did he have at the start?",
+      "options": [
+        "55",
+        "25",
+        "35",
+        "15"
+      ],
+      "correctAnswer": "25",
+      "explanation": "40 − 15 = 25.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-p-39",
+      "text": "17 passengers are waiting and each coach holds 5 people. How many coaches are needed so everyone gets a seat?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "12"
+      ],
+      "correctAnswer": "4",
+      "explanation": "3 coaches hold only 15, so a 4th coach is needed for the last 2.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-p-40",
+      "text": "A crate at Brendam Docks is a cube. How many faces does a cube have?",
+      "options": [
+        "4",
+        "8",
+        "12",
+        "6"
+      ],
+      "correctAnswer": "6",
+      "explanation": "A cube has 6 square faces.",
+      "rewardType": "badge"
+    }
+  ],
+  "Secondary": [
+    {
+      "id": "x-math-s-1",
+      "text": "Thomas fills 3/4 of a truck with coal and then adds another 1/8. What fraction of the truck is full?",
+      "options": [
+        "4/12",
+        "4/8",
+        "7/8",
+        "5/8"
+      ],
+      "correctAnswer": "7/8",
+      "explanation": "3/4 = 6/8, and 6/8 + 1/8 = 7/8.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-2",
+      "text": "Write 0.35 as a percentage.",
+      "options": [
+        "3.5%",
+        "35%",
+        "0.35%",
+        "350%"
+      ],
+      "correctAnswer": "35%",
+      "explanation": "0.35 × 100 = 35%.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-3",
+      "text": "Write 2/5 as a decimal.",
+      "options": [
+        "0.4",
+        "0.25",
+        "2.5",
+        "0.52"
+      ],
+      "correctAnswer": "0.4",
+      "explanation": "2 ÷ 5 = 0.4.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-4",
+      "text": "15% of Gordon's 80 passengers are children. How many children are on board?",
+      "options": [
+        "15",
+        "10",
+        "18",
+        "12"
+      ],
+      "correctAnswer": "12",
+      "explanation": "10% of 80 is 8 and 5% is 4, so 15% is 12.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-5",
+      "text": "Thomas and Percy share £60 in the ratio 1 : 2. How much does Percy get?",
+      "options": [
+        "£30",
+        "£20",
+        "£40",
+        "£45"
+      ],
+      "correctAnswer": "£40",
+      "explanation": "There are 3 parts of £20; Percy gets 2 × £20 = £40.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-6",
+      "text": "At dawn the temperature at Vicarstown is −3°C. By noon it has risen by 8 degrees. What is the temperature at noon?",
+      "options": [
+        "−11°C",
+        "5°C",
+        "11°C",
+        "−5°C"
+      ],
+      "correctAnswer": "5°C",
+      "explanation": "−3 + 8 = 5.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-7",
+      "text": "What is −4 − 6?",
+      "options": [
+        "−10",
+        "−2",
+        "2",
+        "10"
+      ],
+      "correctAnswer": "−10",
+      "explanation": "Starting at −4 and going down 6 gives −10.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-8",
+      "text": "What is 3 + 4 × 5?",
+      "options": [
+        "35",
+        "27",
+        "60",
+        "23"
+      ],
+      "correctAnswer": "23",
+      "explanation": "Multiply first: 4 × 5 = 20, then 3 + 20 = 23.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-9",
+      "text": "What is (8 − 2)² ÷ 4?",
+      "options": [
+        "15",
+        "12",
+        "9",
+        "36"
+      ],
+      "correctAnswer": "9",
+      "explanation": "8 − 2 = 6, 6² = 36, and 36 ÷ 4 = 9.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-10",
+      "text": "Solve 3x + 5 = 26.",
+      "options": [
+        "x = 9",
+        "x = 7",
+        "x = 10",
+        "x = 6"
+      ],
+      "correctAnswer": "x = 7",
+      "explanation": "3x = 21, so x = 7.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-11",
+      "text": "Solve x/4 − 2 = 3.",
+      "options": [
+        "x = 20",
+        "x = 4",
+        "x = 12",
+        "x = 5"
+      ],
+      "correctAnswer": "x = 20",
+      "explanation": "x/4 = 5, so x = 20.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-12",
+      "text": "A triangular sign has a base of 10 cm and a height of 6 cm. What is its area?",
+      "options": [
+        "60 cm²",
+        "16 cm²",
+        "32 cm²",
+        "30 cm²"
+      ],
+      "correctAnswer": "30 cm²",
+      "explanation": "Area = ½ × 10 × 6 = 30 cm².",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-13",
+      "text": "A rectangular goods yard is 12 m long and 5 m wide. What is its perimeter?",
+      "options": [
+        "17 m",
+        "60 m",
+        "34 m",
+        "24 m"
+      ],
+      "correctAnswer": "34 m",
+      "explanation": "2 × (12 + 5) = 34 m.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-14",
+      "text": "A truck's box is a cuboid 4 m long, 3 m wide and 2 m high. What is its volume?",
+      "options": [
+        "9 m³",
+        "24 m³",
+        "12 m³",
+        "52 m³"
+      ],
+      "correctAnswer": "24 m³",
+      "explanation": "4 × 3 × 2 = 24 m³.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-15",
+      "text": "Two angles of a triangle are 50° and 70°. What is the third angle?",
+      "options": [
+        "60°",
+        "120°",
+        "70°",
+        "80°"
+      ],
+      "correctAnswer": "60°",
+      "explanation": "Angles in a triangle add to 180°: 180 − 50 − 70 = 60°.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-16",
+      "text": "Where the track meets a siding, one angle on a straight line is 115°. What is the other angle?",
+      "options": [
+        "245°",
+        "75°",
+        "115°",
+        "65°"
+      ],
+      "correctAnswer": "65°",
+      "explanation": "Angles on a straight line add to 180°: 180 − 115 = 65°.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-17",
+      "text": "Three angles of a quadrilateral are 90°, 110° and 80°. What is the fourth angle?",
+      "options": [
+        "100°",
+        "90°",
+        "80°",
+        "170°"
+      ],
+      "correctAnswer": "80°",
+      "explanation": "Angles in a quadrilateral add to 360°: 360 − 90 − 110 − 80 = 80°.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-18",
+      "text": "Which of these engine numbers is a prime number?",
+      "options": [
+        "51",
+        "53",
+        "57",
+        "49"
+      ],
+      "correctAnswer": "53",
+      "explanation": "53 has no factors other than 1 and itself; 51 = 3 × 17, 57 = 3 × 19, 49 = 7 × 7.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-19",
+      "text": "What is the highest common factor (HCF) of 24 and 36?",
+      "options": [
+        "12",
+        "6",
+        "4",
+        "72"
+      ],
+      "correctAnswer": "12",
+      "explanation": "12 is the biggest number that divides both 24 and 36.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-20",
+      "text": "Thomas passes Knapford every 6 minutes and Percy every 8 minutes. Both pass it at 9:00. When will they next pass it together?",
+      "options": [
+        "9:48",
+        "9:14",
+        "9:12",
+        "9:24"
+      ],
+      "correctAnswer": "9:24",
+      "explanation": "The lowest common multiple of 6 and 8 is 24, so 24 minutes later.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-21",
+      "text": "Toby's journeys took 3, 9, 4, 7 and 15 minutes. What is the median time?",
+      "options": [
+        "4 minutes",
+        "7.6 minutes",
+        "7 minutes",
+        "12 minutes"
+      ],
+      "correctAnswer": "7 minutes",
+      "explanation": "In order: 3, 4, 7, 9, 15, so the middle value is 7.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-22",
+      "text": "Percy counted parcels on seven trips: 5, 8, 5, 6, 8, 5, 9. What is the mode?",
+      "options": [
+        "8",
+        "5",
+        "6",
+        "9"
+      ],
+      "correctAnswer": "5",
+      "explanation": "5 appears three times, more than any other value.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-23",
+      "text": "Harvey lifted 12, 30, 18 and 25 crates on four days. What is the range?",
+      "options": [
+        "18",
+        "30",
+        "12",
+        "21.25"
+      ],
+      "correctAnswer": "18",
+      "explanation": "Range = biggest − smallest = 30 − 12 = 18.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-24",
+      "text": "A bag has 3 red, 5 blue and 2 green tickets. One is picked at random. What is the probability it is blue?",
+      "options": [
+        "1/5",
+        "5/8",
+        "1/3",
+        "1/2"
+      ],
+      "correctAnswer": "1/2",
+      "explanation": "5 blue out of 10 tickets is 5/10 = 1/2.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-25",
+      "text": "Diesel rolls a fair six-sided dice. What is the probability of getting a number greater than 4?",
+      "options": [
+        "1/2",
+        "2/3",
+        "1/3",
+        "1/6"
+      ],
+      "correctAnswer": "1/3",
+      "explanation": "Only 5 and 6 work, so 2/6 = 1/3.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-26",
+      "text": "What is 2⁵?",
+      "options": [
+        "10",
+        "32",
+        "25",
+        "16"
+      ],
+      "correctAnswer": "32",
+      "explanation": "2 × 2 × 2 × 2 × 2 = 32.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-27",
+      "text": "What is √144?",
+      "options": [
+        "12",
+        "72",
+        "14",
+        "11"
+      ],
+      "correctAnswer": "12",
+      "explanation": "12 × 12 = 144.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-28",
+      "text": "What is 3² + 4²?",
+      "options": [
+        "49",
+        "14",
+        "7",
+        "25"
+      ],
+      "correctAnswer": "25",
+      "explanation": "9 + 16 = 25.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-29",
+      "text": "Gordon travels 150 miles in 2.5 hours. What is his average speed?",
+      "options": [
+        "375 mph",
+        "50 mph",
+        "60 mph",
+        "75 mph"
+      ],
+      "correctAnswer": "60 mph",
+      "explanation": "Speed = distance ÷ time = 150 ÷ 2.5 = 60 mph.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-30",
+      "text": "Emily travels 84 km at a steady 56 km/h. How long does the journey take?",
+      "options": [
+        "1 hour 50 minutes",
+        "1 hour 30 minutes",
+        "1 hour 28 minutes",
+        "2 hours"
+      ],
+      "correctAnswer": "1 hour 30 minutes",
+      "explanation": "Time = 84 ÷ 56 = 1.5 hours, which is 1 hour 30 minutes.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-31",
+      "text": "Henry travels at 45 km/h for 20 minutes. How far does he go?",
+      "options": [
+        "15 km",
+        "900 km",
+        "9 km",
+        "25 km"
+      ],
+      "correctAnswer": "15 km",
+      "explanation": "20 minutes is 1/3 of an hour, and 45 × 1/3 = 15 km.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-32",
+      "text": "What is 0.3 × 0.4?",
+      "options": [
+        "1.2",
+        "0.7",
+        "0.012",
+        "0.12"
+      ],
+      "correctAnswer": "0.12",
+      "explanation": "3 × 4 = 12, and there are two decimal places, so 0.12.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-33",
+      "text": "5/8 of the 64 trucks in the yard are empty. How many trucks are empty?",
+      "options": [
+        "24",
+        "32",
+        "40",
+        "45"
+      ],
+      "correctAnswer": "40",
+      "explanation": "64 ÷ 8 = 8, and 8 × 5 = 40.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-34",
+      "text": "What is 3/4 ÷ 1/2?",
+      "options": [
+        "3/8",
+        "3/2",
+        "2/3",
+        "1/4"
+      ],
+      "correctAnswer": "3/2",
+      "explanation": "3/4 × 2/1 = 6/4 = 3/2.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-35",
+      "text": "After a 10% price rise, a ticket costs £33. What did it cost before the rise?",
+      "options": [
+        "£30",
+        "£29.70",
+        "£23",
+        "£36.30"
+      ],
+      "correctAnswer": "£30",
+      "explanation": "£33 is 110% of the old price, so £33 ÷ 1.1 = £30.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-36",
+      "text": "Write the ratio 18 : 24 in its simplest form.",
+      "options": [
+        "4 : 3",
+        "2 : 3",
+        "1 : 6",
+        "3 : 4"
+      ],
+      "correctAnswer": "3 : 4",
+      "explanation": "Divide both by 6: 18 ÷ 6 = 3 and 24 ÷ 6 = 4.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-37",
+      "text": "How many factors does 36 have?",
+      "options": [
+        "8",
+        "6",
+        "9",
+        "10"
+      ],
+      "correctAnswer": "9",
+      "explanation": "The factors are 1, 2, 3, 4, 6, 9, 12, 18 and 36.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-math-s-38",
+      "text": "A wheel on Thomas has a diameter of 2 m. Using π ≈ 3.14, what is its circumference?",
+      "options": [
+        "3.14 m",
+        "6.28 m",
+        "12.56 m",
+        "4.00 m"
+      ],
+      "correctAnswer": "6.28 m",
+      "explanation": "Circumference = π × diameter = 3.14 × 2 = 6.28 m.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-math-s-39",
+      "text": "What is −6 × −3?",
+      "options": [
+        "18",
+        "−18",
+        "−9",
+        "9"
+      ],
+      "correctAnswer": "18",
+      "explanation": "A negative times a negative is positive: 6 × 3 = 18.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-math-s-40",
+      "text": "Expand 3(x + 4).",
+      "options": [
+        "3x + 4",
+        "x + 12",
+        "3x + 7",
+        "3x + 12"
+      ],
+      "correctAnswer": "3x + 12",
+      "explanation": "Multiply both terms by 3: 3 × x + 3 × 4 = 3x + 12.",
+      "rewardType": "badge"
+    }
+  ]
+}

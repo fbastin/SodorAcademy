@@ -1,0 +1,1046 @@
+{
+  "Primary": [
+    {
+      "id": "x-eng-p-1",
+      "text": "What is the plural of \"engine\"?",
+      "options": [
+        "Engines",
+        "Enginees",
+        "Engins",
+        "Enginies"
+      ],
+      "correctAnswer": "Engines",
+      "explanation": "Most nouns just add \"s\" to make the plural.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-2",
+      "text": "What is the plural of \"child\"?",
+      "options": [
+        "Childs",
+        "Children",
+        "Childrens",
+        "Childes"
+      ],
+      "correctAnswer": "Children",
+      "explanation": "\"Child\" has a special plural: \"children\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-3",
+      "text": "What is the plural of \"lorry\"?",
+      "options": [
+        "Lorrys",
+        "Lorryes",
+        "Lorries",
+        "Lorreys"
+      ],
+      "correctAnswer": "Lorries",
+      "explanation": "When a word ends in a consonant and \"y\", change the \"y\" to \"ies\".",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-4",
+      "text": "What is the plural of \"mouse\"?",
+      "options": [
+        "Mouses",
+        "Mice",
+        "Mices",
+        "Meese"
+      ],
+      "correctAnswer": "Mice",
+      "explanation": "\"Mouse\" has a special plural: \"mice\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-5",
+      "text": "What is the opposite of \"happy\"?",
+      "options": [
+        "Glad",
+        "Jolly",
+        "Sad",
+        "Cheerful"
+      ],
+      "correctAnswer": "Sad",
+      "explanation": "\"Sad\" means the opposite of \"happy\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-6",
+      "text": "What is the opposite of \"heavy\"?",
+      "options": [
+        "Big",
+        "Light",
+        "Strong",
+        "Full"
+      ],
+      "correctAnswer": "Light",
+      "explanation": "Something that is not heavy is light.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-7",
+      "text": "What is the opposite of \"early\"?",
+      "options": [
+        "Soon",
+        "First",
+        "Quick",
+        "Late"
+      ],
+      "correctAnswer": "Late",
+      "explanation": "If Thomas is not early, he is late.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-8",
+      "text": "Which word means the same as \"small\"?",
+      "options": [
+        "Little",
+        "Huge",
+        "Tall",
+        "Wide"
+      ],
+      "correctAnswer": "Little",
+      "explanation": "\"Small\" and \"little\" have the same meaning.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-9",
+      "text": "Which word means the same as \"quick\"?",
+      "options": [
+        "Slow",
+        "Fast",
+        "Heavy",
+        "Loud"
+      ],
+      "correctAnswer": "Fast",
+      "explanation": "\"Quick\" and \"fast\" both mean moving at speed.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-10",
+      "text": "Which word rhymes with \"coal\"?",
+      "options": [
+        "Cool",
+        "Call",
+        "Hole",
+        "Cold"
+      ],
+      "correctAnswer": "Hole",
+      "explanation": "\"Coal\" and \"hole\" end with the same sound.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-11",
+      "text": "Which word rhymes with \"track\"?",
+      "options": [
+        "Truck",
+        "Back",
+        "Trick",
+        "Train"
+      ],
+      "correctAnswer": "Back",
+      "explanation": "\"Track\" and \"back\" both end with \"-ack\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-12",
+      "text": "Which word should always start with a capital letter?",
+      "options": [
+        "monday",
+        "morning",
+        "train",
+        "happy"
+      ],
+      "correctAnswer": "monday",
+      "explanation": "Days of the week always start with a capital letter: Monday.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-13",
+      "text": "Which sentence has a capital letter and a full stop in the right places?",
+      "options": [
+        "emily pulls two coaches.",
+        "Emily pulls two coaches.",
+        "Emily pulls two coaches",
+        "emily pulls two Coaches."
+      ],
+      "correctAnswer": "Emily pulls two coaches.",
+      "explanation": "A sentence starts with a capital letter and ends with a full stop.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-14",
+      "text": "Which punctuation mark should end this sentence: \"Can Toby come to the quarry\"",
+      "options": [
+        "?",
+        ".",
+        ",",
+        "'"
+      ],
+      "correctAnswer": "?",
+      "explanation": "The sentence asks something, so it needs a question mark.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-15",
+      "text": "What is the past tense of \"stop\"?",
+      "options": [
+        "Stoped",
+        "Stopt",
+        "Stopped",
+        "Stopping"
+      ],
+      "correctAnswer": "Stopped",
+      "explanation": "Double the \"p\" and add \"ed\" to get \"stopped\".",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-16",
+      "text": "Which word completes the sentence: \"Yesterday Percy ____ a cow on the line.\"",
+      "options": [
+        "see",
+        "saw",
+        "seed",
+        "sees"
+      ],
+      "correctAnswer": "saw",
+      "explanation": "\"Saw\" is the past tense of \"see\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-17",
+      "text": "What is the past tense of \"whistle\"?",
+      "options": [
+        "Whistled",
+        "Whistleed",
+        "Whistld",
+        "Whistling"
+      ],
+      "correctAnswer": "Whistled",
+      "explanation": "Words ending in \"e\" just add \"d\" for the past tense.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-18",
+      "text": "What is the short form (contraction) of \"do not\"?",
+      "options": [
+        "Dont",
+        "Do'nt",
+        "Don't",
+        "Doesn't"
+      ],
+      "correctAnswer": "Don't",
+      "explanation": "The apostrophe in \"don't\" shows where the \"o\" of \"not\" was left out.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-19",
+      "text": "What does \"can't\" mean?",
+      "options": [
+        "Cannot",
+        "Can it",
+        "Could not",
+        "Can too"
+      ],
+      "correctAnswer": "Cannot",
+      "explanation": "\"Can't\" is the short form of \"cannot\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-20",
+      "text": "What is the short form (contraction) of \"it is\"?",
+      "options": [
+        "Its",
+        "It's",
+        "Its'",
+        "I'ts"
+      ],
+      "correctAnswer": "It's",
+      "explanation": "\"It's\" means \"it is\"; the apostrophe replaces the \"i\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-21",
+      "text": "Which name comes first in alphabetical order?",
+      "options": [
+        "Percy",
+        "Toby",
+        "Edward",
+        "Henry"
+      ],
+      "correctAnswer": "Edward",
+      "explanation": "\"E\" comes before \"H\", \"P\" and \"T\" in the alphabet.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-22",
+      "text": "Which list is in alphabetical order?",
+      "options": [
+        "Emily, Gordon, James, Thomas",
+        "Gordon, Emily, Thomas, James",
+        "Thomas, James, Gordon, Emily",
+        "Emily, James, Gordon, Thomas"
+      ],
+      "correctAnswer": "Emily, Gordon, James, Thomas",
+      "explanation": "E, G, J, T follow the order of the alphabet.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-23",
+      "text": "Which name comes last in alphabetical order?",
+      "options": [
+        "Diesel",
+        "Duck",
+        "Donald",
+        "Daisy"
+      ],
+      "correctAnswer": "Duck",
+      "explanation": "Look at the second letter: a, i, o, u, so \"Duck\" comes last.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-24",
+      "text": "Which is the correct spelling of the place where trains stop?",
+      "options": [
+        "Stashun",
+        "Staytion",
+        "Station",
+        "Stasion"
+      ],
+      "correctAnswer": "Station",
+      "explanation": "\"Station\" ends with the letters \"tion\".",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-25",
+      "text": "Which is the correct spelling?",
+      "options": [
+        "Wistle",
+        "Whistle",
+        "Whissle",
+        "Whistel"
+      ],
+      "correctAnswer": "Whistle",
+      "explanation": "\"Whistle\" has a silent \"h\" and a silent \"t\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-26",
+      "text": "Which is the correct spelling of a person you like to play with?",
+      "options": [
+        "Freind",
+        "Frend",
+        "Friend",
+        "Frined"
+      ],
+      "correctAnswer": "Friend",
+      "explanation": "Remember: a \"friend\" is there to the \"end\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-27",
+      "text": "Which word is a noun in the sentence \"The crane lifted the heavy box.\"?",
+      "options": [
+        "crane",
+        "lifted",
+        "heavy",
+        "the"
+      ],
+      "correctAnswer": "crane",
+      "explanation": "\"Crane\" names a thing, so it is a noun.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-28",
+      "text": "Which word is a verb in the sentence \"Percy pushed the trucks.\"?",
+      "options": [
+        "Percy",
+        "pushed",
+        "the",
+        "trucks"
+      ],
+      "correctAnswer": "pushed",
+      "explanation": "\"Pushed\" is the action, so it is a verb.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-29",
+      "text": "Which word is an adjective in the sentence \"Gordon is a big engine.\"?",
+      "options": [
+        "Gordon",
+        "is",
+        "big",
+        "engine"
+      ],
+      "correctAnswer": "big",
+      "explanation": "\"Big\" describes Gordon, so it is an adjective.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-30",
+      "text": "Which word best joins the sentence: \"Thomas was tired ____ he kept going.\"",
+      "options": [
+        "so",
+        "because",
+        "if",
+        "but"
+      ],
+      "correctAnswer": "but",
+      "explanation": "\"But\" joins two ideas that contrast with each other.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-31",
+      "text": "Which of these is a compound word (two words joined together)?",
+      "options": [
+        "Engine",
+        "Railway",
+        "Signal",
+        "Station"
+      ],
+      "correctAnswer": "Railway",
+      "explanation": "\"Railway\" is made from \"rail\" and \"way\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-32",
+      "text": "How many syllables are in the name \"Harvey\"?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "correctAnswer": "2",
+      "explanation": "Har-vey has two beats, so it has two syllables.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-33",
+      "text": "Which letter is a vowel?",
+      "options": [
+        "T",
+        "P",
+        "E",
+        "S"
+      ],
+      "correctAnswer": "E",
+      "explanation": "The vowels are a, e, i, o and u.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-34",
+      "text": "Which word starts with the same sound as \"Percy\"?",
+      "options": [
+        "Bus",
+        "Pig",
+        "Fish",
+        "Dog"
+      ],
+      "correctAnswer": "Pig",
+      "explanation": "\"Percy\" and \"pig\" both start with a \"p\" sound.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-35",
+      "text": "Which sentence needs a question mark at the end?",
+      "options": [
+        "Where are the trucks",
+        "The trucks are here",
+        "Percy likes the mail",
+        "Toby rings his bell"
+      ],
+      "correctAnswer": "Where are the trucks",
+      "explanation": "It asks a question, so it needs a question mark.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-36",
+      "text": "Which sentence should end with an exclamation mark?",
+      "options": [
+        "Thomas is blue",
+        "Look out, Thomas",
+        "The station is big",
+        "Percy is green"
+      ],
+      "correctAnswer": "Look out, Thomas",
+      "explanation": "A sudden warning or shout ends with an exclamation mark.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-37",
+      "text": "What is the opposite of \"empty\"?",
+      "options": [
+        "Full",
+        "Open",
+        "Clean",
+        "Heavy"
+      ],
+      "correctAnswer": "Full",
+      "explanation": "A truck that is not empty is full.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-p-38",
+      "text": "Which word means the same as \"shout\"?",
+      "options": [
+        "Whisper",
+        "Yell",
+        "Sing",
+        "Listen"
+      ],
+      "correctAnswer": "Yell",
+      "explanation": "\"Shout\" and \"yell\" both mean to call out loudly.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-p-39",
+      "text": "Which word means more than one?",
+      "options": [
+        "Truck",
+        "Whistle",
+        "Trucks",
+        "Engine"
+      ],
+      "correctAnswer": "Trucks",
+      "explanation": "The \"s\" on the end of \"trucks\" shows there is more than one.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-p-40",
+      "text": "Which of these is the name of a place (a proper noun)?",
+      "options": [
+        "station",
+        "Knapford",
+        "town",
+        "river"
+      ],
+      "correctAnswer": "Knapford",
+      "explanation": "Knapford is the name of a special place, so it starts with a capital letter.",
+      "rewardType": "badge"
+    }
+  ],
+  "Secondary": [
+    {
+      "id": "x-eng-s-1",
+      "text": "Which word is a pronoun in the sentence \"Emily said she would help.\"?",
+      "options": [
+        "Emily",
+        "said",
+        "she",
+        "help"
+      ],
+      "correctAnswer": "she",
+      "explanation": "\"She\" takes the place of the noun \"Emily\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-2",
+      "text": "Which word is a preposition in the sentence \"Toby waited under the bridge.\"?",
+      "options": [
+        "Toby",
+        "waited",
+        "under",
+        "bridge"
+      ],
+      "correctAnswer": "under",
+      "explanation": "\"Under\" shows the position of Toby in relation to the bridge.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-3",
+      "text": "Which word is a conjunction in the sentence \"Percy was late because the signal was red.\"?",
+      "options": [
+        "late",
+        "because",
+        "signal",
+        "red"
+      ],
+      "correctAnswer": "because",
+      "explanation": "\"Because\" joins the two clauses together.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-4",
+      "text": "Which word is an adverb in the sentence \"Tomorrow Henry will visit Wellsworth.\"?",
+      "options": [
+        "Tomorrow",
+        "Henry",
+        "visit",
+        "Wellsworth"
+      ],
+      "correctAnswer": "Tomorrow",
+      "explanation": "\"Tomorrow\" tells us when the action happens, so it is an adverb.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-5",
+      "text": "Which phrase correctly shows the sheds belonging to several engines?",
+      "options": [
+        "the engine's sheds",
+        "the engines' sheds",
+        "the engines sheds'",
+        "the engine's' sheds"
+      ],
+      "correctAnswer": "the engines' sheds",
+      "explanation": "For a plural ending in \"s\", the apostrophe goes after the \"s\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-6",
+      "text": "Which word completes the sentence: \"The engine blew ____ whistle.\"",
+      "options": [
+        "it's",
+        "its'",
+        "its",
+        "it is"
+      ],
+      "correctAnswer": "its",
+      "explanation": "\"Its\" shows possession; \"it's\" means \"it is\".",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-7",
+      "text": "Which word completes the sentence: \"Thomas and Percy parked ____ trucks in the yard.\"",
+      "options": [
+        "there",
+        "their",
+        "they're",
+        "thier"
+      ],
+      "correctAnswer": "their",
+      "explanation": "\"Their\" shows that the trucks belong to Thomas and Percy.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-8",
+      "text": "Which word completes the sentence: \"____ going to Vicarstown tomorrow.\"",
+      "options": [
+        "Their",
+        "There",
+        "They're",
+        "Thier"
+      ],
+      "correctAnswer": "They're",
+      "explanation": "\"They're\" is short for \"they are\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-9",
+      "text": "Which word completes the sentence: \"Gordon was ____ proud to pull the trucks.\"",
+      "options": [
+        "to",
+        "too",
+        "two",
+        "tow"
+      ],
+      "correctAnswer": "too",
+      "explanation": "\"Too\" means \"excessively\" or \"also\".",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-10",
+      "text": "Which word completes the sentence: \"The engines had to ____ at the red signal.\"",
+      "options": [
+        "weight",
+        "wait",
+        "wate",
+        "whait"
+      ],
+      "correctAnswer": "wait",
+      "explanation": "\"Wait\" means to stay; \"weight\" means how heavy something is.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-11",
+      "text": "What does the prefix \"un-\" mean in the word \"unhappy\"?",
+      "options": [
+        "Again",
+        "Before",
+        "Not",
+        "Under"
+      ],
+      "correctAnswer": "Not",
+      "explanation": "\"Unhappy\" means \"not happy\".",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-12",
+      "text": "What does the prefix \"re-\" mean in the word \"rebuild\"?",
+      "options": [
+        "Again",
+        "Not",
+        "After",
+        "Against"
+      ],
+      "correctAnswer": "Again",
+      "explanation": "To rebuild is to build again.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-13",
+      "text": "What does the suffix \"-less\" mean in the word \"fearless\"?",
+      "options": [
+        "Full of",
+        "Without",
+        "More",
+        "Able to"
+      ],
+      "correctAnswer": "Without",
+      "explanation": "\"Fearless\" means without fear.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-14",
+      "text": "Which suffix turns the verb \"enjoy\" into a noun?",
+      "options": [
+        "-ly",
+        "-ed",
+        "-able",
+        "-ment"
+      ],
+      "correctAnswer": "-ment",
+      "explanation": "\"Enjoyment\" is a noun; \"enjoyable\" is an adjective.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-15",
+      "text": "Which sentence contains a simile?",
+      "options": [
+        "Thomas was as busy as a bee.",
+        "Thomas was a busy bee.",
+        "The wind whispered to Thomas.",
+        "Busy bees buzzed by Thomas."
+      ],
+      "correctAnswer": "Thomas was as busy as a bee.",
+      "explanation": "A simile compares two things using \"as\" or \"like\".",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-16",
+      "text": "Which figure of speech is used in \"The sun smiled down on Knapford Station.\"?",
+      "options": [
+        "Simile",
+        "Personification",
+        "Onomatopoeia",
+        "Alliteration"
+      ],
+      "correctAnswer": "Personification",
+      "explanation": "Giving the sun a human action (smiling) is personification.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-17",
+      "text": "Which figure of speech is used in \"Percy puffed past the purple post box.\"?",
+      "options": [
+        "Alliteration",
+        "Metaphor",
+        "Simile",
+        "Hyperbole"
+      ],
+      "correctAnswer": "Alliteration",
+      "explanation": "Repeating the same starting sound (\"p\") is alliteration.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-18",
+      "text": "Which word is an example of onomatopoeia?",
+      "options": [
+        "Quickly",
+        "Clang",
+        "Station",
+        "Heavy"
+      ],
+      "correctAnswer": "Clang",
+      "explanation": "\"Clang\" sounds like the noise it describes.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-19",
+      "text": "Which figure of speech is used in \"Gordon said the trucks weighed a million tonnes.\"?",
+      "options": [
+        "Simile",
+        "Onomatopoeia",
+        "Hyperbole",
+        "Personification"
+      ],
+      "correctAnswer": "Hyperbole",
+      "explanation": "Hyperbole is deliberate exaggeration for effect.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-20",
+      "text": "Which sentence is the passive form of \"Harvey lifted the crate.\"?",
+      "options": [
+        "Harvey was lifting the crate.",
+        "The crate was lifted by Harvey.",
+        "The crate lifts Harvey.",
+        "Harvey had lifted the crate."
+      ],
+      "correctAnswer": "The crate was lifted by Harvey.",
+      "explanation": "In the passive voice, the object becomes the subject and \"by\" names the doer.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-21",
+      "text": "Which verb correctly completes the sentence: \"Each of the engines ____ its own shed.\"",
+      "options": [
+        "have",
+        "has",
+        "are having",
+        "were having"
+      ],
+      "correctAnswer": "has",
+      "explanation": "\"Each\" is singular, so it takes the singular verb \"has\".",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-22",
+      "text": "Which verb correctly completes the sentence: \"The trucks in the siding ____ full of coal.\"",
+      "options": [
+        "is",
+        "was",
+        "are",
+        "be"
+      ],
+      "correctAnswer": "are",
+      "explanation": "The subject \"trucks\" is plural, so it takes \"are\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-23",
+      "text": "Which tense is used in \"Emily will have delivered the mail by noon.\"?",
+      "options": [
+        "Past perfect",
+        "Present perfect",
+        "Simple future",
+        "Future perfect"
+      ],
+      "correctAnswer": "Future perfect",
+      "explanation": "\"Will have\" plus a past participle forms the future perfect.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-24",
+      "text": "Which tense is used in \"James was polishing his buffers.\"?",
+      "options": [
+        "Past continuous",
+        "Present continuous",
+        "Simple past",
+        "Past perfect"
+      ],
+      "correctAnswer": "Past continuous",
+      "explanation": "\"Was\" plus an \"-ing\" verb forms the past continuous.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-25",
+      "text": "What is the main clause in \"Although it was raining, Edward finished his journey.\"?",
+      "options": [
+        "Although it was raining",
+        "Edward finished his journey",
+        "finished his journey",
+        "Although Edward"
+      ],
+      "correctAnswer": "Edward finished his journey",
+      "explanation": "The main clause makes sense on its own as a sentence.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-26",
+      "text": "What type of sentence is \"Thomas stopped, and Percy waited.\"?",
+      "options": [
+        "Simple sentence",
+        "Compound sentence",
+        "Complex sentence",
+        "Sentence fragment"
+      ],
+      "correctAnswer": "Compound sentence",
+      "explanation": "Two main clauses joined by \"and\" make a compound sentence.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-27",
+      "text": "What does the root \"tele\" mean in the word \"telescope\"?",
+      "options": [
+        "Far",
+        "Small",
+        "Light",
+        "Look"
+      ],
+      "correctAnswer": "Far",
+      "explanation": "\"Tele\" comes from Greek and means \"far\", as in telephone and television.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-28",
+      "text": "What does the root \"port\" mean in the word \"transport\"?",
+      "options": [
+        "Carry",
+        "Harbour",
+        "Door",
+        "Break"
+      ],
+      "correctAnswer": "Carry",
+      "explanation": "\"Port\" comes from Latin \"portare\", meaning \"to carry\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-29",
+      "text": "What does \"reluctant\" mean in \"Diesel was reluctant to help.\"?",
+      "options": [
+        "Eager",
+        "Unwilling",
+        "Tired",
+        "Proud"
+      ],
+      "correctAnswer": "Unwilling",
+      "explanation": "Being reluctant means being unwilling or hesitant.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-30",
+      "text": "What is the antonym of \"generous\"?",
+      "options": [
+        "Kind",
+        "Giving",
+        "Selfish",
+        "Friendly"
+      ],
+      "correctAnswer": "Selfish",
+      "explanation": "A selfish person keeps things for themselves, the opposite of generous.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-31",
+      "text": "Which sentence uses commas correctly in a list?",
+      "options": [
+        "Thomas Percy, Toby, and, Emily went to Knapford.",
+        "Thomas, Percy, Toby and Emily went to Knapford.",
+        "Thomas, Percy Toby and Emily, went to Knapford.",
+        "Thomas, Percy, Toby, and, Emily went to Knapford."
+      ],
+      "correctAnswer": "Thomas, Percy, Toby and Emily went to Knapford.",
+      "explanation": "Commas separate the items in a list, with \"and\" before the last one.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-32",
+      "text": "Which sentence punctuates the fronted adverbial correctly?",
+      "options": [
+        "Early, in the morning Henry left the shed.",
+        "Early in the morning Henry, left the shed.",
+        "Early in, the morning Henry left the shed.",
+        "Early in the morning, Henry left the shed."
+      ],
+      "correctAnswer": "Early in the morning, Henry left the shed.",
+      "explanation": "A comma goes after the whole fronted adverbial.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-33",
+      "text": "What is the main character in a story called?",
+      "options": [
+        "Antagonist",
+        "Narrator",
+        "Protagonist",
+        "Author"
+      ],
+      "correctAnswer": "Protagonist",
+      "explanation": "The protagonist is the central character of a story.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-34",
+      "text": "In a story where Diesel keeps causing trouble for the steam engines, what is Diesel called?",
+      "options": [
+        "The protagonist",
+        "The antagonist",
+        "The narrator",
+        "The narrative"
+      ],
+      "correctAnswer": "The antagonist",
+      "explanation": "The antagonist is the character who opposes the main character.",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-35",
+      "text": "Which point of view is used in \"I puffed into Tidmouth and saw Gordon waiting.\"?",
+      "options": [
+        "First person",
+        "Second person",
+        "Third person",
+        "Third person omniscient"
+      ],
+      "correctAnswer": "First person",
+      "explanation": "The narrator uses \"I\", so it is first person.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-36",
+      "text": "Which word is an abstract noun?",
+      "options": [
+        "Engine",
+        "Courage",
+        "Station",
+        "Whistle"
+      ],
+      "correctAnswer": "Courage",
+      "explanation": "An abstract noun names an idea or feeling you cannot touch.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-37",
+      "text": "Which is the correct British English spelling?",
+      "options": [
+        "Traveled",
+        "Travveled",
+        "Travelled",
+        "Travelld"
+      ],
+      "correctAnswer": "Travelled",
+      "explanation": "British English doubles the \"l\" in \"travelled\".",
+      "rewardType": "badge"
+    },
+    {
+      "id": "x-eng-s-38",
+      "text": "Which sentence uses a colon correctly?",
+      "options": [
+        "Percy carried: mail, parcels and milk.",
+        "Percy carried three things: mail, parcels and milk.",
+        "Percy: carried three things, mail, parcels and milk.",
+        "Percy carried three: things mail, parcels and milk."
+      ],
+      "correctAnswer": "Percy carried three things: mail, parcels and milk.",
+      "explanation": "A colon introduces a list after a complete clause.",
+      "rewardType": "engine"
+    },
+    {
+      "id": "x-eng-s-39",
+      "text": "Which word is a modal verb in \"Thomas might be late today.\"?",
+      "options": [
+        "might",
+        "be",
+        "late",
+        "today"
+      ],
+      "correctAnswer": "might",
+      "explanation": "\"Might\" is a modal verb showing possibility.",
+      "rewardType": "coin"
+    },
+    {
+      "id": "x-eng-s-40",
+      "text": "Which word is a relative pronoun in \"Sir Topham Hatt, who runs the railway, was pleased.\"?",
+      "options": [
+        "who",
+        "runs",
+        "railway",
+        "pleased"
+      ],
+      "correctAnswer": "who",
+      "explanation": "\"Who\" introduces a relative clause about Sir Topham Hatt.",
+      "rewardType": "badge"
+    }
+  ]
+}

@@ -77,10 +77,10 @@ export default function ContinentsLesson({ onCancel, onStartExercise }: Continen
   const step = STEPS[currentStep];
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="bg-white rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col min-h-[650px]">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+      <div className="bg-white rounded-[28px] xl:rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col xl:min-h-[650px]">
         {/* Header */}
-        <div className="bg-orange-600 p-8 text-white flex items-center justify-between">
+        <div className="bg-orange-600 p-5 md:p-6 xl:p-8 text-white flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
               <Globe size={28} />
@@ -109,7 +109,7 @@ export default function ContinentsLesson({ onCancel, onStartExercise }: Continen
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-8 md:p-12 flex flex-col">
+        <div className="flex-1 p-5 md:p-7 xl:p-12 flex flex-col">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -119,7 +119,7 @@ export default function ContinentsLesson({ onCancel, onStartExercise }: Continen
               className="h-full flex flex-col"
             >
               <div className="flex items-center gap-6 mb-8">
-                <div className="bg-slate-50 w-24 h-24 rounded-[32px] flex items-center justify-center shadow-inner shrink-0 overflow-hidden text-6xl">
+                <div className="bg-slate-50 w-16 h-16 xl:w-24 xl:h-24 rounded-[32px] flex items-center justify-center shadow-inner shrink-0 overflow-hidden text-4xl xl:text-6xl">
                   <span>{step.image}</span>
                 </div>
                 <div>
@@ -138,13 +138,13 @@ export default function ContinentsLesson({ onCancel, onStartExercise }: Continen
               </div>
 
               <div className="flex-1">
-                <p className="text-xl leading-relaxed text-slate-700 font-medium mb-12">
+                <p className="text-lg xl:text-xl leading-relaxed text-slate-700 font-medium mb-6 xl:mb-12">
                   {step.content}
                 </p>
               </div>
 
               {/* Navigation */}
-              <div className="mt-12 flex justify-between items-center">
+              <div className="mt-6 xl:mt-12 flex justify-between items-center">
                 <button
                   onClick={prev}
                   disabled={currentStep === 0}
@@ -176,9 +176,9 @@ export default function ContinentsLesson({ onCancel, onStartExercise }: Continen
       
       <button 
         onClick={onCancel}
-        className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
+        className="mt-6 xl:mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );

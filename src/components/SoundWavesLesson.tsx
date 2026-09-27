@@ -181,10 +181,10 @@ export default function SoundWavesLesson({ onCancel, onStartExercise }: SoundWav
   const step = STEPS[currentStep];
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-6">
-      <div className="bg-white rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col min-h-[700px]">
+    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+      <div className="bg-white rounded-[28px] xl:rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col xl:min-h-[700px]">
         {/* Header */}
-        <div className="bg-pink-600 p-8 text-white flex items-center justify-between">
+        <div className="bg-pink-600 p-5 md:p-6 xl:p-8 text-white flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
               <Activity size={28} />
@@ -213,7 +213,7 @@ export default function SoundWavesLesson({ onCancel, onStartExercise }: SoundWav
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-8 md:p-12 flex flex-col">
+        <div className="flex-1 p-5 md:p-7 xl:p-12 flex flex-col">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -223,7 +223,7 @@ export default function SoundWavesLesson({ onCancel, onStartExercise }: SoundWav
               className="h-full flex flex-col flex-1"
             >
               <div className="flex items-center gap-6 mb-6">
-                <div className="text-6xl bg-slate-50 w-24 h-24 rounded-[32px] flex items-center justify-center shadow-inner shrink-0">
+                <div className="text-4xl xl:text-6xl bg-slate-50 w-16 h-16 xl:w-24 xl:h-24 rounded-[32px] flex items-center justify-center shadow-inner shrink-0">
                   {step.image}
                 </div>
                 <div>
@@ -383,7 +383,7 @@ export default function SoundWavesLesson({ onCancel, onStartExercise }: SoundWav
       
       <button 
         onClick={onCancel}
-        className="mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
+        className="mt-6 xl:mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
       >
         Return to Station
       </button>

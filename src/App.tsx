@@ -891,7 +891,7 @@ const LessonPreferencesModal = ({ user, onClose, onUpdateUser }: {
                     <input
                       type="range"
                       min="3"
-                      max="20"
+                      max="30"
                       value={count}
                       onChange={(e) => handleUpdateQuestions(subject, parseInt(e.target.value))}
                       className="w-28 accent-sodor-blue h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer"
@@ -1159,9 +1159,9 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-6 px-4">
+    <div className="max-w-3xl mx-auto py-2 xl:py-6 px-1 sm:px-4">
       {/* Progress Track */}
-      <div className="mb-12 relative">
+      <div className="mb-8 xl:mb-12 relative">
         <div className="h-4 w-full bg-slate-200 rounded-full train-track overflow-hidden">
           <motion.div 
             initial={{ width: 0 }}
@@ -1187,7 +1187,7 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-3xl p-8 shadow-2xl relative overflow-hidden"
+          className="engine-glass rounded-3xl p-5 md:p-6 xl:p-8 shadow-2xl relative overflow-hidden"
         >
             <div className="absolute top-0 left-0 w-2 h-full bg-sodor-blue" />
             <div className="flex justify-between items-start mb-4">
@@ -1203,11 +1203,11 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
               </button>
             </div>
             
-            <h2 className={`text-xl font-extrabold mb-8 leading-tight ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
+            <h2 className={`text-xl font-extrabold mb-5 xl:mb-8 leading-tight ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
               {question?.text}
             </h2>
 
-            <div className="grid gap-4">
+            <div className={`grid gap-3 xl:gap-4 ${question && question.options.every(o => o.length <= 40) ? 'sm:grid-cols-2' : ''}`}>
               {question?.options.map((option, idx) => (
                 <motion.button
                   key={idx}
@@ -1216,10 +1216,10 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
                   onClick={() => handleAnswer(option)}
                   disabled={!!selectedAnswer}
                   className={`
-                    p-5 rounded-2xl text-left font-bold border-2 transition-all flex items-center justify-between
+                    px-5 py-4 xl:p-5 rounded-2xl text-left font-bold border-2 transition-all flex items-center justify-between gap-2
                     ${selectedAnswer === option 
                       ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
-                      : (selectedAnswer && option === question?.correctAnswer ? 'bg-green-50 border-green-500 text-green-700' : 'bg-slate-50 border-transparent text-slate-700 hover:bg-slate-100')
+                      : (selectedAnswer && option === question?.correctAnswer ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-200 text-slate-700 hover:border-sodor-blue/40 hover:bg-slate-50')
                     }
                   `}
                 >
@@ -1255,7 +1255,7 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 onClick={handleNext}
-                className="mt-8 w-full py-4 btn-3d-blue"
+                className="mt-6 xl:mt-8 w-full py-4 btn-3d-blue"
                >
                  Next Station
                </motion.button>
@@ -1265,9 +1265,9 @@ const ExerciseView = ({ subject, grade, questionsCount = 10, onComplete, onCance
       
       <button 
         onClick={onCancel}
-        className="mt-8 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
+        className="mt-6 xl:mt-8 mx-auto block text-slate-500 font-bold hover:text-slate-800 transition-colors"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );
@@ -1289,7 +1289,7 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
       >
         ← All stations
       </button>
-      <div className="text-center mb-10 sm:mb-12">
+      <div className="text-center mb-8 xl:mb-12">
         <div className={`w-16 h-16 sm:w-20 sm:h-20 ${subject.color} rounded-3xl flex items-center justify-center text-white mx-auto mb-5 shadow-lg`}>
           <subject.icon size={40} />
         </div>
@@ -1298,20 +1298,20 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
       </div>
 
       {lessons.length > 0 && (
-        <div className="mb-12">
-          <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2 px-2">
+        <div className="mb-8 xl:mb-12">
+          <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4 xl:mb-6 flex items-center gap-2 px-2">
             <BookOpen size={14} className="text-blue-600" />
             Academy Lessons
           </h3>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 xl:gap-6">
             {lessons.map(exercise => (
               <motion.button
                 key={exercise.id}
                 whileHover={{ y: -5, scale: 1.02 }}
                 onClick={() => onSelectExercise(exercise)}
-                className="bg-white p-5 sm:p-7 rounded-[28px] border-2 border-blue-100 shadow-lg text-left group transition-all hover:border-blue-300"
+                className="bg-white p-5 xl:p-7 rounded-[28px] border-2 border-blue-100 shadow-lg text-left group transition-all hover:border-blue-300"
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3 xl:mb-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     <BookOpen size={24} />
                   </div>
@@ -1326,17 +1326,17 @@ const SubjectSelectionView = ({ subject, onSelectExercise, onCancel }: {
       )}
 
       <div>
-        <h3 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2 px-2">
+        <h3 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4 xl:mb-6 flex items-center gap-2 px-2">
           <PlayCircle size={14} className="text-emerald-600" />
           Station Adventures
         </h3>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 xl:gap-6">
           {exercises.map(exercise => (
             <motion.button
               key={exercise.id}
               whileHover={{ y: -5, scale: 1.02 }}
               onClick={() => onSelectExercise(exercise)}
-              className="bg-white p-5 sm:p-7 rounded-[28px] border-2 border-slate-100 shadow-lg text-left group transition-all hover:border-sodor-blue/30"
+              className="bg-white p-5 xl:p-7 rounded-[28px] border-2 border-slate-100 shadow-lg text-left group transition-all hover:border-sodor-blue/30"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="w-12 h-12 bg-sodor-blue/10 rounded-2xl flex items-center justify-center text-sodor-blue group-hover:bg-sodor-blue group-hover:text-white transition-colors">
@@ -1745,7 +1745,7 @@ export default function App() {
         onHome={goHome}
       />
 
-      <main className={`${(activeExercise?.component === 'Piano' || activeExercise?.component === 'PianoSequence') ? 'max-w-[98vw]' : 'max-w-6xl'} mx-auto px-3 md:px-6 py-8 md:py-12 transition-all duration-500`}>
+      <main className={`${(activeExercise?.component === 'Piano' || activeExercise?.component === 'PianoSequence') ? 'max-w-[98vw]' : 'max-w-6xl'} mx-auto px-3 md:px-6 py-4 md:py-6 xl:py-12 transition-all duration-500`}>
         <AnimatePresence mode="wait">
           {!activeSubject ? (
             <motion.div

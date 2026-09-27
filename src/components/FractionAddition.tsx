@@ -130,7 +130,7 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
+          className="engine-glass rounded-2xl p-5 md:p-6 xl:p-8 shadow-2xl relative overflow-hidden bg-white/80 backdrop-blur-md border border-white/20"
         >
           <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
           <div className="flex justify-between items-start mb-3">
@@ -237,7 +237,7 @@ export default function FractionAddition({ grade, questionsCount = 10, onComplet
         onClick={onCancel}
         className="mt-6 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors text-sm"
       >
-        Return to Roundhouse
+        ← Back to the station
       </button>
     </div>
   );
