@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { RotateCcw, Volume2, ArrowRight } from 'lucide-react';
 import { Grade, Question } from '../types';
 import { generateQuestion } from '../services/questionService';
+import { loadFrBank, FrBank } from '../services/frQuestions';
+import { frTypo } from '../i18n';
 import { speak } from '../services/speechService';
 import { useLang } from '../i18n';
 import { Station, Activity } from '../content/stations';
@@ -36,10 +38,13 @@ export default function QuizView({ station, activity, grade, questionsCount = 10
   onComplete: (reward: string) => void;
   onCancel: () => void;
 }) {
-  const { t, tr } = useLang();
+  const { lang, t, tr } = useLang();
   const [question, setQuestion] = useState<Question | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<number | null>(null);
+  const [frBank, setFrBank] = useState<FrBank | null>(null);
+
+  useEffect(() => { loadFrBank(station.bank).then(setFrBank); }, [station.bank]);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [answered, setAnswered] = useState(0);
   const [used, setUsed] = useState<string[]>([]);
@@ -60,10 +65,21 @@ export default function QuizView({ station, activity, grade, questionsCount = 10
 
   useEffect(() => { setAnswered(0); setUsed([]); loadNext([]); }, [station.bank, grade]);
 
-  const answer = (option: string) => {
-    if (selected) return;
-    setSelected(option);
-    const ok = option === question?.correctAnswer;
+  // The question in the chosen language: its French translation when there is one
+  // (options found by their position in the bank), otherwise the English bank.
+  const fr = lang === 'fr' && question ? frBank?.[question.id] : undefined;
+  const qLang = fr ? 'fr' : 'en';
+  const shown = question && {
+    text: fr ? frTypo(fr.text) : question.text,
+    options: question.options.map((o, k) => (fr ? frTypo(fr.options[question.perm?.[k] ?? k] ?? o) : o)),
+    explanation: fr ? frTypo(fr.explanation) : question.explanation,
+  };
+  const rightIndex = question ? question.options.indexOf(question.correctAnswer) : -1;
+
+  const answer = (k: number) => {
+    if (selected !== null) return;
+    setSelected(k);
+    const ok = k === rightIndex;
     setIsCorrect(ok);
     if (ok) {
       const n = answered + 1;
@@ -73,7 +89,7 @@ export default function QuizView({ station, activity, grade, questionsCount = 10
   };
 
   const progress = (answered / questionsCount) * 100;
-  const short = question ? question.options.every(o => o.length <= 40) : false;
+  const short = shown ? shown.options.every(o => o.length <= 40) : false;
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -93,22 +109,22 @@ export default function QuizView({ station, activity, grade, questionsCount = 10
             <div className="flex flex-wrap justify-between items-center gap-2 mb-4">
               <span className="flex flex-wrap items-center gap-2">
                 <span className="label-caps">{t('question_of', Math.min(answered + 1, questionsCount), questionsCount)}</span>
-                <EnOnly enOnly={activity.enOnly} />
+                {frBank && <EnOnly enOnly={qLang === 'en'} />}
               </span>
-              <button onClick={() => question && speak(question.text, 'en')} className="chunky p-0! w-10 h-10" title={t('listen')} aria-label={t('listen')}>
+              <button onClick={() => shown && speak(shown.text, qLang)} className="chunky p-0! w-10 h-10" title={t('listen')} aria-label={t('listen')}>
                 <Volume2 size={18} />
               </button>
             </div>
 
-            <h2 className="text-xl sm:text-2xl font-extrabold mb-5 leading-snug" lang="en">{question?.text}</h2>
+            <h2 className="text-xl sm:text-2xl font-extrabold mb-5 leading-snug" lang={qLang}>{shown?.text}</h2>
 
-            <div className={`grid gap-3 ${short ? 'sm:grid-cols-2' : ''}`} lang="en">
-              {question?.options.map((option, i) => {
-                const isPicked = selected === option;
-                const isAnswer = !!selected && option === question.correctAnswer;
+            <div className={`grid gap-3 ${short ? 'sm:grid-cols-2' : ''}`} lang={qLang}>
+              {shown?.options.map((option, i) => {
+                const isPicked = selected === i;
+                const isAnswer = selected !== null && i === rightIndex;
                 const cls = isAnswer ? 'bg-mint!' : isPicked ? 'bg-rose!' : '';
                 return (
-                  <button key={i} onClick={() => answer(option)} disabled={!!selected}
+                  <button key={i} onClick={() => answer(i)} disabled={selected !== null}
                     className={`chunky big justify-between! text-left! font-bold w-full disabled:opacity-100! disabled:cursor-default ${cls}`}>
                     <span>{option}</span>
                     {isAnswer && <span aria-hidden="true">✓</span>}
@@ -121,7 +137,7 @@ export default function QuizView({ station, activity, grade, questionsCount = 10
             {isCorrect === false && (
               <div className="note-paper mt-6" role="status">
                 <p className="font-extrabold text-bad mb-1">{t('wrong_title')}</p>
-                <p lang="en">{question?.explanation}</p>
+                <p lang={qLang}>{shown?.explanation}</p>
                 <button onClick={() => loadNext(used)} className="chunky mt-3 text-sm"><RotateCcw size={15} /> {t('another')}</button>
               </div>
             )}

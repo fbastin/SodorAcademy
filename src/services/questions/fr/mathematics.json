@@ -1,0 +1,1182 @@
+{
+  "math-p-1": {
+    "text": "Thomas doit livrer 5 wagons de charbon à Knapford et 3 wagons à Wellsworth. Combien de wagons tire-t-il en tout ?",
+    "options": [
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "explanation": "5 + 3 = 8."
+  },
+  "math-p-2": {
+    "text": "Percy avait 10 sacs de courrier au départ. Il en a laissé 4 à Ffarquhar. Combien de sacs de courrier lui reste-t-il ?",
+    "options": [
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "explanation": "10 − 4 = 6."
+  },
+  "math-p-3": {
+    "text": "James a 12 voitures. S’il en laisse 5 sur le quai, combien de voitures tire-t-il maintenant ?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "explanation": "12 − 5 = 7."
+  },
+  "math-p-4": {
+    "text": "Il y a 4 locomotives au dépôt de Tidmouth et 3 locomotives à la gare de Knapford. Combien de locomotives y a-t-il en tout ?",
+    "options": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "explanation": "4 + 3 = 7."
+  },
+  "math-p-5": {
+    "text": "Annie a 8 places et Clarabel a 8 places. Combien de places les voitures de Thomas ont-elles en tout ?",
+    "options": [
+      "12",
+      "14",
+      "16",
+      "18"
+    ],
+    "explanation": "8 + 8 = 16."
+  },
+  "math-p-6": {
+    "text": "Thomas emmène 6 passagers dans chacune des 3 gares. Combien de passagers transporte-t-il en tout ?",
+    "options": [
+      "12",
+      "16",
+      "18",
+      "20"
+    ],
+    "explanation": "6 × 3 = 18."
+  },
+  "math-p-7": {
+    "text": "Percy livre 12 colis à 4 magasins. Combien de colis chaque magasin reçoit-il ?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "6"
+    ],
+    "explanation": "12 ÷ 4 = 3."
+  },
+  "math-p-8": {
+    "text": "Diesel a livré 25 wagons de charbon lundi et 15 mardi. Combien de wagons a-t-il livrés en tout ?",
+    "options": [
+      "30",
+      "35",
+      "40",
+      "45"
+    ],
+    "explanation": "25 + 15 = 40."
+  },
+  "math-p-9": {
+    "text": "Harvey, la locomotive-grue, soulève 9 charges le matin et 9 charges l’après-midi. Combien de charges soulève-t-il en tout ?",
+    "options": [
+      "16",
+      "17",
+      "18",
+      "19"
+    ],
+    "explanation": "9 + 9 = 18."
+  },
+  "math-p-10": {
+    "text": "Toby a 14 passagers et 6 descendent à la gare. Combien de passagers reste-t-il ?",
+    "options": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "explanation": "14 − 6 = 8."
+  },
+  "math-p-11": {
+    "text": "Six wagons ont chacun 2 roues d’un côté. Combien de roues vois-tu de ce côté ?",
+    "options": [
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "explanation": "6 × 2 = 12."
+  },
+  "math-p-12": {
+    "text": "Les voitures de James ont 48 roues en tout. Si chaque voiture a 8 roues, combien de voitures a-t-il ?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "explanation": "48 ÷ 8 = 6."
+  },
+  "math-p-13": {
+    "text": "Un billet coûte 20 pence. Si Thomas vend 5 billets, combien d’argent récolte-t-il ?",
+    "options": [
+      "60 p",
+      "80 p",
+      "1 £",
+      "2 £"
+    ],
+    "explanation": "5 × 20 p = 100 p, et 100 pence font 1 livre : 1 £."
+  },
+  "math-p-14": {
+    "text": "Gordon a 20 passagers. La moitié d’entre eux descendent à Wellsworth. Combien de passagers restent dans le train ?",
+    "options": [
+      "5",
+      "8",
+      "10",
+      "12"
+    ],
+    "explanation": "La moitié de 20, c’est 10."
+  },
+  "math-p-15": {
+    "text": "Aux docks de Brendam, 3 grues chargent chacune 4 conteneurs sur un bateau. Combien de conteneurs sont chargés en tout ?",
+    "options": [
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "explanation": "3 × 4 = 12."
+  },
+  "math-p-16": {
+    "text": "L’horloge de Knapford sonne 7 coups à 7 heures et 3 coups à 3 heures. Combien de coups cela fait-il en tout ?",
+    "options": [
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "explanation": "7 + 3 = 10."
+  },
+  "math-p-17": {
+    "text": "Diesel a 30 wagons. Il en laisse 12 à la casse. Combien de wagons lui reste-t-il ?",
+    "options": [
+      "16",
+      "17",
+      "18",
+      "19"
+    ],
+    "explanation": "30 − 12 = 18."
+  },
+  "math-p-18": {
+    "text": "Thomas tire 2 fourgons de queue, 3 wagons de charbon et 4 voitures. Combien de véhicules tire-t-il en tout ?",
+    "options": [
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "explanation": "2 + 3 + 4 = 9."
+  },
+  "math-p-19": {
+    "text": "Si Thomas peut s’arrêter à 2 gares en une heure, à combien de gares peut-il s’arrêter en 5 heures ?",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "12"
+    ],
+    "explanation": "5 × 2 = 10."
+  },
+  "math-p-20": {
+    "text": "Il y a 18 passagers sur le quai. Ils montent dans 2 voitures, autant dans chacune. Combien de passagers y a-t-il dans chaque voiture ?",
+    "options": [
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "explanation": "18 ÷ 2 = 9."
+  },
+  "x-math-p-1": {
+    "text": "Thomas a 7 wagons. Il en prend 8 de plus à Wellsworth. Combien de wagons a-t-il maintenant ?",
+    "options": [
+      "14",
+      "16",
+      "15",
+      "13"
+    ],
+    "explanation": "7 + 8 = 15."
+  },
+  "x-math-p-2": {
+    "text": "Le train de Toby transporte 23 passagers. 9 descendent à Vicarstown. Combien de passagers reste-t-il ?",
+    "options": [
+      "13",
+      "14",
+      "15",
+      "32"
+    ],
+    "explanation": "23 − 9 = 14."
+  },
+  "x-math-p-3": {
+    "text": "Emily tire 7 voitures et chaque voiture transporte 8 passagers. Combien de passagers peut-elle transporter ?",
+    "options": [
+      "56",
+      "54",
+      "48",
+      "63"
+    ],
+    "explanation": "7 × 8 = 56."
+  },
+  "x-math-p-4": {
+    "text": "On partage également 35 sacs de courrier entre 5 fourgons postaux. Combien de sacs de courrier vont dans chaque fourgon ?",
+    "options": [
+      "6",
+      "8",
+      "5",
+      "7"
+    ],
+    "explanation": "35 ÷ 5 = 7."
+  },
+  "x-math-p-5": {
+    "text": "Il y a 36 wagons de charbon aux docks de Brendam. La moitié d’entre eux partent pour Knapford. Combien de wagons partent pour Knapford ?",
+    "options": [
+      "17",
+      "16",
+      "18",
+      "12"
+    ],
+    "explanation": "La moitié de 36, c’est 36 ÷ 2 = 18."
+  },
+  "x-math-p-6": {
+    "text": "Il y a 20 voitures à Knapford. Le quart d’entre elles sont rouges. Combien de voitures sont rouges ?",
+    "options": [
+      "4",
+      "5",
+      "10",
+      "15"
+    ],
+    "explanation": "Le quart de 20, c’est 20 ÷ 4 = 5."
+  },
+  "x-math-p-7": {
+    "text": "La plaque de Thomas affiche le nombre 472. Quelle est la valeur du chiffre 7 ?",
+    "options": [
+      "70",
+      "7",
+      "700",
+      "47"
+    ],
+    "explanation": "Le 7 est à la position des dizaines, donc il vaut 70."
+  },
+  "x-math-p-8": {
+    "text": "L’horloge de la gare a sa grande aiguille sur le 12 et sa petite aiguille sur le 3. Quelle heure est-il ?",
+    "options": [
+      "12 heures",
+      "3 heures et demie",
+      "12 heures et quart",
+      "3 heures"
+    ],
+    "explanation": "La grande aiguille sur le 12 indique une heure juste ; la petite aiguille sur le 3 indique 3 heures."
+  },
+  "x-math-p-9": {
+    "text": "Percy part de Knapford à 2 h 15 et le trajet dure 30 minutes. À quelle heure arrive-t-il ?",
+    "options": [
+      "2 h 30",
+      "3 h 15",
+      "2 h 45",
+      "2 h 35"
+    ],
+    "explanation": "2 h 15 plus 30 minutes, c’est 2 h 45."
+  },
+  "x-math-p-10": {
+    "text": "Un billet coûte 45 pence. Le mécanicien de Toby paie avec une pièce de 50 pence. Combien d’argent lui rend-on ?",
+    "options": [
+      "10 p",
+      "5 p",
+      "15 p",
+      "4 p"
+    ],
+    "explanation": "50 p − 45 p = 5 p."
+  },
+  "x-math-p-11": {
+    "text": "Au café de Knapford, une pomme coûte 30 pence et une boisson coûte 45 pence. Combien coûtent-elles ensemble ?",
+    "options": [
+      "75 p",
+      "65 p",
+      "85 p",
+      "70 p"
+    ],
+    "explanation": "30 p + 45 p = 75 p."
+  },
+  "x-math-p-12": {
+    "text": "Combien de côtés un hexagone a-t-il ?",
+    "options": [
+      "5",
+      "8",
+      "7",
+      "6"
+    ],
+    "explanation": "Un hexagone a 6 côtés."
+  },
+  "x-math-p-13": {
+    "text": "Un wagon-citerne de lait a la forme d’une boîte de conserve couchée sur le côté. Quel est ce solide ?",
+    "options": [
+      "Cube",
+      "Cône",
+      "Cylindre",
+      "Sphère"
+    ],
+    "explanation": "Une forme de boîte de conserve, avec deux bouts en forme de cercle, c’est un cylindre."
+  },
+  "x-math-p-14": {
+    "text": "Le quai de Maron mesure 3 mètres de long. Combien de centimètres cela fait-il ?",
+    "options": [
+      "30 cm",
+      "300 cm",
+      "3 000 cm",
+      "103 cm"
+    ],
+    "explanation": "1 mètre = 100 cm, donc 3 × 100 = 300 cm."
+  },
+  "x-math-p-15": {
+    "text": "Percy compte les wagons en suivant une suite : 5 ; 10 ; 15 ; 20 ; … Quel nombre vient ensuite ?",
+    "options": [
+      "25",
+      "30",
+      "21",
+      "24"
+    ],
+    "explanation": "La suite augmente de 5 chaque fois : 20 + 5 = 25."
+  },
+  "x-math-p-16": {
+    "text": "La suite de nombres du poste d’aiguillage est 30 ; 27 ; 24 ; 21 ; … Quel nombre vient ensuite ?",
+    "options": [
+      "19",
+      "17",
+      "20",
+      "18"
+    ],
+    "explanation": "La suite diminue de 3 chaque fois : 21 − 3 = 18."
+  },
+  "x-math-p-17": {
+    "text": "Harvey soulève 9 caisses sur chacun des 6 wagons plats. Combien de caisses soulève-t-il ?",
+    "options": [
+      "56",
+      "45",
+      "54",
+      "63"
+    ],
+    "explanation": "6 × 9 = 54."
+  },
+  "x-math-p-18": {
+    "text": "Sir Topham Hatt partage également 24 bonbons entre 3 mécaniciens. Combien de bonbons chaque mécanicien reçoit-il ?",
+    "options": [
+      "7",
+      "8",
+      "6",
+      "9"
+    ],
+    "explanation": "24 ÷ 3 = 8."
+  },
+  "x-math-p-19": {
+    "text": "Gordon transporte 38 passagers le matin et 47 l’après-midi. Combien cela fait-il en tout ?",
+    "options": [
+      "85",
+      "75",
+      "95",
+      "84"
+    ],
+    "explanation": "38 + 47 = 85."
+  },
+  "x-math-p-20": {
+    "text": "James avait 62 barils de pétrole. Il en livre 27. Combien de barils reste-t-il ?",
+    "options": [
+      "45",
+      "34",
+      "25",
+      "35"
+    ],
+    "explanation": "62 − 27 = 35."
+  },
+  "x-math-p-21": {
+    "text": "Henry a transporté 45 sacs lundi, et le double mardi. Combien de sacs a-t-il transportés mardi ?",
+    "options": [
+      "80",
+      "85",
+      "90",
+      "95"
+    ],
+    "explanation": "Le double de 45, c’est 45 × 2 = 90."
+  },
+  "x-math-p-22": {
+    "text": "Quel nombre a 3 centaines, 5 dizaines et 2 unités ?",
+    "options": [
+      "325",
+      "352",
+      "532",
+      "3 052"
+    ],
+    "explanation": "300 + 50 + 2 = 352."
+  },
+  "x-math-p-23": {
+    "text": "Il y a 67 passagers sur le quai. Combien fait 67 arrondi à la dizaine près ?",
+    "options": [
+      "70",
+      "60",
+      "80",
+      "100"
+    ],
+    "explanation": "67 est plus proche de 70 que de 60."
+  },
+  "x-math-p-24": {
+    "text": "Combien de minutes y a-t-il dans une demi-heure ?",
+    "options": [
+      "50",
+      "15",
+      "60",
+      "30"
+    ],
+    "explanation": "Une heure compte 60 minutes, et la moitié de 60, c’est 30."
+  },
+  "x-math-p-25": {
+    "text": "Thomas travaille tous les jours pendant 2 semaines. Combien de jours cela fait-il ?",
+    "options": [
+      "12",
+      "10",
+      "14",
+      "21"
+    ],
+    "explanation": "Une semaine compte 7 jours, donc 2 × 7 = 14."
+  },
+  "x-math-p-26": {
+    "text": "Edward a 2 £. Il dépense 1,25 £ pour de l’huile. Combien d’argent lui reste-t-il ?",
+    "options": [
+      "85 p",
+      "75 p",
+      "65 p",
+      "25 p"
+    ],
+    "explanation": "2,00 £ − 1,25 £ = 75 p."
+  },
+  "x-math-p-27": {
+    "text": "Quel groupe de pièces fait exactement 50 pence ?",
+    "options": [
+      "20 p + 20 p + 10 p",
+      "20 p + 20 p + 5 p",
+      "20 p + 10 p + 10 p",
+      "10 p + 10 p + 5 p"
+    ],
+    "explanation": "20 p + 20 p + 10 p = 50 p."
+  },
+  "x-math-p-28": {
+    "text": "Un sac de farine pour Wellsworth pèse 2 kg. Combien de grammes cela fait-il ?",
+    "options": [
+      "200 g",
+      "20 g",
+      "2 100 g",
+      "2 000 g"
+    ],
+    "explanation": "1 kg = 1 000 g, donc 2 kg = 2 000 g."
+  },
+  "x-math-p-29": {
+    "text": "Diesel a 8 wagons. Les trois quarts d’entre eux sont pleins de charbon. Combien de wagons sont pleins ?",
+    "options": [
+      "2",
+      "4",
+      "6",
+      "3"
+    ],
+    "explanation": "Le quart de 8, c’est 2, donc les trois quarts, c’est 3 × 2 = 6."
+  },
+  "x-math-p-30": {
+    "text": "Une fenêtre carrée de Clarabel a des côtés de 4 cm. Combien mesure le tour complet de la fenêtre ?",
+    "options": [
+      "8 cm",
+      "16 cm",
+      "12 cm",
+      "20 cm"
+    ],
+    "explanation": "Un carré a 4 côtés égaux : 4 × 4 = 16 cm."
+  },
+  "x-math-p-31": {
+    "text": "Lequel de ces numéros de voiture est impair ?",
+    "options": [
+      "27",
+      "14",
+      "32",
+      "50"
+    ],
+    "explanation": "27 se termine par 7, donc on ne peut pas le partager en deux groupes égaux."
+  },
+  "x-math-p-32": {
+    "text": "Le château d’eau contient 100 seaux d’eau. On en a utilisé 64. Combien en reste-t-il ?",
+    "options": [
+      "46",
+      "44",
+      "34",
+      "36"
+    ],
+    "explanation": "100 − 64 = 36."
+  },
+  "x-math-p-33": {
+    "text": "Lequel de ces numéros de wagon est le plus grand ?",
+    "options": [
+      "509",
+      "95",
+      "590",
+      "559"
+    ],
+    "explanation": "590 a 5 centaines et 9 dizaines : c’est plus que 559 ou 509."
+  },
+  "x-math-p-34": {
+    "text": "Chaque wagon transporte 10 sacs de courrier. Combien de sacs y a-t-il dans 12 wagons ?",
+    "options": [
+      "112",
+      "120",
+      "22",
+      "1 200"
+    ],
+    "explanation": "12 × 10 = 120."
+  },
+  "x-math-p-35": {
+    "text": "Le train part à 5 heures moins le quart. Comment cette heure s’affiche-t-elle sur une horloge numérique ?",
+    "options": [
+      "4:45",
+      "5:45",
+      "5:15",
+      "4:15"
+    ],
+    "explanation": "5 heures moins le quart, c’est 15 minutes avant 5:00, donc l’horloge affiche 4:45."
+  },
+  "x-math-p-36": {
+    "text": "Le trajet de Toby dure 1 heure 20 minutes. Combien de minutes cela fait-il ?",
+    "options": [
+      "120",
+      "70",
+      "60",
+      "80"
+    ],
+    "explanation": "1 heure, c’est 60 minutes, et 60 + 20 = 80."
+  },
+  "x-math-p-37": {
+    "text": "Les voitures d’Emily sont peintes en suivant une suite : cercle, carré, cercle, carré, cercle, … Quelle forme vient ensuite ?",
+    "options": [
+      "Cercle",
+      "Triangle",
+      "Carré",
+      "Étoile"
+    ],
+    "explanation": "La suite répète cercle, carré : après un cercle vient donc un carré."
+  },
+  "x-math-p-38": {
+    "text": "Percy avait des colis. Il en a pris 15 de plus et il en a maintenant 40. Combien en avait-il au départ ?",
+    "options": [
+      "55",
+      "25",
+      "35",
+      "15"
+    ],
+    "explanation": "40 − 15 = 25."
+  },
+  "x-math-p-39": {
+    "text": "17 passagers attendent et chaque voiture peut accueillir 5 personnes. Combien de voitures faut-il pour que tout le monde ait une place assise ?",
+    "options": [
+      "4",
+      "3",
+      "5",
+      "12"
+    ],
+    "explanation": "3 voitures n’accueillent que 15 personnes, donc il faut une quatrième voiture pour les 2 dernières."
+  },
+  "x-math-p-40": {
+    "text": "Une caisse des docks de Brendam est un cube. Combien de faces un cube a-t-il ?",
+    "options": [
+      "4",
+      "8",
+      "12",
+      "6"
+    ],
+    "explanation": "Un cube a 6 faces carrées."
+  },
+  "math-s-1": {
+    "text": "Gordon roule à 60 milles à l’heure. S’il garde cette vitesse, quelle distance parcourra-t-il en 45 minutes ?",
+    "options": [
+      "40 milles",
+      "45 milles",
+      "50 milles",
+      "55 milles"
+    ],
+    "explanation": "À 60 milles à l’heure, il parcourt 1 mille par minute. En 45 minutes, il parcourt donc 45 milles."
+  },
+  "math-s-2": {
+    "text": "Un billet de train coûte 15 £. S’il y a une réduction de 20 % pour les enfants, combien coûte un billet pour enfant ?",
+    "options": [
+      "10 £",
+      "12 £",
+      "13 £",
+      "14 £"
+    ],
+    "explanation": "20 % de 15 £, c’est 3 £. 15 £ − 3 £ = 12 £."
+  },
+  "math-s-3": {
+    "text": "Le tender d’Henry contient 5 000 gallons d’eau. S’il utilise 250 gallons tous les 10 milles, combien de milles peut-il parcourir avant d’être vide ?",
+    "options": [
+      "100 milles",
+      "150 milles",
+      "200 milles",
+      "250 milles"
+    ],
+    "explanation": "5 000 ÷ 250 = 20 tronçons de 10 milles chacun. 20 × 10 = 200 milles."
+  },
+  "math-s-4": {
+    "text": "Henry tire 12 voitures qui pèsent chacune 5 tonnes. Quel est le poids total des voitures ?",
+    "options": [
+      "50 tonnes",
+      "55 tonnes",
+      "60 tonnes",
+      "75 tonnes"
+    ],
+    "explanation": "12 × 5 = 60 tonnes."
+  },
+  "math-s-5": {
+    "text": "Le Gros Contrôleur dépense les 2/5 de 100 £ pour réparer Thomas. Combien cela fait-il ?",
+    "options": [
+      "20 £",
+      "30 £",
+      "40 £",
+      "50 £"
+    ],
+    "explanation": "Les 2/5 de 100, c’est 40."
+  },
+  "math-s-6": {
+    "text": "Un train part de Tidmouth à 9 h 30 et arrive à Knapford à 10 h 05. Combien de temps dure le trajet ?",
+    "options": [
+      "25 minutes",
+      "30 minutes",
+      "35 minutes",
+      "45 minutes"
+    ],
+    "explanation": "10 h 05 − 9 h 30 = 35 minutes."
+  },
+  "math-s-7": {
+    "text": "Charlie, l’aiguilleur, vérifie 3 600 signaux pendant un quart de travail de 8 heures. Combien de signaux vérifie-t-il par heure ?",
+    "options": [
+      "400",
+      "425",
+      "450",
+      "500"
+    ],
+    "explanation": "3 600 ÷ 8 = 450."
+  },
+  "math-s-8": {
+    "text": "Gordon parcourt 30 milles en 40 minutes. Quelle est sa vitesse moyenne en milles à l’heure ?",
+    "options": [
+      "40 mi/h",
+      "45 mi/h",
+      "50 mi/h",
+      "55 mi/h"
+    ],
+    "explanation": "30 milles en 2/3 d’heure : 30 × 3/2 = 45 mi/h."
+  },
+  "math-s-9": {
+    "text": "Un billet de quai coûte 2,50 £. Si Percy vend 8 billets, combien d’argent récolte-t-il ?",
+    "options": [
+      "16 £",
+      "18 £",
+      "20 £",
+      "22 £"
+    ],
+    "explanation": "8 × 2,50 £ = 20 £."
+  },
+  "math-s-10": {
+    "text": "L’express a 96 roues. Il a 12 voitures, qui ont toutes le même nombre de roues. Combien de roues chaque voiture a-t-elle ?",
+    "options": [
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "explanation": "96 ÷ 12 = 8."
+  },
+  "math-s-11": {
+    "text": "En 5 trajets, Thomas a transporté 10, 12, 8, 15 et 10 passagers. Quel est le nombre moyen de passagers ?",
+    "options": [
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "explanation": "(10 + 12 + 8 + 15 + 10) ÷ 5 = 55 ÷ 5 = 11."
+  },
+  "math-s-12": {
+    "text": "On peint le dépôt de Tidmouth dans le rapport de 2 parts de rouge pour 3 parts de bleu. Si on utilise 20 litres de peinture rouge, combien faut-il de peinture bleue ?",
+    "options": [
+      "25 litres",
+      "30 litres",
+      "35 litres",
+      "40 litres"
+    ],
+    "explanation": "Le rapport 2 : 3 veut dire que le bleu fait les 3/2 du rouge, donc 3/2 × 20 = 30 litres."
+  },
+  "math-s-13": {
+    "text": "La cour de la gare est un rectangle de 40 mètres de long et de 25 mètres de large. Quelle est son aire ?",
+    "options": [
+      "800 m²",
+      "900 m²",
+      "1 000 m²",
+      "1 200 m²"
+    ],
+    "explanation": "40 × 25 = 1 000 m²."
+  },
+  "math-s-14": {
+    "text": "Le prix d’un billet passe de 20 £ à 25 £. Quel est le pourcentage d’augmentation ?",
+    "options": [
+      "20 %",
+      "25 %",
+      "30 %",
+      "40 %"
+    ],
+    "explanation": "L’augmentation est de 5 £, soit 25 % de 20 £."
+  },
+  "math-s-15": {
+    "text": "Deux locomotives partent de Tidmouth dans des directions opposées. Gordon roule à 60 milles à l’heure et Percy à 40 milles à l’heure. Au bout de 1 heure, quelle distance les sépare ?",
+    "options": [
+      "60 milles",
+      "80 milles",
+      "100 milles",
+      "120 milles"
+    ],
+    "explanation": "60 + 40 = 100 milles, parce qu’elles s’éloignent l’une de l’autre dans des directions opposées."
+  },
+  "math-s-16": {
+    "text": "Le réservoir de Thomas contient 90 litres d’eau. S’il utilise 15 litres par mille, quelle distance peut-il parcourir avant d’en manquer ?",
+    "options": [
+      "4 milles",
+      "5 milles",
+      "6 milles",
+      "9 milles"
+    ],
+    "explanation": "90 ÷ 15 = 6 milles."
+  },
+  "math-s-17": {
+    "text": "La charge moyenne de 4 wagons est de 5 tonnes. Si trois des wagons pèsent 4, 6 et 5 tonnes, combien pèse le quatrième ?",
+    "options": [
+      "3 tonnes",
+      "4 tonnes",
+      "5 tonnes",
+      "6 tonnes"
+    ],
+    "explanation": "La charge totale est de 4 × 5 = 20 tonnes ; 20 − (4 + 6 + 5) = 5 tonnes."
+  },
+  "math-s-18": {
+    "text": "La colline de Gordon a une pente de 1 sur 20. Pour 20 mètres à l’horizontale, de combien de mètres la voie monte-t-elle ?",
+    "options": [
+      "1 m",
+      "2 m",
+      "5 m",
+      "10 m"
+    ],
+    "explanation": "Une pente de 1 sur 20 monte de 1 mètre tous les 20 mètres parcourus."
+  },
+  "x-math-s-1": {
+    "text": "Thomas remplit les 3/4 d’un wagon de charbon, puis il en ajoute encore 1/8. Quelle fraction du wagon est remplie ?",
+    "options": [
+      "4/12",
+      "4/8",
+      "7/8",
+      "5/8"
+    ],
+    "explanation": "3/4 = 6/8, et 6/8 + 1/8 = 7/8."
+  },
+  "x-math-s-2": {
+    "text": "Écris 0,35 sous forme de pourcentage.",
+    "options": [
+      "3,5 %",
+      "35 %",
+      "0,35 %",
+      "350 %"
+    ],
+    "explanation": "0,35 × 100 = 35 %."
+  },
+  "x-math-s-3": {
+    "text": "Écris 2/5 sous forme de nombre décimal.",
+    "options": [
+      "0,4",
+      "0,25",
+      "2,5",
+      "0,52"
+    ],
+    "explanation": "2 ÷ 5 = 0,4."
+  },
+  "x-math-s-4": {
+    "text": "15 % des 80 passagers de Gordon sont des enfants. Combien d’enfants y a-t-il à bord ?",
+    "options": [
+      "15",
+      "10",
+      "18",
+      "12"
+    ],
+    "explanation": "10 % de 80, c’est 8, et 5 %, c’est 4, donc 15 %, c’est 12."
+  },
+  "x-math-s-5": {
+    "text": "Thomas et Percy se partagent 60 £ dans le rapport 1 : 2. Combien Percy reçoit-il ?",
+    "options": [
+      "30 £",
+      "20 £",
+      "40 £",
+      "45 £"
+    ],
+    "explanation": "Il y a 3 parts de 20 £ ; Percy reçoit 2 × 20 £ = 40 £."
+  },
+  "x-math-s-6": {
+    "text": "À l’aube, il fait −3 °C à Vicarstown. À midi, la température a monté de 8 degrés. Quelle est la température à midi ?",
+    "options": [
+      "−11 °C",
+      "5 °C",
+      "11 °C",
+      "−5 °C"
+    ],
+    "explanation": "−3 + 8 = 5."
+  },
+  "x-math-s-7": {
+    "text": "Combien fait −4 − 6 ?",
+    "options": [
+      "−10",
+      "−2",
+      "2",
+      "10"
+    ],
+    "explanation": "En partant de −4 et en descendant de 6, on arrive à −10."
+  },
+  "x-math-s-8": {
+    "text": "Combien fait 3 + 4 × 5 ?",
+    "options": [
+      "35",
+      "27",
+      "60",
+      "23"
+    ],
+    "explanation": "On multiplie d’abord : 4 × 5 = 20, puis 3 + 20 = 23."
+  },
+  "x-math-s-9": {
+    "text": "Combien fait (8 − 2)² ÷ 4 ?",
+    "options": [
+      "15",
+      "12",
+      "9",
+      "36"
+    ],
+    "explanation": "8 − 2 = 6 ; 6² = 36 ; 36 ÷ 4 = 9."
+  },
+  "x-math-s-10": {
+    "text": "Résous 3x + 5 = 26.",
+    "options": [
+      "x = 9",
+      "x = 7",
+      "x = 10",
+      "x = 6"
+    ],
+    "explanation": "3x = 21, donc x = 7."
+  },
+  "x-math-s-11": {
+    "text": "Résous x/4 − 2 = 3.",
+    "options": [
+      "x = 20",
+      "x = 4",
+      "x = 12",
+      "x = 5"
+    ],
+    "explanation": "x/4 = 5, donc x = 20."
+  },
+  "x-math-s-12": {
+    "text": "Un panneau triangulaire a une base de 10 cm et une hauteur de 6 cm. Quelle est son aire ?",
+    "options": [
+      "60 cm²",
+      "16 cm²",
+      "32 cm²",
+      "30 cm²"
+    ],
+    "explanation": "Aire = ½ × 10 × 6 = 30 cm²."
+  },
+  "x-math-s-13": {
+    "text": "Une cour à marchandises rectangulaire mesure 12 m de long et 5 m de large. Quel est son périmètre ?",
+    "options": [
+      "17 m",
+      "60 m",
+      "34 m",
+      "24 m"
+    ],
+    "explanation": "2 × (12 + 5) = 34 m."
+  },
+  "x-math-s-14": {
+    "text": "La caisse d’un wagon est un pavé droit de 4 m de long, 3 m de large et 2 m de haut. Quel est son volume ?",
+    "options": [
+      "9 m³",
+      "24 m³",
+      "12 m³",
+      "52 m³"
+    ],
+    "explanation": "4 × 3 × 2 = 24 m³."
+  },
+  "x-math-s-15": {
+    "text": "Deux angles d’un triangle mesurent 50° et 70°. Combien mesure le troisième angle ?",
+    "options": [
+      "60°",
+      "120°",
+      "70°",
+      "80°"
+    ],
+    "explanation": "La somme des angles d’un triangle est de 180° : 180 − 50 − 70 = 60°."
+  },
+  "x-math-s-16": {
+    "text": "Là où la voie rejoint une voie d’évitement, l’un des deux angles formés sur la ligne droite mesure 115°. Combien mesure l’autre angle ?",
+    "options": [
+      "245°",
+      "75°",
+      "115°",
+      "65°"
+    ],
+    "explanation": "Les angles sur une ligne droite font 180° en tout : 180 − 115 = 65°."
+  },
+  "x-math-s-17": {
+    "text": "Trois angles d’un quadrilatère mesurent 90°, 110° et 80°. Combien mesure le quatrième angle ?",
+    "options": [
+      "100°",
+      "90°",
+      "80°",
+      "170°"
+    ],
+    "explanation": "La somme des angles d’un quadrilatère est de 360° : 360 − 90 − 110 − 80 = 80°."
+  },
+  "x-math-s-18": {
+    "text": "Lequel de ces numéros de locomotive est un nombre premier ?",
+    "options": [
+      "51",
+      "53",
+      "57",
+      "49"
+    ],
+    "explanation": "53 n’a pas d’autres diviseurs que 1 et lui-même ; 51 = 3 × 17, 57 = 3 × 19 et 49 = 7 × 7."
+  },
+  "x-math-s-19": {
+    "text": "Quel est le plus grand commun diviseur (PGCD) de 24 et de 36 ?",
+    "options": [
+      "12",
+      "6",
+      "4",
+      "72"
+    ],
+    "explanation": "12 est le plus grand nombre qui divise à la fois 24 et 36."
+  },
+  "x-math-s-20": {
+    "text": "Thomas passe à Knapford toutes les 6 minutes et Percy toutes les 8 minutes. Ils y passent tous les deux à 9 h. Quand y passeront-ils de nouveau ensemble ?",
+    "options": [
+      "9 h 48",
+      "9 h 14",
+      "9 h 12",
+      "9 h 24"
+    ],
+    "explanation": "Le plus petit commun multiple (PPCM) de 6 et de 8 est 24, donc 24 minutes plus tard."
+  },
+  "x-math-s-21": {
+    "text": "Les trajets de Toby ont duré 3, 9, 4, 7 et 15 minutes. Quelle est la durée médiane ?",
+    "options": [
+      "4 minutes",
+      "7,6 minutes",
+      "7 minutes",
+      "12 minutes"
+    ],
+    "explanation": "Dans l’ordre : 3 ; 4 ; 7 ; 9 ; 15. La valeur du milieu est donc 7."
+  },
+  "x-math-s-22": {
+    "text": "Percy a compté les colis de sept voyages : 5 ; 8 ; 5 ; 6 ; 8 ; 5 ; 9. Quel est le mode ?",
+    "options": [
+      "8",
+      "5",
+      "6",
+      "9"
+    ],
+    "explanation": "5 revient trois fois, plus souvent que toute autre valeur."
+  },
+  "x-math-s-23": {
+    "text": "Harvey a soulevé 12, 30, 18 et 25 caisses en quatre jours. Quelle est l’étendue ?",
+    "options": [
+      "18",
+      "30",
+      "12",
+      "21,25"
+    ],
+    "explanation": "Étendue = plus grande valeur − plus petite valeur = 30 − 12 = 18."
+  },
+  "x-math-s-24": {
+    "text": "Un sac contient 3 billets rouges, 5 bleus et 2 verts. On en tire un au hasard. Quelle est la probabilité qu’il soit bleu ?",
+    "options": [
+      "1/5",
+      "5/8",
+      "1/3",
+      "1/2"
+    ],
+    "explanation": "5 billets bleus sur 10, c’est 5/10 = 1/2."
+  },
+  "x-math-s-25": {
+    "text": "Diesel lance un dé équilibré à six faces. Quelle est la probabilité d’obtenir un nombre plus grand que 4 ?",
+    "options": [
+      "1/2",
+      "2/3",
+      "1/3",
+      "1/6"
+    ],
+    "explanation": "Seuls 5 et 6 conviennent, donc 2/6 = 1/3."
+  },
+  "x-math-s-26": {
+    "text": "Combien fait 2⁵ ?",
+    "options": [
+      "10",
+      "32",
+      "25",
+      "16"
+    ],
+    "explanation": "2 × 2 × 2 × 2 × 2 = 32."
+  },
+  "x-math-s-27": {
+    "text": "Combien fait √144 ?",
+    "options": [
+      "12",
+      "72",
+      "14",
+      "11"
+    ],
+    "explanation": "12 × 12 = 144."
+  },
+  "x-math-s-28": {
+    "text": "Combien fait 3² + 4² ?",
+    "options": [
+      "49",
+      "14",
+      "7",
+      "25"
+    ],
+    "explanation": "9 + 16 = 25."
+  },
+  "x-math-s-29": {
+    "text": "Gordon parcourt 150 milles en 2,5 heures. Quelle est sa vitesse moyenne ?",
+    "options": [
+      "375 mi/h",
+      "50 mi/h",
+      "60 mi/h",
+      "75 mi/h"
+    ],
+    "explanation": "Vitesse = distance ÷ temps = 150 ÷ 2,5 = 60 mi/h."
+  },
+  "x-math-s-30": {
+    "text": "Emily parcourt 84 km à la vitesse constante de 56 km/h. Combien de temps dure le trajet ?",
+    "options": [
+      "1 h 50 min",
+      "1 h 30 min",
+      "1 h 28 min",
+      "2 h"
+    ],
+    "explanation": "Temps = 84 ÷ 56 = 1,5 heure, soit 1 h 30 min."
+  },
+  "x-math-s-31": {
+    "text": "Henry roule à 45 km/h pendant 20 minutes. Quelle distance parcourt-il ?",
+    "options": [
+      "15 km",
+      "900 km",
+      "9 km",
+      "25 km"
+    ],
+    "explanation": "20 minutes, c’est 1/3 d’heure, et 45 × 1/3 = 15 km."
+  },
+  "x-math-s-32": {
+    "text": "Combien fait 0,3 × 0,4 ?",
+    "options": [
+      "1,2",
+      "0,7",
+      "0,012",
+      "0,12"
+    ],
+    "explanation": "3 × 4 = 12, et il y a deux chiffres après la virgule, donc 0,12."
+  },
+  "x-math-s-33": {
+    "text": "Les 5/8 des 64 wagons de la cour sont vides. Combien de wagons sont vides ?",
+    "options": [
+      "24",
+      "32",
+      "40",
+      "45"
+    ],
+    "explanation": "64 ÷ 8 = 8, et 8 × 5 = 40."
+  },
+  "x-math-s-34": {
+    "text": "Combien fait 3/4 ÷ 1/2 ?",
+    "options": [
+      "3/8",
+      "3/2",
+      "2/3",
+      "1/4"
+    ],
+    "explanation": "3/4 × 2/1 = 6/4 = 3/2."
+  },
+  "x-math-s-35": {
+    "text": "Après une hausse de prix de 10 %, un billet coûte 33 £. Combien coûtait-il avant la hausse ?",
+    "options": [
+      "30 £",
+      "29,70 £",
+      "23 £",
+      "36,30 £"
+    ],
+    "explanation": "33 £, c’est 110 % de l’ancien prix, donc 33 £ ÷ 1,1 = 30 £."
+  },
+  "x-math-s-36": {
+    "text": "Écris le rapport 18 : 24 sous sa forme la plus simple.",
+    "options": [
+      "4 : 3",
+      "2 : 3",
+      "1 : 6",
+      "3 : 4"
+    ],
+    "explanation": "Divise les deux nombres par 6 : 18 ÷ 6 = 3 et 24 ÷ 6 = 4."
+  },
+  "x-math-s-37": {
+    "text": "Combien de diviseurs le nombre 36 a-t-il ?",
+    "options": [
+      "8",
+      "6",
+      "9",
+      "10"
+    ],
+    "explanation": "Ses diviseurs sont 1, 2, 3, 4, 6, 9, 12, 18 et 36."
+  },
+  "x-math-s-38": {
+    "text": "Une roue de Thomas a un diamètre de 2 m. Avec π ≈ 3,14, quelle est sa circonférence ?",
+    "options": [
+      "3,14 m",
+      "6,28 m",
+      "12,56 m",
+      "4,00 m"
+    ],
+    "explanation": "Circonférence = π × diamètre = 3,14 × 2 = 6,28 m."
+  },
+  "x-math-s-39": {
+    "text": "Combien fait −6 × −3 ?",
+    "options": [
+      "18",
+      "−18",
+      "−9",
+      "9"
+    ],
+    "explanation": "Un nombre négatif multiplié par un nombre négatif donne un nombre positif : 6 × 3 = 18."
+  },
+  "x-math-s-40": {
+    "text": "Développe 3(x + 4).",
+    "options": [
+      "3x + 4",
+      "x + 12",
+      "3x + 7",
+      "3x + 12"
+    ],
+    "explanation": "Multiplie les deux termes par 3 : 3 × x + 3 × 4 = 3x + 12."
+  }
+}

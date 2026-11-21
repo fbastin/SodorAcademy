@@ -1,0 +1,1192 @@
+{
+  "geo-p-1": {
+    "text": "Où les locomotives dorment-elles la nuit ?",
+    "options": [
+      "À l’aéroport",
+      "Au dépôt de Tidmouth",
+      "Au port",
+      "À la bibliothèque"
+    ],
+    "explanation": "Le dépôt de Tidmouth est le principal terminus des locomotives, et c’est aussi leur maison."
+  },
+  "geo-p-2": {
+    "text": "Où les gros bateaux apportent-ils des marchandises à Sodor ?",
+    "options": [
+      "Au port de Brendam",
+      "À la Montagne Bleue",
+      "À la ferme",
+      "Dans les bois"
+    ],
+    "explanation": "Le port de Brendam est le port de commerce où travaille Cranky."
+  },
+  "geo-p-3": {
+    "text": "Laquelle de ces étendues d’eau entoure Sodor ?",
+    "options": [
+      "La mer d’Irlande",
+      "Le désert du Sahara",
+      "Le fleuve Amazone",
+      "La Lune"
+    ],
+    "explanation": "Sodor se trouve dans la mer d’Irlande."
+  },
+  "geo-p-4": {
+    "text": "Combien y a-t-il de continents dans le monde ?",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "explanation": "La Terre compte 7 continents."
+  },
+  "geo-p-5": {
+    "text": "Quel continent est le plus froid et couvert de glace ?",
+    "options": [
+      "L’Asie",
+      "L’Afrique",
+      "L’Antarctique",
+      "L’Australie"
+    ],
+    "explanation": "L’Antarctique se trouve au pôle Sud, et il y fait bien en dessous de zéro."
+  },
+  "geo-p-6": {
+    "text": "Quel océan est le plus grand et le plus profond ?",
+    "options": [
+      "L’océan Atlantique",
+      "L’océan Indien",
+      "L’océan Pacifique",
+      "L’océan Arctique"
+    ],
+    "explanation": "Le Pacifique est l’océan le plus grand et le plus profond."
+  },
+  "geo-p-7": {
+    "text": "Sodor se trouve dans la mer d’Irlande. Quel pays est le plus proche ?",
+    "options": [
+      "L’Angleterre",
+      "L’Espagne",
+      "L’Égypte",
+      "Le Canada"
+    ],
+    "explanation": "Sodor est dans la mer d’Irlande, tout près de la côte nord-ouest de l’Angleterre."
+  },
+  "geo-p-8": {
+    "text": "Quel continent est le plus chaud ?",
+    "options": [
+      "L’Asie",
+      "L’Afrique",
+      "L’Europe",
+      "L’Antarctique"
+    ],
+    "explanation": "En Afrique, on trouve certaines des températures les plus élevées de la Terre."
+  },
+  "geo-p-9": {
+    "text": "Quelle est la capitale de l’Angleterre ?",
+    "options": [
+      "Manchester",
+      "Londres",
+      "Dublin",
+      "Cardiff"
+    ],
+    "explanation": "Londres est la capitale de l’Angleterre et du Royaume-Uni."
+  },
+  "geo-p-10": {
+    "text": "Lequel de ces lieux est un fleuve ?",
+    "options": [
+      "La Tamise",
+      "Le mont Snowdon",
+      "Le lac Windermere",
+      "La mer d’Irlande"
+    ],
+    "explanation": "La Tamise est un fleuve qui traverse Londres."
+  },
+  "geo-p-11": {
+    "text": "Que t’indique une boussole ?",
+    "options": [
+      "Les directions",
+      "La météo",
+      "La population",
+      "L’heure"
+    ],
+    "explanation": "L’aiguille d’une boussole pointe vers le nord et t’aide à trouver les directions."
+  },
+  "geo-p-12": {
+    "text": "Quel continent compte le plus d’habitants ?",
+    "options": [
+      "L’Afrique",
+      "L’Asie",
+      "L’Europe",
+      "L’Amérique du Sud"
+    ],
+    "explanation": "L’Asie abrite la Chine et l’Inde, les pays les plus peuplés."
+  },
+  "geo-p-13": {
+    "text": "Quel est le plus petit océan ?",
+    "options": [
+      "L’océan Pacifique",
+      "L’océan Atlantique",
+      "L’océan Indien",
+      "L’océan Arctique"
+    ],
+    "explanation": "L’océan Arctique est le plus petit et le plus froid des océans."
+  },
+  "geo-p-14": {
+    "text": "Quel pays se trouve au sud de l’Angleterre, de l’autre côté de la Manche ?",
+    "options": [
+      "La France",
+      "L’Écosse",
+      "Le pays de Galles",
+      "L’Irlande"
+    ],
+    "explanation": "La France est en face de l’Angleterre, de l’autre côté de la Manche."
+  },
+  "geo-p-15": {
+    "text": "Comment appelle-t-on une maquette ronde de la Terre ?",
+    "options": [
+      "Un globe",
+      "Une carte",
+      "Une boussole",
+      "Un plan"
+    ],
+    "explanation": "Un globe est une maquette de la Terre en forme de boule."
+  },
+  "geo-p-16": {
+    "text": "Lequel de ces grands lacs se trouve près de Sodor, dans la région des Lacs, en Angleterre ?",
+    "options": [
+      "Le lac Windermere",
+      "La mer Morte",
+      "Le lac Victoria",
+      "Le loch Ness"
+    ],
+    "explanation": "Le Windermere est le plus grand lac d’Angleterre, tout près de Sodor."
+  },
+  "geo-p-17": {
+    "text": "Au Royaume-Uni, quelle saison est la plus chaude ?",
+    "options": [
+      "L’été",
+      "L’hiver",
+      "L’automne",
+      "Le printemps"
+    ],
+    "explanation": "L’été est la saison la plus chaude au Royaume-Uni."
+  },
+  "geo-p-18": {
+    "text": "Comment s’appelle la ligne imaginaire qui fait le tour de la Terre en son milieu ?",
+    "options": [
+      "L’équateur",
+      "Le pôle",
+      "L’horizon",
+      "Le méridien"
+    ],
+    "explanation": "L’équateur sépare la Terre en deux moitiés : le nord et le sud."
+  },
+  "geo-p-19": {
+    "text": "Où se trouve la plus haute montagne du Royaume-Uni ?",
+    "options": [
+      "En Écosse (le Ben Nevis)",
+      "À Londres",
+      "À Sodor",
+      "En Irlande"
+    ],
+    "explanation": "Le Ben Nevis, en Écosse, est la plus haute montagne du Royaume-Uni."
+  },
+  "geo-p-20": {
+    "text": "L’Égypte et le Nigéria sont deux pays de quel continent ?",
+    "options": [
+      "L’Afrique",
+      "L’Asie",
+      "L’Europe",
+      "L’Australie"
+    ],
+    "explanation": "L’Égypte et le Nigéria se trouvent tous les deux en Afrique."
+  },
+  "x-geo-p-1": {
+    "text": "Quelle est la capitale de l’Écosse ?",
+    "options": [
+      "Glasgow",
+      "Édimbourg",
+      "Aberdeen",
+      "Inverness"
+    ],
+    "explanation": "Édimbourg est la capitale de l’Écosse. On y trouve le château d’Édimbourg."
+  },
+  "x-geo-p-2": {
+    "text": "Quelle est la capitale du pays de Galles ?",
+    "options": [
+      "Swansea",
+      "Cardiff",
+      "Bangor",
+      "Newport"
+    ],
+    "explanation": "Cardiff est la capitale du pays de Galles."
+  },
+  "x-geo-p-3": {
+    "text": "Quelle est la capitale de l’Irlande du Nord ?",
+    "options": [
+      "Belfast",
+      "Derry",
+      "Dublin",
+      "Armagh"
+    ],
+    "explanation": "Belfast est la capitale de l’Irlande du Nord."
+  },
+  "x-geo-p-4": {
+    "text": "Combien de pays forment le Royaume-Uni ?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "explanation": "Le Royaume-Uni, c’est l’Angleterre, l’Écosse, le pays de Galles et l’Irlande du Nord."
+  },
+  "x-geo-p-5": {
+    "text": "Thomas file vers le nord en soufflant sa vapeur. Quelle direction a-t-il derrière lui ?",
+    "options": [
+      "L’est",
+      "L’ouest",
+      "Le sud",
+      "Le nord"
+    ],
+    "explanation": "Le sud est à l’opposé du nord."
+  },
+  "x-geo-p-6": {
+    "text": "De quel côté le Soleil se lève-t-il le matin ?",
+    "options": [
+      "Au nord",
+      "Au sud",
+      "À l’ouest",
+      "À l’est"
+    ],
+    "explanation": "Le Soleil se lève à l’est et se couche à l’ouest."
+  },
+  "x-geo-p-7": {
+    "text": "De quel côté le Soleil se couche-t-il le soir ?",
+    "options": [
+      "À l’ouest",
+      "À l’est",
+      "Au nord",
+      "Au sud"
+    ],
+    "explanation": "Le Soleil se couche à l’ouest."
+  },
+  "x-geo-p-8": {
+    "text": "Quelle direction se trouve à mi-chemin entre le nord et l’est ?",
+    "options": [
+      "Le sud-est",
+      "Le nord-ouest",
+      "Le nord-est",
+      "Le sud-ouest"
+    ],
+    "explanation": "Le nord-est se trouve à mi-chemin entre le nord et l’est."
+  },
+  "x-geo-p-9": {
+    "text": "Sur une carte, comment s’appelle l’encadré qui explique ce que veulent dire les symboles ?",
+    "options": [
+      "La légende",
+      "Le titre",
+      "L’échelle",
+      "La bordure"
+    ],
+    "explanation": "La légende d’une carte t’explique ce que veut dire chaque symbole."
+  },
+  "x-geo-p-10": {
+    "text": "Sur la plupart des cartes, quelle couleur sert à montrer les rivières, les lacs et les mers ?",
+    "options": [
+      "Le vert",
+      "Le bleu",
+      "Le brun",
+      "Le rouge"
+    ],
+    "explanation": "Les cartographes utilisent le bleu pour l’eau."
+  },
+  "x-geo-p-11": {
+    "text": "Quelle est la capitale de la France ?",
+    "options": [
+      "Lyon",
+      "Marseille",
+      "Paris",
+      "Nice"
+    ],
+    "explanation": "Paris est la capitale de la France."
+  },
+  "x-geo-p-12": {
+    "text": "Quelle est la capitale de l’Italie ?",
+    "options": [
+      "Rome",
+      "Milan",
+      "Venise",
+      "Naples"
+    ],
+    "explanation": "Rome est la capitale de l’Italie."
+  },
+  "x-geo-p-13": {
+    "text": "Quelle est la capitale du Japon ?",
+    "options": [
+      "Osaka",
+      "Kyoto",
+      "Pékin",
+      "Tokyo"
+    ],
+    "explanation": "Tokyo est la capitale du Japon."
+  },
+  "x-geo-p-14": {
+    "text": "Quelle est la capitale de l’Irlande, en face de Sodor, de l’autre côté de la mer d’Irlande ?",
+    "options": [
+      "Cork",
+      "Dublin",
+      "Galway",
+      "Belfast"
+    ],
+    "explanation": "Dublin est la capitale de la république d’Irlande."
+  },
+  "x-geo-p-15": {
+    "text": "Dans quelle ville se trouve la tour Eiffel ?",
+    "options": [
+      "Rome",
+      "Londres",
+      "Paris",
+      "Madrid"
+    ],
+    "explanation": "La tour Eiffel se dresse à Paris, en France."
+  },
+  "x-geo-p-16": {
+    "text": "Dans quel pays se trouve la Grande Muraille ?",
+    "options": [
+      "La Chine",
+      "L’Inde",
+      "Le Japon",
+      "L’Égypte"
+    ],
+    "explanation": "La Grande Muraille s’étend dans le nord de la Chine."
+  },
+  "x-geo-p-17": {
+    "text": "Dans quel pays se trouvent les anciennes pyramides de Gizeh ?",
+    "options": [
+      "Le Mexique",
+      "L’Égypte",
+      "La Grèce",
+      "Le Maroc"
+    ],
+    "explanation": "Les pyramides de Gizeh sont près du Caire, en Égypte."
+  },
+  "x-geo-p-18": {
+    "text": "Dans quelle ville se trouve la statue de la Liberté ?",
+    "options": [
+      "Washington",
+      "Chicago",
+      "New York",
+      "Boston"
+    ],
+    "explanation": "La statue de la Liberté se dresse dans le port de New York."
+  },
+  "x-geo-p-19": {
+    "text": "Dans quel pays se trouve l’Opéra de Sydney ?",
+    "options": [
+      "La Nouvelle-Zélande",
+      "L’Australie",
+      "L’Afrique du Sud",
+      "Le Canada"
+    ],
+    "explanation": "L’Opéra de Sydney se trouve à Sydney, en Australie."
+  },
+  "x-geo-p-20": {
+    "text": "Dans quel pays se trouve le Taj Mahal ?",
+    "options": [
+      "L’Inde",
+      "Le Pakistan",
+      "Le Népal",
+      "La Thaïlande"
+    ],
+    "explanation": "Le Taj Mahal se trouve à Agra, en Inde."
+  },
+  "x-geo-p-21": {
+    "text": "Qu’est-ce qu’une île ?",
+    "options": [
+      "Une terre entourée d’eau",
+      "Une très haute colline",
+      "Le bout d’une rivière",
+      "Un désert plat et sec"
+    ],
+    "explanation": "Une île, comme Sodor, a de l’eau tout autour."
+  },
+  "x-geo-p-22": {
+    "text": "Quelle île se trouve dans la mer d’Irlande, pas très loin de Sodor ?",
+    "options": [
+      "L’île de Wight",
+      "L’île de Man",
+      "Jersey",
+      "L’île de Skye"
+    ],
+    "explanation": "L’île de Man se trouve dans la mer d’Irlande, entre la Grande-Bretagne et l’Irlande."
+  },
+  "x-geo-p-23": {
+    "text": "Qu’est-ce que le Sahara ?",
+    "options": [
+      "Une immense forêt tropicale",
+      "Un grand désert chaud",
+      "Une chaîne de montagnes",
+      "Une mer gelée"
+    ],
+    "explanation": "Le Sahara, en Afrique du Nord, est le plus grand désert chaud du monde."
+  },
+  "x-geo-p-24": {
+    "text": "Quel animal est bien adapté à la vie dans le désert chaud et sec ?",
+    "options": [
+      "Le manchot",
+      "L’ours polaire",
+      "Le chameau",
+      "Le morse"
+    ],
+    "explanation": "Les chameaux peuvent passer longtemps sans boire d’eau."
+  },
+  "x-geo-p-25": {
+    "text": "Dans quel endroit froid vivent les ours polaires ?",
+    "options": [
+      "L’Arctique",
+      "L’Antarctique",
+      "Le Sahara",
+      "L’Amazonie"
+    ],
+    "explanation": "Les ours polaires vivent autour de l’Arctique, près du pôle Nord."
+  },
+  "x-geo-p-26": {
+    "text": "Comment appelle-t-on une montagne qui peut cracher de la lave brûlante ?",
+    "options": [
+      "Un glacier",
+      "Un volcan",
+      "Une vallée",
+      "Un canyon"
+    ],
+    "explanation": "Quand il entre en éruption, un volcan peut cracher de la lave, des cendres et des gaz."
+  },
+  "x-geo-p-27": {
+    "text": "Quel est le plus long fleuve du Royaume-Uni ?",
+    "options": [
+      "La Tamise",
+      "La Severn",
+      "La Trent",
+      "La Tay"
+    ],
+    "explanation": "La Severn coule au pays de Galles et en Angleterre."
+  },
+  "x-geo-p-28": {
+    "text": "Quelle est la plus haute montagne du pays de Galles ?",
+    "options": [
+      "Le Ben Nevis",
+      "Le Scafell Pike",
+      "Le Snowdon",
+      "Le Slieve Donard"
+    ],
+    "explanation": "Le Snowdon, qu’on appelle aussi Yr Wyddfa, est la plus haute montagne du pays de Galles."
+  },
+  "x-geo-p-29": {
+    "text": "Quelle est la plus haute montagne d’Angleterre, dans la région des Lacs ?",
+    "options": [
+      "Le Scafell Pike",
+      "Le Snowdon",
+      "L’Helvellyn",
+      "Le Ben Nevis"
+    ],
+    "explanation": "Le Scafell Pike, dans le comté de Cumbria, est le plus haut sommet d’Angleterre."
+  },
+  "x-geo-p-30": {
+    "text": "En quelle saison beaucoup d’arbres perdent-ils leurs feuilles ?",
+    "options": [
+      "Au printemps",
+      "En été",
+      "En automne",
+      "En hiver"
+    ],
+    "explanation": "En automne, les feuilles changent de couleur et tombent."
+  },
+  "x-geo-p-31": {
+    "text": "Quel instrument mesure s’il fait chaud ou froid ?",
+    "options": [
+      "Le pluviomètre",
+      "Le thermomètre",
+      "La boussole",
+      "La girouette"
+    ],
+    "explanation": "Un thermomètre mesure la température."
+  },
+  "x-geo-p-32": {
+    "text": "Quel instrument recueille et mesure la pluie ?",
+    "options": [
+      "Le pluviomètre",
+      "Le thermomètre",
+      "Le baromètre",
+      "Le télescope"
+    ],
+    "explanation": "Un pluviomètre recueille la pluie pour qu’on puisse la mesurer."
+  },
+  "x-geo-p-33": {
+    "text": "Quel outil montre d’où souffle le vent ?",
+    "options": [
+      "Le thermomètre",
+      "Le pluviomètre",
+      "La girouette",
+      "La règle"
+    ],
+    "explanation": "Une girouette pointe dans une direction pour montrer d’où vient le vent."
+  },
+  "x-geo-p-34": {
+    "text": "Que vois-tu souvent dans le ciel quand le Soleil brille pendant qu’il pleut ?",
+    "options": [
+      "Un arc-en-ciel",
+      "Une comète",
+      "Une lune",
+      "Une éclipse"
+    ],
+    "explanation": "La lumière du Soleil qui traverse les gouttes de pluie forme un arc-en-ciel."
+  },
+  "x-geo-p-35": {
+    "text": "Au Royaume-Uni, quelle saison a les jours les plus courts et les nuits les plus longues ?",
+    "options": [
+      "Le printemps",
+      "L’été",
+      "L’automne",
+      "L’hiver"
+    ],
+    "explanation": "En hiver, les jours sont courts et les nuits sont longues."
+  },
+  "x-geo-p-36": {
+    "text": "Comment appelle-t-on une grande étendue de terre couverte de nombreux arbres ?",
+    "options": [
+      "Un désert",
+      "Une forêt",
+      "Un pré",
+      "Une plage"
+    ],
+    "explanation": "Une forêt est un grand espace rempli d’arbres."
+  },
+  "x-geo-p-37": {
+    "text": "Quel type de forêt est le plus chaud et le plus humide ? On le trouve près de l’équateur.",
+    "options": [
+      "La forêt de pins",
+      "La forêt tropicale humide",
+      "Le bosquet",
+      "Le verger"
+    ],
+    "explanation": "Les forêts tropicales humides sont chaudes et pluvieuses toute l’année."
+  },
+  "x-geo-p-38": {
+    "text": "Comment appelle-t-on l’endroit où un fleuve se jette dans la mer ?",
+    "options": [
+      "La source",
+      "L’embouchure",
+      "La rive",
+      "La fontaine"
+    ],
+    "explanation": "L’embouchure d’un fleuve, c’est l’endroit où il rejoint la mer."
+  },
+  "x-geo-p-39": {
+    "text": "Quel océan se trouve entre l’Europe et l’Amérique du Nord ?",
+    "options": [
+      "L’océan Indien",
+      "L’océan Pacifique",
+      "L’océan Atlantique",
+      "L’océan Austral"
+    ],
+    "explanation": "L’océan Atlantique sépare l’Europe et l’Afrique des Amériques."
+  },
+  "x-geo-p-40": {
+    "text": "Quelle est la capitale de l’Espagne ?",
+    "options": [
+      "Barcelone",
+      "Madrid",
+      "Séville",
+      "Lisbonne"
+    ],
+    "explanation": "Madrid est la capitale de l’Espagne."
+  },
+  "geo-s-1": {
+    "text": "Lequel de ces lieux célèbres se trouve sur l’île de Sodor ?",
+    "options": [
+      "Le London Eye",
+      "La carrière de la Montagne Bleue",
+      "La tour Eiffel",
+      "Le mont Everest"
+    ],
+    "explanation": "La carrière de la Montagne Bleue est un lieu important de l’île de Sodor."
+  },
+  "geo-s-2": {
+    "text": "Comment s’appelle le principal chemin de fer de Sodor ?",
+    "options": [
+      "Le chemin de fer du Nord-Ouest",
+      "Le chemin de fer du Grand Ouest",
+      "Le chemin de fer du Sud",
+      "Le métro de Londres"
+    ],
+    "explanation": "Le chemin de fer du Nord-Ouest (en anglais, North Western Railway) est le principal réseau ferroviaire de Sodor."
+  },
+  "geo-s-3": {
+    "text": "Quel est le plus grand continent par sa superficie ?",
+    "options": [
+      "L’Afrique",
+      "L’Asie",
+      "L’Amérique du Nord",
+      "L’Europe"
+    ],
+    "explanation": "L’Asie est le plus grand continent : elle couvre environ 30 % des terres émergées."
+  },
+  "geo-s-4": {
+    "text": "Sur quel continent se trouve la forêt amazonienne ?",
+    "options": [
+      "L’Afrique",
+      "L’Asie",
+      "L’Amérique du Sud",
+      "L’Australie"
+    ],
+    "explanation": "La forêt amazonienne se trouve en Amérique du Sud."
+  },
+  "geo-s-5": {
+    "text": "Laquelle de ces sources d’énergie est renouvelable ?",
+    "options": [
+      "Le vent",
+      "Le charbon",
+      "Le pétrole",
+      "Le gaz"
+    ],
+    "explanation": "L’énergie du vent est renouvelable, car elle ne s’épuise jamais."
+  },
+  "geo-s-6": {
+    "text": "Le méridien d’origine (0°) passe par quel endroit du Royaume-Uni ?",
+    "options": [
+      "Greenwich, à Londres",
+      "Manchester",
+      "Bristol",
+      "Édimbourg"
+    ],
+    "explanation": "Le méridien d’origine est marqué à l’Observatoire royal de Greenwich."
+  },
+  "geo-s-7": {
+    "text": "En combien de fuseaux horaires, environ, le monde est-il divisé ?",
+    "options": [
+      "12",
+      "18",
+      "24",
+      "48"
+    ],
+    "explanation": "La Terre est divisée en environ 24 fuseaux horaires."
+  },
+  "geo-s-8": {
+    "text": "Quelle phrase sur un désert est vraie ?",
+    "options": [
+      "Il y pleut très peu",
+      "Il y fait toujours chaud",
+      "Il est toujours couvert de sable",
+      "Il y fait toujours froid"
+    ],
+    "explanation": "Un désert se reconnaît au peu de pluie qu’il reçoit, pas toujours à la chaleur ou au sable."
+  },
+  "geo-s-9": {
+    "text": "Comment appelle-t-on la coupe des forêts à grande échelle ?",
+    "options": [
+      "La déforestation",
+      "L’irrigation",
+      "L’urbanisation",
+      "L’érosion"
+    ],
+    "explanation": "La déforestation, c’est la coupe des forêts à grande échelle."
+  },
+  "geo-s-10": {
+    "text": "Comment appelle-t-on l’augmentation du nombre de personnes qui vivent dans les villes ?",
+    "options": [
+      "L’urbanisation",
+      "La périurbanisation",
+      "La migration",
+      "La déforestation"
+    ],
+    "explanation": "L’urbanisation, c’est la croissance des villes."
+  },
+  "geo-s-11": {
+    "text": "Quel risque naturel est le plus probable dans une région où deux plaques tectoniques se rencontrent ?",
+    "options": [
+      "Les tremblements de terre",
+      "Les sécheresses",
+      "Les tornades",
+      "Les blizzards"
+    ],
+    "explanation": "C’est aux frontières des plaques tectoniques que les tremblements de terre se produisent le plus souvent."
+  },
+  "geo-s-12": {
+    "text": "Que décrit le mot « météo » ?",
+    "options": [
+      "L’état de l’atmosphère au jour le jour",
+      "Le climat sur 30 ans",
+      "Les types de roches",
+      "La répartition de la population"
+    ],
+    "explanation": "La météo, c’est l’état de l’atmosphère à court terme, d’un jour à l’autre."
+  },
+  "geo-s-13": {
+    "text": "Laquelle de ces ressources n’est pas renouvelable ?",
+    "options": [
+      "Le charbon",
+      "Le vent",
+      "Le soleil",
+      "L’hydroélectricité"
+    ],
+    "explanation": "Le charbon met des millions d’années à se former : il n’est donc pas renouvelable."
+  },
+  "geo-s-14": {
+    "text": "Sur une carte, quel type de ligne relie les endroits de même altitude ?",
+    "options": [
+      "La courbe de niveau",
+      "La latitude",
+      "La longitude",
+      "L’isotherme"
+    ],
+    "explanation": "Les courbes de niveau relient des points de même altitude au-dessus du niveau de la mer."
+  },
+  "geo-s-15": {
+    "text": "Que veut dire « développement durable » ?",
+    "options": [
+      "Répondre aux besoins d’aujourd’hui sans nuire aux générations futures",
+      "Construire plus de routes et de voitures",
+      "Utiliser les ressources jusqu’à ce qu’elles s’épuisent",
+      "Penser seulement à aujourd’hui"
+    ],
+    "explanation": "Le développement durable équilibre les besoins d’aujourd’hui et ceux de l’avenir."
+  },
+  "geo-s-16": {
+    "text": "Le Royaume-Uni n’a qu’une seule frontière terrestre. Avec quel pays ?",
+    "options": [
+      "L’Irlande",
+      "La France",
+      "La Belgique",
+      "L’Espagne"
+    ],
+    "explanation": "Le Royaume-Uni n’a de frontière terrestre qu’avec la république d’Irlande."
+  },
+  "geo-s-17": {
+    "text": "Comment appelle-t-on la hausse à long terme des températures sur la Terre ?",
+    "options": [
+      "Les changements climatiques",
+      "Les raz-de-marée",
+      "La chaleur urbaine",
+      "Le changement de saison"
+    ],
+    "explanation": "Les changements climatiques, ce sont les variations à long terme des températures et de la météo sur la Terre."
+  },
+  "geo-s-18": {
+    "text": "Comment appelle-t-on le cœur commercial d’une ville, plein de bureaux et de magasins ?",
+    "options": [
+      "Le quartier central des affaires",
+      "Le parc national",
+      "L’aéroport",
+      "Le réservoir"
+    ],
+    "explanation": "Le quartier central des affaires est la zone commerciale au centre d’une ville."
+  },
+  "geo-s-19": {
+    "text": "Comment appelle-t-on l’eau stockée sous la terre, dans des roches poreuses ?",
+    "options": [
+      "L’eau souterraine",
+      "L’eau de pluie",
+      "L’eau de surface",
+      "La glace"
+    ],
+    "explanation": "L’eau souterraine est stockée dans des roches poreuses qu’on appelle des aquifères."
+  },
+  "x-geo-s-1": {
+    "text": "Dans quel sens les lignes de latitude font-elles le tour du globe ?",
+    "options": [
+      "Du nord au sud",
+      "D’est en ouest",
+      "En diagonale",
+      "Seulement autour des pôles"
+    ],
+    "explanation": "Les lignes de latitude (les parallèles) vont d’est en ouest. Elles mesurent la distance au nord ou au sud de l’équateur."
+  },
+  "x-geo-s-2": {
+    "text": "Quelle est la latitude du pôle Nord ?",
+    "options": [
+      "0°",
+      "45° N",
+      "90° N",
+      "180°"
+    ],
+    "explanation": "Le pôle Nord est à 90 degrés nord."
+  },
+  "x-geo-s-3": {
+    "text": "Comment s’appelle la ligne de latitude située à environ 23,5° au nord de l’équateur ?",
+    "options": [
+      "Le tropique du Capricorne",
+      "Le tropique du Cancer",
+      "Le cercle polaire arctique",
+      "Le méridien d’origine"
+    ],
+    "explanation": "Le tropique du Cancer se trouve à environ 23,5° nord."
+  },
+  "x-geo-s-4": {
+    "text": "Dans quel hémisphère se trouve le tropique du Capricorne ?",
+    "options": [
+      "L’hémisphère Nord",
+      "L’hémisphère Sud",
+      "Seulement l’hémisphère Est",
+      "Seulement l’hémisphère Ouest"
+    ],
+    "explanation": "Le tropique du Capricorne se trouve à environ 23,5° au sud de l’équateur."
+  },
+  "x-geo-s-5": {
+    "text": "En quels deux points les lignes de longitude se rejoignent-elles ?",
+    "options": [
+      "Aux tropiques",
+      "Au pôle Nord et au pôle Sud",
+      "À l’équateur",
+      "Aux cercles polaires arctique et antarctique"
+    ],
+    "explanation": "Tous les méridiens se rejoignent aux pôles."
+  },
+  "x-geo-s-6": {
+    "text": "La Terre fait un tour de 360° en 24 heures. Environ combien de degrés de longitude font une heure de décalage horaire ?",
+    "options": [
+      "10°",
+      "12°",
+      "15°",
+      "30°"
+    ],
+    "explanation": "360° divisé par 24 heures, ça fait 15° par heure."
+  },
+  "x-geo-s-7": {
+    "text": "Si tu voyages vers l’est en traversant des fuseaux horaires, qu’arrive-t-il en général à l’heure locale ?",
+    "options": [
+      "Elle avance : il est plus tard",
+      "Elle recule : il est plus tôt",
+      "Elle ne change pas",
+      "Elle revient à minuit"
+    ],
+    "explanation": "Plus à l’est, le Soleil se lève plus tôt, donc les horloges sont en avance."
+  },
+  "x-geo-s-8": {
+    "text": "Quelle ligne fait changer la date du calendrier d’un jour quand on la traverse ?",
+    "options": [
+      "L’équateur",
+      "La ligne internationale de changement de date",
+      "Le tropique du Cancer",
+      "Le cercle polaire arctique"
+    ],
+    "explanation": "La ligne internationale de changement de date suit à peu près la longitude 180°."
+  },
+  "x-geo-s-9": {
+    "text": "Comment s’appelait le supercontinent qui existait il y a environ 300 millions d’années ?",
+    "options": [
+      "L’Atlantide",
+      "La Pangée",
+      "Le Gondwana",
+      "La Laurentia"
+    ],
+    "explanation": "La Pangée s’est ensuite brisée pour former les continents d’aujourd’hui."
+  },
+  "x-geo-s-10": {
+    "text": "L’Himalaya s’est formé surtout parce que deux plaques sont entrées en collision. Lesquelles ?",
+    "options": [
+      "Les plaques pacifique et de Nazca",
+      "Les plaques indienne et eurasienne",
+      "Les plaques africaine et sud-américaine",
+      "Les plaques nord-américaine et pacifique"
+    ],
+    "explanation": "La plaque indienne, en poussant contre la plaque eurasienne, a formé l’Himalaya."
+  },
+  "x-geo-s-11": {
+    "text": "Comment appelle-t-on la roche fondue une fois qu’elle est sortie à la surface de la Terre ?",
+    "options": [
+      "Le magma",
+      "La lave",
+      "La poussière de basalte",
+      "Le manteau"
+    ],
+    "explanation": "La roche fondue s’appelle magma sous la terre, et lave à la surface."
+  },
+  "x-geo-s-12": {
+    "text": "Comment s’appelle le point de la surface de la Terre situé juste au-dessus de l’endroit où commence un tremblement de terre ?",
+    "options": [
+      "Le foyer",
+      "L’épicentre",
+      "Le cratère",
+      "La ligne de faille"
+    ],
+    "explanation": "L’épicentre se trouve juste au-dessus du foyer (l’hypocentre)."
+  },
+  "x-geo-s-13": {
+    "text": "Comment s’appelle la zone pleine de volcans et de tremblements de terre qui fait le tour de l’océan Pacifique ?",
+    "options": [
+      "La ceinture de feu",
+      "La bande du Pacifique",
+      "Le cercle de chaleur",
+      "La boucle des volcans"
+    ],
+    "explanation": "La ceinture de feu suit les frontières des plaques tout autour du Pacifique."
+  },
+  "x-geo-s-14": {
+    "text": "À la dorsale médio-atlantique, que font les plaques tectoniques ?",
+    "options": [
+      "Elles entrent en collision",
+      "Elles s’écartent",
+      "Elles glissent l’une contre l’autre",
+      "Elles ne bougent pas"
+    ],
+    "explanation": "C’est une frontière divergente, où une nouvelle croûte se forme."
+  },
+  "x-geo-s-15": {
+    "text": "Comment appelle-t-on une vague géante causée par un tremblement de terre sous la mer ?",
+    "options": [
+      "Une mousson",
+      "Un tsunami",
+      "Un ouragan",
+      "Une tornade"
+    ],
+    "explanation": "Un tremblement de terre sous la mer peut déplacer l’eau et créer un tsunami."
+  },
+  "x-geo-s-16": {
+    "text": "Dans le cycle de l’eau, comment s’appelle le processus où la vapeur d’eau refroidit et forme des nuages ?",
+    "options": [
+      "L’évaporation",
+      "La condensation",
+      "Les précipitations",
+      "L’infiltration"
+    ],
+    "explanation": "La condensation transforme la vapeur d’eau en minuscules gouttelettes qui forment les nuages."
+  },
+  "x-geo-s-17": {
+    "text": "Comment appelle-t-on le rejet de vapeur d’eau par les feuilles des plantes ?",
+    "options": [
+      "La transpiration",
+      "La percolation",
+      "Le ruissellement",
+      "La sublimation"
+    ],
+    "explanation": "Les plantes perdent de l’eau par leurs feuilles : c’est la transpiration."
+  },
+  "x-geo-s-18": {
+    "text": "Comment appelle-t-on, ensemble, la pluie, la neige, le grésil et la grêle ?",
+    "options": [
+      "L’évaporation",
+      "La condensation",
+      "Les précipitations",
+      "La transpiration"
+    ],
+    "explanation": "Les précipitations, c’est toute l’eau qui tombe des nuages."
+  },
+  "x-geo-s-19": {
+    "text": "Où une rivière commence-t-elle ?",
+    "options": [
+      "À son embouchure",
+      "À sa source",
+      "Dans un delta",
+      "Dans un estuaire"
+    ],
+    "explanation": "La source d’une rivière est son point de départ, souvent dans les collines ou les montagnes."
+  },
+  "x-geo-s-20": {
+    "text": "Comment appelle-t-on une rivière plus petite qui se jette dans une plus grande ?",
+    "options": [
+      "Un affluent",
+      "Un méandre",
+      "Un delta",
+      "Une levée"
+    ],
+    "explanation": "Les affluents apportent leur eau à la rivière principale."
+  },
+  "x-geo-s-21": {
+    "text": "Quand un méandre est coupé de la rivière principale, quelle forme de relief apparaît ?",
+    "options": [
+      "Une chute",
+      "Un lac en croissant",
+      "Un delta",
+      "Une gorge"
+    ],
+    "explanation": "L’érosion et les dépôts coupent la boucle et laissent un lac en croissant, qu’on appelle aussi un bras mort."
+  },
+  "x-geo-s-22": {
+    "text": "À l’embouchure d’un fleuve, qu’est-ce qui forme surtout un delta ?",
+    "options": [
+      "Le dépôt de sédiments",
+      "L’activité volcanique",
+      "L’érosion par les glaciers",
+      "Des falaises marines qui s’élèvent"
+    ],
+    "explanation": "Le fleuve ralentit en entrant dans la mer et y laisse ses sédiments."
+  },
+  "x-geo-s-23": {
+    "text": "Comment appelle-t-on l’embouchure large d’un fleuve, soumise aux marées, où l’eau douce rencontre l’eau de mer ?",
+    "options": [
+      "Un estuaire",
+      "Une oasis",
+      "Un isthme",
+      "Un archipel"
+    ],
+    "explanation": "Les estuaires sont les endroits où les fleuves rencontrent la marée."
+  },
+  "x-geo-s-24": {
+    "text": "Quel climat a des étés chauds et secs et des hivers doux et pluvieux ?",
+    "options": [
+      "Le climat de toundra",
+      "Le climat méditerranéen",
+      "Le climat de forêt tropicale humide",
+      "Le climat polaire"
+    ],
+    "explanation": "On trouve le climat méditerranéen autour de la mer Méditerranée et dans des régions semblables."
+  },
+  "x-geo-s-25": {
+    "text": "Quel biome froid et sans arbres a un sol gelé en permanence, qu’on appelle le pergélisol ?",
+    "options": [
+      "La savane",
+      "La toundra",
+      "La taïga",
+      "La steppe"
+    ],
+    "explanation": "La toundra a du pergélisol et très peu d’arbres."
+  },
+  "x-geo-s-26": {
+    "text": "Quel biome est une prairie tropicale parsemée d’arbres, comme une grande partie de l’Afrique de l’Est ?",
+    "options": [
+      "La savane",
+      "La toundra",
+      "La forêt tempérée",
+      "Le désert"
+    ],
+    "explanation": "La savane a des herbes, des arbres dispersés, une saison des pluies et une saison sèche."
+  },
+  "x-geo-s-27": {
+    "text": "Que décrit le mot « climat » ?",
+    "options": [
+      "Le temps qu’il fait un seul jour",
+      "Le temps moyen sur de nombreuses années",
+      "Seulement la température d’aujourd’hui",
+      "La hauteur du terrain"
+    ],
+    "explanation": "Le climat, c’est le temps qu’il fait en général sur une longue période, habituellement 30 ans ou plus."
+  },
+  "x-geo-s-28": {
+    "text": "Les vagues projettent du sable et des galets contre une falaise et l’usent. Comment s’appelle ce phénomène ?",
+    "options": [
+      "L’abrasion",
+      "Le dépôt",
+      "La condensation",
+      "L’altération par le gel"
+    ],
+    "explanation": "L’abrasion, c’est l’érosion par des matériaux qui frottent contre la roche."
+  },
+  "x-geo-s-29": {
+    "text": "Comment appelle-t-on le déplacement du sable et des galets le long d’une côte par les vagues ?",
+    "options": [
+      "La dérive littorale",
+      "L’action hydraulique",
+      "La dissolution",
+      "La glaciation"
+    ],
+    "explanation": "Les vagues frappent la plage en biais et déplacent les matériaux le long de la côte."
+  },
+  "x-geo-s-30": {
+    "text": "Sur une carte à l’échelle 1/50 000, que représente 1 cm sur la carte ?",
+    "options": [
+      "50 m",
+      "500 m",
+      "5 km",
+      "50 km"
+    ],
+    "explanation": "50 000 cm, c’est 500 mètres."
+  },
+  "x-geo-s-31": {
+    "text": "Sur une carte des collines de Sodor, que montrent des courbes de niveau très rapprochées ?",
+    "options": [
+      "Un terrain plat",
+      "Une pente raide",
+      "Un lac",
+      "Une voie ferrée"
+    ],
+    "explanation": "Des courbes rapprochées veulent dire que l’altitude change vite."
+  },
+  "x-geo-s-32": {
+    "text": "Pour donner une position avec le quadrillage d’une carte, que lis-tu en premier ?",
+    "options": [
+      "Les coordonnées nord",
+      "Les coordonnées est",
+      "Les courbes de niveau",
+      "Les points cotés"
+    ],
+    "explanation": "Retiens « on longe le couloir, puis on monte l’escalier » : les coordonnées est d’abord."
+  },
+  "x-geo-s-33": {
+    "text": "Quelle est la capitale du Canada ?",
+    "options": [
+      "Toronto",
+      "Vancouver",
+      "Montréal",
+      "Ottawa"
+    ],
+    "explanation": "Ottawa, en Ontario, est la capitale du Canada."
+  },
+  "x-geo-s-34": {
+    "text": "Quelle est la capitale de l’Australie ?",
+    "options": [
+      "Sydney",
+      "Melbourne",
+      "Canberra",
+      "Perth"
+    ],
+    "explanation": "Canberra a été construite exprès pour être la capitale de l’Australie."
+  },
+  "x-geo-s-35": {
+    "text": "Quelle est la capitale du Brésil ?",
+    "options": [
+      "Rio de Janeiro",
+      "São Paulo",
+      "Brasilia",
+      "Salvador"
+    ],
+    "explanation": "Brasilia est devenue la capitale du Brésil en 1960."
+  },
+  "x-geo-s-36": {
+    "text": "Quelle est la capitale de la Turquie ?",
+    "options": [
+      "Istanbul",
+      "Ankara",
+      "Izmir",
+      "Antalya"
+    ],
+    "explanation": "C’est Ankara, et non Istanbul, qui est la capitale de la Turquie."
+  },
+  "x-geo-s-37": {
+    "text": "Quelle chaîne de montagnes longe l’ouest de l’Amérique du Sud ?",
+    "options": [
+      "Les Rocheuses",
+      "Les Andes",
+      "Les Alpes",
+      "L’Oural"
+    ],
+    "explanation": "La cordillère des Andes s’étire le long de la côte ouest de l’Amérique du Sud."
+  },
+  "x-geo-s-38": {
+    "text": "L’Atacama, l’un des endroits les plus secs de la Terre, se trouve surtout dans quel pays ?",
+    "options": [
+      "Le Chili",
+      "L’Égypte",
+      "La Mongolie",
+      "L’Australie"
+    ],
+    "explanation": "Le désert d’Atacama se trouve surtout dans le nord du Chili."
+  },
+  "x-geo-s-39": {
+    "text": "Quel fleuve traverse Vienne, Budapest et Belgrade ?",
+    "options": [
+      "Le Rhin",
+      "Le Danube",
+      "La Volga",
+      "La Seine"
+    ],
+    "explanation": "Le Danube traverse plusieurs capitales d’Europe centrale et de l’Est."
+  },
+  "x-geo-s-40": {
+    "text": "L’Islande utilise la chaleur des roches souterraines pour produire de l’électricité. Comment s’appelle cette énergie ?",
+    "options": [
+      "La géothermie",
+      "Le nucléaire",
+      "L’énergie marémotrice",
+      "Les combustibles fossiles"
+    ],
+    "explanation": "La géothermie utilise la chaleur de l’intérieur de la Terre."
+  }
+}

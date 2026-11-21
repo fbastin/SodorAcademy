@@ -23,6 +23,7 @@ export interface Question {
   correctAnswer: string;
   explanation: string;
   rewardType: 'badge' | 'engine' | 'coin' | 'video';
+  perm?: number[];   // in a quiz: the shuffled options, as positions in the bank's order
 }
 
 export interface MusicNote {

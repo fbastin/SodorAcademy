@@ -64,5 +64,7 @@ export async function generateQuestion(subject: string, grade: Grade, excludeIds
   await new Promise(resolve => setTimeout(resolve, 400));
 
   // The banks mostly list the right answer first: shuffle so position gives nothing away.
-  return { ...question, options: shuffle(question.options) };
+  // perm keeps where each shown option sits in the bank, for its French translation.
+  const perm = shuffle(question.options.map((_, i) => i));
+  return { ...question, options: perm.map(i => question.options[i]), perm };
 }

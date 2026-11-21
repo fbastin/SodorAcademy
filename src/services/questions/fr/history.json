@@ -1,0 +1,1142 @@
+{
+  "his-p-1": {
+    "text": "Qui est le célèbre monsieur qui dirige le chemin de fer North Western ?",
+    "options": [
+      "Sir Topham Hatt",
+      "Le capitaine Crochet",
+      "Le père Noël",
+      "Le maire"
+    ],
+    "explanation": "Sir Topham Hatt, le Gros Contrôleur, dirige le chemin de fer."
+  },
+  "his-p-2": {
+    "text": "Quelle locomotive a été la toute première à arriver sur Sodor ?",
+    "options": [
+      "Thomas",
+      "Edward",
+      "Gordon",
+      "James"
+    ],
+    "explanation": "Edward est arrivé sur l’île avant Thomas."
+  },
+  "his-p-3": {
+    "text": "Qui est surnommé le « père des chemins de fer » ?",
+    "options": [
+      "George Stephenson",
+      "Sir Isaac Newton",
+      "James Watt",
+      "Henry Ford"
+    ],
+    "explanation": "George Stephenson a construit la célèbre Rocket et a été un des pionniers des chemins de fer."
+  },
+  "his-p-4": {
+    "text": "Dans quel pays les premières locomotives à vapeur ont-elles roulé sur des chemins de fer publics ?",
+    "options": [
+      "L’Angleterre",
+      "La France",
+      "Les États-Unis",
+      "Le Japon"
+    ],
+    "explanation": "Les premiers chemins de fer publics à vapeur ont ouvert en Angleterre dans les années 1820."
+  },
+  "his-p-5": {
+    "text": "Quelle locomotive célèbre a gagné le concours de Rainhill en 1829 ?",
+    "options": [
+      "La Rocket",
+      "La Flying Scotsman",
+      "Mallard",
+      "L’Iron Duke"
+    ],
+    "explanation": "La Rocket de George Stephenson a gagné le concours de Rainhill en 1829."
+  },
+  "his-p-6": {
+    "text": "Avant l’invention des trains, quel animal tirait les charrettes et les voitures ?",
+    "options": [
+      "Les chevaux",
+      "Les chiens",
+      "Les éléphants",
+      "Les chameaux"
+    ],
+    "explanation": "Les chevaux tiraient les charrettes et les diligences avant l’arrivée des trains à vapeur."
+  },
+  "his-p-7": {
+    "text": "Quel inventeur a beaucoup amélioré la machine à vapeur, ce qui a aidé à faire avancer la révolution industrielle ?",
+    "options": [
+      "James Watt",
+      "William Shakespeare",
+      "Christophe Colomb",
+      "Thomas Edison"
+    ],
+    "explanation": "James Watt a amélioré la machine à vapeur et l’a rendue beaucoup plus efficace."
+  },
+  "his-p-8": {
+    "text": "Pendant quel siècle a-t-on inventé les premières machines à vapeur ?",
+    "options": [
+      "Le 18e siècle",
+      "Le 21e siècle",
+      "Le 1er siècle",
+      "Le 10e siècle"
+    ],
+    "explanation": "Les premières machines à vapeur vraiment utiles sont apparues dans les années 1700, au 18e siècle."
+  },
+  "his-p-9": {
+    "text": "Qui travaille chaque jour pour faire rouler Thomas ?",
+    "options": [
+      "Un mécanicien et un chauffeur",
+      "Un pilote",
+      "Un capitaine",
+      "Personne"
+    ],
+    "explanation": "Chaque locomotive à vapeur a besoin d’un mécanicien, qui la conduit, et d’un chauffeur, qui s’occupe du feu."
+  },
+  "his-p-10": {
+    "text": "Au début des chemins de fer, qu’est-ce que les trains transportaient surtout, pour aider les villes à grandir ?",
+    "options": [
+      "Du charbon et des marchandises",
+      "Des chansons",
+      "Des fleurs",
+      "Des souvenirs"
+    ],
+    "explanation": "Les trains transportaient du charbon, de la nourriture et des marchandises, ce qui a aidé les villes à grandir."
+  },
+  "his-p-11": {
+    "text": "Laquelle de ces inventions est arrivée avant l’automobile ?",
+    "options": [
+      "Le train à vapeur",
+      "L’avion",
+      "L’ordinateur",
+      "Le téléphone cellulaire"
+    ],
+    "explanation": "Les trains à vapeur sont arrivés en premier ; les autos, les avions et les ordinateurs sont venus plus tard."
+  },
+  "his-p-12": {
+    "text": "Quelle reine a régné sur la Grande-Bretagne pendant plus de 60 ans au XIXe siècle, pendant que les chemins de fer se développaient très vite ?",
+    "options": [
+      "La reine Victoria",
+      "La reine Élisabeth II",
+      "Cléopâtre",
+      "Boadicée"
+    ],
+    "explanation": "Les chemins de fer se sont énormément développés pendant le règne de la reine Victoria."
+  },
+  "his-p-13": {
+    "text": "Comment peut-on savoir comment on vivait il y a longtemps ?",
+    "options": [
+      "Grâce aux photos, aux journaux intimes et aux vieux objets",
+      "Seulement en devinant",
+      "Grâce aux histoires de la télévision",
+      "Grâce aux rêves"
+    ],
+    "explanation": "Les historiens étudient des traces du passé, comme les photos, les écrits et les objets anciens."
+  },
+  "his-p-14": {
+    "text": "À quoi sert une ligne du temps ?",
+    "options": [
+      "À placer des événements dans l’ordre",
+      "À mesurer le poids",
+      "À dessiner des cartes",
+      "À compter de l’argent"
+    ],
+    "explanation": "Une ligne du temps montre les événements dans l’ordre où ils se sont passés."
+  },
+  "his-p-15": {
+    "text": "Avant les lumières électriques, qu’est-ce qu’on utilisait pour faire des signaux aux trains la nuit ?",
+    "options": [
+      "Une lanterne à main ou un bras de sémaphore",
+      "Un téléphone cellulaire",
+      "Un satellite",
+      "Une caméra de circulation"
+    ],
+    "explanation": "Les premiers chemins de fer utilisaient des lanternes à main et des bras de signalisation en bois."
+  },
+  "his-p-16": {
+    "text": "Les tout premiers wagons étaient en bois, avant d’être fabriqués en…",
+    "options": [
+      "Métal",
+      "Plastique",
+      "Carton",
+      "Verre"
+    ],
+    "explanation": "Les wagons en bois ont été remplacés par des wagons en métal, plus solides."
+  },
+  "his-p-17": {
+    "text": "Les premiers livres sur Thomas la locomotive ont été écrits dans quel pays ?",
+    "options": [
+      "L’Angleterre",
+      "Les États-Unis",
+      "Le Canada",
+      "L’Australie"
+    ],
+    "explanation": "Wilbert Awdry a écrit les premiers livres de Thomas en Angleterre, dans les années 1940."
+  },
+  "x-his-p-1": {
+    "text": "Qu’est-ce que la plupart des locomotives à vapeur brûlaient pour chauffer l’eau de leur chaudière ?",
+    "options": [
+      "Du charbon",
+      "Du sable",
+      "De la craie",
+      "De la paille"
+    ],
+    "explanation": "En brûlant, le charbon chauffait l’eau et la transformait en vapeur, et la vapeur poussait les pistons."
+  },
+  "x-his-p-2": {
+    "text": "En plus du charbon, de quoi une locomotive à vapeur devait-elle souvent faire le plein dans les gares ?",
+    "options": [
+      "D’eau",
+      "De lait",
+      "De peinture à l’huile",
+      "De sel"
+    ],
+    "explanation": "La vapeur vient de l’eau qu’on fait bouillir : les locomotives devaient donc souvent refaire le plein d’eau."
+  },
+  "x-his-p-3": {
+    "text": "En 1804, la locomotive à vapeur de Richard Trevithick a roulé sur une voie ferrée dans quel pays ?",
+    "options": [
+      "Le pays de Galles",
+      "L’Écosse",
+      "L’Irlande",
+      "La France"
+    ],
+    "explanation": "La locomotive de Trevithick a roulé à Penydarren, dans le sud du pays de Galles."
+  },
+  "x-his-p-4": {
+    "text": "Quelle locomotive a tiré le premier train de la ligne Stockton–Darlington, en 1825 ?",
+    "options": [
+      "Locomotion n° 1",
+      "La Rocket",
+      "Puffing Billy",
+      "La Flying Scotsman"
+    ],
+    "explanation": "Locomotion n° 1 a tiré le train de l’inauguration, en 1825."
+  },
+  "x-his-p-5": {
+    "text": "Avant les chemins de fer, les marchandises lourdes voyageaient souvent sur des bateaux étroits, le long des…",
+    "options": [
+      "Canaux",
+      "Autoroutes",
+      "Aéroports",
+      "Pistes cyclables"
+    ],
+    "explanation": "Avant les chemins de fer, les canaux étaient le principal moyen de transporter les marchandises lourdes en Grande-Bretagne."
+  },
+  "x-his-p-6": {
+    "text": "Qu’est-ce que les Romains ont construit partout en Grande-Bretagne, et qui était célèbre pour être très long et très droit ?",
+    "options": [
+      "Des routes",
+      "Des chemins de fer",
+      "Des canaux",
+      "Des gratte-ciel"
+    ],
+    "explanation": "Les routes romaines reliaient les villes et les forts dans toute la Grande-Bretagne."
+  },
+  "x-his-p-7": {
+    "text": "Quel empereur romain a fait construire un grand mur à travers le nord de l’Angleterre ?",
+    "options": [
+      "Hadrien",
+      "Néron",
+      "Auguste",
+      "Caligula"
+    ],
+    "explanation": "La construction du mur d’Hadrien a commencé vers l’an 122 apr. J.-C."
+  },
+  "x-his-p-8": {
+    "text": "Comment les Romains appelaient-ils la ville qui est devenue Londres ?",
+    "options": [
+      "Londinium",
+      "Londonia",
+      "Lundenburg",
+      "Londria"
+    ],
+    "explanation": "Les Romains ont fondé Londinium au bord de la Tamise."
+  },
+  "x-his-p-9": {
+    "text": "Quelle langue parlaient les Romains de l’Antiquité ?",
+    "options": [
+      "Le latin",
+      "Le grec",
+      "Le français",
+      "L’anglais"
+    ],
+    "explanation": "Le latin était la langue de la Rome antique."
+  },
+  "x-his-p-10": {
+    "text": "En quelle année a eu lieu le grand incendie de Londres ?",
+    "options": [
+      "1666",
+      "1066",
+      "1766",
+      "1566"
+    ],
+    "explanation": "Le grand incendie a brûlé pendant plusieurs jours, en septembre 1666."
+  },
+  "x-his-p-11": {
+    "text": "Où le grand incendie de Londres a-t-il commencé ?",
+    "options": [
+      "Dans une boulangerie de Pudding Lane",
+      "Dans la tour d’un château",
+      "Dans un bateau sur la Tamise",
+      "Dans une église de Bread Street"
+    ],
+    "explanation": "L’incendie a commencé dans la boulangerie de Thomas Farriner, sur Pudding Lane."
+  },
+  "x-his-p-12": {
+    "text": "Quel homme a écrit un célèbre journal intime qui décrit le grand incendie de Londres ?",
+    "options": [
+      "Samuel Pepys",
+      "William Shakespeare",
+      "Isaac Newton",
+      "Charles Dickens"
+    ],
+    "explanation": "Samuel Pepys a raconté l’incendie dans son journal."
+  },
+  "x-his-p-13": {
+    "text": "Les Vikings sont venus en Grande-Bretagne depuis quelle région d’Europe ?",
+    "options": [
+      "La Scandinavie",
+      "L’Italie",
+      "L’Espagne",
+      "La Grèce"
+    ],
+    "explanation": "Les Vikings venaient de pays comme la Norvège, le Danemark et la Suède."
+  },
+  "x-his-p-14": {
+    "text": "Comment s’appelaient les longs bateaux étroits en bois des Vikings ?",
+    "options": [
+      "Les drakkars",
+      "Les bateaux à vapeur",
+      "Les galions",
+      "Les sous-marins"
+    ],
+    "explanation": "Les drakkars des Vikings pouvaient naviguer en mer et remonter les rivières."
+  },
+  "x-his-p-15": {
+    "text": "Comment appelle-t-on le fossé rempli d’eau creusé autour de certains châteaux ?",
+    "options": [
+      "Les douves",
+      "Un tunnel",
+      "Un canal",
+      "Un puits"
+    ],
+    "explanation": "Les douves empêchaient les attaquants d’atteindre facilement les murs."
+  },
+  "x-his-p-16": {
+    "text": "Comment s’appelait la tour la plus solide et la plus sûre, au milieu d’un château ?",
+    "options": [
+      "Le donjon",
+      "La grange",
+      "Le moulin",
+      "Le porche"
+    ],
+    "explanation": "Le donjon était le dernier endroit où l’on pouvait défendre le château."
+  },
+  "x-his-p-17": {
+    "text": "Le jeune aide qui s’occupait de l’armure et du cheval d’un chevalier, tout en apprenant le métier, s’appelait un…",
+    "options": [
+      "Écuyer",
+      "Bouffon",
+      "Pharaon",
+      "Shérif"
+    ],
+    "explanation": "L’écuyer servait un chevalier tout en apprenant à en devenir un."
+  },
+  "x-his-p-18": {
+    "text": "Que portaient les chevaliers pour se protéger pendant les batailles ?",
+    "options": [
+      "Une armure",
+      "Des bottes de pluie",
+      "Des imperméables",
+      "Des ensembles de jogging"
+    ],
+    "explanation": "Les chevaliers portaient une cotte de mailles ou une armure faite de plaques de métal."
+  },
+  "x-his-p-19": {
+    "text": "Quelle longue toile brodée raconte l’histoire de la bataille d’Hastings ?",
+    "options": [
+      "La tapisserie de Bayeux",
+      "La Grande Charte (Magna Carta)",
+      "Le Domesday Book",
+      "Le drapeau du Royaume-Uni"
+    ],
+    "explanation": "La tapisserie de Bayeux montre en images la conquête normande de 1066."
+  },
+  "x-his-p-20": {
+    "text": "Combien d’épouses le roi Henri VIII a-t-il eues ?",
+    "options": [
+      "Six",
+      "Deux",
+      "Quatre",
+      "Huit"
+    ],
+    "explanation": "Henri VIII s’est marié six fois."
+  },
+  "x-his-p-21": {
+    "text": "La reine Élisabeth Ire était la fille de quel roi ?",
+    "options": [
+      "Henri VIII",
+      "Guillaume le Conquérant",
+      "Richard III",
+      "George III"
+    ],
+    "explanation": "Élisabeth Ire était la fille d’Henri VIII et d’Anne Boleyn."
+  },
+  "x-his-p-22": {
+    "text": "Quelle fête de novembre rappelle la conspiration des poudres de 1605 ?",
+    "options": [
+      "La nuit des feux de joie (Bonfire Night)",
+      "Noël",
+      "Pâques",
+      "Mardi gras (Pancake Day)"
+    ],
+    "explanation": "La nuit des feux de joie, le 5 novembre, rappelle Guy Fawkes et sa conspiration."
+  },
+  "x-his-p-23": {
+    "text": "Comment appelait-on les rois de l’Égypte ancienne ?",
+    "options": [
+      "Les pharaons",
+      "Les empereurs",
+      "Les sultans",
+      "Les chefs"
+    ],
+    "explanation": "Les souverains de l’Égypte ancienne s’appelaient les pharaons."
+  },
+  "x-his-p-24": {
+    "text": "Pourquoi les anciens Égyptiens ont-ils construit les grandes pyramides ?",
+    "options": [
+      "Pour servir de tombeaux aux pharaons",
+      "Pour servir de gares",
+      "Pour servir de phares",
+      "Pour servir d’écoles"
+    ],
+    "explanation": "Les pyramides ont été construites pour servir de tombeaux aux rois."
+  },
+  "x-his-p-25": {
+    "text": "En 1922, Howard Carter a découvert le tombeau de quel jeune roi égyptien ?",
+    "options": [
+      "Toutânkhamon",
+      "Ramsès",
+      "Cléopâtre",
+      "Khéops"
+    ],
+    "explanation": "En 1922, on a trouvé le tombeau de Toutânkhamon rempli de trésors."
+  },
+  "x-his-p-26": {
+    "text": "Dans quel pays les Jeux olympiques ont-ils commencé, il y a très longtemps ?",
+    "options": [
+      "La Grèce",
+      "L’Égypte",
+      "La Chine",
+      "La Norvège"
+    ],
+    "explanation": "Les Jeux olympiques de l’Antiquité avaient lieu à Olympie, en Grèce."
+  },
+  "x-his-p-27": {
+    "text": "Qui a été la première personne à marcher sur la Lune ?",
+    "options": [
+      "Neil Armstrong",
+      "Youri Gagarine",
+      "Buzz Aldrin",
+      "Tim Peake"
+    ],
+    "explanation": "Neil Armstrong a posé le pied sur la Lune en 1969."
+  },
+  "x-his-p-28": {
+    "text": "En 1903, les frères Wright ont été les premiers à faire voler quel genre de machine ?",
+    "options": [
+      "Un avion à moteur",
+      "Une montgolfière",
+      "Un hélicoptère",
+      "Une fusée"
+    ],
+    "explanation": "Le Flyer des frères Wright a fait le premier vol motorisé en 1903."
+  },
+  "x-his-p-29": {
+    "text": "Quel océan Christophe Colomb a-t-il traversé en 1492 ?",
+    "options": [
+      "L’océan Atlantique",
+      "L’océan Pacifique",
+      "L’océan Indien",
+      "L’océan Arctique"
+    ],
+    "explanation": "Colomb a traversé l’Atlantique et a atteint les Caraïbes."
+  },
+  "x-his-p-30": {
+    "text": "L’équipe de quel explorateur a été la première à atteindre le pôle Sud, en 1911 ?",
+    "options": [
+      "Roald Amundsen",
+      "Le capitaine Scott",
+      "Christophe Colomb",
+      "Marco Polo"
+    ],
+    "explanation": "L’équipe norvégienne d’Amundsen a atteint le pôle Sud en décembre 1911."
+  },
+  "x-his-p-31": {
+    "text": "En 1770, le capitaine James Cook a longé et cartographié la côte est de quelle terre ?",
+    "options": [
+      "L’Australie",
+      "L’Islande",
+      "Le Canada",
+      "L’Inde"
+    ],
+    "explanation": "Cook a dessiné la carte de la côte est de l’Australie en 1770."
+  },
+  "x-his-p-32": {
+    "text": "Quelle infirmière était surnommée « la dame à la lampe » ?",
+    "options": [
+      "Florence Nightingale",
+      "Mary Seacole",
+      "La reine Victoria",
+      "Grace Darling"
+    ],
+    "explanation": "La nuit, elle passait voir les soldats malades avec une lampe à la main."
+  },
+  "x-his-p-33": {
+    "text": "Quelle chasseuse de fossiles a trouvé d’incroyables fossiles de reptiles marins à Lyme Regis, au XIXe siècle ?",
+    "options": [
+      "Mary Anning",
+      "Marie Curie",
+      "Ada Lovelace",
+      "Jane Austen"
+    ],
+    "explanation": "Les découvertes de Mary Anning ont aidé les scientifiques à mieux connaître la vie préhistorique."
+  },
+  "x-his-p-34": {
+    "text": "À qui attribue-t-on habituellement l’invention du téléphone, en 1876 ?",
+    "options": [
+      "Alexander Graham Bell",
+      "George Stephenson",
+      "Thomas Telford",
+      "Isaac Newton"
+    ],
+    "explanation": "Bell a obtenu un brevet pour le téléphone en 1876."
+  },
+  "x-his-p-35": {
+    "text": "Quelle femme a mené une célèbre campagne pour que les femmes obtiennent le droit de vote en Grande-Bretagne ?",
+    "options": [
+      "Emmeline Pankhurst",
+      "Florence Nightingale",
+      "La reine Victoria",
+      "Mary Anning"
+    ],
+    "explanation": "Emmeline Pankhurst a dirigé le mouvement des suffragettes."
+  },
+  "x-his-p-36": {
+    "text": "Le Penny Black, utilisé pour la première fois en 1840, a été le tout premier de son genre au monde. Qu’était-ce ?",
+    "options": [
+      "Un timbre-poste",
+      "Un billet de train",
+      "Un billet de banque",
+      "Un journal"
+    ],
+    "explanation": "Le Penny Black permettait de payer d’avance l’envoi d’une lettre."
+  },
+  "x-his-p-37": {
+    "text": "Quel métier dangereux certains enfants pauvres de l’époque victorienne faisaient-ils à l’intérieur des cheminées ?",
+    "options": [
+      "Ramoneur",
+      "Conducteur de train",
+      "Gardien de phare",
+      "Capitaine de navire"
+    ],
+    "explanation": "On faisait grimper de jeunes enfants dans les cheminées pour les nettoyer, jusqu’à ce que des lois l’interdisent."
+  },
+  "x-his-p-38": {
+    "text": "Avant les lampes électriques, comment la plupart des gens éclairaient-ils leur maison le soir ?",
+    "options": [
+      "Avec des chandelles et des lampes à l’huile",
+      "Avec des lampes de poche à piles",
+      "Avec des enseignes au néon",
+      "Avec des lampadaires dans la maison"
+    ],
+    "explanation": "On éclairait les maisons avec des chandelles, des lampes à l’huile, puis plus tard des lampes au gaz."
+  },
+  "x-his-p-39": {
+    "text": "Stonehenge a été construit il y a très longtemps par des gens qui vivaient à quelle époque ?",
+    "options": [
+      "L’âge de pierre",
+      "L’ère spatiale",
+      "L’époque victorienne",
+      "L’époque des Vikings"
+    ],
+    "explanation": "La construction de Stonehenge a commencé il y a environ 5 000 ans, à l’âge de pierre."
+  },
+  "x-his-p-40": {
+    "text": "Il y a longtemps, avant les machines à laver, comment beaucoup de gens lavaient-ils leurs vêtements ?",
+    "options": [
+      "À la main, avec une planche à laver et une cuve",
+      "Avec un lave-vaisselle",
+      "Dans un lave-auto",
+      "Avec un aspirateur"
+    ],
+    "explanation": "On frottait les vêtements à la main, puis on les essorait en les passant entre deux rouleaux."
+  },
+  "his-s-1": {
+    "text": "Quelle locomotive très ancienne est surnommée la « locomotive émeraude » ?",
+    "options": [
+      "Thomas",
+      "Emily",
+      "Edward",
+      "Henry"
+    ],
+    "explanation": "Emily est inspirée de la série de locomotives Stirling Single."
+  },
+  "his-s-2": {
+    "text": "Qui a écrit les livres originaux de la « Railway Series » ?",
+    "options": [
+      "Le révérend W. Awdry",
+      "Roald Dahl",
+      "J. K. Rowling",
+      "Enid Blyton"
+    ],
+    "explanation": "Le révérend Wilbert Awdry est l’auteur de la Railway Series."
+  },
+  "his-s-3": {
+    "text": "Quelle locomotive détient le record du monde de vitesse à vapeur, établi en 1938 ?",
+    "options": [
+      "Mallard",
+      "La Rocket",
+      "La Flying Scotsman",
+      "Gordon"
+    ],
+    "explanation": "Mallard a atteint 126 mi/h (environ 203 km/h) en 1938 : c’est toujours le record pour une locomotive à vapeur."
+  },
+  "his-s-4": {
+    "text": "En 1829, le concours de Rainhill devait choisir une locomotive pour quel chemin de fer ?",
+    "options": [
+      "La ligne Liverpool–Manchester",
+      "Le métro de Londres",
+      "Le Great Western Railway",
+      "Le Caledonian Railway"
+    ],
+    "explanation": "Le concours a choisi la locomotive de la nouvelle ligne Liverpool–Manchester."
+  },
+  "his-s-5": {
+    "text": "Quel ingénieur a construit la Rocket avec son fils Robert ?",
+    "options": [
+      "George Stephenson",
+      "Isambard Kingdom Brunel",
+      "James Watt",
+      "Richard Trevithick"
+    ],
+    "explanation": "George Stephenson a construit la Rocket avec son fils Robert."
+  },
+  "his-s-6": {
+    "text": "En histoire, qu’est-ce qu’une « source primaire » ?",
+    "options": [
+      "Un document original de l’époque",
+      "Un manuel scolaire moderne",
+      "Un guide de musée",
+      "Un journal d’aujourd’hui"
+    ],
+    "explanation": "Une source primaire a été créée pendant la période qu’on étudie."
+  },
+  "his-s-7": {
+    "text": "Le passage de la fabrication à la main à la fabrication en usine s’appelle…",
+    "options": [
+      "La révolution industrielle",
+      "L’ère numérique",
+      "L’âge du fer",
+      "L’ère spatiale"
+    ],
+    "explanation": "La révolution industrielle a transformé la fabrication des objets grâce aux machines."
+  },
+  "his-s-8": {
+    "text": "Qui est célèbre pour avoir amélioré la machine à vapeur fixe dans les années 1760 ?",
+    "options": [
+      "James Watt",
+      "George Stephenson",
+      "Isambard Kingdom Brunel",
+      "Thomas Edison"
+    ],
+    "explanation": "Grâce aux améliorations de James Watt, les machines à vapeur sont devenues assez efficaces pour faire tourner les usines."
+  },
+  "his-s-9": {
+    "text": "En 1948, les chemins de fer de Grande-Bretagne ont été réunis sous quel nom unique ?",
+    "options": [
+      "British Railways",
+      "National Express",
+      "Great Western",
+      "London Midland"
+    ],
+    "explanation": "En 1948, les chemins de fer de Grande-Bretagne ont été nationalisés sous le nom de British Railways."
+  },
+  "his-s-10": {
+    "text": "Quel ingénieur de l’époque victorienne a conçu le Great Western Railway et des ponts célèbres ?",
+    "options": [
+      "Isambard Kingdom Brunel",
+      "George Stephenson",
+      "James Watt",
+      "Marc Brunel"
+    ],
+    "explanation": "Brunel a conçu le Great Western Railway, le tunnel de Box et le pont suspendu de Clifton."
+  },
+  "his-s-11": {
+    "text": "En 1934, la Flying Scotsman est devenue célèbre, car elle a été la première locomotive à vapeur…",
+    "options": [
+      "À rouler officiellement à 100 mi/h",
+      "À traverser l’Atlantique",
+      "À passer sous Londres",
+      "À fonctionner au diesel"
+    ],
+    "explanation": "La Flying Scotsman a été la première locomotive à vapeur dont la vitesse de 100 mi/h (environ 160 km/h) a été mesurée officiellement."
+  },
+  "his-s-12": {
+    "text": "Pour connaître la vitesse maximale d’une locomotive à vapeur, à quelle source un historien ferait-il le plus confiance ?",
+    "options": [
+      "Les registres officiels des ateliers",
+      "Une chanson folklorique",
+      "Une rumeur",
+      "Une histoire pour enfants"
+    ],
+    "explanation": "Les registres officiels tenus à l’époque sont des sources primaires fiables."
+  },
+  "his-s-13": {
+    "text": "Selon l’histoire inventée de l’île de Sodor, quel petit chemin de fer existait avant le North Western ?",
+    "options": [
+      "Le chemin de fer Mid Sodor",
+      "Le Great Western",
+      "Le métro de Londres",
+      "Les lignes hollandaises"
+    ],
+    "explanation": "Dans les histoires, le chemin de fer Mid Sodor, qui n’a jamais existé en vrai, était une des premières lignes de Sodor."
+  },
+  "his-s-14": {
+    "text": "L’étude des événements placés dans l’ordre du temps s’appelle…",
+    "options": [
+      "La chronologie",
+      "La géographie",
+      "L’astronomie",
+      "L’écologie"
+    ],
+    "explanation": "La chronologie place les événements dans l’ordre où ils se sont produits."
+  },
+  "his-s-15": {
+    "text": "Pendant quelle période les chemins de fer britanniques ont-ils connu leur grand « âge de la vapeur » ?",
+    "options": [
+      "L’époque victorienne",
+      "L’âge du fer",
+      "L’époque romaine",
+      "L’ère spatiale"
+    ],
+    "explanation": "Les chemins de fer à vapeur se sont multipliés tout au long de l’époque victorienne."
+  },
+  "his-s-16": {
+    "text": "Les livres de la Railway Series du révérend Awdry ont commencé à paraître pendant quelle décennie ?",
+    "options": [
+      "Les années 1940",
+      "Les années 1890",
+      "Les années 1960",
+      "Les années 2000"
+    ],
+    "explanation": "Le premier livre de la Railway Series est paru en 1945."
+  },
+  "his-s-17": {
+    "text": "Pourquoi les usines se sont-elles développées si vite près des chemins de fer et des canaux ?",
+    "options": [
+      "On pouvait y transporter les marchandises rapidement",
+      "Elles pouvaient y faire pousser des récoltes",
+      "Les gens voulaient de l’air frais",
+      "C’était plus tranquille"
+    ],
+    "explanation": "Grâce à de bons moyens de transport, les usines pouvaient recevoir leurs matières premières et expédier leurs produits."
+  },
+  "x-his-s-1": {
+    "text": "En quelle année la ligne Stockton–Darlington a-t-elle ouvert ?",
+    "options": [
+      "1825",
+      "1805",
+      "1845",
+      "1865"
+    ],
+    "explanation": "Elle a ouvert le 27 septembre 1825 : c’était un chemin de fer public qui utilisait la vapeur."
+  },
+  "x-his-s-2": {
+    "text": "En quelle année la ligne Liverpool–Manchester a-t-elle ouvert ?",
+    "options": [
+      "1830",
+      "1820",
+      "1840",
+      "1850"
+    ],
+    "explanation": "Elle a ouvert en 1830 : c’était le premier chemin de fer à vapeur reliant deux grandes villes."
+  },
+  "x-his-s-3": {
+    "text": "Quel homme politique a été mortellement blessé par la Rocket lors de l’inauguration de la ligne Liverpool–Manchester ?",
+    "options": [
+      "William Huskisson",
+      "Robert Peel",
+      "Le duc de Wellington",
+      "William Pitt"
+    ],
+    "explanation": "Huskisson a été heurté par la Rocket le jour de l’inauguration, en 1830."
+  },
+  "x-his-s-4": {
+    "text": "Quel était l’écartement « standard » des rails sur la plupart des chemins de fer britanniques ?",
+    "options": [
+      "4 pi 8½ po",
+      "7 pi ¼ po",
+      "3 pi 6 po",
+      "5 pi 3 po"
+    ],
+    "explanation": "L’écartement de 4 pi 8½ po (1 435 mm) choisi par Stephenson est devenu la norme britannique."
+  },
+  "x-his-s-5": {
+    "text": "Quel était l’écartement des rails de la « voie large » de Brunel, sur le Great Western Railway ?",
+    "options": [
+      "7 pi ¼ po",
+      "4 pi 8½ po",
+      "5 pi 6 po",
+      "6 pi 2 po"
+    ],
+    "explanation": "Brunel a choisi un écartement de 7 pi ¼ po (environ 2,14 m) pour la vitesse et la stabilité."
+  },
+  "x-his-s-6": {
+    "text": "En quelle année le Great Western Railway a-t-il enfin abandonné sa voie large ?",
+    "options": [
+      "1892",
+      "1846",
+      "1869",
+      "1901"
+    ],
+    "explanation": "Les dernières lignes à voie large ont été converties en mai 1892."
+  },
+  "x-his-s-7": {
+    "text": "Quelle gare terminus de Londres a été construite pour le Great Western Railway de Brunel ?",
+    "options": [
+      "Paddington",
+      "King’s Cross",
+      "Euston",
+      "Waterloo"
+    ],
+    "explanation": "La gare de Paddington est le terminus londonien du GWR."
+  },
+  "x-his-s-8": {
+    "text": "Le pont suspendu de Brunel qui franchit la gorge de l’Avon se trouve dans quelle ville ?",
+    "options": [
+      "Bristol",
+      "Bath",
+      "Cardiff",
+      "Gloucester"
+    ],
+    "explanation": "Le pont suspendu de Clifton enjambe la gorge de l’Avon, à Bristol."
+  },
+  "x-his-s-9": {
+    "text": "Quel navire de Brunel, lancé en 1843, avait à la fois une coque en fer et une hélice ?",
+    "options": [
+      "Le SS Great Britain",
+      "Le HMS Victory",
+      "Le RMS Titanic",
+      "Le Cutty Sark"
+    ],
+    "explanation": "Le SS Great Britain a été le premier navire en fer à hélice à traverser l’Atlantique."
+  },
+  "x-his-s-10": {
+    "text": "En 1923, la plupart des compagnies de chemin de fer de Grande-Bretagne ont été regroupées en combien de grandes compagnies ?",
+    "options": [
+      "Quatre",
+      "Deux",
+      "Six",
+      "Dix"
+    ],
+    "explanation": "Les « Big Four » étaient le GWR, le LMS, le LNER et le Southern Railway."
+  },
+  "x-his-s-11": {
+    "text": "Laquelle des quatre grandes compagnies de chemin de fer, les « Big Four », a construit Mallard ?",
+    "options": [
+      "Le LNER",
+      "Le GWR",
+      "Le LMS",
+      "Le Southern Railway"
+    ],
+    "explanation": "Mallard était une locomotive de la classe A4 du LNER."
+  },
+  "x-his-s-12": {
+    "text": "Quel ingénieur a conçu à la fois la Flying Scotsman et Mallard ?",
+    "options": [
+      "Sir Nigel Gresley",
+      "Isambard Kingdom Brunel",
+      "Robert Stephenson",
+      "Oliver Bulleid"
+    ],
+    "explanation": "Gresley était l’ingénieur en chef du matériel roulant du LNER."
+  },
+  "x-his-s-13": {
+    "text": "Quelle vitesse maximale Mallard a-t-elle atteinte lors de son record de 1938 ?",
+    "options": [
+      "126 mi/h",
+      "100 mi/h",
+      "150 mi/h",
+      "112 mi/h"
+    ],
+    "explanation": "Mallard a atteint 126 mi/h (environ 203 km/h) le 3 juillet 1938."
+  },
+  "x-his-s-14": {
+    "text": "Le train express Flying Scotsman reliait Londres à quelle ville ?",
+    "options": [
+      "Édimbourg",
+      "Glasgow",
+      "Aberdeen",
+      "Manchester"
+    ],
+    "explanation": "Ce train circulait entre la gare de King’s Cross, à Londres, et Édimbourg."
+  },
+  "x-his-s-15": {
+    "text": "Le rapport Beeching, qui a mené à la fermeture de nombreuses lignes de chemin de fer, a été publié en quelle année ?",
+    "options": [
+      "1963",
+      "1948",
+      "1955",
+      "1975"
+    ],
+    "explanation": "Le rapport « The Reshaping of British Railways » (La réorganisation des chemins de fer britanniques) est paru en 1963."
+  },
+  "x-his-s-16": {
+    "text": "En quelle année les trains réguliers tirés par des locomotives à vapeur ont-ils disparu des grandes lignes de British Railways ?",
+    "options": [
+      "1968",
+      "1948",
+      "1958",
+      "1978"
+    ],
+    "explanation": "Les derniers trains de voyageurs à vapeur de British Railways ont circulé en août 1968."
+  },
+  "x-his-s-17": {
+    "text": "Grâce aux chemins de fer, toute la Grande-Bretagne a réglé ses horloges sur la même heure, celle de…",
+    "options": [
+      "Greenwich",
+      "Paris",
+      "Édimbourg",
+      "Bristol"
+    ],
+    "explanation": "L’« heure des chemins de fer » était l’heure moyenne de Greenwich, la même dans tout le pays."
+  },
+  "x-his-s-18": {
+    "text": "Qui a inventé la spinning jenny, une machine à filer, dans les années 1760 ?",
+    "options": [
+      "James Hargreaves",
+      "Richard Arkwright",
+      "Edmund Cartwright",
+      "John Kay"
+    ],
+    "explanation": "La spinning jenny de Hargreaves permettait à un seul ouvrier de filer plusieurs fils à la fois."
+  },
+  "x-his-s-19": {
+    "text": "Quel inventeur a mis au point le water frame, une machine à filer, et construit les premières filatures de coton ?",
+    "options": [
+      "Richard Arkwright",
+      "James Hargreaves",
+      "Samuel Crompton",
+      "Thomas Newcomen"
+    ],
+    "explanation": "Le water frame d’Arkwright utilisait la force de l’eau pour filer le coton."
+  },
+  "x-his-s-20": {
+    "text": "Le premier grand pont en fonte du monde, ouvert en 1779, se trouve dans quel comté anglais ?",
+    "options": [
+      "Le Shropshire",
+      "Le Yorkshire",
+      "La Cornouailles",
+      "Le Kent"
+    ],
+    "explanation": "L’Iron Bridge (le « pont de fer ») franchit la Severn à Coalbrookdale, dans le Shropshire."
+  },
+  "x-his-s-21": {
+    "text": "Quel groupe d’ouvriers a brisé les nouvelles machines au début des années 1800 pour protester et défendre leurs emplois ?",
+    "options": [
+      "Les luddites",
+      "Les chartistes",
+      "Les suffragettes",
+      "Les niveleurs (Levellers)"
+    ],
+    "explanation": "Les luddites étaient des ouvriers du textile qui avaient peur d’être remplacés par des machines."
+  },
+  "x-his-s-22": {
+    "text": "Quel objet a enfin permis aux savants de lire les hiéroglyphes égyptiens ?",
+    "options": [
+      "La pierre de Rosette",
+      "La tapisserie de Bayeux",
+      "La Grande Charte (Magna Carta)",
+      "Les manuscrits de la mer Morte"
+    ],
+    "explanation": "Elle porte le même texte en hiéroglyphes, en démotique et en grec."
+  },
+  "x-his-s-23": {
+    "text": "Quelle cité de la Grèce antique est connue comme le berceau de la démocratie ?",
+    "options": [
+      "Athènes",
+      "Sparte",
+      "Troie",
+      "Corinthe"
+    ],
+    "explanation": "À Athènes, les citoyens votaient les lois dans leur assemblée."
+  },
+  "x-his-s-24": {
+    "text": "En quelle année Jules César a-t-il été assassiné ?",
+    "options": [
+      "44 av. J.-C.",
+      "55 av. J.-C.",
+      "43 apr. J.-C.",
+      "79 apr. J.-C."
+    ],
+    "explanation": "César a été tué aux ides de mars (le 15 mars) de l’an 44 av. J.-C."
+  },
+  "x-his-s-25": {
+    "text": "Sous quel empereur les Romains ont-ils envahi la Grande-Bretagne, en 43 apr. J.-C. ?",
+    "options": [
+      "Claude",
+      "Jules César",
+      "Hadrien",
+      "Constantin"
+    ],
+    "explanation": "L’empereur Claude a lancé la conquête romaine de la Grande-Bretagne en 43 apr. J.-C."
+  },
+  "x-his-s-26": {
+    "text": "Quel roi a accepté la Grande Charte (Magna Carta) en 1215 ?",
+    "options": [
+      "Le roi Jean (Jean sans Terre)",
+      "Henri II",
+      "Richard Ier",
+      "Édouard Ier"
+    ],
+    "explanation": "Le roi Jean a scellé la Grande Charte à Runnymede en 1215."
+  },
+  "x-his-s-27": {
+    "text": "Quel roi d’Angleterre a été battu à la bataille d’Hastings, en 1066 ?",
+    "options": [
+      "Harold II",
+      "Alfred le Grand",
+      "Édouard le Confesseur",
+      "Guillaume Ier"
+    ],
+    "explanation": "Harold II a été battu par Guillaume de Normandie à Hastings."
+  },
+  "x-his-s-28": {
+    "text": "Quel grand recensement de l’Angleterre a été ordonné par Guillaume le Conquérant et terminé en 1086 ?",
+    "options": [
+      "Le Domesday Book",
+      "La Grande Charte (Magna Carta)",
+      "La tapisserie de Bayeux",
+      "La Déclaration des droits (Bill of Rights)"
+    ],
+    "explanation": "Le Domesday Book recensait les terres et les biens dans toute l’Angleterre."
+  },
+  "x-his-s-29": {
+    "text": "Dans quel pays Johannes Gutenberg a-t-il mis au point sa presse à imprimer, vers 1440 ?",
+    "options": [
+      "L’Allemagne",
+      "L’Italie",
+      "L’Angleterre",
+      "L’Espagne"
+    ],
+    "explanation": "Gutenberg travaillait à Mayence, dans l’Allemagne d’aujourd’hui."
+  },
+  "x-his-s-30": {
+    "text": "Qui a installé la première presse à imprimer d’Angleterre, en 1476 ?",
+    "options": [
+      "William Caxton",
+      "Geoffrey Chaucer",
+      "Thomas Cromwell",
+      "Francis Bacon"
+    ],
+    "explanation": "Caxton a installé sa presse à Westminster en 1476."
+  },
+  "x-his-s-31": {
+    "text": "Dans quel pays la Renaissance a-t-elle commencé ?",
+    "options": [
+      "L’Italie",
+      "La France",
+      "L’Angleterre",
+      "Les Pays-Bas"
+    ],
+    "explanation": "La Renaissance a commencé dans des villes italiennes comme Florence."
+  },
+  "x-his-s-32": {
+    "text": "Quel artiste de la Renaissance a peint la Joconde (Mona Lisa) ?",
+    "options": [
+      "Léonard de Vinci",
+      "Michel-Ange",
+      "Raphaël",
+      "Botticelli"
+    ],
+    "explanation": "Léonard de Vinci a peint la Joconde au début des années 1500."
+  },
+  "x-his-s-33": {
+    "text": "Quel explorateur a atteint l’Inde en contournant l’Afrique par la mer, en 1498 ?",
+    "options": [
+      "Vasco de Gama",
+      "Christophe Colomb",
+      "Fernand de Magellan",
+      "Francis Drake"
+    ],
+    "explanation": "Vasco de Gama a ouvert une route maritime entre l’Europe et l’Inde."
+  },
+  "x-his-s-34": {
+    "text": "L’expédition de quel navigateur, de 1519 à 1522, a été la première à faire le tour complet du monde en bateau ?",
+    "options": [
+      "Fernand de Magellan",
+      "Vasco de Gama",
+      "James Cook",
+      "Walter Raleigh"
+    ],
+    "explanation": "Magellan est mort en chemin, mais son expédition a terminé le voyage."
+  },
+  "x-his-s-35": {
+    "text": "En quelle année la Première Guerre mondiale s’est-elle terminée ?",
+    "options": [
+      "1918",
+      "1914",
+      "1921",
+      "1939"
+    ],
+    "explanation": "L’armistice a été signé le 11 novembre 1918."
+  },
+  "x-his-s-36": {
+    "text": "Pendant la Seconde Guerre mondiale, comment appelait-on le fait d’envoyer les enfants britanniques des villes à la campagne pour les mettre en sécurité ?",
+    "options": [
+      "L’évacuation",
+      "Le rationnement",
+      "L’émigration",
+      "La conscription"
+    ],
+    "explanation": "À partir de 1939, beaucoup d’enfants ont été évacués vers la campagne."
+  },
+  "x-his-s-37": {
+    "text": "Quelle mission spatiale a déposé pour la première fois des astronautes sur la Lune, en 1969 ?",
+    "options": [
+      "Apollo 11",
+      "Apollo 13",
+      "Gemini 4",
+      "Vostok 1"
+    ],
+    "explanation": "La mission Apollo 11 s’est posée sur la Lune le 20 juillet 1969."
+  },
+  "x-his-s-38": {
+    "text": "Quel était le titre du premier livre de la Railway Series, publié en 1945 ?",
+    "options": [
+      "Les trois locomotives (The Three Railway Engines)",
+      "Thomas la locomotive (Thomas the Tank Engine)",
+      "James la locomotive rouge (James the Red Engine)",
+      "Encore Thomas la locomotive (Tank Engine Thomas Again)"
+    ],
+    "explanation": "Le premier livre, en 1945, était The Three Railway Engines (Les trois locomotives)."
+  },
+  "x-his-s-39": {
+    "text": "Dans la Railway Series, l’île de Sodor se trouve entre Barrow-in-Furness et…",
+    "options": [
+      "L’île de Man",
+      "L’île de Wight",
+      "Anglesey",
+      "L’île de Skye"
+    ],
+    "explanation": "Awdry a placé Sodor dans la mer d’Irlande, près de Barrow-in-Furness."
+  },
+  "x-his-s-40": {
+    "text": "Qui a continué d’écrire la Railway Series après la retraite du révérend W. Awdry ?",
+    "options": [
+      "Son fils Christopher Awdry",
+      "Son frère George Awdry",
+      "Britt Allcroft",
+      "Ringo Starr"
+    ],
+    "explanation": "Christopher Awdry a écrit d’autres livres à partir de 1983."
+  }
+}

@@ -22,6 +22,10 @@ their programme and their look. It speaks French and English.
 - **Lessons and exercises**: lessons are steps given to `src/components/LessonPlayer.tsx`
   (see `src/lessons/` and `src/components/*Lesson.tsx`); exercises draw their question
   inside `src/components/ExerciseFrame.tsx`.
+- **Quiz questions**: the banks are in English (`src/services/localData.ts`,
+  `src/services/questions/*.json`); `src/services/questions/fr/<subject>.json` translates
+  each question by its id, options in the same order (the right answer is found by its
+  position). The English station's quiz and the stories stay in English on purpose.
 - **Look** (`src/index.css`): the style of the activities of the pages for kids — a dotted
   sky, dark ink, white cards ringed in ink and sticker buttons (`card-ink`, `chunky`,
   `sticker-title`, `note-paper`).
