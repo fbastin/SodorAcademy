@@ -1,208 +1,215 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Train, BookOpen, ArrowRight, RotateCcw, CheckCircle2, XCircle, Volume2 } from 'lucide-react';
-import { Story, StoryQuestion, Grade } from '../types';
+import { ArrowRight, BookOpen, Check, RotateCcw, Shuffle, Volume2, X } from 'lucide-react';
+import { Story, Grade } from '../types';
 import { STORIES } from '../services/storyData';
 import { speak } from '../services/speechService';
+import { useLang } from '../i18n';
+import { TrainTrack } from '../views/QuizView';
+import { Engine } from './ui';
+import { answerClass, pickRight } from './ExerciseFrame';
 
-interface StoryExerciseProps {
+// The story adventures of the English station: read a story, then answer questions
+// about it. With at least 80 % right answers the story goes to the Library: the
+// exercise then calls onComplete with the story's id ('story-<n>'), which App
+// stores in completedStories. The stories and their questions are English reading
+// practice and stay in English (lang="en"); only the interface around them follows
+// the chosen language.
+
+interface Props {
   grade: Grade;
   completedStories: string[];
   questionsCount?: number;
   onComplete: (storyId: string) => void;
   onCancel: () => void;
+  color?: string;
+  place?: string;
 }
 
-export default function StoryExercise({ grade, completedStories, questionsCount = 10, onComplete, onCancel }: StoryExerciseProps) {
-  const [story, setStory] = useState<Story | null>(null);
-  const [view, setView] = useState<'reading' | 'questions'>('reading');
-  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+// A story not read yet, if any is left; never the one just shown.
+function pickStory(completed: string[], not?: string): Story {
+  const fresh = STORIES.filter(s => !completed.includes(s.id) && s.id !== not);
+  const pool = fresh.length ? fresh : STORIES.filter(s => s.id !== not);
+  return pool[Math.floor(Math.random() * pool.length)] || STORIES[0];
+}
+
+export default function StoryExercise({ completedStories, questionsCount = 10, onComplete, onCancel, color = '#e23b2e', place }: Props) {
+  const { lang, t, tr } = useLang();
+  const [story, setStory] = useState<Story>(() => pickStory(completedStories));
+  const [view, setView] = useState<'reading' | 'questions' | 'retry'>('reading');
+  const [idx, setIdx] = useState(0);
+  const [picked, setPicked] = useState<string | null>(null);
+  const [cheer, setCheer] = useState('');
   const [score, setScore] = useState(0);
 
-  // Determine actual number of questions to ask
-  const actualQuestionsCount = Math.min(questionsCount, story?.questions.length || 10);
+  const count = Math.min(questionsCount, story.questions.length);
+  const passMark = Math.ceil(count * 0.8);
+  const q = story.questions[idx];
+  const ok = picked !== null && picked === q.correctAnswer;
+  const last = idx >= count - 1;
+  const already = completedStories.includes(story.id);
+  const from = place || tr({ fr: 'Dépôt de Tidmouth', en: 'Tidmouth Sheds' });
 
-  useEffect(() => {
-    // Pick a random story that hasn't been completed yet
-    const availableStories = STORIES.filter(s => !completedStories.includes(s.id));
-    if (availableStories.length > 0) {
-      const randomStory = availableStories[Math.floor(Math.random() * availableStories.length)];
-      setStory(randomStory);
-    } else {
-      // If all stories are done, pick any for practice or show a message
-      const randomStory = STORIES[Math.floor(Math.random() * STORIES.length)];
-      setStory(randomStory);
-    }
-  }, [completedStories]);
+  // "1 bonne réponse", "3 bonnes réponses"; "1 right answer", "3 right answers".
+  const rightAnswers = (n: number) => lang === 'fr'
+    ? `${n} bonne${n > 1 ? 's' : ''} réponse${n > 1 ? 's' : ''}`
+    : `${n} right answer${n === 1 ? '' : 's'}`;
 
-  const scoreRef = React.useRef(0);
+  const reset = (s: Story = story) => {
+    window.speechSynthesis?.cancel();
+    setStory(s);
+    setIdx(0);
+    setPicked(null);
+    setScore(0);
+    setView('reading');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  const handleAnswer = (answer: string) => {
-    if (selectedAnswer) return;
-    setSelectedAnswer(answer);
-    const correct = answer === story?.questions[currentQuestionIdx].correctAnswer;
-    setIsCorrect(correct);
-    if (correct) {
-      scoreRef.current += 1;
-      setScore(scoreRef.current);
-    }
+  const answer = (o: string) => {
+    if (picked) return;
+    setPicked(o);
+    setCheer(pickRight(lang));
+    if (o === q.correctAnswer) setScore(s => s + 1);
   };
 
   const nextQuestion = () => {
-    if (currentQuestionIdx < actualQuestionsCount - 1) {
-      setCurrentQuestionIdx(prev => prev + 1);
-      setSelectedAnswer(null);
-      setIsCorrect(null);
-    } else {
-      const passMark = Math.ceil(actualQuestionsCount * 0.8);
-      if (scoreRef.current >= passMark && story) {
-        onComplete(story.id);
-      } else {
-        setCurrentQuestionIdx(0);
-        scoreRef.current = 0;
-        setScore(0);
-        setSelectedAnswer(null);
-        setIsCorrect(null);
-        setView('reading');
-      }
+    window.speechSynthesis?.cancel();
+    if (!last) {
+      setIdx(i => i + 1);
+      setPicked(null);
+      return;
     }
+    if (score >= passMark) onComplete(story.id);
+    else setView('retry');
   };
 
-  if (!story) return null;
+  const progress = view === 'reading' ? 0 : view === 'retry' ? 100 : ((idx + (picked ? 1 : 0)) / count) * 100;
 
   return (
-    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
+    <div className="max-w-3xl mx-auto" lang={lang}>
+      <TrainTrack progress={progress} from={from} to={t('library')} color={color} />
+
       <AnimatePresence mode="wait">
-        {view === 'reading' ? (
-          <motion.div
-            key="reading"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100"
-          >
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-4xl">
-                  {story.thumbnail}
-                </div>
-                <div>
-                  <h2 className="text-3xl font-black text-slate-900">{story.title}</h2>
-                  <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">Tidmouth Story Adventure</p>
-                </div>
-              </div>
-              <button 
-                onClick={() => speak(story.content)}
-                className="p-3 bg-red-50 hover:bg-red-100 text-red-600 rounded-2xl transition-all shadow-sm"
-                title="Listen to story"
-              >
-                <Volume2 size={24} />
-              </button>
-            </div>
-
-            <div className="prose prose-slate max-w-none mb-6 xl:mb-12">
-              <p className="text-lg xl:text-xl leading-relaxed text-slate-700 font-medium whitespace-pre-wrap">
-                {story.content}
-              </p>
-            </div>
-
-            <button
-              onClick={() => setView('questions')}
-              className="w-full py-5 bg-red-600 text-white rounded-2xl font-bold text-xl shadow-lg shadow-red-200 hover:bg-red-700 transition-all flex items-center justify-center gap-3"
-            >
-              I'm Ready for Questions! <ArrowRight size={24} />
-            </button>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="questions"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100 relative overflow-hidden"
-          >
-            {/* Progress Bar */}
-            <div className="absolute top-0 left-0 h-2 bg-slate-100 w-full">
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: `${(currentQuestionIdx / actualQuestionsCount) * 100}%` }}
-                className="h-full bg-red-600"
-              />
-            </div>
-
-            <div className="mb-5 xl:mb-10 flex justify-between items-center">
-              <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
-                Question {currentQuestionIdx + 1} of {actualQuestionsCount}
-              </span>
-              <div className="flex items-center gap-4">
-                <button 
-                  onClick={() => speak(story.questions[currentQuestionIdx].question)}
-                  className="p-2 bg-slate-100 hover:bg-red-50 text-slate-400 hover:text-red-600 rounded-full transition-colors"
-                  title="Listen to question"
-                >
+        {view === 'reading' && (
+          <motion.section key={`read-${story.id}`} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14 }}
+            className="card-ink p-5 sm:p-7" style={{ borderTopWidth: 10, borderTopColor: color }}>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span className="label-caps flex items-center gap-1.5"><BookOpen size={15} aria-hidden="true" /> {tr({ fr: 'Une histoire à lire en anglais', en: 'A story to read' })}</span>
+              <span className="flex items-center gap-2">
+                {already && <span className="chip bg-mint!">{tr({ fr: 'Déjà dans ta bibliothèque', en: 'Already in your Library' })}</span>}
+                <button onClick={() => speak(`${story.title}. ${story.content}`, 'en')} className="chunky p-0! w-10 h-10"
+                  title={t('read_aloud')} aria-label={t('read_aloud')}>
                   <Volume2 size={18} />
                 </button>
-                <span className="text-sm font-black text-green-600 uppercase tracking-widest">
-                  Score: {score}
-                </span>
+              </span>
+            </div>
+
+            <h2 className="text-2xl sm:text-[1.9rem] font-extrabold leading-tight mb-4 flex items-center gap-3">
+              <span aria-hidden="true" className="w-11 h-11 shrink-0 grid place-items-center rounded-xl border-[2.5px] border-ink bg-sky text-2xl">{story.thumbnail}</span>
+              <span lang="en">{story.title}</span>
+            </h2>
+
+            <div lang="en" className="rounded-2xl border-[3px] border-ink bg-sky/60 p-4 sm:p-5 text-[1.15rem] sm:text-[1.25rem] leading-relaxed whitespace-pre-wrap">
+              {story.content}
+            </div>
+
+            <p className="mt-5 mb-0 text-[1.05rem]">
+              {tr({
+                fr: `Lis l’histoire, puis réponds à ${count} questions. Avec au moins ${passMark} bonnes réponses, elle rejoint ta bibliothèque.`,
+                en: `Read the story, then answer ${count} questions. Get at least ${passMark} right and it goes into your Library.`,
+              })}
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+              <button onClick={() => reset(pickStory(completedStories, story.id))} className="chunky">
+                <Shuffle size={16} /> {tr({ fr: 'Une autre histoire', en: 'Another story' })}
+              </button>
+              <button onClick={() => { window.speechSynthesis?.cancel(); setView('questions'); }} className="chunky go big">
+                {tr({ fr: 'J’ai lu l’histoire : aux questions !', en: 'I’ve read it: on to the questions!' })} <ArrowRight size={20} />
+              </button>
+            </div>
+          </motion.section>
+        )}
+
+        {view === 'questions' && (
+          <motion.section key={`q-${story.id}-${idx}`} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14 }}
+            className="card-ink p-5 sm:p-7" style={{ borderTopWidth: 10, borderTopColor: color }}>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <span className="label-caps">{t('question_of', idx + 1, count)}</span>
+              <span className="flex items-center gap-2">
+                <span className="chip bg-mint! tabular-nums">{rightAnswers(score)}</span>
+                <button onClick={() => speak(q.question, 'en')} className="chunky p-0! w-10 h-10" title={t('listen')} aria-label={t('listen')}>
+                  <Volume2 size={18} />
+                </button>
+              </span>
+            </div>
+
+            <h2 lang="en" className="text-xl sm:text-2xl font-extrabold mb-5 leading-snug">{q.question}</h2>
+
+            <div lang="en" className={`grid gap-3 ${q.options.every(o => o.length <= 28) ? 'sm:grid-cols-2' : ''}`}>
+              {q.options.map(o => {
+                const state = !picked ? 'idle' : o === q.correctAnswer ? 'right' : o === picked ? 'picked-wrong' : 'other';
+                return (
+                  <button key={o} onClick={() => answer(o)} disabled={!!picked} className={`${answerClass(state)} justify-between! text-left!`}>
+                    <span>{o}</span>
+                    {state === 'right' && <Check size={20} strokeWidth={3} aria-hidden="true" />}
+                    {state === 'picked-wrong' && <X size={20} strokeWidth={3} aria-hidden="true" />}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div aria-live="polite">
+              {picked && ok && (
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+                  <p className="m-0 font-extrabold text-2xl text-good">{cheer}</p>
+                  <button onClick={nextQuestion} className="chunky go big" autoFocus>
+                    {last ? tr({ fr: 'Terminer l’aventure', en: 'Finish the adventure' }) : tr({ fr: 'Question suivante', en: 'Next question' })} <ArrowRight size={20} />
+                  </button>
+                </div>
+              )}
+              {picked && !ok && (
+                <div className="note-paper mt-6">
+                  <p className="font-extrabold text-bad text-xl mb-1">{t('wrong_title')}</p>
+                  <p className="m-0 text-[1.05rem]">
+                    {tr({ fr: 'La bonne réponse était :', en: 'The right answer was:' })} <b lang="en">{q.correctAnswer}</b>
+                  </p>
+                  <button onClick={nextQuestion} className="chunky mt-4" autoFocus>
+                    {last ? tr({ fr: 'Terminer l’aventure', en: 'Finish the adventure' }) : tr({ fr: 'Question suivante', en: 'Next question' })} <ArrowRight size={16} />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <details className="mt-6 group">
+              <summary className="cursor-pointer font-bold text-ink/75 hover:text-ink w-fit">{tr({ fr: 'Relire l’histoire', en: 'Read the story again' })}</summary>
+              <div lang="en" className="mt-3 rounded-2xl border-[3px] border-ink bg-sky/60 p-4 text-[1.08rem] leading-relaxed whitespace-pre-wrap">
+                {story.content}
               </div>
+            </details>
+          </motion.section>
+        )}
+
+        {view === 'retry' && (
+          <motion.section key="retry" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14 }}
+            className="card-ink p-6 sm:p-8 text-center" style={{ borderTopWidth: 10, borderTopColor: color }}>
+            <Engine size={96} color={color} number="1" className="block mx-auto mb-3" />
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2">{tr({ fr: 'Presque !', en: 'Nearly there!' })}</h2>
+            <p className="text-[1.1rem] max-w-lg mx-auto mb-6">
+              {tr({
+                fr: `Tu as ${rightAnswers(score)} sur ${count}. Il en faut au moins ${passMark} pour ranger l’histoire dans ta bibliothèque. Relis-la, puis réessaie !`,
+                en: `You got ${rightAnswers(score)} out of ${count}. You need at least ${passMark} to put the story in your Library. Read it again, then have another go!`,
+              })}
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <button onClick={() => reset()} className="chunky go big" autoFocus><RotateCcw size={18} /> {tr({ fr: 'Relire l’histoire', en: 'Read the story again' })}</button>
+              <button onClick={() => reset(pickStory(completedStories, story.id))} className="chunky"><Shuffle size={16} /> {tr({ fr: 'Une autre histoire', en: 'Another story' })}</button>
             </div>
-
-            <h3 className={`text-2xl font-black mb-8 ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
-              {story.questions[currentQuestionIdx].question}
-            </h3>
-
-            <div className="grid gap-4 mb-5 xl:mb-10">
-              {story.questions[currentQuestionIdx].options.map((option, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleAnswer(option)}
-                  disabled={!!selectedAnswer}
-                  className={`
-                    p-6 rounded-2xl text-left font-bold text-lg border-2 transition-all flex items-center justify-between
-                    ${selectedAnswer === option 
-                      ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
-                      : (selectedAnswer && option === story.questions[currentQuestionIdx].correctAnswer ? 'bg-green-50 border-green-500 text-green-700' : 'bg-slate-50 border-transparent text-slate-700 hover:bg-slate-100 hover:border-slate-200')
-                    }
-                  `}
-                >
-                  {option}
-                  {(selectedAnswer === option || (selectedAnswer && option === story.questions[currentQuestionIdx].correctAnswer)) && (
-                    <span>{option === story.questions[currentQuestionIdx].correctAnswer ? '🚂' : '❌'}</span>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {selectedAnswer && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                {!isCorrect && (
-                   <div className="mb-6 p-4 bg-red-50 rounded-xl border border-red-100 text-red-700 font-bold text-sm">
-                     Cinders and ashes! The correct answer was: {story.questions[currentQuestionIdx].correctAnswer}
-                   </div>
-                )}
-                <button
-                  onClick={nextQuestion}
-                  className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all"
-                >
-                  {currentQuestionIdx < actualQuestionsCount - 1 ? 'Next Question' : 'Finish Adventure'}
-                </button>
-              </motion.div>
-            )}
-          </motion.div>
+          </motion.section>
         )}
       </AnimatePresence>
 
-      <button
-        onClick={onCancel}
-        className="mt-6 xl:mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors"
-      >
-        ← Back to the station
-      </button>
+      <button onClick={onCancel} className="mt-8 mx-auto block font-bold text-ink/65 hover:text-ink">{t('back_station')}</button>
     </div>
   );
 }

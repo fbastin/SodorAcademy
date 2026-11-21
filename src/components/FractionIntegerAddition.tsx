@@ -1,229 +1,145 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Train, RotateCcw, ArrowRight, XCircle, CheckCircle2, Volume2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { Grade } from '../types';
 import { speak } from '../services/speechService';
+import { useLang } from '../i18n';
+import ExerciseFrame, { Feedback, Frac, answerClass } from './ExerciseFrame';
+import { FractionBars, YELLOW, BLUE, Fr, gcd, rnd, frKey, fractionOptions } from './FractionAdditionLesson';
 
-interface FractionIntegerAdditionProps {
+// A whole number plus a fraction, as one fraction: Gordon's full trucks and part
+// of another. A whole truck is d/d, so i trucks are (i × d)/d; then add the
+// numerators. The fraction is in its lowest terms, so the answer is too.
+// Primary: up to 4 trucks and denominators up to 6. Secondary: up to 9 trucks,
+// denominators up to 12, and sometimes the fraction first.
+
+interface Props {
   grade: Grade;
   questionsCount?: number;
   onComplete: (reward: string) => void;
   onCancel: () => void;
+  color?: string;
+  place?: string;
 }
 
-interface Prob {
-  integer: number;
-  n: number;
-  d: number;
-  correctAns: string;
-  options: string[];
+interface Problem { i: number; n: number; d: number; fracFirst: boolean; right: Fr; options: Fr[] }
+
+function makeProblem(grade: Grade, prev?: Problem): Problem {
+  const prim = grade === 'Primary';
+  let i: number, n: number, d: number;
+  do {
+    i = rnd(1, prim ? 4 : 9);
+    d = rnd(2, prim ? 6 : 12);
+    n = rnd(1, d - 1);
+  } while (gcd(n, d) !== 1 || (prev && prev.i === i && prev.n === n && prev.d === d));
+  const right: Fr = [i * d + n, d];
+  const mistakes: Fr[] = [
+    [i + n, d],                            // the whole number added to the numerator
+    ...([
+      [i + n, d + 1],                      // i/1 + n/d, tops and bottoms added
+      [i * n, d],                          // multiplied instead of added
+      [(i + 1) * d + n, d],                // one whole truck too many
+      [i * d - n, d],                      // the part taken away
+    ] as Fr[]).sort(() => Math.random() - 0.5),
+  ];
+  const near = (): Fr => [right[0] + rnd(-3, 3), d];
+  return { i, n, d, fracFirst: !prim && Math.random() < 0.35, right, options: fractionOptions(right, mistakes, near) };
 }
 
-export default function FractionIntegerAddition({ grade, questionsCount = 10, onComplete, onCancel }: FractionIntegerAdditionProps) {
-  const [problem, setProblem] = useState<Prob | null>(null);
-  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [progress, setProgress] = useState(0);
-  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+export default function FractionIntegerAddition({ grade, questionsCount = 10, onComplete, onCancel, color, place }: Props) {
+  const { lang } = useLang();
+  const fr = lang === 'fr';
+  const [p, setP] = useState<Problem>(() => makeProblem(grade));
+  const [picked, setPicked] = useState<string | null>(null);
+  const [answered, setAnswered] = useState(0);
+  const [key, setKey] = useState(0);
 
-  const generateProblem = () => {
-    const maxInt = grade === 'Primary' ? 5 : 10;
-    const maxDenom = grade === 'Primary' ? 6 : 12;
+  const next = () => { setP(q => makeProblem(grade, q)); setPicked(null); setKey(k => k + 1); };
+  useEffect(() => { next(); }, [grade]);
 
-    const integer = Math.floor(Math.random() * maxInt) + 1;
-    const d = Math.floor(Math.random() * (maxDenom - 1)) + 2;
-    const n = Math.floor(Math.random() * (d - 1)) + 1;
+  const right = frKey(p.right);
+  const ok = picked === right;
+  const whole = p.i * p.d;
 
-    // Result is (integer * d + n) / d
-    const resN = (integer * d) + n;
-    const correctAns = `${resN}/${d}`;
-
-    const options = new Set<string>();
-    options.add(correctAns);
-
-    while (options.size < 4) {
-      const offset = Math.floor(Math.random() * 5) - 2;
-      const dn = Math.max(1, resN + offset);
-      const dist = `${dn}/${d}`;
-      if (dist !== correctAns) options.add(dist);
-    }
-
-    setProblem({
-      integer, n, d,
-      correctAns,
-      options: Array.from(options).sort(() => Math.random() - 0.5)
-    });
-    setSelectedAnswer(null);
-    setIsCorrect(null);
-  };
-
-  useEffect(() => {
-    generateProblem();
-  }, []);
-
-  const handleAnswer = (answer: string) => {
-    if (selectedAnswer) return;
-    setSelectedAnswer(answer);
-    const correct = answer === problem?.correctAns;
-    setIsCorrect(correct);
-
-    if (correct) {
-      const newQuestionsAnswered = questionsAnswered + 1;
-      setQuestionsAnswered(newQuestionsAnswered);
-      const newProgress = Math.min((newQuestionsAnswered / questionsCount) * 100, 100);
-      setProgress(newProgress);
-      if (newQuestionsAnswered >= questionsCount) {
-        setTimeout(() => onComplete('engine'), 1500);
-      }
+  const answer = (o: string) => {
+    if (picked) return;
+    setPicked(o);
+    if (o === right) {
+      const n = answered + 1;
+      setAnswered(n);
+      if (n >= questionsCount) setTimeout(() => onComplete('engine'), 1300);
     }
   };
 
-  if (!problem) return null;
+  const [pn, pd] = (picked ?? '0/1').split('/').map(Number);
+  const hint = !picked || ok ? null
+    : pn === p.i + p.n && (pd === p.d || pd === p.d + 1)
+      ? (fr
+        ? <>Attention : {p.i} compte des wagons entiers, pas des parts. {p.i} {p.i > 1 ? 'wagons' : 'wagon'}, c’est {whole} parts, car chaque wagon a {p.d} parts.</>
+        : <>Careful: {p.i} counts whole trucks, not parts. {p.i} {p.i > 1 ? 'trucks are' : 'truck is'} {whole} parts, because each truck has {p.d} parts.</>)
+      : null;
+
+  const feedback: Feedback = !picked ? null : ok ? { ok: true } : {
+    ok: false,
+    explain: (
+      <div className="space-y-3">
+        {hint && <p className="m-0 font-bold">{hint}</p>}
+        <p className="m-0">
+          {fr
+            ? <>Un wagon entier, c’est {p.d} parts sur {p.d} : 1 = <Frac n={p.d} d={p.d} />. Donc {p.i} {p.i > 1 ? 'wagons' : 'wagon'}, c’est {p.i} × {p.d} = <b>{whole}</b> parts :</>
+            : <>A whole truck is {p.d} parts out of {p.d}: 1 = <Frac n={p.d} d={p.d} />. So {p.i} {p.i > 1 ? 'trucks are' : 'truck is'} {p.i} × {p.d} = <b>{whole}</b> parts:</>}
+        </p>
+        <p className="m-0 pl-4 flex flex-wrap items-center gap-2 text-[1.35rem]">
+          {p.i} = <Frac n={`${p.i} × ${p.d}`} d={p.d} /> = <Frac n={whole} d={p.d} />
+        </p>
+        <p className="m-0">{fr ? 'Maintenant les dénominateurs sont pareils : on additionne les numérateurs.' : 'Now the denominators are the same: add the numerators.'}</p>
+        <p className="m-0 pl-4 flex flex-wrap items-center gap-2 text-[1.35rem]">
+          <Frac n={whole} d={p.d} /> + <Frac n={p.n} d={p.d} /> = <Frac n={`${whole} + ${p.n}`} d={p.d} /> =
+          <span className="px-1.5 rounded-lg bg-white"><Frac n={p.right[0]} d={p.right[1]} /></span>
+        </p>
+        {p.i <= 4 && (
+          <div className="max-w-xl">
+            <FractionBars d={p.d} fills={[[whole, BLUE], [p.n, YELLOW]]}
+              label={fr ? `${p.i} ${p.i > 1 ? 'wagons pleins' : 'wagon plein'} et ${p.n} ${p.n > 1 ? 'parts' : 'part'} d’un wagon de ${p.d} parts` : `${p.i} full truck${p.i > 1 ? 's' : ''} and ${p.n} part${p.n > 1 ? 's' : ''} of a truck of ${p.d} parts`} />
+          </div>
+        )}
+      </div>
+    ),
+  };
+
+  const plus = <span className="text-[#2464d6]">+</span>;
+  const sum = p.fracFirst ? <><Frac n={p.n} d={p.d} />{plus}{p.i}</> : <>{p.i}{plus}<Frac n={p.n} d={p.d} /></>;
+  const say = fr
+    ? `Gordon tire ${p.i} ${p.i > 1 ? 'wagons pleins' : 'wagon plein'} de charbon et ${p.n} sur ${p.d} d’un autre wagon. Combien de wagons en tout ?`
+    : `Gordon pulls ${p.i} full truck${p.i > 1 ? 's' : ''} of coal and ${p.n} over ${p.d} of another truck. How many trucks is that?`;
 
   return (
-    <div className="max-w-3xl mx-auto py-6 px-4">
-      <div className="mb-8 relative">
-        <div className="h-3 w-full bg-slate-200 rounded-full train-track overflow-hidden">
-          <motion.div 
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            className="h-full bg-sodor-blue"
-          />
-        </div>
-        <motion.div 
-          animate={{ left: `${progress}%` }}
-          className="absolute -top-5 -ml-3 text-sodor-blue transition-all"
-        >
-          <Train size={24} />
-        </motion.div>
-        <div className="flex justify-between mt-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-1">
-          <span>Tidmouth Sheds</span>
-          <span>Knapford Station</span>
-        </div>
+    <ExerciseFrame
+      color={color} place={place || (fr ? 'Gare de Knapford' : 'Knapford Station')}
+      label={fr ? 'Un entier plus une fraction' : 'A whole number plus a fraction'}
+      answered={answered} total={questionsCount} questionKey={key}
+      onListen={() => speak(say, lang)} feedback={feedback} onNext={next} onBack={onCancel}
+    >
+      <h2 className="text-xl sm:text-2xl font-extrabold mb-5 leading-snug">
+        {fr
+          ? <>Gordon tire {p.i} {p.i > 1 ? 'wagons pleins' : 'wagon plein'} de charbon et <Frac n={p.n} d={p.d} /> d’un autre wagon. Combien de wagons en tout ? Écris la réponse en une seule fraction.</>
+          : <>Gordon pulls {p.i} full truck{p.i > 1 ? 's' : ''} of coal and <Frac n={p.n} d={p.d} /> of another truck. How many trucks is that? Write the answer as one fraction.</>}
+      </h2>
+      <div className="flex items-center justify-center gap-4 sm:gap-6 mb-7 text-[2.2rem] font-extrabold">
+        <span className="flex items-center gap-4 sm:gap-6">{sum}</span>
+        <span className="text-ink/50">=</span>
+        <span className="w-14 h-20 rounded-xl border-[3px] border-dashed border-[#e23b2e] text-[#e23b2e] flex items-center justify-center">?</span>
       </div>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`${problem.integer}+${problem.n}/${problem.d}`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="engine-glass rounded-3xl p-5 md:p-7 xl:p-12 shadow-2xl relative overflow-hidden bg-white/90 backdrop-blur-xl border-2 border-white/50"
-        >
-          <div className="absolute top-0 left-0 w-1.5 h-full bg-sodor-blue" />
-          <div className="flex justify-between items-start mb-4">
-            <span className="inline-block px-3 py-1 rounded-full bg-sodor-blue/10 text-sodor-blue text-[10px] font-black uppercase tracking-widest">
-              Special Assignment • Mixed Loads
-            </span>
-            <button 
-              onClick={() => speak("Gordon has " + problem.integer + " full coal cars and " + problem.n + " over " + problem.d + " of another. How many parts does he have in total?")}
-              className="p-2 bg-slate-100 hover:bg-sodor-blue/10 text-slate-400 hover:text-sodor-blue rounded-full transition-colors"
-              title="Listen to question"
-            >
-              <Volume2 size={16} />
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        {p.options.map(f => {
+          const o = frKey(f);
+          const state = !picked ? 'idle' : o === right ? 'right' : o === picked ? 'picked-wrong' : 'other';
+          return (
+            <button key={o} onClick={() => answer(o)} disabled={!!picked} className={`${answerClass(state)} py-3! text-[1.6rem]`}
+              aria-label={fr ? `${f[0]} sur ${f[1]}` : `${f[0]} over ${f[1]}`}>
+              <Frac n={f[0]} d={f[1]} />
             </button>
-          </div>
-
-          <h2 className="text-xl font-black mb-8 text-slate-900 leading-tight">
-            Gordon has <span className="text-sodor-blue">{problem.integer}</span> full coal cars and <span className="text-sodor-blue">{problem.n}/{problem.d}</span> of another. How many parts does he have in total?
-          </h2>
-
-          <div className="flex items-center justify-center gap-6 mb-6 xl:mb-12">
-            <div className="text-4xl xl:text-5xl font-black text-slate-800 bg-slate-50 w-16 h-16 xl:w-24 xl:h-24 rounded-2xl flex items-center justify-center shadow-inner border border-slate-100">
-              {problem.integer}
-            </div>
-            <span className="text-3xl font-black text-sodor-blue">+</span>
-            <div className={`flex flex-col items-center text-4xl font-black ${grade === 'Primary' ? 'text-sodor-blue' : 'text-indigo-700'}`}>
-              <span className="border-b-4 border-slate-800 px-3">{problem.n}</span>
-              <span>{problem.d}</span>
-            </div>
-            <span className="text-2xl font-black text-slate-300">=</span>
-            <div className="w-20 h-24 bg-slate-100 rounded-2xl border-4 border-dashed border-slate-200 flex items-center justify-center">
-              <span className="text-slate-300 text-3xl">?</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 max-w-xl mx-auto">
-            {problem.options.map((option, idx) => {
-              const [on, od] = option.split('/');
-              const isCorrectOption = option === problem.correctAns;
-              return (
-                <motion.button
-                  key={idx}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => handleAnswer(option)}
-                  disabled={!!selectedAnswer}
-                  className={`
-                    p-6 rounded-2xl border-4 transition-all flex flex-col items-center gap-1 relative
-                    ${selectedAnswer === option 
-                      ? (isCorrect ? 'bg-green-50 border-green-500 text-green-700' : 'bg-red-50 border-red-500 text-red-700')
-                      : (selectedAnswer && isCorrectOption ? 'bg-green-50 border-green-500 text-green-700' : 'bg-white border-slate-100 text-slate-700 hover:border-sodor-blue hover:shadow-xl')
-                    }
-                  `}
-                >
-                  <div className="flex flex-col items-center text-2xl font-black">
-                    <span className="border-b-2 border-current px-2">{on}</span>
-                    <span>{od}</span>
-                  </div>
-                  {(selectedAnswer === option || (selectedAnswer && isCorrectOption)) && (
-                    <span className="text-xl absolute top-2 right-2">
-                      {isCorrectOption ? '🚂' : '❌'}
-                    </span>
-                  )}
-                </motion.button>
-              );
-            })}
-          </div>
-
-          {isCorrect === false && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-8 p-6 bg-red-50 rounded-2xl border-2 border-red-100 flex flex-col gap-2"
-            >
-              <div className="flex items-center gap-2 text-red-700 font-black text-lg">
-                <XCircle size={20} />
-                <span>Oh, the Indignity!</span>
-              </div>
-              <p className="text-slate-600 text-xs font-medium leading-relaxed">
-                Remember: To add an integer to a fraction, turn the integer into a fraction first! 
-                <br/>
-                <span className="font-black text-slate-800">{problem.integer}</span> is the same as <span className="font-black text-slate-800">({problem.integer} × {problem.d}) / {problem.d}</span> = <span className="font-black text-slate-800">{(problem.integer * problem.d)} / {problem.d}</span>.
-              </p>
-              <button 
-                onClick={generateProblem}
-                className="mt-4 bg-white text-red-600 border-2 border-red-200 px-6 py-2 rounded-xl font-black hover:bg-red-50 transition-all flex items-center gap-2 self-start text-sm"
-              >
-                <RotateCcw size={18} />
-                Try Next Express
-              </button>
-            </motion.div>
-          )}
-
-          {isCorrect === true && questionsAnswered < questionsCount && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-8 flex justify-center"
-            >
-              <button 
-                onClick={generateProblem}
-                className="bg-slate-900 text-white px-10 py-4 rounded-xl font-black shadow-2xl hover:bg-slate-800 transition-all flex items-center gap-3 text-lg"
-              >
-                Next Station! <ArrowRight size={20} />
-              </button>
-            </motion.div>
-          )}
-        </motion.div>
-      </AnimatePresence>
-      
-      <button 
-        onClick={onCancel}
-        className="mt-8 mx-auto block text-slate-400 font-black hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
-      >
-        ← Back to the station
-      </button>
-    </div>
+          );
+        })}
+      </div>
+    </ExerciseFrame>
   );
 }

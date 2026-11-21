@@ -1,4 +1,4 @@
-import { LucideIcon, Train, BookOpen, Calculator, History, MapPin, Trophy, PlayCircle, Music } from 'lucide-react';
+import { Text } from './i18n';
 
 export interface StoryQuestion {
   question: string;
@@ -15,26 +15,6 @@ export interface Story {
 }
 
 export type Grade = 'Primary' | 'Secondary';
-
-export interface Exercise {
-  id: string;
-  name: string;
-  description: string;
-  type: 'quiz' | 'custom' | 'lesson';
-  component?: string;
-}
-
-export interface Subject {
-  id: string;
-  name: string;
-  icon: LucideIcon;
-  color: string;
-  description: string;
-  station?: string;
-  x?: number; // percentage on map
-  y?: number; // percentage on map
-  exercises?: Exercise[];
-}
 
 export interface Question {
   id: string;
@@ -74,144 +54,41 @@ export interface UserStats {
 
 export interface Video {
   id: string;
-  title: string;
+  title: Text;
   filename: string;
-  thumbnail: string;
-  description: string;
+  poster: string;
+  description: Text;
 }
 
+// The films of the Sodor Cinema, in media/; their posters are in media/posters/.
 export const VIDEOS: Video[] = [
   {
     id: 'welcome',
-    title: 'Welcome to Sodor!',
+    title: { fr: 'Bienvenue à Sodor !', en: 'Welcome to Sodor!' },
     filename: 'Thomas_and_Sir_Topham_Hatt_wel.mp4',
-    thumbnail: '🚂',
-    description: 'Sir Topham Hatt welcomes you to the Academy.'
+    poster: 'posters/welcome.jpg',
+    description: { fr: 'Sir Topham Hatt t’accueille à l’Académie.', en: 'Sir Topham Hatt welcomes you to the Academy.' },
   },
   {
-    id: 'steam-power',
-    title: 'Steam Power Secrets',
-    filename: 'Steam_Power_Secrets.mp4',
-    thumbnail: '💨',
-    description: 'Learn how steam makes the engines move.'
-  },
-  {
-    id: 'knapford-busy',
-    title: 'Busy Day at Knapford',
-    filename: 'Knapford_Busy_Day.mp4',
-    thumbnail: '🚉',
-    description: 'Watch Thomas handle the express!'
+    id: 'steam-congrats',
+    title: { fr: 'Bravo en vapeur', en: 'Congratulations in Steam' },
+    filename: 'Thomas_is_using_is_whistle_to.mp4',
+    poster: 'posters/steam-congrats.jpg',
+    description: { fr: 'Thomas écrit « Congratulations! » dans le ciel avec sa vapeur.', en: 'Thomas writes “Congratulations!” in the sky with his steam.' },
   },
   {
     id: 'thomas-sharing',
-    title: 'Thomas Likes to Share',
-    filename: 'Thomas_is_using_is_whistle_to.mp4',
-    thumbnail: '🍎',
-    description: 'Thomas learns the importance of sharing with his friends.'
-  }
-];
-
-export const SUBJECTS: Subject[] = [
-  {
-    id: 'math',
-    name: 'Mathematics',
-    icon: Calculator,
-    color: 'bg-blue-600',
-    description: 'Calculate coal loads and track distances.',
-    station: 'Knapford Station',
-    x: 24,
-    y: 65,
-    exercises: [
-      { id: 'math-mean-lesson', name: 'Arithmetic Mean Lesson', description: 'Learn how to calculate averages with Gordon!', type: 'lesson', component: 'ArithmeticMeanLesson' },
-      { id: 'math-mean-mastery', name: 'Arithmetic Mean Mastery', description: 'Master averages with a variable number of trucks!', type: 'custom', component: 'ArithmeticMeanMastery' },
-      { id: 'math-mean-word-problems', name: 'Average Adventures', description: 'Solve advanced textual problems about averages!', type: 'custom', component: 'ArithmeticMeanWordProblems' },
-      { id: 'math-mean-exercise', name: 'Arithmetic Mean (Simple)', description: 'Quick average practice for beginners.', type: 'custom', component: 'ArithmeticMeanExercise' },
-      { id: 'math-fractions-add-lesson', name: 'Adding Fractions Lesson', description: 'Learn how to add fractions with Percy!', type: 'lesson', component: 'FractionAdditionLesson' },
-      { id: 'math-lcm-lesson', name: 'Least Common Multiple Lesson', description: 'Master the smallest common multiplier with Thomas!', type: 'lesson', component: 'LCMLesson' },
-      { id: 'math-fractions-mult', name: 'Fraction Multiplication', description: 'Help Thomas multiply fractions!', type: 'custom', component: 'FractionMultiplication' },
-      { id: 'math-fractions-add', name: 'Fraction Addition', description: 'Help Percy add fraction loads!', type: 'custom', component: 'FractionAddition' },
-      { id: 'math-fractions-simple', name: 'Simple Fraction Addition', description: 'Add fractions with the same denominator!', type: 'custom', component: 'SimpleFractionAddition' },
-      { id: 'math-fraction-int', name: 'Fraction & Integer Addition', description: 'Help Gordon add integers and fractions!', type: 'custom', component: 'FractionIntegerAddition' },
-      { id: 'math-lcm', name: 'LCM Challenge', description: 'Find the smallest common multiplier for the engines!', type: 'custom', component: 'LCMExercise' },
-      { id: 'math-prisms-lesson', name: 'Discovering Prisms & Pyramids', description: 'Learn about 3D shapes with Thomas!', type: 'lesson', component: 'PrismsLesson' }
-    ]
+    title: { fr: 'La fête à la gare', en: 'A Party at the Station' },
+    filename: 'Thomas_likes_to_share.mp4',
+    poster: 'posters/thomas-sharing.jpg',
+    description: { fr: 'Thomas partage des gâteaux avec ses amis.', en: 'Thomas shares cakes with his friends.' },
   },
-  {
-    id: 'english',
-    name: 'English',
-    icon: BookOpen,
-    color: 'bg-red-600',
-    description: 'Master spelling and station announcements.',
-    station: 'Tidmouth Sheds',
-    x: 14,
-    y: 45,
-    exercises: [
-      { id: 'eng-stories', name: 'Story Adventure', description: 'Read a story and answer questions!', type: 'custom', component: 'StoryExercise' }
-    ]
-  },
-  {
-    id: 'science',
-    name: 'Science',
-    icon: Train,
-    color: 'bg-green-600',
-    description: 'Learn how steam and engines work.',
-    station: 'Vicarstown',
-    x: 91,
-    y: 40,
-    exercises: [
-      { id: 'sci-force-lesson', name: 'Force & Motion Lesson', description: 'Learn about pushes, pulls, and gravity with Thomas!', type: 'lesson', component: 'ForceLesson' },
-      { id: 'sci-force-exercise', name: 'Force Challenge', description: 'Test your knowledge of forces and motion!', type: 'quiz' }
-    ]
-  },
-  {
-    id: 'history',
-    name: 'History',
-    icon: History,
-    color: 'bg-purple-600',
-    description: 'Discover the heritage of Sodor.',
-    station: 'Wellsworth',
-    x: 44,
-    y: 72,
-    exercises: [
-      { id: 'his-quiz', name: 'Wellsworth Quiz', description: 'Explore the history of the railway!', type: 'quiz' }
-    ]
-  },
-  {
-    id: 'geography',
-    name: 'Geography',
-    icon: MapPin,
-    color: 'bg-orange-600',
-    description: 'Navigate the tracks and hills.',
-    station: 'Peel Godred',
-    x: 52,
-    y: 28,
-    exercises: [
-      { id: 'geo-continents-lesson', name: '7 Continents Lesson', description: 'Explore the massive lands of our world!', type: 'lesson', component: 'ContinentsLesson' },
-      { id: 'geo-continents-exercise', name: 'Continents Challenge', description: 'Can you identify all the continents?', type: 'custom', component: 'ContinentsExercise' },
-      { id: 'geo-quiz', name: 'Peel Godred Quiz', description: 'Master the map of Sodor!', type: 'quiz' }
-    ]
-  },
-  {
-    id: 'music',
-    name: 'Music',
-    icon: Music,
-    color: 'bg-pink-600',
-    description: 'Listen to the whistles and bells.',
-    station: "Crovan's Gate",
-    x: 72,
-    y: 48,
-    exercises: [
-      { id: 'mus-waves-lesson', name: 'Sound Waves & Frequencies Lesson', description: 'Learn about frequencies, amplitude, and waveforms!', type: 'lesson', component: 'SoundWavesLesson' },
-      { id: 'mus-ear-training', name: 'Ear Training', description: 'Listen carefully and identify the sequence of three notes!', type: 'custom', component: 'PianoSequence' },
-      { id: 'mus-piano', name: 'Piano Practice', description: 'Play your favorite songs on the 88-key piano!', type: 'custom', component: 'Piano' }
-    ]
-  }
 ];
 
 export const ENGINES = [
-  { id: 'thomas', name: 'Thomas', color: '#1E40AF', description: 'The Number 1 Blue Engine.' },
-  { id: 'percy', name: 'Percy', color: '#166534', description: 'The Green Post Train.' },
-  { id: 'james', name: 'James', color: '#991B1B', description: 'The Splendid Red Engine.' },
-  { id: 'gordon', name: 'Gordon', color: '#1E3A8A', description: 'The Big Express Engine.' },
-  { id: 'emily', name: 'Emily', color: '#065F46', description: 'The Emerald Engine.' }
+  { id: 'thomas', name: 'Thomas', number: '1', color: '#1565c0', description: { fr: 'La locomotive bleue numéro 1.', en: 'The number 1 blue engine.' } },
+  { id: 'percy', name: 'Percy', number: '6', color: '#2e7d32', description: { fr: 'La petite locomotive verte du courrier.', en: 'The little green mail engine.' } },
+  { id: 'james', name: 'James', number: '5', color: '#c62828', description: { fr: 'La splendide locomotive rouge.', en: 'The splendid red engine.' } },
+  { id: 'gordon', name: 'Gordon', number: '4', color: '#1e3a8a', description: { fr: 'La grande locomotive de l’express.', en: 'The big express engine.' } },
+  { id: 'emily', name: 'Emily', number: '', color: '#00695c', description: { fr: 'La locomotive émeraude.', en: 'The emerald engine.' } },
 ];

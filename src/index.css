@@ -1,50 +1,158 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
+/* Sodor Academy takes the look of the activities in the pages for kids on
+   slashbin.net (Mathematics/maths.css, Practice/practice.css): a dotted sky, dark
+   ink, white cards ringed in ink, and buttons like stickers that press down. */
+
 @theme {
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Baloo 2", "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  
-  --color-sodor-blue: #1e40af;
-  --color-sodor-red: #991b1b;
-  --color-sodor-green: #166534;
-  --color-sodor-gold: #fbbf24;
+
+  --color-ink: #17233d;
+  --color-sky: #e7eef7;
+  --color-sticker: #ffd23f;
+  --color-note: #fff3b0;
+  --color-mint: #c9eedb;
+  --color-rose: #ffd6cf;
+  --color-lilac: #e3dcf7;
+  --color-good: #1c7a55;
+  --color-bad: #b3261e;
+
+  /* The former names, kept for the lessons and exercises that still use them. */
+  --color-sodor-blue: #2464d6;
+  --color-sodor-red: #e23b2e;
+  --color-sodor-green: #1c7a55;
+  --color-sodor-gold: #ffb703;
 }
 
 @layer base {
+  html { -webkit-text-size-adjust: 100%; }
   body {
-    @apply text-slate-900 antialiased;
-    background-image: linear-gradient(rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.85)), url('/SodorAcademy/media/STEAM Centre of Excellence.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    color: var(--color-ink);
+    background-color: var(--color-sky);
+    background-image: radial-gradient(rgba(23, 35, 61, .08) 1.2px, transparent 1.4px);
+    background-size: 22px 22px;
+    font-size: 17px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
   }
+  :focus-visible { outline: 3px solid #2464d6; outline-offset: 3px; }
+  /* Code is read as typed: no ligature turns <= into ≤ or === into one sign. */
+  code, pre, kbd, .font-mono { font-variant-ligatures: none; }
 }
 
+@layer components {
+  /* A white card ringed in ink. */
+  .card-ink {
+    background: #fff;
+    border: 3px solid var(--color-ink);
+    border-radius: 20px;
+    box-shadow: 0 6px 0 var(--color-ink);
+  }
+  a.card-ink, button.card-ink { transition: transform .08s, box-shadow .08s; }
+  a.card-ink:hover, button.card-ink:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--color-ink); }
+  a.card-ink:active, button.card-ink:active { transform: translateY(3px); box-shadow: 0 3px 0 var(--color-ink); }
+
+  /* A button like a sticker. */
+  .chunky {
+    display: inline-flex; align-items: center; justify-content: center; gap: .4em;
+    border: 2.5px solid var(--color-ink); border-radius: 12px; background: #fff;
+    box-shadow: 0 4px 0 var(--color-ink);
+    padding: 6px 14px; font-weight: 700; color: var(--color-ink); cursor: pointer;
+    transition: transform .06s, box-shadow .06s;
+    touch-action: manipulation;
+  }
+  .chunky:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 var(--color-ink); }
+  .chunky[aria-pressed="true"] { background: var(--color-sticker); }
+  .chunky:disabled { opacity: .45; cursor: not-allowed; }
+  .chunky.go { background: var(--color-sticker); }
+  .chunky.blue { background: #2464d6; color: #fff; }
+  .chunky.big { padding: 10px 22px; font-size: 1.15rem; border-radius: 14px; }
+
+  /* A title on its band of colour (--bar). */
+  .sticker-title {
+    display: inline-flex; align-items: center; gap: .35em;
+    margin: 0; padding: .02em .45em;
+    font-weight: 800; line-height: 1.2; letter-spacing: .01em;
+    color: #fff; text-shadow: 0 2px 0 rgba(0, 0, 0, .2);
+    background: var(--bar, #2464d6);
+    border: 3px solid var(--color-ink); border-radius: 14px; box-shadow: 0 5px 0 var(--color-ink);
+  }
+
+  /* The yellow sticky note of the labs. */
+  .note-paper {
+    background: var(--color-note); padding: 14px 18px 16px;
+    border-radius: 3px 3px 22px 3px; transform: rotate(-.6deg);
+    box-shadow: 0 12px 18px -12px rgba(23, 35, 61, .55);
+  }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: .3em;
+    padding: 0 .6em; border-radius: 999px; border: 2px solid var(--color-ink);
+    font-size: .78rem; font-weight: 700; line-height: 1.6; background: #fff; white-space: nowrap;
+  }
+
+  .label-caps { font-size: .8rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: rgba(23, 35, 61, .62); }
+}
+
+/* The questions of the Practice Room (practice/bank.ts), as Practice/practice.css draws them. */
+.skill-q .eq { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .25em; font-size: clamp(28px, 6vw, 40px); font-weight: 800; font-variant-numeric: tabular-nums; }
+.skill-q .blank { display: inline-grid; place-items: center; min-width: 1.4em; height: 1.2em; padding: 0 .15em; color: #e23b2e; border: 3px dashed #e23b2e; border-radius: 10px; font-size: .9em; }
+.skill-q .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.1; }
+.skill-q .frac > span { padding: 0 .15em; }
+.skill-q .frac > span:first-child { border-bottom: 3.5px solid var(--color-ink); }
+.skill-q .frac .blank { height: 1.1em; margin: 2px 0; }
+.skill-q .visual { margin: 14px 0 4px; text-align: center; overflow-x: auto; }
+.skill-q .visual svg, .skill-q .vis { max-width: 100%; height: auto; display: inline-block; }
+.skill-q pre.code { display: inline-block; margin: 0; padding: 12px 18px; text-align: left; overflow-x: auto; max-width: 100%; background: #17233d; color: #e8edf5; border-radius: 14px; font: 16px/1.5 var(--font-mono); font-variant-ligatures: none; }
+.skill-q .prompt pre.code, .skill-q .visual pre.code { display: block; width: fit-content; margin: 8px auto; }
+.skill-q .hl { padding: 0 .3em; border-radius: 6px; background: var(--color-note); font-weight: 700; white-space: nowrap; }
+.skill-q .explain { padding: 10px 14px; border-radius: 12px; background: rgba(255, 255, 255, .7); }
+.skill-q .explain p { margin: 6px 0; }
+.skill-q .explain ol, .skill-q .explain ul { margin: 4px 0; padding-left: 1.3em; list-style: revert; }
+.skill-q b, .skill-q strong { font-weight: 800; }
+.skill-q .hljs-keyword, .skill-q .hljs-built_in { color: #ff7b72; }
+.skill-q .hljs-string { color: #a5d6ff; }
+.skill-q .hljs-number, .skill-q .hljs-literal { color: #79c0ff; }
+.skill-q .hljs-title, .skill-q .hljs-title.function_ { color: #d2a8ff; }
+.skill-q .hljs-comment { color: #8b949e; font-style: italic; }
+.skill-q .hljs-variable, .skill-q .hljs-params { color: #ffa657; }
+
+/* The rails under the progress train. */
 .train-track {
-  background-image: repeating-linear-gradient(90deg, #444 0, #444 10px, transparent 10px, transparent 40px);
+  background-image: repeating-linear-gradient(90deg, #8a5a32 0, #8a5a32 6px, transparent 6px, transparent 18px);
 }
 
+/* Older class names, restyled: a card and a blue sticker button. */
 .engine-glass {
-  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+  background: #fff;
+  border: 3px solid var(--color-ink);
+  box-shadow: 0 6px 0 var(--color-ink);
 }
 
 .btn-3d {
-  @apply transition-all relative font-black uppercase tracking-wider;
-  box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+  @apply transition-all relative font-extrabold;
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 0 4px 0 var(--color-ink);
 }
 .btn-3d:active {
-  transform: translateY(6px);
-  box-shadow: 0 0 0 rgba(0,0,0,0.15);
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--color-ink);
 }
 
 .btn-3d-blue {
-  @apply bg-sodor-blue text-white rounded-2xl hover:bg-blue-700 transition-all relative font-black uppercase tracking-wider;
-  box-shadow: 0 6px 0 #1e3a8a;
+  @apply text-white rounded-2xl transition-all relative font-extrabold;
+  background: #2464d6;
+  border: 2.5px solid var(--color-ink);
+  box-shadow: 0 4px 0 var(--color-ink);
 }
+.btn-3d-blue:hover { background: #1f57bd; }
 .btn-3d-blue:active {
-  transform: translateY(6px);
-  box-shadow: 0 0 0 #1e3a8a;
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--color-ink);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .chunky, a.card-ink, button.card-ink { transition: none; }
+}

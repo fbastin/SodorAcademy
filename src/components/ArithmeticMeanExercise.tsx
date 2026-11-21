@@ -1,211 +1,179 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Train, RotateCcw, ArrowRight, CheckCircle2, XCircle, Calculator, Trophy, Volume2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { Grade } from '../types';
 import { speak } from '../services/speechService';
+import { useLang, Lang, pick } from '../i18n';
+import ExerciseFrame, { Feedback, answerClass } from './ExerciseFrame';
+import { Engine } from './ui';
 
-interface ArithmeticMeanExerciseProps {
+// First steps with the average: a few engines pull different numbers of trucks;
+// if they shared them out equally, how many would each one pull? Add them all up,
+// then divide by the number of engines. Whole-number averages, four answers.
+
+interface Props {
   grade: Grade;
   questionsCount?: number;
   onComplete: (reward: string) => void;
   onCancel: () => void;
+  color?: string;
+  place?: string;
 }
 
-interface MeanProblem {
-  values: number[];
-  mean: number;
-  options: number[];
+const ENGINES = [
+  { name: 'Thomas', color: '#2464d6', number: '1' },
+  { name: 'Edward', color: '#4a7cc4', number: '2' },
+  { name: 'Henry', color: '#2e8b3e', number: '3' },
+  { name: 'Gordon', color: '#1f4fa0', number: '4' },
+  { name: 'James', color: '#d8342c', number: '5' },
+  { name: 'Percy', color: '#3fa34d', number: '6' },
+  { name: 'Toby', color: '#8a5a32', number: '7' },
+  { name: 'Emily', color: '#1c7a55', number: '12' },
+];
+type Crew = typeof ENGINES[number];
+
+interface Problem { crew: Crew[]; values: number[]; sum: number; mean: number; median: number | null; options: number[] }
+
+const rnd = (a: number, b: number) => a + Math.floor(Math.random() * (b - a + 1));
+const shuffle = <T,>(xs: T[]) => [...xs].sort(() => Math.random() - 0.5);
+
+// Values around a whole-number mean: random gaps, the last value balances them.
+function makeValues(n: number, mean: number, spread: number, max: number): number[] {
+  for (;;) {
+    const v = Array.from({ length: n - 1 }, () => mean + rnd(-spread, spread));
+    const last = n * mean - v.reduce((a, b) => a + b, 0);
+    v.push(last);
+    if (v.every(x => x >= 1 && x <= max) && new Set(v).size > 1) return shuffle(v);
+  }
 }
 
-export default function ArithmeticMeanExercise({ grade, questionsCount = 10, onComplete, onCancel }: ArithmeticMeanExerciseProps) {
-  const [problem, setProblem] = useState<MeanProblem | null>(null);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [progress, setProgress] = useState(0);
-  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+function makeProblem(grade: Grade): Problem {
+  const primary = grade === 'Primary';
+  const n = primary ? 3 : rnd(3, 5);
+  const mean = primary ? rnd(3, 8) : rnd(6, 17);
+  const values = makeValues(n, mean, Math.min(mean - 1, primary ? 4 : 7), primary ? 12 : 25);
+  const sum = n * mean;
+  const sorted = [...values].sort((a, b) => a - b);
+  const median = n % 2 ? sorted[(n - 1) / 2] : null;
 
-  const generateProblem = () => {
-    const count = grade === 'Primary' ? 3 : Math.floor(Math.random() * 3) + 3; // 3 for Primary, 3-5 for Secondary
-    const targetMean = grade === 'Primary' 
-      ? Math.floor(Math.random() * 6) + 3  // Mean between 3 and 8
-      : Math.floor(Math.random() * 12) + 6; // Mean between 6 and 17
-    
-    let values: number[] = [];
-    let currentSum = 0;
-    
-    // Generate c-1 values that are somewhat close to the mean but allow variation
-    for (let i = 0; i < count - 1; i++) {
-      // Pick a value between 1 and targetMean * 1.2 to keep the sum manageable
-      const val = Math.floor(Math.random() * (targetMean - 1)) + 1;
-      values.push(val);
-      currentSum += val;
-    }
-    
-    let lastVal = (targetMean * count) - currentSum;
-    values.push(lastVal);
-    
-    const options = new Set<number>();
-    options.add(targetMean);
-    while (options.size < 4) {
-      const dist = targetMean + (Math.floor(Math.random() * 7) - 3);
-      if (dist > 0 && dist !== targetMean) options.add(dist);
-    }
-    
-    setProblem({
-      values: values.sort(() => Math.random() - 0.5),
-      mean: targetMean,
-      options: Array.from(options).sort((a, b) => a - b)
-    });
+  // Likely mistakes: the middle number, dividing by one too few or too many, forgetting to divide.
+  const options = new Set<number>([mean]);
+  const typical: number[] = [];
+  if (median !== null) typical.push(median);
+  if (sum % (n - 1) === 0) typical.push(sum / (n - 1));
+  if (sum % (n + 1) === 0) typical.push(sum / (n + 1));
+  typical.push(sum);
+  for (const w of shuffle(typical)) if (options.size < 3 && w > 0) options.add(w);
+  while (options.size < 4) {
+    const w = mean + (Math.random() < 0.5 ? -1 : 1) * rnd(1, 3);
+    if (w > 0) options.add(w);
+  }
+  return { crew: shuffle(ENGINES).slice(0, n), values, sum, mean, median, options: [...options].sort((a, b) => a - b) };
+}
 
-    setSelectedAnswer(null);
-    setIsCorrect(null);
-  };
+const list = (xs: (string | number)[], lang: Lang) =>
+  `${xs.slice(0, -1).join(', ')} ${lang === 'fr' ? 'et' : 'and'} ${xs[xs.length - 1]}`;
 
-  useEffect(() => {
-    generateProblem();
-  }, []);
+export default function ArithmeticMeanExercise({ grade, questionsCount = 10, onComplete, onCancel, color, place }: Props) {
+  const { lang } = useLang();
+  const fr = lang === 'fr';
+  const L = (f: string, e: string) => pick({ fr: f, en: e }, lang);
+  const [p, setP] = useState<Problem>(() => makeProblem(grade));
+  const [picked, setPicked] = useState<number | null>(null);
+  const [answered, setAnswered] = useState(0);
+  const [key, setKey] = useState(0);
 
-  const handleAnswer = (answer: number) => {
-    if (selectedAnswer !== null) return;
-    setSelectedAnswer(answer);
-    const correct = answer === problem?.mean;
-    setIsCorrect(correct);
-    
-    if (correct) {
-      const newQuestionsAnswered = questionsAnswered + 1;
-      setQuestionsAnswered(newQuestionsAnswered);
-      const newProgress = Math.min((newQuestionsAnswered / questionsCount) * 100, 100);
-      setProgress(newProgress);
-      
-      if (newQuestionsAnswered >= questionsCount) {
-        setTimeout(() => onComplete('engine'), 1500);
-      }
+  const next = () => { setP(makeProblem(grade)); setPicked(null); setKey(k => k + 1); };
+  useEffect(() => { next(); }, [grade]);
+
+  const n = p.values.length;
+  const ok = picked === p.mean;
+
+  const answer = (o: number) => {
+    if (picked !== null) return;
+    setPicked(o);
+    if (o === p.mean) {
+      const k = answered + 1;
+      setAnswered(k);
+      if (k >= questionsCount) setTimeout(() => onComplete('engine'), 1300);
     }
   };
 
-  if (!problem) return null;
+  // What the wrong answer probably was.
+  const hint = picked === null || ok ? null
+    : picked === p.sum ? L(`${p.sum}, c’est la somme. Il reste à la partager entre les ${n} locomotives !`, `${p.sum} is the sum. You still need to share it between the ${n} engines!`)
+    : picked * (n - 1) === p.sum ? L(`Tu as divisé par ${n - 1}, mais il y a ${n} locomotives.`, `You divided by ${n - 1}, but there are ${n} engines.`)
+    : picked * (n + 1) === p.sum ? L(`Tu as divisé par ${n + 1}, mais il y a ${n} locomotives.`, `You divided by ${n + 1}, but there are ${n} engines.`)
+    : picked === p.median ? L(`${picked}, c’est le nombre du milieu, pas la moyenne.`, `${picked} is the middle number, not the average.`)
+    : null;
 
-  const questionText = `Find the arithmetic mean (average) of these ${problem.values.length} engine loads: ${problem.values.join(', ')}.`;
+  const feedback: Feedback = picked === null ? null : ok ? { ok: true } : {
+    ok: false,
+    explain: (
+      <>
+        {hint && <p className="mt-0 mb-2">{hint}</p>}
+        <p className="m-0">
+          {L('On additionne tous les wagons : ', 'Add up all the trucks: ')}
+          <b className="tabular-nums">{p.values.join(' + ')} = {p.sum}</b>.{' '}
+          {L(`Il y a ${n} locomotives, alors on partage en ${n} : `, `There are ${n} engines, so share by ${n}: `)}
+          <b className="tabular-nums">{p.sum} ÷ {n} = {p.mean}</b>.{' '}
+          {L(`Chaque locomotive tirerait ${p.mean} wagons.`, `Each engine would pull ${p.mean} trucks.`)}
+        </p>
+      </>
+    ),
+  };
+
+  const said = list(p.crew.map((c, k) => (k === 0 ? `${c.name} ${fr ? 'tire' : 'pulls'} ${p.values[k]} ${fr ? 'wagons' : 'trucks'}` : `${c.name} ${p.values[k]}`)), lang);
+  const say = fr ? `${said}. Quelle est la moyenne ?` : `${said}. What is the average?`;
 
   return (
-    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
-      <div className="bg-white rounded-[28px] xl:rounded-[40px] p-5 md:p-7 xl:p-12 shadow-2xl border border-slate-100 relative overflow-hidden">
-        {/* Progress Bar */}
-        <div className="absolute top-0 left-0 h-2 bg-slate-100 w-full">
-          <motion.div 
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            className="h-full bg-blue-600"
-          />
-        </div>
+    <ExerciseFrame
+      color={color} place={place || (fr ? 'Gare de Knapford' : 'Knapford Station')}
+      label={L('La moyenne : premiers pas', 'Averages: first steps')}
+      answered={answered} total={questionsCount} questionKey={key}
+      onListen={() => speak(say, lang)} feedback={feedback} onNext={next} onBack={onCancel}
+    >
+      <h2 className="text-xl sm:text-2xl font-extrabold mb-5 leading-snug">
+        {L('Si ces locomotives partageaient leurs wagons également, combien chacune en tirerait-elle ?', 'If these engines shared their trucks out equally, how many would each one pull?')}
+      </h2>
 
-        <div className="mb-5 xl:mb-10 flex justify-between items-center">
-          <span className="text-sm font-black text-slate-400 uppercase tracking-widest">
-            Mean Challenge {questionsAnswered + 1} of {questionsCount}
-          </span>
-          <div className="flex items-center gap-2">
-            <button 
-              onClick={() => speak(questionText)}
-              className="p-2 bg-slate-100 hover:bg-blue-600/10 text-slate-400 hover:text-blue-600 rounded-full transition-colors mr-2"
-              title="Listen to question"
-            >
-              <Volume2 size={18} />
-            </button>
-            <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
-              <Trophy size={16} className="text-blue-600" />
-              <span className="text-xs font-black text-blue-600 uppercase">Average Expert</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="text-center mb-6 xl:mb-12">
-          <div className="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center text-blue-600 mx-auto mb-6 shadow-lg shadow-blue-100">
-            <Calculator size={40} />
-          </div>
-          <h2 className={`text-3xl font-black mb-4 ${grade === 'Primary' ? 'text-sodor-blue' : 'text-blue-800'}`}>
-            Calculate the Average
-          </h2>
-          <p className="text-slate-500 font-medium max-w-md mx-auto">
-            Several engines are pulling different numbers of trucks. If they shared them equally, how many would each have?
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-6 mb-6 xl:mb-12">
-          {problem.values.map((v, i) => (
-            <div key={i} className="flex flex-col items-center gap-2">
-              <div className="w-20 h-20 bg-slate-50 rounded-2xl border-2 border-slate-100 flex items-center justify-center text-3xl font-black text-slate-800 shadow-inner">
-                {v}
-              </div>
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Load {i + 1}</span>
+      {grade === 'Primary' ? (
+        <div className="rounded-2xl border-[3px] border-ink bg-sky p-4 sm:p-5 mb-6 space-y-3" role="img"
+          aria-label={list(p.crew.map((c, k) => `${c.name} ${p.values[k]}`), lang)}>
+          {p.crew.map((c, k) => (
+            <div key={c.name} className="flex items-end gap-2 sm:gap-3">
+              <span className="w-14 sm:w-20 shrink-0 font-extrabold text-[0.95rem] sm:text-lg pb-0.5">{c.name}</span>
+              <span className="flex items-end gap-[2px] sm:gap-[3px] flex-1 min-w-0 border-b-[3px] border-ink">
+                {Array.from({ length: p.values[k] }, (_, j) => (
+                  <span key={j} className="block w-[10px] h-4 sm:w-5 sm:h-6 mb-1 rounded-[3px] sm:rounded-[4px] border-2 border-ink bg-[#c8925a]" />
+                ))}
+                <Engine size={48} color={c.color} number={c.number} className="w-9 h-auto sm:w-12 shrink-0" />
+              </span>
+              <span className="w-7 sm:w-9 text-right font-extrabold text-xl sm:text-2xl tabular-nums shrink-0">{p.values[k]}</span>
             </div>
           ))}
         </div>
-
-        <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-          {problem.options.map((option) => (
-            <button
-              key={option}
-              onClick={() => handleAnswer(option)}
-              disabled={selectedAnswer !== null}
-              className={`
-                p-6 rounded-2xl text-2xl font-black border-4 transition-all
-                ${selectedAnswer === option 
-                  ? (option === problem.mean ? 'bg-green-50 border-green-500 text-green-700 scale-105' : 'bg-red-50 border-red-500 text-red-700')
-                  : (selectedAnswer !== null && option === problem.mean ? 'border-green-500 bg-green-50' : 'bg-slate-50 border-transparent text-slate-700 hover:bg-slate-100 hover:border-slate-200')
-                }
-              `}
-            >
-              {option}
-            </button>
+      ) : (
+        <div className="flex flex-wrap justify-center gap-3 mb-6">
+          {p.crew.map((c, k) => (
+            <div key={c.name} className="w-[5.6rem] sm:w-28 rounded-2xl border-[3px] border-ink bg-sky px-2 py-3 flex flex-col items-center">
+              <Engine size={52} color={c.color} number={c.number} />
+              <span className="font-extrabold mt-1">{c.name}</span>
+              <span className="font-extrabold text-3xl tabular-nums leading-tight">{p.values[k]}</span>
+              <span className="text-sm font-bold text-ink/65">{L('wagons', 'trucks')}</span>
+            </div>
           ))}
         </div>
+      )}
 
-        <AnimatePresence>
-          {selectedAnswer !== null && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-6 xl:mt-12 text-center"
-            >
-              {isCorrect ? (
-                <div className="flex flex-col items-center gap-4">
-                  <div className="flex items-center gap-2 text-green-600 font-black text-xl">
-                    <CheckCircle2 size={24} /> Really Useful Calculation!
-                  </div>
-                  {questionsAnswered < questionsCount && (
-                    <button
-                      onClick={generateProblem}
-                      className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all flex items-center gap-2 mx-auto"
-                    >
-                      Next Station <ArrowRight size={20} />
-                    </button>
-                  )}
-                </div>
-              ) : (
-                <div className="flex flex-col items-center gap-4">
-                  <div className="flex items-center gap-2 text-red-600 font-black text-xl">
-                    <XCircle size={24} /> Cinders and ashes!
-                  </div>
-                  <p className="text-slate-500 font-medium">The average is {problem.mean}. (Sum: {problem.values.reduce((a,b)=>a+b,0)} ÷ {problem.values.length})</p>
-                  <button 
-                    onClick={generateProblem}
-                    className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-black hover:bg-slate-800 transition-all flex items-center gap-2 mx-auto"
-                  >
-                    Try Another Track <RotateCcw size={20} />
-                  </button>
-                </div>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+        {p.options.map(o => {
+          const state = picked === null ? 'idle' : o === p.mean ? 'right' : o === picked ? 'picked-wrong' : 'other';
+          return (
+            <button key={o} onClick={() => answer(o)} disabled={picked !== null} className={`${answerClass(state)} py-3! text-[1.8rem] tabular-nums`}>
+              {o}
+            </button>
+          );
+        })}
       </div>
-
-      <button 
-        onClick={onCancel}
-        className="mt-8 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
-      >
-        ← Back to the station
-      </button>
-    </div>
+    </ExerciseFrame>
   );
 }

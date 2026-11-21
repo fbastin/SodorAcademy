@@ -1,249 +1,330 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { BookOpen, ArrowRight, ArrowLeft, CheckCircle, X, List, Search, Trophy, Volume2 } from 'lucide-react';
-import { speak } from '../services/speechService';
+import { Check, X } from 'lucide-react';
+import { Lang } from '../i18n';
+import LessonPlayer, { LessonStep } from './LessonPlayer';
+import { Engine } from './ui';
+import { STATIONS } from '../content/stations';
+import { FractionBar, BarRow, barLabel, inlineFrac, YELLOW, BLUE, gcd, lcm } from './FractionAdditionLesson';
+import { Frac } from './ExerciseFrame';
 
-interface LCMLessonProps {
-  onCancel: () => void;
-  onStartExercise?: () => void;
+// The least common multiple, with the timetable of Knapford: the multiples of a
+// number, two engines leaving every 4 and every 6 minutes, the LCM, the shortcut of
+// the biggest number's table, the LCM as a common denominator, and a × b = GCD × LCM.
+
+const INK = '#17233d';
+const math = STATIONS.find(s => s.id === 'math')!;
+
+const THOMAS = { name: 'Thomas', color: '#2464d6', number: '1' };
+const PERCY = { name: 'Percy', color: '#1c7a55', number: '6' };
+const GORDON = { name: 'Gordon', color: '#2464d6', number: '4' };
+const JAMES = { name: 'James', color: '#e23b2e', number: '5' };
+
+const Ff = (n: number, d: number) => inlineFrac(n, d, 'fr');
+const Fe = (n: number, d: number) => inlineFrac(n, d, 'en');
+
+const multiples = (n: number, to: number) => Array.from({ length: Math.floor(to / n) }, (_, k) => n * (k + 1));
+const clock = (L: number, lang: Lang) => {
+  const h = 8 + Math.floor(L / 60), m = String(L % 60).padStart(2, '0');
+  return lang === 'fr' ? `${h} h ${m}` : `${h}:${m}`;
+};
+
+const Panel = ({ children }: { children: React.ReactNode }) => (
+  <div className="rounded-2xl border-[3px] border-ink bg-sky p-4 sm:p-5 space-y-3 max-w-2xl">{children}</div>
+);
+
+// − 4 +
+function Stepper({ value, set, min, max, name, lang }: {
+  value: number; set: (v: number) => void; min: number; max: number; name: string; lang: Lang;
+}) {
+  const fr = lang === 'fr';
+  return (
+    <span className="inline-flex items-center gap-2">
+      <button onClick={() => set(Math.max(min, value - 1))} disabled={value <= min} className="chunky p-0! w-10 h-10 text-xl"
+        aria-label={fr ? `${name} : un de moins` : `${name}: one less`}>−</button>
+      <span className="chip text-lg! min-w-[2.6rem] justify-center" aria-live="polite">{value}</span>
+      <button onClick={() => set(Math.min(max, value + 1))} disabled={value >= max} className="chunky p-0! w-10 h-10 text-xl"
+        aria-label={fr ? `${name} : un de plus` : `${name}: one more`}>+</button>
+    </span>
+  );
 }
 
-const STEPS = [
-  {
-    title: "Definition of a Multiple",
-    content: "A multiple of a number is the product of that number and any integer.",
-    image: "🚂",
-    list: { number: 3, values: [3, 6, 9, 12, 15] }
-  },
-  {
-    title: "Generating Sequences",
-    content: "To find the Least Common Multiple (LCM), list the positive multiples for both integers in ascending order.",
-    image: "🗒️",
-    dualList: { 
-      n1: 4, v1: [4, 8, 12, 16, 20],
-      n2: 6, v2: [6, 12, 18, 24, 30]
-    }
-  },
-  {
-    title: "Identifying Common Multiples",
-    content: "Identify numbers that appear in both sequences. These are common multiples, indicating shared products of the two integers.",
-    image: "🔍",
-    comparison: {
-      n1: 4, v1: [4, 8, 12, 16, 20, 24],
-      n2: 6, v2: [6, 12, 18, 24, 30],
-      common: [12, 24]
-    }
-  },
-  {
-    title: "Least Common Multiple (LCM)",
-    content: "The Least Common Multiple is the smallest positive integer that is divisible by both numbers. Here, 12 is the LCM of 4 and 6.",
-    image: "🏆",
-    result: { n1: 4, n2: 6, lcm: 12 }
-  }
-];
-
-export default function LCMLesson({ onCancel, onStartExercise }: LCMLessonProps) {
-  const [currentStep, setCurrentStep] = useState(0);
-
-  const next = () => {
-    if (currentStep < STEPS.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prev = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const step = STEPS[currentStep];
-
+// Jumps of n along the number line: the multiples of n.
+function JumpLine({ lang }: { lang: Lang }) {
+  const fr = lang === 'fr';
+  const [n, setN] = useState(4);
+  const max = 30;
+  const x = (v: number) => 24 + v * (592 / max);
+  const list = multiples(n, max);
   return (
-    <div className="max-w-4xl mx-auto py-3 md:py-5 xl:py-12 px-6">
-      <div className="bg-white rounded-[28px] xl:rounded-[40px] shadow-2xl border border-slate-100 overflow-hidden flex flex-col xl:min-h-[600px]">
-        {/* Header */}
-        <div className="bg-indigo-600 p-5 md:p-6 xl:p-8 text-white flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center">
-              <List size={28} />
-            </div>
-            <div>
-              <h2 className="text-2xl font-black uppercase tracking-tight">Academy Lesson</h2>
-              <p className="text-indigo-100 text-sm font-bold">Topic: Finding the LCM</p>
-            </div>
+    <Panel>
+      <div className="flex flex-wrap items-center gap-2.5 font-bold">
+        <span className="mr-1">{fr ? 'Des bonds de :' : 'Jumps of:'}</span>
+        {[2, 3, 4, 5, 6].map(k => (
+          <React.Fragment key={k}>
+            <button onClick={() => setN(k)} aria-pressed={n === k} className="chunky text-lg w-11">{k}</button>
+          </React.Fragment>
+        ))}
+      </div>
+      <svg viewBox="0 0 640 124" className="w-full block bg-white rounded-xl border-[2.5px] border-ink" role="img"
+        aria-label={fr ? `Des bonds de ${n} sur la droite des nombres, de 0 à ${max} : ${list.join(', ')}` : `Jumps of ${n} along the number line from 0 to ${max}: ${list.join(', ')}`}>
+        <line x1={x(0)} y1={88} x2={x(max)} y2={88} stroke={INK} strokeWidth={3} strokeLinecap="round" />
+        {Array.from({ length: max + 1 }, (_, v) => (
+          <line key={v} x1={x(v)} x2={x(v)} y1={v % n === 0 ? 80 : 84} y2={v % n === 0 ? 96 : 92} stroke={INK} strokeWidth={v % n === 0 ? 3 : 1.5} />
+        ))}
+        {list.map(m => (
+          <path key={m} d={`M ${x(m - n)} 84 Q ${x(m - n / 2)} ${84 - (22 + n * 7)} ${x(m)} 84`} fill="none" stroke={BLUE} strokeWidth={3.5} strokeLinecap="round" />
+        ))}
+        {list.map(m => <circle key={m} cx={x(m)} cy={88} r={7} fill={YELLOW} stroke={INK} strokeWidth={2.5} />)}
+        {[0, ...list].map(m => (
+          <text key={m} x={x(m)} y={116} textAnchor="middle" fontSize={17} fontWeight={800} fill={INK}>{m}</text>
+        ))}
+      </svg>
+      <p className="m-0 text-lg"><b>{fr ? `Multiples de ${n} :` : `Multiples of ${n}:`}</b> {list.join(', ')}…</p>
+    </Panel>
+  );
+}
+
+// Thomas every 4 minutes, Percy every 6: together at 0, 12 and 24.
+function Timetable({ lang }: { lang: Lang }) {
+  const fr = lang === 'fr';
+  const max = 24;
+  const x = (v: number) => 120 + v * (496 / max);
+  const rows = [{ e: THOMAS, n: 4, y: 44 }, { e: PERCY, n: 6, y: 104 }];
+  const labels = [0, 4, 6, 8, 12, 16, 18, 20, 24];
+  return (
+    <div className="max-w-2xl rounded-2xl border-[3px] border-ink bg-white p-2 sm:p-3">
+      <svg viewBox="0 0 640 198" className="w-full block" role="img"
+        aria-label={fr
+          ? 'Horaire : Thomas part à 0, 4, 8, 12, 16, 20 et 24 minutes, Percy à 0, 6, 12, 18 et 24 minutes. Ils partent ensemble à 0, 12 et 24 minutes.'
+          : 'Timetable: Thomas leaves at 0, 4, 8, 12, 16, 20 and 24 minutes, Percy at 0, 6, 12, 18 and 24 minutes. They leave together at 0, 12 and 24 minutes.'}>
+        {[0, 12, 24].map(v => <rect key={v} x={x(v) - 14} y={16} width={28} height={118} rx={9} fill={YELLOW} stroke={INK} strokeWidth={2} />)}
+        {rows.map(r => (
+          <g key={r.e.name}>
+            <g transform={`translate(10 ${r.y - 30})`}><Engine size={60} color={r.e.color} number={r.e.number} /></g>
+            <text x={40} y={r.y + 27} textAnchor="middle" fontSize={15} fontWeight={800} fill={INK}>{r.e.name}</text>
+            <line x1={x(0)} y1={r.y} x2={x(max)} y2={r.y} stroke={INK} strokeWidth={2} strokeDasharray="4 6" opacity={0.45} />
+            {[0, ...multiples(r.n, max)].map(v => <circle key={v} cx={x(v)} cy={r.y} r={10} fill={r.e.color} stroke={INK} strokeWidth={2.5} />)}
+          </g>
+        ))}
+        <line x1={x(0)} y1={152} x2={x(max)} y2={152} stroke={INK} strokeWidth={3} strokeLinecap="round" />
+        {Array.from({ length: max / 2 + 1 }, (_, k) => (
+          <line key={k} x1={x(2 * k)} x2={x(2 * k)} y1={147} y2={157} stroke={INK} strokeWidth={2} />
+        ))}
+        {labels.map(v => (
+          <text key={v} x={x(v)} y={175} textAnchor="middle" fontSize={v % 12 === 0 ? 18 : 15} fontWeight={800} fill={INK}>{v}</text>
+        ))}
+        <text x={x(12)} y={195} textAnchor="middle" fontSize={14} fontWeight={600} fill={INK} opacity={0.7}>
+          {fr ? 'minutes après 8 h' : 'minutes after 8:00'}
+        </text>
+      </svg>
+    </div>
+  );
+}
+
+// Pick two timetables: the two tables up to the LCM.
+function LCMFinder({ lang }: { lang: Lang }) {
+  const fr = lang === 'fr';
+  const [a, setA] = useState(4);
+  const [b, setB] = useState(6);
+  const L = lcm(a, b);
+  const row = (e: typeof THOMAS, n: number) => (
+    <div className="flex items-start gap-3">
+      <Engine size={52} color={e.color} number={e.number} className="shrink-0 mt-0.5" />
+      <p className="m-0 flex flex-wrap items-center gap-1.5">
+        {multiples(n, L).map(m => (
+          <span key={m} className={`chip text-[0.95rem]! ${m === L ? 'bg-sticker!' : ''}`}>{m}</span>
+        ))}
+      </p>
+    </div>
+  );
+  return (
+    <Panel>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-bold">
+        <span className="flex items-center gap-2">Thomas <Stepper value={a} set={setA} min={2} max={10} name="Thomas" lang={lang} /> min</span>
+        <span className="flex items-center gap-2">Percy <Stepper value={b} set={setB} min={2} max={10} name="Percy" lang={lang} /> min</span>
+      </div>
+      {row(THOMAS, a)}
+      {row(PERCY, b)}
+      <p className="m-0 text-lg" aria-live="polite">
+        <b className="px-1.5 rounded bg-note">{fr ? `PPCM(${a}, ${b}) = ${L}` : `LCM(${a}, ${b}) = ${L}`}</b>
+        {fr ? ` : ils repartent ensemble à ${clock(L, lang)}.` : `: they leave together again at ${clock(L, lang)}.`}
+      </p>
+    </Panel>
+  );
+}
+
+// The shortcut: the table of 12 only, until 8 divides it.
+function BiggestTable({ lang }: { lang: Lang }) {
+  const fr = lang === 'fr';
+  const rows = [
+    { m: 12, ok: false, text: fr ? '12 ÷ 8 = 1, reste 4' : '12 ÷ 8 = 1, remainder 4' },
+    { m: 24, ok: true, text: '24 ÷ 8 = 3' },
+  ];
+  return (
+    <Panel>
+      <div className="flex flex-wrap items-end gap-6">
+        {[{ e: GORDON, n: 12 }, { e: JAMES, n: 8 }].map(({ e, n }) => (
+          <div key={e.name} className="flex flex-col items-center gap-1">
+            <Engine size={64} color={e.color} number={e.number} />
+            <span className="font-extrabold">{e.name}</span>
+            <span className="chip text-[0.95rem]!">{fr ? `toutes les ${n} min` : `every ${n} min`}</span>
           </div>
-          <button 
-            onClick={onCancel}
-            className="p-3 hover:bg-white/10 rounded-full transition-colors active:scale-95"
-          >
-            <X size={24} />
-          </button>
+        ))}
+      </div>
+      <ol className="space-y-2 m-0 p-0 list-none">
+        {rows.map((r, k) => (
+          <li key={r.m} className="flex flex-wrap items-center gap-3 text-lg">
+            <span className="chip text-base! bg-white!">12 × {k + 1} = {r.m}</span>
+            <span className="font-bold">{r.text}</span>
+            {r.ok
+              ? <span className="inline-flex items-center gap-1 font-extrabold text-good"><Check size={22} strokeWidth={3} aria-hidden="true" />{fr ? 'ça tombe juste' : 'it works'}</span>
+              : <span className="inline-flex items-center gap-1 font-extrabold text-bad"><X size={22} strokeWidth={3} aria-hidden="true" />{fr ? 'ça ne tombe pas juste' : 'it does not work'}</span>}
+          </li>
+        ))}
+      </ol>
+      <p className="m-0 text-lg"><b className="px-1.5 rounded bg-note">{fr ? 'PPCM(8, 12) = 24' : 'LCM(8, 12) = 24'}</b></p>
+    </Panel>
+  );
+}
+
+// 1/4 + 1/6 over the LCM of 4 and 6.
+function CommonDenominator({ lang }: { lang: Lang }) {
+  return (
+    <Panel>
+      <BarRow label={<><Frac n={1} d={4} /> = <Frac n={3} d={12} /></>}>
+        <FractionBar d={12} fills={[[3, YELLOW]]} group={3} label={barLabel(3, 12, lang)} />
+      </BarRow>
+      <BarRow sign="+" label={<><Frac n={1} d={6} /> = <Frac n={2} d={12} /></>}>
+        <FractionBar d={12} fills={[[2, BLUE]]} group={2} label={barLabel(2, 12, lang)} />
+      </BarRow>
+      <BarRow sign="=" label={<span className="px-1.5 rounded-lg bg-note"><Frac n={5} d={12} /></span>}>
+        <FractionBar d={12} fills={[[3, YELLOW], [2, BLUE]]} label={barLabel(5, 12, lang)} />
+      </BarRow>
+    </Panel>
+  );
+}
+
+// a × b = GCD × LCM, for any two numbers.
+function ProductCheck({ lang }: { lang: Lang }) {
+  const fr = lang === 'fr';
+  const [a, setA] = useState(4);
+  const [b, setB] = useState(6);
+  const g = gcd(a, b), L = lcm(a, b);
+  const G = fr ? 'PGCD' : 'GCD', M = fr ? 'PPCM' : 'LCM';
+  return (
+    <Panel>
+      <div className="flex flex-wrap items-center gap-x-6 gap-y-2 font-bold">
+        <span className="flex items-center gap-2">a <Stepper value={a} set={setA} min={2} max={12} name="a" lang={lang} /></span>
+        <span className="flex items-center gap-2">b <Stepper value={b} set={setB} min={2} max={12} name="b" lang={lang} /></span>
+      </div>
+      <div className="grid sm:grid-cols-2 gap-3" aria-live="polite">
+        <div className="card-ink p-3.5 text-center">
+          <p className="label-caps m-0">a × b</p>
+          <p className="m-0 text-2xl font-extrabold">{a} × {b} = <span className="px-1.5 rounded bg-note">{a * b}</span></p>
         </div>
-
-        {/* Progress Bar */}
-        <div className="h-2 bg-slate-100 w-full flex">
-          {STEPS.map((_, idx) => (
-            <div 
-              key={idx} 
-              className={`flex-1 transition-all duration-500 ${idx <= currentStep ? 'bg-indigo-500' : 'bg-transparent'}`}
-            />
-          ))}
-        </div>
-
-        {/* Content */}
-        <div className="flex-1 p-5 md:p-7 xl:p-12 flex flex-col">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentStep}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="h-full flex flex-col"
-            >
-              <div className="flex items-center gap-6 mb-8">
-                <div className="text-4xl xl:text-6xl bg-slate-50 w-16 h-16 xl:w-24 xl:h-24 rounded-[32px] flex items-center justify-center shadow-inner shrink-0">
-                  {step.image}
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-indigo-600 font-black text-xs uppercase tracking-widest block">Step {currentStep + 1} of {STEPS.length}</span>
-                    <button 
-                      onClick={() => speak(step.title + ". " + step.content)}
-                      className="p-2 bg-slate-100 hover:bg-indigo-100 text-slate-400 hover:text-indigo-600 rounded-full transition-colors"
-                      title="Listen to lesson"
-                    >
-                      <Volume2 size={18} />
-                    </button>
-                  </div>
-                  <h3 className="text-3xl font-black text-slate-900">{step.title}</h3>
-                </div>
-              </div>
-
-              <div className="flex-1">
-                <p className="text-lg xl:text-xl leading-relaxed text-slate-700 font-medium mb-6 xl:mb-12">
-                  {step.content}
-                </p>
-
-                {/* Visualization */}
-                <div className="bg-slate-50 rounded-3xl p-5 md:p-6 xl:p-8 border border-slate-100 flex flex-col items-center justify-center min-h-[180px]">
-                  {step.list && (
-                    <div className="flex flex-col items-center gap-4">
-                      <span className="text-sm font-black text-slate-400 uppercase">Multiples of {step.list.number}</span>
-                      <div className="flex gap-3">
-                        {step.list.values.map(v => (
-                          <div key={v} className="w-12 h-12 bg-white rounded-xl border border-slate-200 flex items-center justify-center font-black text-indigo-600 shadow-sm">
-                            {v}
-                          </div>
-                        ))}
-                        <span className="text-slate-400 font-black flex items-end">...</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {step.dualList && (
-                    <div className="flex flex-col gap-6 w-full max-w-md">
-                      <div className="flex flex-col gap-2">
-                        <span className="text-xs font-black text-slate-400 uppercase">Engine {step.dualList.n1} stops at:</span>
-                        <div className="flex gap-2 flex-wrap">
-                          {step.dualList.v1.map(v => (
-                            <div key={v} className="px-3 py-2 bg-white rounded-lg border border-slate-200 font-bold text-slate-700">{v}</div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="flex flex-col gap-2">
-                        <span className="text-xs font-black text-slate-400 uppercase">Engine {step.dualList.n2} stops at:</span>
-                        <div className="flex gap-2 flex-wrap">
-                          {step.dualList.v2.map(v => (
-                            <div key={v} className="px-3 py-2 bg-white rounded-lg border border-slate-200 font-bold text-slate-700">{v}</div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {step.comparison && (
-                    <div className="flex flex-col gap-6 w-full max-w-md">
-                      {[1, 2].map(i => {
-                        const n = i === 1 ? step.comparison?.n1 : step.comparison?.n2;
-                        const v = i === 1 ? step.comparison?.v1 : step.comparison?.v2;
-                        return (
-                          <div key={i} className="flex flex-col gap-2">
-                            <div className="flex gap-2 flex-wrap">
-                              {v?.map(val => {
-                                const isCommon = step.comparison?.common.includes(val);
-                                return (
-                                  <div key={val} className={`px-3 py-2 rounded-lg border-2 font-black transition-all ${isCommon ? 'bg-indigo-600 border-indigo-400 text-white scale-110 shadow-lg' : 'bg-white border-slate-100 text-slate-400'}`}>
-                                    {val}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-
-                  {step.result && (
-                    <div className="flex flex-col items-center gap-6">
-                      <div className="flex items-center gap-5 xl:gap-8">
-                         <div className="flex flex-col items-center">
-                            <span className="text-4xl">🚂</span>
-                            <span className="font-black text-slate-400">Number {step.result.n1}</span>
-                         </div>
-                         <Search className="text-indigo-600" size={32} />
-                         <div className="flex flex-col items-center">
-                            <span className="text-4xl">🚋</span>
-                            <span className="font-black text-slate-400">Number {step.result.n2}</span>
-                         </div>
-                      </div>
-                      <div className="bg-indigo-600 text-white px-8 py-4 rounded-2xl shadow-xl flex items-center gap-4">
-                         <Trophy className="text-yellow-400" />
-                         <span className="text-2xl font-black uppercase tracking-widest">LCM = {step.result.lcm}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Navigation */}
-              <div className="mt-6 xl:mt-12 flex justify-between items-center">
-                <button
-                  onClick={prev}
-                  disabled={currentStep === 0}
-                  className={`flex items-center gap-2 font-black uppercase tracking-widest text-sm transition-all ${currentStep === 0 ? 'opacity-0' : 'text-slate-400 hover:text-slate-600'}`}
-                >
-                  <ArrowLeft size={18} /> Previous
-                </button>
-
-                {currentStep < STEPS.length - 1 ? (
-                  <button
-                    onClick={next}
-                    className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-black flex items-center gap-3 shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all hover:scale-105 active:scale-95"
-                  >
-                    Next Step <ArrowRight size={20} />
-                  </button>
-                ) : (
-                  <button
-                    onClick={onStartExercise || onCancel}
-                    className="bg-emerald-600 text-white px-10 py-5 rounded-2xl font-black flex items-center gap-3 shadow-lg shadow-emerald-200 hover:bg-emerald-700 transition-all hover:scale-105 active:scale-95 text-lg"
-                  >
-                    Start Practicing! <CheckCircle size={24} />
-                  </button>
-                )}
-              </div>
-            </motion.div>
-          </AnimatePresence>
+        <div className="card-ink p-3.5 text-center">
+          <p className="label-caps m-0">{G} × {M}</p>
+          <p className="m-0 text-2xl font-extrabold">{g} × {L} = <span className="px-1.5 rounded bg-note">{g * L}</span></p>
         </div>
       </div>
-      
-      <button 
-        onClick={onCancel}
-        className="mt-6 xl:mt-12 mx-auto block text-slate-400 font-bold hover:text-slate-600 transition-colors uppercase tracking-widest text-xs"
-      >
-        Return to Station
-      </button>
-    </div>
+      <p className="m-0 text-lg">
+        {G}({a}, {b}) = <b>{g}</b> · {M}({a}, {b}) = <b>{L}</b>
+      </p>
+    </Panel>
+  );
+}
+
+const STEPS: LessonStep[] = [
+  {
+    title: { fr: 'Les multiples d’un nombre', en: 'The multiples of a number' },
+    body: {
+      fr: 'Thomas part de Knapford toutes les 4 minutes : après 4 minutes, 8 minutes, 12 minutes… Ces nombres sont les <b>multiples</b> de 4 : la table de 4. On les trouve en faisant des bonds de 4 sur la droite des nombres. Choisis un autre nombre pour voir ses bonds.',
+      en: 'Thomas leaves Knapford every 4 minutes: after 4 minutes, 8 minutes, 12 minutes… These numbers are the <b>multiples</b> of 4: the 4 times table. You find them by jumping 4 at a time along the number line. Pick another number to see its jumps.',
+    },
+    visual: lang => <JumpLine lang={lang} />,
+    note: {
+      fr: 'Les multiples de 4 sont 4 × 1, 4 × 2, 4 × 3… : 4, 8, 12, 16… La liste ne s’arrête jamais !',
+      en: 'The multiples of 4 are 4 × 1, 4 × 2, 4 × 3…: 4, 8, 12, 16… The list never ends!',
+    },
+  },
+  {
+    title: { fr: 'Deux locomotives, deux horaires', en: 'Two engines, two timetables' },
+    body: {
+      fr: 'Percy, lui, part toutes les 6 minutes. À 8 h, les deux locomotives partent ensemble. Thomas repart après 4, 8, 12, 16… minutes, et Percy après 6, 12, 18, 24… minutes. Regarde les bandes jaunes : après 12 minutes, puis après 24 minutes, ils partent de nouveau en même temps !',
+      en: 'Percy leaves every 6 minutes. At 8:00, both engines leave together. Thomas leaves again after 4, 8, 12, 16… minutes, and Percy after 6, 12, 18, 24… minutes. Look at the yellow bands: after 12 minutes, and again after 24 minutes, they leave at the same time!',
+    },
+    visual: lang => <Timetable lang={lang} />,
+    note: {
+      fr: '12 et 24 sont dans la table de 4 <b>et</b> dans la table de 6 : ce sont des <b>multiples communs</b> de 4 et de 6.',
+      en: '12 and 24 are in the 4 times table <b>and</b> in the 6 times table: they are <b>common multiples</b> of 4 and 6.',
+    },
+  },
+  {
+    title: { fr: 'Le plus petit des multiples communs', en: 'The smallest common multiple' },
+    body: {
+      fr: 'Le plus petit des multiples communs s’appelle le <b>plus petit commun multiple</b>, ou <b>PPCM</b>. Pour 4 et 6, c’est 12 : Thomas et Percy repartent ensemble pour la première fois à 8 h 12. Pour le trouver, écris les deux tables jusqu’au premier nombre qui est dans les deux. Essaie avec d’autres horaires !',
+      en: 'The smallest of the common multiples is called the <b>least common multiple</b>, or <b>LCM</b>. For 4 and 6, it is 12: Thomas and Percy first leave together again at 8:12. To find it, write out both times tables up to the first number that is in both. Try other timetables!',
+    },
+    visual: lang => <LCMFinder lang={lang} />,
+    note: {
+      fr: 'PPCM(4, 6) = 12 : c’est le plus petit nombre qui est à la fois dans la table de 4 et dans la table de 6.',
+      en: 'LCM(4, 6) = 12: it is the smallest number that is in both the 4 and the 6 times tables.',
+    },
+  },
+  {
+    title: { fr: 'Une astuce : la table du plus grand', en: 'A shortcut: the bigger number’s table' },
+    body: {
+      fr: 'Gordon part toutes les 12 minutes et James toutes les 8 minutes. Pas besoin d’écrire les deux tables : écris seulement celle du plus grand nombre, 12, et arrête-toi au premier nombre que 8 divise. 12 ÷ 8 ne tombe pas juste, mais 24 ÷ 8 = 3. Donc PPCM(8, 12) = 24.',
+      en: 'Gordon leaves every 12 minutes and James every 8 minutes. No need to write out both tables: write only the table of the bigger number, 12, and stop at the first number that 8 divides. 12 ÷ 8 does not work out exactly, but 24 ÷ 8 = 3. So LCM(8, 12) = 24.',
+    },
+    visual: lang => <BiggestTable lang={lang} />,
+    note: {
+      fr: 'Si le petit nombre divise le grand, le PPCM est le grand : PPCM(3, 6) = 6. Si aucun nombre sauf 1 ne divise les deux, le PPCM est leur produit : PPCM(4, 5) = 20.',
+      en: 'If the small number divides the big one, the LCM is the big one: LCM(3, 6) = 6. If no number except 1 divides both, the LCM is their product: LCM(4, 5) = 20.',
+    },
+  },
+  {
+    title: { fr: 'Le PPCM des dénominateurs', en: 'The LCM of the denominators' },
+    body: {
+      fr: `Percy remplit ${Ff(1, 4)} d’un wagon de courrier à Knapford et ${Ff(1, 6)} à Elsbridge. Pour additionner, il faut des parts de même taille : un dénominateur commun. Le meilleur, c’est le PPCM des dénominateurs : PPCM(4, 6) = 12. ${Ff(1, 4)} = ${Ff(3, 12)} et ${Ff(1, 6)} = ${Ff(2, 12)}, donc ${Ff(1, 4)} + ${Ff(1, 6)} = ${Ff(5, 12)}.`,
+      en: `Percy fills ${Fe(1, 4)} of a mail van at Knapford and ${Fe(1, 6)} at Elsbridge. To add them, you need parts of the same size: a common denominator. The best one is the LCM of the denominators: LCM(4, 6) = 12. ${Fe(1, 4)} = ${Fe(3, 12)} and ${Fe(1, 6)} = ${Fe(2, 12)}, so ${Fe(1, 4)} + ${Fe(1, 6)} = ${Fe(5, 12)}.`,
+    },
+    visual: lang => <CommonDenominator lang={lang} />,
+    note: {
+      fr: 'Le PPCM des dénominateurs est le plus petit dénominateur commun : les nombres restent petits, et il y a moins à simplifier.',
+      en: 'The LCM of the denominators is the smallest common denominator: the numbers stay small, and there is less to simplify.',
+    },
+  },
+  {
+    title: { fr: 'Le PPCM et le PGCD', en: 'The LCM and the GCD' },
+    body: {
+      fr: 'Le <b>plus grand commun diviseur (PGCD)</b> de 4 et 6 est 2 : c’est le plus grand nombre qui divise 4 et 6. Regarde : 4 × 6 = 24, et PGCD × PPCM = 2 × 12 = 24. Ça marche pour tous les couples de nombres ! Donc PPCM = 4 × 6 ÷ 2 = 12. Vérifie avec d’autres nombres.',
+      en: 'The <b>greatest common divisor (GCD)</b> of 4 and 6 is 2: it is the biggest number that divides both 4 and 6. Look: 4 × 6 = 24, and GCD × LCM = 2 × 12 = 24. This works for any two numbers! So LCM = 4 × 6 ÷ 2 = 12. Check it with other numbers.',
+    },
+    visual: lang => <ProductCheck lang={lang} />,
+    note: {
+      fr: '<b>a × b = PGCD × PPCM</b>. Pour trouver vite le PGCD de grands nombres, il y a l’algorithme d’Euclide.',
+      en: '<b>a × b = GCD × LCM</b>. To find the GCD of big numbers quickly, use Euclid’s algorithm.',
+    },
+  },
+];
+
+const LINKS = math.links.filter(l => l.href.includes('euclid') || l.href.includes('/Practice/'));
+
+export default function LCMLesson({ onCancel, onStartExercise, color }: {
+  onCancel: () => void;
+  onStartExercise?: () => void;
+  color?: string;
+  place?: string;
+}) {
+  return (
+    <LessonPlayer
+      title={{ fr: 'Le plus petit commun multiple', en: 'The Least Common Multiple' }}
+      color={color || math.color}
+      steps={STEPS}
+      links={LINKS}
+      onStartExercise={onStartExercise}
+      onCancel={onCancel}
+    />
   );
 }

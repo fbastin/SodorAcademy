@@ -2,6 +2,32 @@
 
 An interactive educational platform for children set in the Thomas & Friends universe.
 
+Sodor Academy is part of the pages for kids on slashbin.net (`/kids.php`) and follows
+their programme and their look. It speaks French and English.
+
+## How it is organised
+
+- **Stations** (`src/content/stations.ts`): one per subject, placed on the map of Sodor.
+  A station lists its lessons, exercises and quiz, and links to the pages of slashbin.net
+  on the same topics (physics, chemistry, maths activities, the programming course, the
+  Practice Room). An activity still written in English only is marked `enOnly`.
+- **Languages** (`src/i18n.tsx`): `?lang=fr|en`, then the last choice, then the site's
+  `lang` cookie, then the browser. A text in both languages is `{ fr, en }`.
+- **Addresses** (`src/router.ts`): each screen has its own `#/station/<id>/<activity>`
+  address, so the browser's Back button works and the site can link to a station.
+- **Exercises from the Practice Room** (`src/practice/bank.ts`, `src/views/SkillExercise.tsx`):
+  activities with a `practice` topic load the skill files of `/Practice/` (the same
+  generators, levels and explanations as the Practice Room) and play them on the rails
+  of Sodor. They need the site's `/Practice/` and `/vendor/highlight.js/`.
+- **Lessons and exercises**: lessons are steps given to `src/components/LessonPlayer.tsx`
+  (see `src/lessons/` and `src/components/*Lesson.tsx`); exercises draw their question
+  inside `src/components/ExerciseFrame.tsx`.
+- **Look** (`src/index.css`): the style of the activities of the pages for kids — a dotted
+  sky, dark ink, white cards ringed in ink and sticker buttons (`card-ink`, `chunky`,
+  `sticker-title`, `note-paper`).
+- **Progress**: without an account it is kept in the browser; with an account (name, PIN
+  and a parent's email, `server.js`) on the server.
+
 ## Run Locally
 
 **Prerequisites:** Node.js
@@ -17,11 +43,9 @@ An interactive educational platform for children set in the Thomas & Friends uni
 
 ### On your own server (slashbin.net)
 
-To see the app at `https://slashbin.net/SodorAcademy/`, you must serve the contents of the `dist` folder.
-
-1. Run the build:
-   `npm run build`
-2. Configure your web server (Nginx/Apache) to point the `/SodorAcademy/` path to the `/var/www/slashbin.net/SodorAcademy/dist` directory.
+Apache proxies `/SodorAcademy` to `server.js` (port 3000), which serves `dist/`, `media/`
+and the API. After a change, `npm run lint && npm run build`: the new `dist/` is live at
+once; restart `server.js` only when `server.js` itself changed.
 
 ### GitHub Pages
 This repository is configured to automatically deploy to GitHub Pages when you push to the `main` branch.
