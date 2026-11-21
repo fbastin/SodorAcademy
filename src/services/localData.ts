@@ -53,7 +53,7 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       },
       {
         id: 'math-p-7',
-        text: 'Percy delivers 12 parcels to 4 shops. How many parcels does each shop get?',
+        text: 'Percy delivers 12 parcels to 4 shops, the same number to each shop. How many parcels does each shop get?',
         options: ['2', '3', '4', '6'],
         correctAnswer: '3',
         explanation: '12 ÷ 4 = 3.',
@@ -713,10 +713,10 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       },
       {
         id: 'sci-p-15',
-        text: 'What provides the energy for a steam engine to create force?',
-        options: ['Coal and Water', 'Batteries', 'Wind', 'Singing'],
-        correctAnswer: 'Coal and Water',
-        explanation: 'Burning coal boils water to make steam, which pushes the pistons!',
+        text: 'What gives a steam engine the energy to move?',
+        options: ['Burning coal', 'Batteries', 'Wind', 'Singing'],
+        correctAnswer: 'Burning coal',
+        explanation: 'Burning coal boils the water in the boiler, and the steam pushes the pistons. The water carries the energy, but the coal provides it.',
         rewardType: 'engine'
       },
       {
@@ -745,16 +745,16 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       },
       {
         id: 'sci-p-19',
-        text: 'Is friction higher on a muddy track or a shiny metal track?',
-        options: ['Muddy track', 'Shiny metal track', 'Both the same', 'Neither'],
-        correctAnswer: 'Muddy track',
-        explanation: 'Rough or sticky surfaces like mud create more friction than smooth ones.',
+        text: 'Thomas\'s wheels need grip to climb a hill. Where is the friction greater: on dry rails sprinkled with sand, or on rails covered in wet leaves?',
+        options: ['Dry rails with sand', 'Rails with wet leaves', 'Both the same', 'Neither'],
+        correctAnswer: 'Dry rails with sand',
+        explanation: 'Sand is rough, so it gives the wheels more grip. Wet leaves make a slippery layer and the wheels spin.',
         rewardType: 'badge'
       },
       {
         id: 'sci-p-20',
         text: 'What do we call the measure of gravity\'s pull on an object?',
-        options: ['Mass', 'Weight', 'Speed', 'Force'],
+        options: ['Mass', 'Weight', 'Speed', 'Volume'],
         correctAnswer: 'Weight',
         explanation: 'Weight is the force of gravity acting on an object\'s mass.',
         rewardType: 'coin'
@@ -796,7 +796,7 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       {
         id: 'sci-s-5',
         text: 'Newton\'s Third Law states: For every action, there is an equal and opposite...',
-        options: ['Reaction', 'Force', 'Engine', 'Sound'],
+        options: ['Reaction', 'Acceleration', 'Engine', 'Sound'],
         correctAnswer: 'Reaction',
         explanation: 'Forces always come in pairs. If you push a wall, it pushes back with equal force!',
         rewardType: 'coin'
@@ -1210,7 +1210,7 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       {
         id: 'geo-s-16',
         text: 'The UK shares its only land border with which country?',
-        options: ['Ireland', 'France', 'Belgium', 'Spain'],
+        options: ['Ireland', 'France', 'Belgium', 'Norway'],
         correctAnswer: 'Ireland',
         explanation: 'The UK shares a land border only with the Republic of Ireland.',
         rewardType: 'engine'
@@ -1301,10 +1301,10 @@ export const LOCAL_QUESTIONS: Record<string, Record<Grade, Question[]>> = {
       },
       {
         id: 'his-p-8',
-        text: 'Steam engines were first invented during which century?',
-        options: ['18th century', '21st century', '1st century', '10th century'],
+        text: 'In which century did steam engines start working in mines and factories?',
+        options: ['18th century', '21st century', '15th century', '10th century'],
         correctAnswer: '18th century',
-        explanation: 'The first practical steam engines appeared in the 1700s.',
+        explanation: 'Thomas Newcomen\'s engine began pumping water out of mines in 1712, and James Watt improved it in the 1760s and 1770s: the 18th century.',
         rewardType: 'engine'
       },
       {

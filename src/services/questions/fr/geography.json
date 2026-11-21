@@ -755,7 +755,7 @@
       "L’Irlande",
       "La France",
       "La Belgique",
-      "L’Espagne"
+      "La Norvège"
     ],
     "explanation": "Le Royaume-Uni n’a de frontière terrestre qu’avec la république d’Irlande."
   },
@@ -874,10 +874,10 @@
     "options": [
       "L’Atlantide",
       "La Pangée",
-      "Le Gondwana",
+      "L’Eurasie",
       "La Laurentia"
     ],
-    "explanation": "La Pangée s’est ensuite brisée pour former les continents d’aujourd’hui."
+    "explanation": "La Pangée réunissait presque toutes les terres de la planète. Elle s’est ensuite brisée pour former les continents d’aujourd’hui."
   },
   "x-geo-s-10": {
     "text": "L’Himalaya s’est formé surtout parce que deux plaques sont entrées en collision. Lesquelles ?",

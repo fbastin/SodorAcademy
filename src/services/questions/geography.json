@@ -632,11 +632,11 @@
       "options": [
         "Atlantis",
         "Pangaea",
-        "Gondwanaland",
+        "Eurasia",
         "Laurentia"
       ],
       "correctAnswer": "Pangaea",
-      "explanation": "Pangaea later broke apart into today's continents.",
+      "explanation": "Pangaea joined almost all the land on Earth together. It later broke apart into today's continents.",
       "rewardType": "coin"
     },
     {

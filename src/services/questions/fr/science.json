@@ -140,14 +140,14 @@
     "explanation": "Les ressorts à l’intérieur des tampons se compriment pour absorber la force d’un choc !"
   },
   "sci-p-15": {
-    "text": "Qu’est-ce qui fournit à une locomotive à vapeur l’énergie pour produire une force ?",
+    "text": "Qu’est-ce qui donne à une locomotive à vapeur l’énergie pour avancer ?",
     "options": [
-      "Le charbon et l’eau",
+      "Le charbon qui brûle",
       "Des piles",
       "Le vent",
       "Le chant"
     ],
-    "explanation": "Le charbon qui brûle fait bouillir l’eau pour produire de la vapeur, et cette vapeur pousse les pistons !"
+    "explanation": "Le charbon qui brûle fait bouillir l’eau de la chaudière, et la vapeur pousse les pistons. L’eau transporte l’énergie, mais c’est le charbon qui la fournit."
   },
   "sci-p-16": {
     "text": "Une balançoire à bascule est une machine simple. Comment s’appelle le point sur lequel elle pivote ?",
@@ -180,14 +180,14 @@
     "explanation": "La masse mesure la quantité de matière contenue dans un objet."
   },
   "sci-p-19": {
-    "text": "Le frottement est-il plus grand sur une voie boueuse ou sur une voie en métal brillant ?",
+    "text": "Pour monter une côte, les roues de Thomas doivent bien adhérer. Où le frottement est-il le plus grand : sur des rails secs couverts de sable, ou sur des rails couverts de feuilles mouillées ?",
     "options": [
-      "La voie boueuse",
-      "La voie en métal brillant",
+      "Sur les rails secs avec du sable",
+      "Sur les rails avec des feuilles mouillées",
       "C’est pareil pour les deux",
-      "Ni l’une ni l’autre"
+      "Ni l’un ni l’autre"
     ],
-    "explanation": "Les surfaces rugueuses ou collantes, comme la boue, créent plus de frottement que les surfaces lisses."
+    "explanation": "Le sable est rugueux : il aide les roues à adhérer. Les feuilles mouillées forment une couche glissante, et les roues patinent."
   },
   "sci-p-20": {
     "text": "Comment appelle-t-on la mesure de l’attraction de la gravité sur un objet ?",
@@ -195,7 +195,7 @@
       "La masse",
       "Le poids",
       "La vitesse",
-      "La force"
+      "Le volume"
     ],
     "explanation": "Le poids est la force de gravité qui agit sur la masse d’un objet."
   },
@@ -643,7 +643,7 @@
     "text": "Complète la troisième loi de Newton : « À toute action correspond une … égale et opposée. »",
     "options": [
       "Réaction",
-      "Force",
+      "Accélération",
       "Locomotive",
       "Son"
     ],

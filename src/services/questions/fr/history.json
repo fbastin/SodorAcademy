@@ -70,14 +70,14 @@
     "explanation": "James Watt a amélioré la machine à vapeur et l’a rendue beaucoup plus efficace."
   },
   "his-p-8": {
-    "text": "Pendant quel siècle a-t-on inventé les premières machines à vapeur ?",
+    "text": "En quel siècle les machines à vapeur ont-elles commencé à travailler dans les mines et les usines ?",
     "options": [
       "Le 18e siècle",
       "Le 21e siècle",
-      "Le 1er siècle",
+      "Le 15e siècle",
       "Le 10e siècle"
     ],
-    "explanation": "Les premières machines à vapeur vraiment utiles sont apparues dans les années 1700, au 18e siècle."
+    "explanation": "La machine de Thomas Newcomen a commencé à pomper l’eau des mines en 1712, et James Watt l’a améliorée dans les années 1760 et 1770 : c’est le 18e siècle."
   },
   "his-p-9": {
     "text": "Qui travaille chaque jour pour faire rouler Thomas ?",
