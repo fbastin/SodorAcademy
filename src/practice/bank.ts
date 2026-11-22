@@ -44,6 +44,8 @@ const FILES = [
   '/Practice/skills-maths.js',
   '/Practice/skills-sciences.js',
   '/Practice/skills-code.js',
+  '/Practice/music-glyphs.js',
+  '/Practice/skills-musique.js',
 ];
 
 let loading: Promise<PracticeBank> | null = null;

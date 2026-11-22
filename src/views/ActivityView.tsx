@@ -24,6 +24,7 @@ import SoundWavesLesson from '../components/SoundWavesLesson';
 import { ElectricityLesson, MagnetsLesson, GearsLesson, SolarSystemLesson, AcidsBasesLesson } from '../lessons/ScienceLessons';
 import { TimesTablesLesson, DivisionLesson } from '../lessons/MathsLessons';
 import { EarthLesson, FirstProgramLesson } from '../lessons/MoreLessons';
+import { ReadingNotesLesson, RhythmLesson, IntervalsScalesLesson, ChordsLesson } from '../lessons/MusicLessons';
 
 // The exercises: each one counts right answers up to the station's quiz length.
 const EXERCISES: Record<string, React.ComponentType<any>> = {
@@ -38,6 +39,7 @@ const LESSONS: Record<string, React.ComponentType<any>> = {
   ContinentsLesson, SoundWavesLesson,
   ElectricityLesson, MagnetsLesson, GearsLesson, SolarSystemLesson, AcidsBasesLesson,
   TimesTablesLesson, DivisionLesson, EarthLesson, FirstProgramLesson,
+  ReadingNotesLesson, RhythmLesson, IntervalsScalesLesson, ChordsLesson,
 };
 
 export default function ActivityView({ station, activity, grade, questionsCount, completedStories, score, onComplete, onBack, onNext }: {

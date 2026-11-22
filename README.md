@@ -21,7 +21,9 @@ their programme and their look. It speaks French and English.
   of Sodor. They need the site's `/Practice/` and `/vendor/highlight.js/`.
 - **Lessons and exercises**: lessons are steps given to `src/components/LessonPlayer.tsx`
   (see `src/lessons/` and `src/components/*Lesson.tsx`); exercises draw their question
-  inside `src/components/ExerciseFrame.tsx`.
+  inside `src/components/ExerciseFrame.tsx`. The music theory lessons
+  (`src/lessons/MusicLessons.tsx`) draw their staves with the Practice Room's engraver,
+  `window.MUSIC_STAFF` from `/Practice/skills-musique.js`, loaded with the exercises.
 - **Quiz questions**: the banks are in English (`src/services/localData.ts`,
   `src/services/questions/*.json`); `src/services/questions/fr/<subject>.json` translates
   each question by its id, options in the same order (the right answer is found by its
