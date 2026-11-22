@@ -8,8 +8,13 @@ export default function SodorMap() {
   const { tr } = useLang();
   return (
     <div className="relative w-full aspect-[16/9] overflow-hidden rounded-[22px] border-[3px] border-ink shadow-[0_8px_0_#17233d] bg-[#d9c9a3]">
+      {/* A JPEG of media/Sodor Island.png (2.8 MB as PNG); lazy, so a phone, where the
+          map is hidden, does not download it. */}
       <img
-        src="/SodorAcademy/media/Sodor Island.png"
+        src="/SodorAcademy/media/sodor-island.jpg"
+        width={1408}
+        height={768}
+        loading="lazy"
         alt=""
         className="absolute inset-0 w-full h-full object-cover"
       />
