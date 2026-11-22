@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, ArrowRight, Volume2, PlayCircle } from 'lucide-react';
 import { useLang, Text, Lang } from '../i18n';
-import { speak } from '../services/speechService';
+import { speak, stopSpeaking } from '../services/speechService';
 import { SiteLink } from '../content/stations';
 import { SiteCard } from './ui';
 
@@ -41,7 +41,7 @@ export default function LessonPlayer({ title, color = '#2464d6', steps, links = 
   const last = i === steps.length - 1;
 
   const go = (n: number) => {
-    window.speechSynthesis?.cancel();
+    stopSpeaking();
     setI(Math.max(0, Math.min(steps.length - 1, n)));
   };
 
@@ -55,7 +55,7 @@ export default function LessonPlayer({ title, color = '#2464d6', steps, links = 
     return () => window.removeEventListener('keydown', onKey);
   }, [i]);
 
-  useEffect(() => () => window.speechSynthesis?.cancel(), []);
+  useEffect(() => () => stopSpeaking(), []);
 
   const visual = typeof step.visual === 'function' ? (step.visual as (l: Lang) => React.ReactNode)(lang) : step.visual;
 

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, BookOpen, Check, RotateCcw, Shuffle, Volume2, X } from 'lucide-react';
 import { Story, Grade } from '../types';
 import { STORIES } from '../services/storyData';
-import { speak } from '../services/speechService';
+import { speak, stopSpeaking } from '../services/speechService';
 import { useLang } from '../i18n';
 import { TrainTrack } from '../views/QuizView';
 import { Engine } from './ui';
@@ -56,7 +56,7 @@ export default function StoryExercise({ completedStories, questionsCount = 10, o
     : `${n} right answer${n === 1 ? '' : 's'}`;
 
   const reset = (s: Story = story) => {
-    window.speechSynthesis?.cancel();
+    stopSpeaking();
     setStory(s);
     setIdx(0);
     setPicked(null);
@@ -73,7 +73,7 @@ export default function StoryExercise({ completedStories, questionsCount = 10, o
   };
 
   const nextQuestion = () => {
-    window.speechSynthesis?.cancel();
+    stopSpeaking();
     if (!last) {
       setIdx(i => i + 1);
       setPicked(null);
@@ -124,7 +124,7 @@ export default function StoryExercise({ completedStories, questionsCount = 10, o
               <button onClick={() => reset(pickStory(completedStories, story.id))} className="chunky">
                 <Shuffle size={16} /> {tr({ fr: 'Une autre histoire', en: 'Another story' })}
               </button>
-              <button onClick={() => { window.speechSynthesis?.cancel(); setView('questions'); }} className="chunky go big">
+              <button onClick={() => { stopSpeaking(); setView('questions'); }} className="chunky go big">
                 {tr({ fr: 'J’ai lu l’histoire : aux questions !', en: 'I’ve read it: on to the questions!' })} <ArrowRight size={20} />
               </button>
             </div>
