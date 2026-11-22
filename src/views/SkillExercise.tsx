@@ -126,7 +126,7 @@ export default function SkillExercise({ station, activity, grade, questionsCount
     }
   };
 
-  const href = topic ? lessonHref(topic) : undefined;
+  const href = q?.skill.lesson ? lessonHref(q.skill) : topic ? lessonHref(topic) : undefined;
 
   if (failed) {
     return (

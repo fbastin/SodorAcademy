@@ -33,7 +33,7 @@ export interface PQuestion {
   explain: PText;
 }
 
-export interface PSkill { id: string; topic: string; title: { fr: string; en: string }; gen: (level: number) => PQuestion }
+export interface PSkill { id: string; topic: string; title: { fr: string; en: string }; lesson?: string; gen: (level: number) => PQuestion }
 export interface PTopic { id: string; subject: string; letter: string; title: { fr: string; en: string }; lesson?: string }
 export interface PracticeBank { topics: PTopic[]; skills: PSkill[] }
 
@@ -117,4 +117,5 @@ export function answerText(q: PQuestion, v: any, lang: Lang): string {
 }
 
 // The lesson of a topic, as an address of the site (the bank writes them from /Practice/).
-export const lessonHref = (t: PTopic) => (t.lesson ? t.lesson.replace(/^\.\.\//, '/') : undefined);
+// A skill can have a lesson of its own; otherwise it is its topic's.
+export const lessonHref = (t: { lesson?: string }) => (t.lesson ? t.lesson.replace(/^\.\.\//, '/') : undefined);

@@ -296,7 +296,7 @@ const STEPS: LessonStep[] = [
 ];
 
 // To divide bigger sums: the long division page.
-const LINKS = math.links.filter(l => l.href.includes('long-division'));
+const LINKS = math.links.filter(l => l.href.includes('statistics/mean') || l.href.includes('/Practice/'));
 
 export default function ArithmeticMeanLesson({ onCancel, onStartExercise, color }: {
   onCancel: () => void;

@@ -469,7 +469,7 @@ const STEPS: LessonStep[] = [
   },
 ];
 
-const LINKS = math.links.filter(l => l.href.includes('shapes/shapes.html') || l.href.includes('/Practice/'));
+const LINKS = math.links.filter(l => l.href.includes('solids/solids.html') || l.href.includes('/Practice/'));
 
 export default function PrismsLesson({ onCancel, onStartExercise, color }: {
   onCancel: () => void;

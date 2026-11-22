@@ -309,7 +309,7 @@ const STEPS: LessonStep[] = [
   },
 ];
 
-const LINKS = math.links.filter(l => l.href.includes('euclid') || l.href.includes('/Practice/'));
+const LINKS = math.links.filter(l => l.href.includes('multiples/lcm') || l.href.includes('euclid') || l.href.includes('/Practice/'));
 
 export default function LCMLesson({ onCancel, onStartExercise, color }: {
   onCancel: () => void;

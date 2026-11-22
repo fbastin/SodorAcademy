@@ -340,7 +340,7 @@ const STEPS: LessonStep[] = [
   },
 ];
 
-const LINKS = math.links.filter(l => l.href.includes('multiplying_fractions') || l.href.includes('/Practice/'));
+const LINKS = math.links.filter(l => l.href.includes('fractions/adding-fractions') || l.href.includes('/Practice/'));
 
 export default function FractionAdditionLesson({ onCancel, onStartExercise, color }: {
   onCancel: () => void;
