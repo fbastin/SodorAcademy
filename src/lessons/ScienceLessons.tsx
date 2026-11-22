@@ -298,31 +298,42 @@ function PlanetSizes({ lang }: { lang: Lang }) {
   );
 }
 
+// After the unit « Notre système solaire » of the pupil's science book: the order with its
+// sentence, the two families, the astronomical unit, days and years, dwarf planets and moons.
 const SOLAR: LessonStep[] = [
   {
     title: { fr: 'Le Soleil et ses huit planètes', en: 'The Sun and its eight planets' },
     body: {
-      fr: 'Le Soleil est une étoile. Huit planètes tournent autour de lui, de la plus proche à la plus lointaine : Mercure, Vénus, la Terre, Mars, Jupiter, Saturne, Uranus et Neptune.',
-      en: 'The Sun is a star. Eight planets travel around it, from the nearest to the farthest: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.',
+      fr: 'Le Soleil est une <b>étoile</b> : il brille par lui-même. Huit planètes tournent autour de lui, de la plus proche à la plus lointaine : Mercure, Vénus, la Terre, Mars, puis la ceinture d’astéroïdes, puis Jupiter, Saturne, Uranus et Neptune.',
+      en: 'The Sun is a <b>star</b>: it shines by itself. Eight planets travel around it, from the nearest to the farthest: Mercury, Venus, Earth, Mars, then the asteroid belt, then Jupiter, Saturn, Uranus and Neptune.',
     },
     visual: img('/Physics-for-kids/cards/solar-system.jpg'),
-    note: { fr: 'Pour retenir l’ordre : « <b>M</b>on <b>V</b>ieux, <b>T</b>u <b>M</b>’as <b>J</b>eté <b>S</b>ur <b>U</b>ne <b>N</b>avette ».', en: 'To remember the order: “<b>M</b>y <b>V</b>ery <b>E</b>asy <b>M</b>ethod <b>J</b>ust <b>S</b>peeds <b>U</b>p <b>N</b>aming”.' },
+    note: { fr: 'Pour retenir l’ordre : quatre petites planètes telluriques, puis la ceinture d’astéroïdes, puis quatre géantes. La Terre est la troisième, Neptune la huitième et la dernière.', en: 'To remember the order: four small rocky planets, then the asteroid belt, then four giants. The Earth is the third, Neptune the eighth and the last.' },
   },
   {
-    title: { fr: 'Des géantes et des petites', en: 'Giants and little ones' },
+    title: { fr: 'Deux familles de planètes', en: 'Two families of planets' },
     body: {
-      fr: 'Les quatre planètes proches du Soleil sont petites et rocheuses. Les quatre lointaines sont des géantes faites surtout de gaz et de glace. Jupiter est la plus grosse : on pourrait y ranger plus de 1&nbsp;000 Terres !',
-      en: 'The four planets near the Sun are small and rocky. The four far ones are giants made mostly of gas and ice. Jupiter is the biggest: more than 1,000 Earths could fit inside it!',
+      fr: 'Les quatre planètes proches du Soleil sont les <b>planètes telluriques</b> : petites, faites de roches et de métaux, avec une surface solide. Les quatre lointaines sont les <b>planètes joviennes</b> : des géantes faites surtout de gaz, sans surface solide. Jupiter est la plus grosse : on pourrait y ranger plus de 1&nbsp;000 Terres !',
+      en: 'The four planets near the Sun are the <b>rocky planets</b>: small, made of rock and metal, with a solid surface. The four far ones are the <b>giant planets</b>: made mostly of gas, with no solid surface. Jupiter is the biggest: more than 1,000 Earths could fit inside it!',
     },
     visual: lang => <PlanetSizes lang={lang} />,
+    note: { fr: 'Pour les distances, on utilise l’<b>unité astronomique</b> : 1&nbsp;UA, c’est la distance Terre–Soleil, environ 150 millions de km. Neptune est à 30&nbsp;UA.', en: 'For distances, astronomers use the <b>astronomical unit</b>: 1 AU is the Earth–Sun distance, about 150 million km. Neptune is 30 AU away.' },
   },
   {
-    title: { fr: 'Un an, c’est un tour du Soleil', en: 'A year is one trip around the Sun' },
+    title: { fr: 'Un jour, une année', en: 'A day, a year' },
     body: {
-      fr: 'Chaque planète fait le tour du Soleil sur son <b>orbite</b>. Pour la Terre, un tour dure un an, environ 365 jours. Mercure, toute proche, fait le tour en 88 jours ; Neptune, très loin, met environ 165 ans !',
-      en: 'Each planet goes around the Sun on its <b>orbit</b>. For the Earth, one trip takes a year, about 365 days. Mercury, very close, goes round in 88 days; Neptune, very far, takes about 165 years!',
+      fr: 'Une planète tourne sur elle-même : c’est sa <b>rotation</b>, un tour fait un <b>jour</b>. Elle tourne aussi autour du Soleil : c’est sa <b>révolution</b>, un tour fait une <b>année</b>. Mercure, toute proche, fait le tour du Soleil en 88 jours ; Neptune, très loin, met environ 165 ans !',
+      en: 'A planet spins on itself: that is its <b>rotation</b>, one turn is a <b>day</b>. It also goes around the Sun: that is its <b>revolution</b>, one trip is a <b>year</b>. Mercury, very close, goes round in 88 days; Neptune, very far, takes about 165 years!',
     },
-    note: { fr: 'Plus une planète est loin du Soleil, plus son année est longue.', en: 'The farther a planet is from the Sun, the longer its year.' },
+    note: { fr: 'Plus une planète est loin du Soleil, plus son année est longue. Et Vénus tourne si lentement sur elle-même que son jour est plus long que son année !', en: 'The farther a planet is from the Sun, the longer its year. And Venus spins so slowly that its day is longer than its year!' },
+  },
+  {
+    title: { fr: 'Planètes naines et satellites', en: 'Dwarf planets and moons' },
+    body: {
+      fr: 'Une <b>planète naine</b> tourne autour du Soleil et elle est ronde, mais elle partage son orbite avec d’autres astres : Cérès, Pluton, Éris, Makémaké et Hauméa. Pluton était une planète jusqu’en 2006. Un <b>satellite naturel</b> tourne autour d’une planète : la Lune autour de la Terre, Titan autour de Saturne, Io et Europe autour de Jupiter.',
+      en: 'A <b>dwarf planet</b> goes around the Sun and is round, but it shares its orbit with other bodies: Ceres, Pluto, Eris, Makemake and Haumea. Pluto was a planet until 2006. A <b>moon</b> goes around a planet: the Moon around the Earth, Titan around Saturn, Io and Europa around Jupiter.',
+    },
+    note: { fr: 'La leçon « Notre système solaire » de slashbin.net donne une fiche pour chaque planète.', en: 'The “Our Solar System” lesson on slashbin.net has a fact sheet for each planet.' },
   },
 ];
 
