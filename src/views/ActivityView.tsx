@@ -23,7 +23,8 @@ import PianoSequence from '../components/PianoSequence';
 import SoundWavesLesson from '../components/SoundWavesLesson';
 import { ElectricityLesson, MagnetsLesson, GearsLesson, SolarSystemLesson, AcidsBasesLesson } from '../lessons/ScienceLessons';
 import { TimesTablesLesson, DivisionLesson } from '../lessons/MathsLessons';
-import { EarthLesson, FirstProgramLesson } from '../lessons/MoreLessons';
+import { EarthLesson } from '../lessons/MoreLessons';
+import { FirstProgramLesson, VariablesLesson, ConditionsLesson, LoopsLesson, FunctionsLesson, ArraysLesson, EuclidLesson } from '../lessons/ProgrammingLessons';
 import { ReadingNotesLesson, RhythmLesson, IntervalsScalesLesson, ChordsLesson } from '../lessons/MusicLessons';
 
 // The exercises: each one counts right answers up to the station's quiz length.
@@ -40,6 +41,7 @@ const LESSONS: Record<string, React.ComponentType<any>> = {
   ElectricityLesson, MagnetsLesson, GearsLesson, SolarSystemLesson, AcidsBasesLesson,
   TimesTablesLesson, DivisionLesson, EarthLesson, FirstProgramLesson,
   ReadingNotesLesson, RhythmLesson, IntervalsScalesLesson, ChordsLesson,
+  VariablesLesson, ConditionsLesson, LoopsLesson, FunctionsLesson, ArraysLesson, EuclidLesson,
 };
 
 export default function ActivityView({ station, activity, grade, questionsCount, completedStories, score, onComplete, onBack, onNext }: {
